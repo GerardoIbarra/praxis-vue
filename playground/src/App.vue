@@ -13,7 +13,14 @@ import {
   TabComponent,
   FullPageLoader,
   PhoneNumber,
-  ColorPickerField
+  ColorPickerField,
+  PdfViewer,
+  BaseDataTable,
+  StepNavigation,
+  LazyLoadingSpinner,
+  RequiredLabel,
+  SelectableList,
+  CheckListField
 } from '@praxis/vue'
 
 import { WordgardEditor } from '@praxis/editor'
@@ -23,23 +30,55 @@ const time = ref('14:30')
 const editorContent = ref('<p>Hello from <strong>@praxis/editor</strong>!</p>')
 const isDark = ref(false)
 const isLoading = ref(false)
+
+// Tabs
 const activeTab = ref('overview')
 const tabs = [
   { key: 'overview', label: 'Overview', icon: 'Info', tooltip: 'Component overview' },
   { key: 'api', label: 'API', icon: 'FileText', tooltip: 'API Documentation' },
   { key: 'changelog', label: 'Changelog', icon: 'History', tooltip: 'Release notes' }
 ]
-
 const tabContent: Record<string, string> = {
-  overview: 'Explore our components.',
-  api: 'Integration details.',
-  changelog: 'Latest updates.'
+  overview: 'Explore our components seamlessly.',
+  api: 'Integration details and props.',
+  changelog: 'Latest updates and bug fixes.'
 }
 
+// Phone & Color
 const phone = ref('')
-const color = ref('#3b82f6')
+const color = ref('#6366f1')
 
-// Simulate loading
+// Step Navigation
+const currentStep = ref(1)
+const steps = [
+  { id: 1, label: 'Personal Info' },
+  { id: 2, label: 'Configuration' },
+  { id: 3, label: 'Review' }
+]
+
+// Data Table
+const tableColumns = [
+  { field: 'id', header: 'ID', sortable: true },
+  { field: 'name', header: 'Name', sortable: true },
+  { field: 'role', header: 'Role', sortable: true },
+  { field: 'status', header: 'Status' }
+]
+const tableData = [
+  { id: 1, name: 'Alice Smith', role: 'Admin', status: 'Active' },
+  { id: 2, name: 'Bob Jones', role: 'User', status: 'Pending' },
+  { id: 3, name: 'Charlie Brown', role: 'User', status: 'Active' },
+  { id: 4, name: 'Diana Prince', role: 'Manager', status: 'Inactive' }
+]
+
+// Selectable List
+const listOptions = [
+  { id: 1, name: 'Premium Plan', description: 'Full access to all features' },
+  { id: 2, name: 'Basic Plan', description: 'Core features only' },
+  { id: 3, name: 'Enterprise', description: 'Custom solutions for teams' }
+]
+const selectedListItems = ref([])
+
+// Simulate full page loading
 const triggerLoader = () => {
   isLoading.value = true
   setTimeout(() => {
@@ -53,180 +92,326 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :class="{ dark: isDark }" class="min-h-screen bg-white dark:bg-surface-950 text-surface-900 dark:text-surface-50 transition-colors duration-300 flex">
+  <div :class="{ dark: isDark }" class="min-h-screen transition-colors duration-500 font-sans text-surface-900 dark:text-surface-50 relative selection:bg-primary-500/30">
     
-    <!-- Sidebar Navigation -->
-    <aside class="w-64 fixed inset-y-0 left-0 border-r border-surface-200 dark:border-surface-800 bg-surface-50 dark:bg-surface-900 hidden md:flex flex-col p-6">
-      <div class="flex items-center justify-between mb-8">
-        <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-indigo-500">
-          @praxis
-        </h1>
-        <ThemeToggle v-model="isDark" />
-      </div>
-      
-      <nav class="flex flex-col gap-2 flex-grow overflow-y-auto">
-        <div class="text-xs font-bold text-surface-400 dark:text-surface-500 uppercase tracking-wider mb-2 mt-4">Base</div>
-        <a href="#theme-toggle" class="hover:text-primary-500 transition-colors">Theme Toggle</a>
-        <a href="#avatars" class="hover:text-primary-500 transition-colors">Avatars</a>
-        <a href="#badges" class="hover:text-primary-500 transition-colors">Badges</a>
-        <a href="#loader" class="hover:text-primary-500 transition-colors">Loaders</a>
-        
-        <div class="text-xs font-bold text-surface-400 dark:text-surface-500 uppercase tracking-wider mb-2 mt-6">Forms</div>
-        <a href="#time-picker" class="hover:text-primary-500 transition-colors">Time Picker</a>
-        <a href="#phone" class="hover:text-primary-500 transition-colors">Phone Number</a>
-        <a href="#color-picker" class="hover:text-primary-500 transition-colors">Color Picker</a>
-        
-        <div class="text-xs font-bold text-surface-400 dark:text-surface-500 uppercase tracking-wider mb-2 mt-6">Data Display</div>
-        <a href="#accordion" class="hover:text-primary-500 transition-colors">Accordion</a>
-        <a href="#tabs" class="hover:text-primary-500 transition-colors">Tabs</a>
-        
-        <div class="text-xs font-bold text-surface-400 dark:text-surface-500 uppercase tracking-wider mb-2 mt-6">Editor</div>
-        <a href="#rich-text" class="hover:text-primary-500 transition-colors">Wordgard Editor</a>
-      </nav>
-    </aside>
+    <!-- Immersive Background -->
+    <div class="fixed inset-0 bg-gradient-to-br from-surface-50 via-white to-surface-100 dark:from-surface-950 dark:via-surface-900 dark:to-surface-950 -z-20 transition-colors duration-500"></div>
+    
+    <!-- Decorative Ambient Blobs -->
+    <div class="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-primary-400/10 dark:bg-primary-500/10 blur-[120px] pointer-events-none -z-10 transition-all duration-1000"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-indigo-400/10 dark:bg-indigo-500/10 blur-[120px] pointer-events-none -z-10 transition-all duration-1000"></div>
 
-    <!-- Main Content -->
-    <main class="flex-1 md:ml-64 p-8 lg:p-16 max-w-6xl">
-      <header class="mb-16">
-        <h2 class="text-4xl lg:text-5xl font-extrabold tracking-tight mb-4">
-          Component Showcase
-        </h2>
-        <p class="text-xl text-surface-500 dark:text-surface-400 max-w-2xl">
-          A premium collection of reusable Vue 3 components powered by Wordgard and TailwindCSS.
-        </p>
-      </header>
-
-      <FullPageLoader v-if="isLoading" />
-
-      <!-- Showcases -->
-      <ShowcaseSection 
-        id="theme-toggle"
-        title="Theme Toggle" 
-        description="A beautiful animated toggle button for switching between light and dark modes."
-      >
-        <div class="flex items-center justify-center p-8">
+    <div class="flex flex-col md:flex-row">
+      <!-- Sidebar Navigation (Glassmorphic) -->
+      <aside class="w-64 fixed inset-y-0 left-0 border-r border-surface-200/50 dark:border-surface-700/50 bg-white/60 dark:bg-surface-900/60 backdrop-blur-xl hidden md:flex flex-col p-6 z-40 transition-colors duration-500 shadow-[4px_0_24px_-12px_rgba(0,0,0,0.1)]">
+        <div class="flex items-center justify-between mb-8">
+          <h1 class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-primary-600 to-indigo-500 tracking-tight">
+            @praxis
+          </h1>
           <ThemeToggle v-model="isDark" />
         </div>
-      </ShowcaseSection>
+        
+        <nav class="flex flex-col gap-1.5 flex-grow overflow-y-auto custom-scrollbar pr-2">
+          
+          <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-4">Base & Forms</div>
+          <a href="#theme-toggle" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Theme Toggle</a>
+          <a href="#avatars" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Avatars</a>
+          <a href="#badges" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Badges & Labels</a>
+          <a href="#loaders" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Loaders</a>
+          <a href="#time-picker" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Time Picker</a>
+          <a href="#phone" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Phone Number</a>
+          <a href="#color-picker" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Color Picker</a>
+          
+          <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Data & Advanced</div>
+          <a href="#data-table" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Data Table</a>
+          <a href="#selectable-list" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Selectable List</a>
+          <a href="#pdf-viewer" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">PDF Viewer</a>
+          
+          <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Navigation</div>
+          <a href="#steps" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Step Navigation</a>
+          <a href="#accordion" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Accordion</a>
+          <a href="#tabs" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Tabs</a>
+          
+          <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Editor</div>
+          <a href="#rich-text" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Wordgard Editor</a>
+        </nav>
+      </aside>
 
-      <ShowcaseSection 
-        id="avatars"
-        title="Avatars" 
-        description="Display user profiles with dynamically colored initials based on the user's name."
-      >
-        <div class="flex gap-8 items-center justify-center flex-wrap">
-          <BaseAvatar name="Luis Kern" size="w-10 h-10" />
-          <BaseAvatar name="Gerardo Ibarra" size="w-10 h-10" />
-          <InitialsAvatar name="Jane Doe" />
-        </div>
-      </ShowcaseSection>
-
-      <ShowcaseSection 
-        id="badges"
-        title="Status Badges" 
-        description="Visual indicators for states, categories, or tags."
-      >
-        <div class="flex gap-4 items-center justify-center flex-wrap">
-          <PraxisBadge severity="success">Active</PraxisBadge>
-          <PraxisBadge severity="warning">Pending</PraxisBadge>
-          <PraxisBadge severity="danger">Failed</PraxisBadge>
-          <PraxisBadge severity="info">Info</PraxisBadge>
-        </div>
-      </ShowcaseSection>
-
-      <ShowcaseSection 
-        id="time-picker"
-        title="Praxis Time Picker" 
-        description="A clean, robust input for selecting times, decoupled from business logic."
-      >
-        <div class="w-full max-w-xs mx-auto">
-          <PraxisTimePicker v-model="time" label="Schedule Time" required />
-          <p class="mt-4 text-sm text-surface-500 dark:text-surface-400 text-center">
-            Selected Time: <strong class="text-primary-500">{{ time }}</strong>
-          </p>
-        </div>
-      </ShowcaseSection>
-
-      <ShowcaseSection 
-        id="phone"
-        title="Phone Number Input" 
-        description="International phone number formatting and validation out of the box."
-      >
-        <div class="w-full max-w-xs mx-auto">
-          <PhoneNumber v-model="phone" label="Contact Number" />
-          <p class="mt-4 text-sm text-surface-500 dark:text-surface-400 text-center">
-            Value: <strong class="text-primary-500">{{ phone || 'Empty' }}</strong>
-          </p>
-        </div>
-      </ShowcaseSection>
-
-      <ShowcaseSection 
-        id="color-picker"
-        title="Color Picker" 
-        description="Interactive color selection field."
-      >
-        <div class="w-full max-w-xs mx-auto">
-          <ColorPickerField v-model="color" label="Brand Color" />
-          <p class="mt-4 text-sm text-surface-500 dark:text-surface-400 text-center">
-            Selected: <strong :style="{ color: color }">{{ color }}</strong>
-          </p>
-        </div>
-      </ShowcaseSection>
-
-      <ShowcaseSection 
-        id="accordion"
-        title="Accordion" 
-        description="Collapsible sections to organize complex information."
-      >
-        <div class="w-full">
-          <PraxisAccordion :items="[{value: '1', header: 'Section 1', content: 'Content for section 1'}, {value: '2', header: 'Section 2', content: 'Content for section 2'}]" />
-        </div>
-      </ShowcaseSection>
-
-      <ShowcaseSection 
-        id="tabs"
-        title="Tab Component" 
-        description="Navigate between multiple views or data sets within the same context."
-      >
-        <div class="w-full">
-          <TabComponent :tabs="tabs" v-model="activeTab" />
-          <div class="p-6 bg-surface-100 dark:bg-surface-800 rounded-b-xl mt-[-1px]">
-            {{ tabContent[activeTab] }}
+      <!-- Main Content -->
+      <main class="flex-1 md:ml-64 p-8 lg:p-16 max-w-7xl mx-auto relative z-10">
+        
+        <!-- Hero Section -->
+        <header class="mb-24 mt-8 animate-fade-in-up">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-500/10 text-primary-600 dark:text-primary-400 text-sm font-semibold mb-6 ring-1 ring-primary-500/20">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-primary-500"></span>
+            </span>
+            Wordgard UI V2
           </div>
-        </div>
-      </ShowcaseSection>
+          <h2 class="text-5xl lg:text-7xl font-extrabold tracking-tighter mb-6 leading-tight">
+            Design that <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-indigo-500">Inspires.</span>
+          </h2>
+          <p class="text-xl lg:text-2xl text-surface-500 dark:text-surface-400 max-w-3xl leading-relaxed font-light">
+            A premium, meticulously crafted collection of Vue 3 components designed for modern web applications.
+          </p>
+        </header>
 
-      <ShowcaseSection 
-        id="rich-text"
-        title="Wordgard Editor" 
-        description="Our premium rich-text editing experience, ready for any complex content creation task."
-      >
-        <div class="w-full shadow-lg rounded-lg overflow-hidden border border-surface-200 dark:border-surface-700">
-          <WordgardEditor
-            v-model="editorContent"
-            placeholder="Write something amazing..."
-          />
-        </div>
-        <div class="mt-4">
-          <pre class="text-xs bg-surface-100 dark:bg-surface-800 p-4 rounded-lg overflow-x-auto text-surface-700 dark:text-surface-300 border border-surface-200 dark:border-surface-700">{{ editorContent }}</pre>
-        </div>
-      </ShowcaseSection>
+        <FullPageLoader v-if="isLoading" />
 
-      <ShowcaseSection 
-        id="loader"
-        title="Full Page Loader" 
-        description="Block the screen during critical asynchronous operations."
-      >
-        <div class="flex justify-center">
-          <button 
-            @click="triggerLoader"
-            class="px-6 py-2.5 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-colors shadow-sm"
+        <!-- Component Showcases -->
+        <div class="flex flex-col gap-12">
+
+          <ShowcaseSection 
+            id="theme-toggle"
+            title="Theme Toggle" 
+            description="A beautiful animated toggle button for switching between light and dark modes."
           >
-            Trigger Loader (2s)
-          </button>
-        </div>
-      </ShowcaseSection>
+            <div class="flex items-center justify-center p-8">
+              <ThemeToggle v-model="isDark" />
+            </div>
+          </ShowcaseSection>
 
-    </main>
+          <ShowcaseSection 
+            id="avatars"
+            title="Avatars" 
+            description="Display user profiles with dynamically colored initials based on the user's name."
+          >
+            <div class="flex gap-8 items-center justify-center flex-wrap p-4">
+              <BaseAvatar name="Luis Kern" size="w-12 h-12" />
+              <BaseAvatar name="Gerardo Ibarra" size="w-16 h-16" />
+              <InitialsAvatar name="Jane Doe" />
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="badges"
+            title="Status Badges & Labels" 
+            description="Visual indicators for states, categories, tags or required fields."
+          >
+            <div class="flex flex-col gap-8 items-center justify-center p-4">
+              <div class="flex gap-4 flex-wrap justify-center">
+                <PraxisBadge severity="success">Active</PraxisBadge>
+                <PraxisBadge severity="warning">Pending</PraxisBadge>
+                <PraxisBadge severity="danger">Failed</PraxisBadge>
+                <PraxisBadge severity="info">Info</PraxisBadge>
+              </div>
+              <div class="flex gap-8 border-t border-surface-200/50 dark:border-surface-700/50 pt-8 w-full justify-center">
+                <RequiredLabel label="Email Address" required />
+                <RequiredLabel label="Optional Field" :required="false" />
+              </div>
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="loaders"
+            title="Loaders & Spinners" 
+            description="Block the screen during critical async operations or show inline loading states."
+          >
+            <div class="flex flex-col gap-12 items-center justify-center p-4 w-full">
+              <button 
+                @click="triggerLoader"
+                class="px-8 py-3 bg-gradient-to-r from-primary-600 to-indigo-600 hover:from-primary-500 hover:to-indigo-500 text-white font-semibold rounded-xl transition-all shadow-lg hover:shadow-primary-500/25 hover:-translate-y-0.5"
+              >
+                Trigger Full Page Loader (2s)
+              </button>
+
+              <div class="w-full max-w-md border border-surface-200 dark:border-surface-700 rounded-xl p-8 bg-surface-50 dark:bg-surface-800/50">
+                <LazyLoadingSpinner loadingText="Fetching data..." />
+              </div>
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="time-picker"
+            title="Praxis Time Picker" 
+            description="A beautiful popover-based input for selecting times with scrollable columns."
+          >
+            <div class="w-full max-w-xs mx-auto">
+              <PraxisTimePicker v-model="time" label="Schedule Time" required />
+              <p class="mt-6 text-sm text-surface-500 dark:text-surface-400 text-center font-mono">
+                Selected: <strong class="text-primary-500">{{ time }}</strong>
+              </p>
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="phone"
+            title="Phone Number Input" 
+            description="International phone number formatting and validation out of the box."
+          >
+            <div class="w-full max-w-xs mx-auto">
+              <PhoneNumber v-model="phone" label="Contact Number" />
+              <p class="mt-6 text-sm text-surface-500 dark:text-surface-400 text-center font-mono">
+                Value: <strong class="text-primary-500">{{ phone || 'Empty' }}</strong>
+              </p>
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="color-picker"
+            title="Color Picker" 
+            description="Interactive color selection field."
+          >
+            <div class="w-full max-w-xs mx-auto">
+              <ColorPickerField v-model="color" label="Brand Color" />
+              <p class="mt-6 text-sm text-surface-500 dark:text-surface-400 text-center font-mono">
+                Selected: <strong :style="{ color: color }">{{ color }}</strong>
+              </p>
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="data-table"
+            title="Data Table" 
+            description="Robust table component for displaying and sorting datasets."
+          >
+            <div class="w-full">
+              <BaseDataTable 
+                :columns="tableColumns" 
+                :data="tableData" 
+                :paginated="false"
+              >
+                <template #status="{ item }">
+                  <PraxisBadge 
+                    :severity="item.status === 'Active' ? 'success' : item.status === 'Pending' ? 'warning' : 'danger'"
+                  >
+                    {{ item.status }}
+                  </PraxisBadge>
+                </template>
+              </BaseDataTable>
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="selectable-list"
+            title="Selectable List" 
+            description="Advanced list selection for forms."
+          >
+            <div class="w-full max-w-lg mx-auto">
+              <div class="mb-4">
+                <RequiredLabel label="Choose a Plan" required />
+              </div>
+              <SelectableList 
+                v-model:selectedItems="selectedListItems" 
+                :options="listOptions" 
+                title="Available Plans"
+                labelField="name"
+              />
+            </div>
+          </ShowcaseSection>
+          
+          <ShowcaseSection 
+            id="pdf-viewer"
+            title="PDF Viewer" 
+            description="Embed and render PDF documents directly in the UI."
+          >
+            <div class="w-full h-[400px] border border-surface-200 dark:border-surface-700 rounded-xl overflow-hidden">
+              <PdfViewer url="/dummy.pdf" />
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="steps"
+            title="Step Navigation" 
+            description="Guide users through multi-step forms and processes."
+          >
+            <div class="w-full max-w-3xl mx-auto p-4">
+              <StepNavigation :steps="steps" :currentStep="currentStep" />
+              
+              <div class="mt-12 flex justify-center gap-4">
+                <button 
+                  @click="currentStep > 1 ? currentStep-- : null"
+                  :disabled="currentStep === 1"
+                  class="px-4 py-2 rounded-lg bg-surface-200 dark:bg-surface-800 disabled:opacity-50 transition-colors"
+                >
+                  Previous
+                </button>
+                <button 
+                  @click="currentStep < steps.length ? currentStep++ : null"
+                  :disabled="currentStep === steps.length"
+                  class="px-4 py-2 rounded-lg bg-primary-600 text-white disabled:opacity-50 transition-colors"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="accordion"
+            title="Accordion" 
+            description="Collapsible sections to organize complex information."
+          >
+            <div class="w-full">
+              <PraxisAccordion :items="[{value: '1', header: 'Section 1', content: 'Content for section 1'}, {value: '2', header: 'Section 2', content: 'Content for section 2'}]" />
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="tabs"
+            title="Tab Component" 
+            description="Navigate between multiple views or data sets within the same context."
+          >
+            <div class="w-full">
+              <TabComponent :tabs="tabs" v-model="activeTab" />
+              <div class="p-8 bg-surface-50 dark:bg-surface-800/50 rounded-b-xl border border-t-0 border-surface-200/50 dark:border-surface-700/50 text-surface-600 dark:text-surface-300">
+                {{ tabContent[activeTab] }}
+              </div>
+            </div>
+          </ShowcaseSection>
+
+          <ShowcaseSection 
+            id="rich-text"
+            title="Wordgard Editor" 
+            description="Our premium rich-text editing experience, ready for any complex content creation task."
+          >
+            <div class="w-full">
+              <WordgardEditor
+                v-model="editorContent"
+                placeholder="Write something amazing..."
+              />
+              <div class="mt-6">
+                <div class="text-xs font-semibold text-surface-500 uppercase tracking-widest mb-2">HTML Output</div>
+                <pre class="text-xs bg-surface-100/50 dark:bg-surface-800/50 p-4 rounded-xl overflow-x-auto text-surface-700 dark:text-surface-300 border border-surface-200/50 dark:border-surface-700/50 font-mono">{{ editorContent }}</pre>
+              </div>
+            </div>
+          </ShowcaseSection>
+          
+        </div>
+      </main>
+    </div>
   </div>
 </template>
+
+<style>
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom scrollbar for sidebar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 4px;
+}
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.6);
+}
+</style>

@@ -129,8 +129,8 @@ importers:
         specifier: ^0.6.1
         version: 0.6.1(@types/sortablejs@1.15.9)
       vue-select:
-        specifier: ^3.20.4
-        version: 3.20.4(vue@3.5.41(typescript@6.0.3))
+        specifier: 4.0.0-beta.6
+        version: 4.0.0-beta.6(vue@3.5.41(typescript@6.0.3))
       vue-tel-input:
         specifier: ^9.8.0
         version: 9.8.0(libphonenumber-js@1.13.10)(vue@3.5.41(typescript@6.0.3))
@@ -2440,10 +2440,10 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
-  vue-select@3.20.4:
-    resolution: {integrity: sha512-pXIsDUnBR1075qHNEM7mKgX7YnHI3MfCO+7VmXSA1Hywplpqi52jOa0j6EHWQU6MnaW/mBZPuaQtgp3yvks2Kw==}
+  vue-select@4.0.0-beta.6:
+    resolution: {integrity: sha512-K+zrNBSpwMPhAxYLTCl56gaMrWZGgayoWCLqe5rWwkB8aUbAUh7u6sXjIR7v4ckp2WKC7zEEUY27g6h1MRsIHw==}
     peerDependencies:
-      vue: 2.x
+      vue: 3.x
 
   vue-tel-input@9.8.0:
     resolution: {integrity: sha512-/bYrfEuberZ4Knng8xYQISVy6I1pWdh8G0WSDqGYhkyqHIUtDKRXxGK30LTFmBOFtmYPra3mVV6n467FiD6RGw==}
@@ -4590,7 +4590,7 @@ snapshots:
     dependencies:
       vue: 3.5.41(typescript@6.0.3)
 
-  vue-select@3.20.4(vue@3.5.41(typescript@6.0.3)):
+  vue-select@4.0.0-beta.6(vue@3.5.41(typescript@6.0.3)):
     dependencies:
       vue: 3.5.41(typescript@6.0.3)
 

@@ -204,6 +204,7 @@ defineExpose({
   border: 1px solid var(--border-color);
   border-radius: 12px;
   background: var(--bg-editor);
+  color: var(--text-color);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -370,26 +371,31 @@ wg-menu-spacer {
 }
 
 /* Dark mode theme support */
-@media (prefers-color-scheme: dark) {
-  .wordgard-editor-wrapper {
-    --bg-editor: #1e1e2e;
-    --border-color: rgba(255, 255, 255, 0.08);
-    --border-focus: #6366f1;
-    --bg-toolbar: rgba(30, 30, 46, 0.8);
-    --text-color: #cdd6f4;
-    --text-muted: #a6adc8;
-    --hover-btn: rgba(255, 255, 255, 0.08);
-    --active-btn: rgba(99, 102, 241, 0.2);
-    --active-text: #818cf8;
-  }
-  
-  wg-content h1, wg-content h2, wg-content h3 {
-    color: #f5c2e7;
-  }
-  
-  wg-menu-list {
-    background: #252538;
-    border-color: rgba(255, 255, 255, 0.08);
-  }
+:global(.dark) .wordgard-editor-wrapper,
+.dark .wordgard-editor-wrapper {
+  --bg-editor: #1e1e2e;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-focus: #6366f1;
+  --bg-toolbar: rgba(30, 30, 46, 0.8);
+  --text-color: #cdd6f4;
+  --text-muted: #a6adc8;
+  --hover-btn: rgba(255, 255, 255, 0.08);
+  --active-btn: rgba(99, 102, 241, 0.2);
+  --active-text: #818cf8;
+}
+
+:global(.dark) wg-content h1, 
+:global(.dark) wg-content h2, 
+:global(.dark) wg-content h3,
+.dark wg-content h1, 
+.dark wg-content h2, 
+.dark wg-content h3 {
+  color: #f5c2e7;
+}
+
+:global(.dark) wg-menu-list,
+.dark wg-menu-list {
+  background: #252538;
+  border-color: rgba(255, 255, 255, 0.08);
 }
 </style>

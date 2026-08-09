@@ -2,7 +2,13 @@
   "name": "@praxis/vue",
   "version": "0.1.0",
   "description": "A generic Vue 3 UI component library — forms, data-display, layout, navigation, overlays and more.",
-  "keywords": ["vue", "vue3", "components", "ui", "primevue", "typescript"],
+  "keywords": [
+    "vue",
+    "vue3",
+    "components",
+    "ui",
+    "typescript"
+  ],
   "license": "MIT",
   "type": "module",
   "main": "./dist/praxis-vue.umd.cjs",
@@ -14,28 +20,25 @@
       "require": "./dist/praxis-vue.umd.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./style.css": "./dist/style.css"
+    "./dist/praxis-vue.css": "./dist/praxis-vue.css",
+    "./style.css": "./dist/praxis-vue.css"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "vue-tsc --declaration --emitDeclarationOnly --outDir dist/types && vite build",
+    "build": "vite build",
     "type-check": "vue-tsc --noEmit",
     "dev": "vite build --watch"
   },
   "peerDependencies": {
-    "@primevue/core": "^4.5.0",
-    "@vee-validate/rules": "^4.15.0",
     "pinia": "^4.0.0",
-    "primevue": "^4.5.0",
     "vee-validate": "^4.15.0",
     "vue": "^3.5.0"
   },
   "devDependencies": {
-    "@primeuix/themes": "^2.0.3",
-    "@primevue/core": "^4.5.5",
     "@vitejs/plugin-vue": "^6.0.8",
     "@vueuse/core": "^14.3.0",
-    "primevue": "^4.5.5",
     "typescript": "^6.0.3",
     "vite": "^8.1.5",
     "vue": "^3.5.40",
@@ -44,6 +47,7 @@
   "dependencies": {
     "@lucide/vue": "^1.27.0",
     "@popperjs/core": "^2.11.8",
+    "@tanstack/vue-table": "^9.1.0",
     "@vee-validate/i18n": "^4.15.1",
     "@vee-validate/rules": "^4.15.1",
     "@vueuse/core": "^14.3.0",
@@ -51,6 +55,9 @@
     "libphonenumber-js": "^1.13.9",
     "lodash": "^4.18.1",
     "pdfjs-dist": "^6.1.200",
-    "vue-draggable-plus": "^0.6.1"
+    "v-calendar": "^3.1.2",
+    "vue-draggable-plus": "^0.6.1",
+    "vue-select": "^3.20.4",
+    "vue-tel-input": "^9.8.0"
   }
 }

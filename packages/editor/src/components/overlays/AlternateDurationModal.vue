@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, computed } from "vue";
-import { Dialog } from "primevue";
+import PraxisDialog from "@/components/_primitives/PraxisDialog.vue";
 import VueSelect from "vue-select";
 import { useFormActivitiesStore } from "@/stores/Forms/formActivities";
 import { storeToRefs } from "pinia";
@@ -107,13 +107,12 @@ const saveAlternateDuration = (): void => {
 </script>
 
 <template>
-  <Dialog
+  <PraxisDialog
     v-model:visible="isVisible"
     modal
     header="Alternate Durations"
     :style="{ width: '85vw', height: '86vh' }"
-    :breakpoints="{ '1199px': '75vw', '575px': '90vw' }"
-    :closable="true"
+    max-width="85vw"
     @hide="closeModal"
   >
     <div class="flex gap-6 h-full">
@@ -242,5 +241,5 @@ const saveAlternateDuration = (): void => {
         </div>
       </div>
     </template>
-  </Dialog>
+  </PraxisDialog>
 </template>

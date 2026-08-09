@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RadioButton, Textarea } from "primevue";
+import PraxisRadioButton from "@/components/_primitives/PraxisRadioButton.vue";
 
 interface DisplayOptionItem {
   title: string;
@@ -34,26 +34,23 @@ const props = defineProps<Props>();
       <label class="block font-semibold mb-1">{{ input.title }}</label>
 
       <!-- Textarea -->
-      <Textarea
+      <textarea
         v-if="input.type === 'textarea'"
         v-model="input.items[0].value"
-        auto-resize
         rows="5"
-        cols="30"
-        class="w-full bg-white border border-gray-300 px-4 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+        class="w-full bg-white border border-gray-300 px-4 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black resize-none"
       />
       <!-- Radio Buttons -->
       <div v-else-if="input.type === 'radio'" class="space-y-2">
         <label
           v-for="(opt, idx) in input.items"
           :key="idx"
-          class="flex items-center space-x-2"
+          class="flex items-center space-x-2 cursor-pointer"
         >
-          <RadioButton
+          <PraxisRadioButton
             v-model="input.value"
             :value="opt.value"
-            :input-id="`radio-${i}`"
-            class="p-radiobutton-dark"
+            :input-id="`radio-${i}-${idx}`"
           />
           <span class="cursor-pointer">{{ opt.title }}</span>
         </label>
@@ -74,27 +71,3 @@ const props = defineProps<Props>();
     </div>
   </div>
 </template>
-
-<style scoped>
-/* Radio button styles for better visibility */
-:deep(.p-radiobutton-dark .p-radiobutton-box) {
-  border: 2px solid #374151 !important; /* Gray border for light mode */
-  background: white !important;
-}
-
-:deep(.p-radiobutton-dark.p-radiobutton-checked .p-radiobutton-box) {
-  background: #3b82f6 !important; /* Blue when selected */
-  border-color: #3b82f6 !important;
-}
-
-/* Dark mode styles */
-:deep(.dark .p-radiobutton-dark .p-radiobutton-box) {
-  border: 2px solid #6b7280 !important; /* Lighter gray border for dark mode */
-  background: #374151 !important;
-}
-
-:deep(.dark .p-radiobutton-dark.p-radiobutton-checked .p-radiobutton-box) {
-  background: #3b82f6 !important; /* Blue when selected in dark mode */
-  border-color: #3b82f6 !important;
-}
-</style>

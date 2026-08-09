@@ -2,13 +2,7 @@
 import { ref, watch } from "vue";
 import type { FormSchemaField } from "@/types/api/common";
 import { X } from "@lucide/vue";
-import { storeToRefs } from "pinia";
-import InfiniteScrollSelect from "@/components/ui/forms/InfiniteScrollSelect.vue";
-
-import { useMedicalChartModalFormSection } from "@/stores/medicalChart/modalForm";
-const ModalData = useMedicalChartModalFormSection();
-const { getMoreDataScroll } = ModalData;
-const { loading } = storeToRefs(ModalData);
+import InfiniteScrollSelect from "@/components/forms/InfiniteScrollSelect.vue";
 
 const props = defineProps<{
   field: FormSchemaField;
@@ -158,11 +152,11 @@ const isOptionSelectable = (option: any) => {
           :filterable="true"
           :searchable="true"
           :has-more="field.pagination?.hasMore || false"
-          :loading="loading || props.loadingSelect"
+          :loading="props.loadingSelect"
           class="vue-select-standard text-gray-400 is-enabled flex-1"
           @search="handleSearch"
           @update:model-value="addItemToList"
-          @scrolling="getMoreDataScroll(field)"
+          @scrolling="emit('scroll-bottom', field)"
         />
       </div>
     </div>
@@ -214,15 +208,18 @@ const isOptionSelectable = (option: any) => {
 </template>
 
 <style scoped>
-@reference "../../../index.css";
+
 
 /* Increase dropdown list height to show more options */
 :deep(.vs__dropdown-menu) {
-  @apply max-h-52 min-h-24 overflow-y-auto;
+  max-height: 13rem;
+  min-height: 6rem;
+  overflow-y: auto;
 }
 
 /* Ensure dropdown items have proper padding */
 :deep(.vs__dropdown-option) {
-  @apply py-2 px-3;
+  padding: 0.5rem 0.75rem;
 }
 </style>
+

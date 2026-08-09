@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, computed } from "vue";
 import type { FormSchemaField } from "@/types/api/common";
-import Accordion from "primevue/accordion";
-import AccordionPanel from "primevue/accordionpanel";
-import AccordionHeader from "primevue/accordionheader";
-import AccordionContent from "primevue/accordioncontent";
-import { Checkbox } from "primevue";
+import PraxisCheckbox from "@/components/_primitives/PraxisCheckbox.vue";
 import { Minus, Plus } from "@lucide/vue";
 
 const props = defineProps<{
@@ -21,7 +17,11 @@ const emit = defineEmits<{
 }>();
 
 // Control accordion state
-const activeIndex = ref(props.defaultOpen ? [0] : []);
+const isOpen = ref(!!props.defaultOpen);
+
+const toggleAccordion = () => {
+  isOpen.value = !isOpen.value;
+};
 
 // Local state for form data
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -243,19 +243,17 @@ defineExpose({
 <template>
   <div class="w-full">
     <!-- Accordion for the section -->
-    <Accordion
-      v-model:value="activeIndex"
-      :multiple="true"
-      class="border border-gray-200 rounded-md"
-    >
-      <AccordionPanel :value="0">
-        <AccordionHeader
-          class="bg-gray-100! dark:bg-white! px-4 py-3 text-sm text-gray-800"
+    <div class="border border-gray-200 rounded-md">
+      <div>
+        <button
+          type="button"
+          class="w-full flex justify-between items-center bg-gray-100! dark:bg-white! px-4 py-3 text-sm text-gray-800"
+          @click="toggleAccordion"
         >
           <span class="font-semibold text-black!">{{ field.label }}</span>
-        </AccordionHeader>
+        </button>
 
-        <AccordionContent>
+        <div v-show="isOpen">
           <div class="p-2">
             <!-- Header row -->
             <div class="grid grid-cols-[1fr_auto] gap-4 px-3 py-2 items-center">
@@ -327,21 +325,19 @@ defineExpose({
                   v-if="child.components?.some((c) => c.type === 'checkbox')"
                   class="flex items-center justify-center cursor-pointer"
                 >
-                  <Checkbox
+                  <PraxisCheckbox
                     :model-value="getCheckboxValue(child.key)"
                     :binary="true"
-                    class="w-4 h-4"
-                    @update:model-value="
-                      (val) => handleCheckboxChange(child.key, val)
-                    "
+                    class="w-4 h-4 pointer-events-none"
+                    @update:model-value="(val) => handleCheckboxChange(child.key, val)"
                   />
                 </label>
               </div>
             </div>
           </div>
-        </AccordionContent>
-      </AccordionPanel>
-    </Accordion>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

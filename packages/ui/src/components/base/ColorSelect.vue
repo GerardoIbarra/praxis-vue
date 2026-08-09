@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import VueSelect from "vue-select";
-import { ColorPicker } from "primevue";
 import { computed } from "vue";
 import "vue-select/dist/vue-select.css";
 
@@ -54,19 +53,14 @@ const computedValue = computed<string | number | object | null>({
   >
     <template #option="{ name, color }">
       <div class="flex items-center">
-        <ColorPicker :model-value="color" :inline="false" :disabled="true" />
+        <div class="w-4 h-4 rounded border border-gray-300 shrink-0" :style="{ backgroundColor: color?.startsWith('#') ? color : '#' + color }"></div>
         <span class="ml-4">{{ name }}</span>
       </div>
     </template>
 
     <template #selected-option="{ name, color }">
       <div class="flex items-center overflow-hidden max-w-full">
-        <ColorPicker
-          :model-value="color"
-          :inline="false"
-          :disabled="true"
-          class="shrink-0"
-        />
+        <div class="w-4 h-4 rounded border border-gray-300 shrink-0" :style="{ backgroundColor: color?.startsWith('#') ? color : '#' + color }"></div>
         <span class="ml-2 truncate">{{ name }}</span>
       </div>
     </template>

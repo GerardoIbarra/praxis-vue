@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Field } from "vee-validate";
-import { InputText } from "primevue";
 import VueSelect from "vue-select";
 import { Search, ChevronDown } from "@lucide/vue";
-import RequiredLabel from "@/components/ui/base/RequiredLabel.vue";
+import RequiredLabel from "@/components/base/RequiredLabel.vue";
 
 const props = defineProps({
   field: { type: Object, required: true },
@@ -77,11 +76,10 @@ const activeComponents = computed(() => {
               :rules="subComp.required ? 'required' : ''"
               class="flex-1 max-w-28"
             >
-              <InputText
+              <input
                 v-if="subComp.type === 'integer'"
                 v-model="subComp.value"
-                v-keyfilter.int
-                fluid
+                type="number"
                 class="input-base w-full"
                 :placeholder="subComp.placeholder || ''"
               />
@@ -95,3 +93,4 @@ const activeComponents = computed(() => {
     </div>
   </div>
 </template>
+

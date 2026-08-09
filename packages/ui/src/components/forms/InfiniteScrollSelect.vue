@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
 import VueSelect from "vue-select";
 import { Search } from "@lucide/vue";
-import BaseAvatar from "@/components/ui/base/BaseAvatar.vue";
+import BaseAvatar from "@/components/base/BaseAvatar.vue";
 export type SelectableItem = Record<string, unknown>;
 
 // Props del componente
@@ -315,3 +315,4 @@ watch(
   white-space: nowrap !important;
 }
 </style>
+

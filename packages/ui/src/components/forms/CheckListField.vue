@@ -1,12 +1,8 @@
 <script setup lang="ts">
 import { ref, watch, computed } from "vue";
 import type { FormSchemaField } from "@/types/api/common";
-import Accordion from "primevue/accordion";
-import AccordionPanel from "primevue/accordionpanel";
-import AccordionHeader from "primevue/accordionheader";
-import AccordionContent from "primevue/accordioncontent";
-import { Checkbox } from "primevue";
-import { Heading, Minus, Plus } from "@lucide/vue";
+import PraxisCheckbox from "@/components/_primitives/PraxisCheckbox.vue";
+import { ChevronDown, Heading, Minus, Plus } from "@lucide/vue";
 
 const props = defineProps<{
   field: FormSchemaField;
@@ -21,7 +17,7 @@ const emit = defineEmits<{
 }>();
 
 // Control accordion state
-const activeIndex = ref(props.defaultOpen ? [0] : []);
+const isOpen = ref(props.defaultOpen ?? true);
 
 // Local state for form data
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -176,19 +172,22 @@ defineExpose({
 <template>
   <div class="w-full">
     <!-- Accordion for the section -->
-    <Accordion
-      v-model:value="activeIndex"
-      :multiple="true"
-      class="border border-gray-200 rounded-md"
-    >
-      <AccordionPanel :value="0">
-        <AccordionHeader
-          class="bg-gray-100! dark:bg-white! px-4 py-3 text-sm text-gray-800"
-        >
-          <span class="font-semibold text-black!">{{ field.label }}</span>
-        </AccordionHeader>
+    <div class="border border-gray-200 rounded-md overflow-hidden">
+      <!-- Accordion Header -->
+      <button
+        type="button"
+        class="w-full flex items-center justify-between bg-gray-100 dark:bg-gray-800 px-4 py-3 text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+        @click="isOpen = !isOpen"
+      >
+        <span class="font-semibold text-black dark:text-white">{{ field.label }}</span>
+        <ChevronDown
+          class="w-4 h-4 transition-transform duration-200"
+          :class="{ 'rotate-180': isOpen }"
+        />
+      </button>
 
-        <AccordionContent>
+      <!-- Accordion Content -->
+      <div v-show="isOpen">
           <!-- Input Father Field -->
           <div v-if="hasInputFather" class="mt-4">
             <textarea
@@ -251,21 +250,20 @@ defineExpose({
 
                 <!-- History checkbox -->
                 <label class="flex items-center justify-center cursor-pointer">
-                  <Checkbox
+                <PraxisCheckbox
                     :model-value="getCheckboxValue(child.key)"
                     :binary="true"
                     class="w-4 h-4"
                     @update:model-value="
-                      (val) => handleCheckboxChange(child.key, val)
+                      (val) => handleCheckboxChange(child.key, val as boolean)
                     "
                   />
                 </label>
               </div>
             </div>
           </div>
-        </AccordionContent>
-      </AccordionPanel>
-    </Accordion>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -277,16 +275,5 @@ defineExpose({
 
 .checked\:accent-green-500:checked {
   accent-color: #10b981;
-}
-
-/* PrimeVue checkbox size override */
-:deep(.p-checkbox) {
-  width: 1rem;
-  height: 1rem;
-}
-
-:deep(.p-checkbox-box) {
-  width: 1rem;
-  height: 1rem;
 }
 </style>

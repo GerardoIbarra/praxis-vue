@@ -2,10 +2,8 @@
 import { ref, watch } from "vue";
 import VueSelect from "vue-select";
 import { Search, X } from "@lucide/vue";
-import { ColorPicker } from "primevue";
-import type { Providers } from "@/types/api/catalog-endpoints/list";
-import InfiniteScrollSelect from "@/components/ui/forms/InfiniteScrollSelect.vue";
-import BaseAvatar from "@/components/ui/base/BaseAvatar.vue";
+import InfiniteScrollSelect from "@/components/forms/InfiniteScrollSelect.vue";
+import BaseAvatar from "@/components/base/BaseAvatar.vue";
 
 // Tipo genérico para items (Record con cualquier propiedad)
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -24,7 +22,7 @@ interface AdditionalField {
 
 // Props del componente
 interface Props {
-  options: SelectableItem[] | Providers[];
+  options: SelectableItem[] | any[];
   selectedItems: SelectableItem[];
   title: string;
   isRequired?: boolean;
@@ -306,11 +304,10 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
 
             <template #option="option">
               <div v-if="showColorPicker" class="flex items-center">
-                <ColorPicker
-                  :model-value="option.color"
-                  :inline="false"
-                  :disabled="true"
-                />
+                <div 
+                  class="w-4 h-4 rounded border border-gray-300 shrink-0" 
+                  :style="{ backgroundColor: option.color?.startsWith('#') ? option.color : '#' + option.color }"
+                ></div>
                 <span class="ml-4">{{
                   option[labelField] || option.name
                 }}</span>
@@ -339,11 +336,10 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
 
             <template v-if="showColorPicker" #selected-option="{ name, color }">
               <div class="flex items-center">
-                <ColorPicker
-                  :model-value="color"
-                  :inline="false"
-                  :disabled="true"
-                />
+                <div 
+                  class="w-4 h-4 rounded border border-gray-300 shrink-0" 
+                  :style="{ backgroundColor: color?.startsWith('#') ? color : '#' + color }"
+                ></div>
                 <span class="ml-2">{{ name }}</span>
               </div>
             </template>
@@ -378,11 +374,12 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
         <!-- Color (si está habilitado) -->
         <div v-if="showColorPicker" class="flex justify-center items-center">
           <span v-if="item[colorField]">
-            <ColorPicker
-              :model-value="item[colorField]"
-              :disabled="true"
-              format="hex"
-              @update:model-value="updateItemColor(item, $event)"
+            <input
+              type="color"
+              :value="item[colorField]?.startsWith('#') ? item[colorField] : '#' + item[colorField]"
+              disabled
+              class="w-6 h-6 p-0 border-0 rounded cursor-not-allowed opacity-70"
+              @change="(e) => updateItemColor(item, (e.target as HTMLInputElement).value)"
             />
           </span>
           <span v-else>No Color</span>
@@ -486,3 +483,4 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
     </div>
   </div>
 </template>
+

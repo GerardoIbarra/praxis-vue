@@ -10,32 +10,17 @@ const props = withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <div class="lazy-loading-container">
-    <div class="loading-spinner">
-      <div class="spinner"></div>
-      <p class="loading-text">{{ props.loadingText }}</p>
+  <div class="lazy-loading-container flex items-center justify-center min-h-48 w-full">
+    <div class="loading-spinner text-center">
+      <div class="spinner animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500 mx-auto mb-4"></div>
+      <p class="loading-text text-gray-600 text-sm font-medium">{{ props.loadingText }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
-@reference "../../../index.css";
 
-.lazy-loading-container {
-  @apply flex items-center justify-center min-h-50 w-full;
-}
 
-.loading-spinner {
-  @apply text-center;
-}
-
-.spinner {
-  @apply animate-spin rounded-full h-8 w-8 border-b-2 border-p-secondary mx-auto mb-4;
-}
-
-.loading-text {
-  @apply text-gray-600 text-sm font-medium;
-}
 
 /* Animación suave de entrada */
 .lazy-loading-container {

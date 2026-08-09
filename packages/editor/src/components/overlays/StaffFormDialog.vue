@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, onMounted, onUnmounted } from "vue";
-import Dialog from "primevue/dialog";
+import PraxisDialog from "@/components/_primitives/PraxisDialog.vue";
 import StaffList from "@/components/staff/StaffList.vue";
 import { useProvidersStore } from "@/stores/Filters/staff";
 import { storeToRefs } from "pinia";
@@ -167,16 +167,10 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Dialog
+  <PraxisDialog
     v-model:visible="dialogVisible"
     :header="getDialogTitle()"
-    :style="{ width: '85vw', maxHeight: '89vh' }"
-    :breakpoints="{ '1199px': '98vw', '575px': '100vw' }"
-    modal
-    :closable="true"
-    :close-on-escape="true"
-    :dismissable-mask="false"
-    class="agent-form-dialog"
+    max-width="85vw"
   >
     <div class="h-full flex flex-col">
       <div class="flex-1 overflow-hidden">
@@ -278,7 +272,7 @@ onUnmounted(() => {
         </div>
       </div>
     </template>
-  </Dialog>
+  </PraxisDialog>
 </template>
 
 <style scoped>

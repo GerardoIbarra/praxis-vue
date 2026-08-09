@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DaysChoosen } from "@/types/api/common";
-import { Checkbox } from "primevue";
-import RadioButton from "primevue/radiobutton";
+import PraxisCheckbox from "@/components/_primitives/PraxisCheckbox.vue";
+import PraxisRadioButton from "@/components/_primitives/PraxisRadioButton.vue";
 import RequiredLabel from "../base/RequiredLabel.vue";
 
 type ModeType = "radio" | "checkbox";
@@ -82,26 +82,25 @@ const isDaySelected = (day: string): boolean => {
         :key="day"
         class="flex items-center"
       >
-        <!-- Radio Button Mode -->
-        <RadioButton
+        <PraxisRadioButton
           v-if="mode === 'radio'"
-          :model-value="isDaySelected(day)"
+          :model-value="modelValue"
           :value="day"
           :input-id="'day_' + day"
           :disabled="disabled"
           class="mr-1"
-          @change="handleDayChange(day, true)"
+          @update:model-value="() => handleDayChange(day, true)"
         />
 
         <!-- Checkbox Mode -->
-        <Checkbox
+        <PraxisCheckbox
           v-else
           :model-value="isDaySelected(day)"
           :binary="true"
           :input-id="'day_' + day"
           :disabled="disabled"
           class="mr-1"
-          @update:model-value="(value) => handleDayChange(day, value)"
+          @update:model-value="(value) => handleDayChange(day, value as boolean)"
         />
 
         <label
@@ -115,26 +114,4 @@ const isDaySelected = (day: string): boolean => {
   </div>
 </template>
 
-<style scoped>
-/* Radio button styles for better visibility */
-:deep(.p-radiobutton-dark .p-radiobutton-box) {
-  border: 2px solid #374151 !important;
-  background: white !important;
-}
 
-:deep(.p-radiobutton-dark.p-radiobutton-checked .p-radiobutton-box) {
-  background: #3b82f6 !important;
-  border-color: #3b82f6 !important;
-}
-
-/* Dark mode styles */
-:deep(.dark .p-radiobutton-dark .p-radiobutton-box) {
-  border: 2px solid #6b7280 !important;
-  background: #374151 !important;
-}
-
-:deep(.dark .p-radiobutton-dark.p-radiobutton-checked .p-radiobutton-box) {
-  background: #3b82f6 !important;
-  border-color: #3b82f6 !important;
-}
-</style>

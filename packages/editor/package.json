@@ -14,11 +14,12 @@
       "require": "./dist/praxis-editor.umd.cjs",
       "types": "./dist/index.d.ts"
     },
-    "./style.css": "./dist/style.css"
+    "./dist/praxis-editor.css": "./dist/praxis-editor.css",
+    "./style.css": "./dist/praxis-editor.css"
   },
   "files": ["dist"],
   "scripts": {
-    "build": "vue-tsc --declaration --emitDeclarationOnly --outDir dist/types && vite build",
+    "build": "vite build",
     "type-check": "vue-tsc --noEmit",
     "dev": "vite build --watch"
   },

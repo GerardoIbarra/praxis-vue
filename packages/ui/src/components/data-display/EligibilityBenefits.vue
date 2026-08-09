@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { BasicLabelValue } from "@/types/api/catalog-endpoints/list";
-import Badge from "primevue/badge";
+import PraxisBadge from "@/components/_primitives/PraxisBadge.vue";
 
 defineProps<{
   badgeSeverety: string;
@@ -28,7 +28,7 @@ const formatValue = (val: unknown): unknown => {
           {{ subtitle }}
         </span>
         <div class="flex flex-col mb-4">
-          <Badge :value="badgeValue" size="small" :severity="badgeSeverety" />
+          <PraxisBadge :value="badgeValue" :severity="(badgeSeverety as any)" />
         </div>
       </div>
 

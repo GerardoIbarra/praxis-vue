@@ -27,21 +27,13 @@
 import { computed } from "vue";
 import { Field } from "vee-validate";
 import { X } from "@lucide/vue";
-import RequiredLabel from "@/components/ui/base/RequiredLabel.vue";
-import Badge from "primevue/badge";
-
-import type {
-  Provider,
-  ReferringPhysicianCatalog,
-} from "@/types/api/catalog-endpoints/list";
-import type { ReferringPhysician } from "@/types/api/common";
+import RequiredLabel from "@/components/base/RequiredLabel.vue";
+import PraxisBadge from "@/components/_primitives/PraxisBadge.vue";
 
 type ColumnDefinition = {
   key: string;
   label: string;
-  getValue?: (
-    item: Provider | ReferringPhysician | ReferringPhysicianCatalog
-  ) => string;
+  getValue?: (item: any) => string;
 };
 
 interface BadgeState {
@@ -59,9 +51,9 @@ interface Props {
   name: string;
   /** Array of selected items */
 
-  selectedItems: (Provider | ReferringPhysician | ReferringPhysicianCatalog)[];
+  selectedItems: any[];
   /** Badge state object with class and severity */
-  badgeState?: BadgeState; // revisar tipo
+  badgeState?: BadgeState;
   /**
    * Column definitions for the table
    * Each column: { key: string, label: string, getValue?: (item) => string }
@@ -96,7 +88,7 @@ const rowGridClass = computed((): string => {
 
 // Get value from item using column definition
 const getCellValue = (
-  item: Provider | ReferringPhysician | ReferringPhysicianCatalog,
+  item: any,
   column: ColumnDefinition
 ): string => {
   if (column.getValue) {
@@ -170,3 +162,4 @@ const getCellValue = (
     </Field>
   </div>
 </template>
+

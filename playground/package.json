@@ -9,17 +9,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@praxis/vue": "workspace:*",
     "@praxis/editor": "workspace:*",
-    "@primeuix/themes": "^2.0.3",
-    "@primevue/core": "^4.5.5",
-    "primevue": "^4.5.5",
+    "@praxis/vue": "workspace:*",
     "pinia": "^4.0.2",
     "vue": "^3.5.40",
     "vue-router": "^5.2.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
     "@vitejs/plugin-vue": "^6.0.8",
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.26",
+    "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "vite": "^8.1.5",
     "vue-tsc": "^3.3.8"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAuditLogSidebarStore } from "@/stores/auditLogSidebar";
 import { storeToRefs } from "pinia";
-import Timeline from "primevue/timeline";
+import PraxisTimeline from "@/components/_primitives/PraxisTimeline.vue";
 import { User, ChevronDown, ChevronUp, FileClock } from "@lucide/vue";
 import { ref, useTemplateRef, watch } from "vue";
 import { useInfiniteScroll } from "@vueuse/core";
@@ -146,7 +146,7 @@ const getStatusClasses = (label: string, type: "marker" | "badge") => {
       </div>
 
       <div v-else key="content" class="pb-20">
-        <Timeline :value="logs" class="custom-timeline">
+        <PraxisTimeline :value="logs" class="custom-timeline">
           <template #marker="slotProps">
             <div
               class="w-4 h-4 rounded-full border-2 border-white flex items-center justify-center z-10 transition-colors"
@@ -248,7 +248,7 @@ const getStatusClasses = (label: string, type: "marker" | "badge") => {
               </div>
             </div>
           </template>
-        </Timeline>
+        </PraxisTimeline>
         <!-- Loading more indicator -->
         <div v-if="loading && !initialLoading" class="py-4 flex justify-center">
           <LazyLoadingSpinner loading-text="Loading more..." />

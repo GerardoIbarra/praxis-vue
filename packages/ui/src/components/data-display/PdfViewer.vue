@@ -2,7 +2,7 @@
 import { ref, onMounted, watch } from "vue";
 import * as pdfjsLib from "pdfjs-dist";
 import pdfjsWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
-import LazyLoadingSpinner from "@/components/ui/base/LazyLoadingSpinner.vue";
+import LazyLoadingSpinner from "@/components/base/LazyLoadingSpinner.vue";
 import { Printer } from "@lucide/vue";
 
 // Worker servido localmente desde node_modules — sin CDN, sin version mismatch

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { Avatar } from "primevue";
+import BaseAvatar from "@/components/base/BaseAvatar.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -25,8 +25,8 @@ const initials = computed(() => {
 </script>
 
 <template>
-  <Avatar
-    :label="initials"
+  <BaseAvatar
+    :name="initials"
     :size="size"
     class="w-16! h-16! lg:w-20! lg:h-20!"
     :class="{

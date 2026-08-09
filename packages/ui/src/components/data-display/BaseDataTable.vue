@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import DataTable from "primevue/datatable";
-import Column from "primevue/column";
-import { ChevronRight } from "@lucide/vue";
+import { ChevronRight, ChevronDown } from "@lucide/vue";
 import { type Ref, ref, onMounted, onUnmounted, computed, toRefs } from "vue";
+import PraxisCheckbox from "@/components/_primitives/PraxisCheckbox.vue";
 
 interface ColumnDef {
   field: string;
@@ -33,7 +32,6 @@ interface Props {
   sortMode?: "single" | "multiple";
   sortField?: string;
   sortOrder?: number;
-  /** When provided, the expand toggle only appears for rows where this function returns true */
   expanderCondition?: (row: Record<string, unknown>) => boolean;
 }
 
@@ -66,7 +64,7 @@ const emit = defineEmits<{
 
 const { items, loading, columns } = toRefs(props);
 
-// Computed para manejar la selección
+// Selection Handling
 const selection = computed({
   get() {
     return props.selectedItems;
@@ -76,43 +74,53 @@ const selection = computed({
   },
 });
 
-// Detectar si es pantalla mediana/pequeña
-const isMediumOrSmall = ref<boolean>(false);
-
-const checkScreenSize = (): void => {
-  isMediumOrSmall.value = window.innerWidth < 1024;
+const isSelected = (row: Record<string, unknown>) => {
+  return selection.value.some((item) => item.id === row.id);
 };
 
-onMounted(() => {
-  checkScreenSize();
-  window.addEventListener("resize", checkScreenSize);
+const toggleSelection = (row: Record<string, unknown>) => {
+  if (props.selectionMode === "multiple") {
+    const isSel = isSelected(row);
+    if (isSel) {
+      selection.value = selection.value.filter((i) => i.id !== row.id);
+    } else {
+      selection.value = [...selection.value, row];
+    }
+  } else if (props.selectionMode === "single") {
+    selection.value = [row];
+  }
+};
+
+const selectAll = (checked: boolean) => {
+  if (checked) {
+    selection.value = [...props.items];
+  } else {
+    selection.value = [];
+  }
+};
+
+const allSelected = computed(() => {
+  if (!props.items.length) return false;
+  return props.items.every((row) => isSelected(row));
 });
 
-onUnmounted(() => {
-  window.removeEventListener("resize", checkScreenSize);
-});
-
-// Variables para detectar doble clic
+// Click Handling
 let clickTimeout: ReturnType<typeof setTimeout> | null = null;
 let lastClickedRow: unknown = null;
 
-const handleRowClick = (event: { data: unknown }): void => {
-  const currentRow = event.data;
-
+const handleRowClick = (currentRow: unknown): void => {
   if (lastClickedRow === currentRow && clickTimeout) {
-    // Es un doble clic
     clearTimeout(clickTimeout);
     clickTimeout = null;
     lastClickedRow = null;
     emit("row-dblclick", currentRow);
   } else {
-    // Es un clic simple
     lastClickedRow = currentRow;
     clickTimeout = setTimeout(() => {
       clickTimeout = null;
       lastClickedRow = null;
       emit("row-click", currentRow);
-    }, 300); // 300ms para detectar doble clic
+    }, 300);
   }
 };
 
@@ -122,184 +130,136 @@ const handleCellDblClick = (data: unknown): void => {
   }
 };
 
-//const slots = useSlots();
-const expandedRows: Ref<unknown[] | Record<string, boolean>> = ref({});
-const dt = ref();
+// Expansion Handling
+const expandedRows = ref<Record<string, boolean>>({});
 
-/** Manually toggle a row's expanded state (used when expanderCondition is set) */
 const toggleExpansion = (data: Record<string, unknown>): void => {
   const key = data.id as string;
-  const current = expandedRows.value as Record<string, boolean>;
-  if (current[key]) {
-    const updated = { ...current };
-    delete updated[key];
-    expandedRows.value = updated;
-  } else {
-    expandedRows.value = { ...current, [key]: true };
-  }
+  expandedRows.value[key] = !expandedRows.value[key];
 };
 
 const isExpanded = (data: Record<string, unknown>): boolean => {
   const key = data.id as string;
-  return !!(expandedRows.value as Record<string, boolean>)[key];
+  return !!expandedRows.value[key];
 };
 
 defineExpose({
   exportCSV: () => {
-    dt.value.exportCSV();
+    // Placeholder for CSV export
+    console.warn("CSV export not implemented in native table");
   },
 });
 </script>
 
 <template>
-  <DataTable
-    ref="dt"
-    v-model:selection="selection"
-    v-model:expanded-rows="expandedRows"
-    :value="items"
-    :loading="loading"
-    :selection-mode="selectionMode"
-    :striped-rows="stripedRows"
-    removable-sort
-    resizable-columns
-    column-resize-mode="expand"
-    table-style="min-width: 100%"
-    scrollable
-    scroll-height="flex"
-    data-key="id"
-    :meta-key-selection="false"
-    :row-group-mode="rowGroupMode"
-    :group-rows-by="groupRowsBy"
-    :sort-mode="sortMode"
-    :sort-field="sortField"
-    :sort-order="sortOrder"
-    @row-click="handleRowClick"
-  >
-    <!-- Native expander: shows for all rows -->
-    <Column
-      v-if="$slots.expansion && !expanderCondition"
-      expander
-      style="width: 3rem; min-width: 3rem"
-    />
+  <div class="overflow-x-auto border border-gray-200 dark:border-gray-700 rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 border-collapse">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-400">
+        <tr>
+          <!-- Selection Column -->
+          <th v-if="selectionMode === 'multiple'" class="p-4 w-4">
+            <PraxisCheckbox
+              :model-value="allSelected"
+              @update:model-value="selectAll"
+              :binary="true"
+            />
+          </th>
+          <th v-else-if="selectionMode === 'single'" class="p-4 w-4"></th>
+          
+          <!-- Expander Column -->
+          <th v-if="$slots.expansion" class="p-4 w-4"></th>
 
-    <!-- Conditional expander: shows toggle only for rows that pass the condition -->
-    <Column
-      v-else-if="$slots.expansion && expanderCondition"
-      style="width: 3rem; min-width: 3rem"
-    >
-      <template #body="{ data }">
-        <button
-          v-if="expanderCondition(data)"
-          class="p-datatable-row-toggle-button"
-          type="button"
-          @click.stop="toggleExpansion(data)"
-        >
-          <ChevronRight
-            :class="[
-              'w-4 h-4 transition-transform duration-200',
-              isExpanded(data) ? 'rotate-90' : '',
-            ]"
-          />
-        </button>
-      </template>
-    </Column>
-
-    <template #expansion="slotProps">
-      <slot name="expansion" v-bind="slotProps"></slot>
-    </template>
-
-    <template #empty>
-      <div class="flex flex-col items-center justify-center py-8">
-        <div
-          v-if="isSearching"
-          class="animate-spin rounded-full h-8 w-8 border-b-2 border-p-secondary mb-2"
-        ></div>
-        <p class="empty-state-message text-center">
-          {{ isSearching ? searchEmptyMessage : emptyMessage }}
-        </p>
-      </div>
-    </template>
-
-    <!-- Columna de selección -->
-    <Column
-      v-if="selectionMode"
-      selection-mode="multiple"
-      header-style="width: 3rem"
-    ></Column>
-
-    <template v-for="(col, index) in columns" :key="index">
-      <Column
-        :field="col.field"
-        :header="col.header"
-        :frozen="col.header === 'Actions' || !!col.frozen"
-        :align-frozen="col.header === 'Actions' ? 'right' : col.alignFrozen"
-        :align-header="col.header === 'Actions' ? 'center' : null"
-        :align="col.header === 'Actions' ? 'center' : null"
-        :header-style="
-          col.header === 'Actions'
-            ? 'text-align: center; display: flex; justify-content: center;'
-            : ''
-        "
-        :style="
-          col.header === 'Actions'
-            ? 'min-width: 100px; max-width: 100px'
-            : col.style || 'min-width: 150px'
-        "
-        :pt="col.pt as any"
-      >
-        <template v-if="col.slotName" #body="slotProps">
-          <div
-            v-if="enableRowDblClick && col.header !== 'Actions'"
-            class="w-full h-full"
-            @dblclick="handleCellDblClick(slotProps.data)"
+          <!-- Data Columns -->
+          <th
+            v-for="(col, index) in columns"
+            :key="index"
+            class="px-6 py-3 font-semibold"
+            :style="col.style"
           >
-            <slot :name="col.slotName" v-bind="slotProps" />
-          </div>
-          <slot v-else :name="col.slotName" v-bind="slotProps" />
+            {{ col.header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <template v-if="loading">
+          <tr>
+            <td :colspan="columns.length + (selectionMode ? 1 : 0) + ($slots.expansion ? 1 : 0)" class="text-center py-8">
+              <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-p-secondary mx-auto"></div>
+            </td>
+          </tr>
         </template>
-        <template v-else #body="slotProps">
-          <div
-            v-if="enableRowDblClick && col.header !== 'Actions'"
-            class="w-full h-full"
-            @dblclick="handleCellDblClick(slotProps.data)"
-          >
-            {{ slotProps.data[col.field] }}
-          </div>
-          <span v-else>{{ slotProps.data[col.field] }}</span>
+        
+        <template v-else-if="!items.length">
+          <tr>
+            <td :colspan="columns.length + (selectionMode ? 1 : 0) + ($slots.expansion ? 1 : 0)" class="text-center py-8">
+              <p class="empty-state-message">
+                {{ isSearching ? searchEmptyMessage : emptyMessage }}
+              </p>
+            </td>
+          </tr>
         </template>
-      </Column>
-    </template>
-  </DataTable>
+
+        <template v-else>
+          <template v-for="(row, rowIndex) in items" :key="row.id || rowIndex">
+            <tr
+              class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer transition-colors"
+              :class="{ 'bg-gray-50 dark:bg-gray-800': stripedRows && rowIndex % 2 !== 0 }"
+              @click="handleRowClick(row)"
+            >
+              <!-- Selection Cell -->
+              <td v-if="selectionMode" class="p-4" @click.stop="toggleSelection(row)">
+                <PraxisCheckbox
+                  v-if="selectionMode === 'multiple'"
+                  :model-value="isSelected(row)"
+                  :binary="true"
+                  class="pointer-events-none"
+                />
+                <input
+                  v-else
+                  type="radio"
+                  :checked="isSelected(row)"
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500"
+                />
+              </td>
+
+              <!-- Expander Cell -->
+              <td v-if="$slots.expansion" class="p-4" @click.stop="toggleExpansion(row)">
+                <button
+                  v-if="!expanderCondition || expanderCondition(row)"
+                  class="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-colors"
+                >
+                  <ChevronDown
+                    v-if="isExpanded(row)"
+                    class="w-4 h-4"
+                  />
+                  <ChevronRight
+                    v-else
+                    class="w-4 h-4"
+                  />
+                </button>
+              </td>
+
+              <!-- Data Cells -->
+              <td
+                v-for="(col, colIndex) in columns"
+                :key="colIndex"
+                class="px-6 py-4"
+                @dblclick="handleCellDblClick(row)"
+              >
+                <slot v-if="col.slotName" :name="col.slotName" :data="row" />
+                <span v-else>{{ row[col.field] }}</span>
+              </td>
+            </tr>
+
+            <!-- Expansion Row -->
+            <tr v-if="$slots.expansion && isExpanded(row)">
+              <td :colspan="columns.length + (selectionMode ? 1 : 0) + 1" class="p-0 border-b dark:border-gray-700 bg-gray-50/50 dark:bg-gray-900/50">
+                <slot name="expansion" :data="row" />
+              </td>
+            </tr>
+          </template>
+        </template>
+      </tbody>
+    </table>
+  </div>
 </template>
-
-<style scoped>
-:deep(.p-datatable-wrapper) {
-  overflow-x: auto;
-  display: block;
-}
-
-/* Personalización del scrollbar horizontal para que sea más visible */
-:deep(.p-datatable-wrapper::-webkit-scrollbar) {
-  height: 8px;
-}
-
-:deep(.p-datatable-wrapper::-webkit-scrollbar-track) {
-  background: transparent;
-}
-
-:deep(.p-datatable-wrapper::-webkit-scrollbar-thumb) {
-  background: #4b5563; /* Gray-600 */
-  border-radius: 10px;
-}
-
-:deep(.p-datatable-wrapper::-webkit-scrollbar-thumb:hover) {
-  background: #374151; /* Gray-700 */
-}
-
-/* Ajuste para dispositivos móviles */
-@media (max-width: 768px) {
-  :deep(.p-datatable-wrapper::-webkit-scrollbar) {
-    height: 4px;
-  }
-}
-</style>

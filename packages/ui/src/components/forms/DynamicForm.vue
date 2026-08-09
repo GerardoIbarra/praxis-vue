@@ -1,37 +1,23 @@
 <script setup lang="ts">
-import { Checkbox, DatePicker, InputText } from "primevue";
+import PraxisCheckbox from "@/components/_primitives/PraxisCheckbox.vue";
 import { ref, watch, computed } from "vue";
 import VueSelect from "vue-select";
-import RequiredLabel from "@/components/ui/base/RequiredLabel.vue";
-import CheckListField from "@/components/ui/forms/CheckListField.vue";
-import CheckListInputField from "@/components/ui/forms/CheckListInputField.vue";
-import SelectListField from "@/components/ui/forms/SelectListField.vue";
-import FormFieldRow from "@/components/ui/forms/FormFieldRow.vue";
-import FormMultiSelectList from "@/components/ui/forms/FormMultiSelectList.vue";
-import VitalSignsHistory from "@/components/medical-charts/history/VitalSignsHistory.vue";
-import InfiniteScrollSelect from "@/components/ui/forms/InfiniteScrollSelect.vue";
-import FormDividerWithComponents from "@/components/ui/layout/FormDividerWithComponents.vue";
+import RequiredLabel from "@/components/base/RequiredLabel.vue";
+import CheckListField from "@/components/forms/CheckListField.vue";
+import CheckListInputField from "@/components/forms/CheckListInputField.vue";
+import SelectListField from "@/components/forms/SelectListField.vue";
+import FormFieldRow from "@/components/forms/FormFieldRow.vue";
+import FormMultiSelectList from "@/components/forms/FormMultiSelectList.vue";
+import InfiniteScrollSelect from "@/components/forms/InfiniteScrollSelect.vue";
 import { ChevronDown, Search } from "@lucide/vue";
 import { Field } from "vee-validate";
 import { setupVeeValidate } from "@/utils/veeValidateConfig";
 import { useFieldValidation } from "@/composables/useFieldValidation";
 import { useSelectOptions } from "@/composables/useSelectOptions";
 import { useFieldAutofill } from "@/composables/useFieldAutofill";
-import { useMedicalChartDocumentStore } from "@/stores/medicalChart/document";
-import { storeToRefs } from "pinia";
 import type { FormSchemaField, FormValue } from "@/types/api/common";
 
 import { useSearchFieldDependency } from "@/composables/useSearchFieldDependency";
-import { useMedicalChartModalFormSection } from "@/stores/medicalChart/modalForm";
-const ModalSection = useMedicalChartModalFormSection();
-const { getMoreDataScroll } = ModalSection;
-const { formData, loading } = storeToRefs(ModalSection);
-
-// Vital signs
-import { useMedicalChartVitalSigns } from "@/stores/medicalChart/vitalSigns";
-const vitalSigns = useMedicalChartVitalSigns();
-const { getFieldsValues } = vitalSigns;
-const { cleanedResults, calculatedNumbers } = storeToRefs(vitalSigns);
 
 // Setup vee-validate with centralized configuration
 setupVeeValidate();
@@ -39,12 +25,25 @@ setupVeeValidate();
 const props = defineProps<{
   schema: FormSchemaField[];
   existingData?: Record<string, unknown>;
+  modelValue?: Record<string, unknown>;
+  loading?: boolean;
+  selectedDocumentId?: string;
+  cleanedResults?: string[];
+  calculatedNumbers?: any[];
 }>();
 
-const documentStore = useMedicalChartDocumentStore();
-const { SelectedDocumentId } = storeToRefs(documentStore);
+const emit = defineEmits<{
+  (e: "update:modelValue", value: Record<string, unknown>): void;
+  (e: "update:cleanedResults", value: string[]): void;
+  (e: "update:calculatedNumbers", value: any[]): void;
+  (e: "scroll-bottom", field: any): void;
+}>();
 
 // Creamos un objeto reactivo para almacenar los valores
+const formData = ref<Record<string, unknown>>(props.modelValue || {});
+
+const cleanedResultsLocal = ref<string[]>(props.cleanedResults || []);
+const calculatedNumbersLocal = ref<any[]>(props.calculatedNumbers || []);
 
 export interface CheckListInstance {
   clearAll: () => void;
@@ -93,42 +92,29 @@ const {
   computed(() => props.schema)
 );
 
-// Emite los datos completos si quieres capturarlos arriba
-const emit = defineEmits<{
-  (e: "update:modelValue", value: Record<string, unknown>): void;
-}>();
-
-watch(
-  formData,
-  (newFormData) => {
-    getFieldsValues(newFormData);
-  },
-  { deep: true } // Es crucial usar deep: true ya que formData es un objeto.
-);
+// Emit data
+watch(formData, (val) => emit("update:modelValue", val), { deep: true });
+watch(cleanedResultsLocal, (val) => emit("update:cleanedResults", val), { deep: true });
+watch(calculatedNumbersLocal, (val) => emit("update:calculatedNumbers", val), { deep: true });
 
 // Inicializamos valores
 watch(
   () => props.schema,
   (schema) => {
-    if (!cleanedResults.value.includes("row_left_arm")) {
-      cleanedResults.value.push("row_left_arm");
+    if (!cleanedResultsLocal.value.includes("row_left_arm")) {
+      cleanedResultsLocal.value.push("row_left_arm");
     }
     schema.forEach((field) => {
       // calculatedNumbers
       if (field.type === "calculated_number") {
-        const index = calculatedNumbers.value.findIndex(
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const index = calculatedNumbersLocal.value.findIndex(
           (f: any) => f.key === field.key
         );
 
         if (index !== -1) {
-          // Si ya existe, actualizamos la referencia al nuevo objeto del schema
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          calculatedNumbers.value[index] = field as any;
+          calculatedNumbersLocal.value[index] = field as any;
         } else {
-          // Si es nuevo, lo agregamos
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          calculatedNumbers.value.push(field as any);
+          calculatedNumbersLocal.value.push(field as any);
         }
       }
 
@@ -229,7 +215,7 @@ watch(
   { immediate: true, deep: true }
 );
 
-watch(formData, (val) => emit("update:modelValue", val), { deep: true });
+
 
 // Recarga automática de opciones para campos que dependen del valor de otro
 // campo (via option_source.search_field), p.ej. SNOMED que depende de ICD-10.
@@ -314,10 +300,10 @@ defineExpose({
     tag="div"
     class="grid gap-4"
     :class="
-      SelectedDocumentId === 'vital_signs_single_entry'
+      selectedDocumentId === 'vital_signs_single_entry'
         ? 'grid-cols-1 px-2 overflow-auto h-128'
-        : SelectedDocumentId === 'review_of_systems' ||
-            SelectedDocumentId === 'physical_exam'
+        : selectedDocumentId === 'review_of_systems' ||
+            selectedDocumentId === 'physical_exam'
           ? 'grid-cols-3'
           : props.schema.length === 1
             ? 'grid-cols-1'
@@ -334,8 +320,8 @@ defineExpose({
     >
       <RequiredLabel
         v-if="
-          SelectedDocumentId !== 'review_of_systems' &&
-          SelectedDocumentId !== 'physical_exam' &&
+          selectedDocumentId !== 'review_of_systems' &&
+          selectedDocumentId !== 'physical_exam' &&
           field.type !== 'divider_with_components'
         "
         :label="field.label || ''"
@@ -383,19 +369,19 @@ defineExpose({
 
       <!--calculated_number -->
       <div v-else-if="field.type === 'calculated_number'">
-        <InputText
+        <input
           v-model="field.value as any"
-          fluid
-          class="input-base is-readonly bg-gray-100"
+          type="text"
+          class="input-base is-readonly bg-gray-100 w-full"
           :placeholder="field.placeholder || ''"
-          :readonly="true"
+          readonly
         />
       </div>
 
       <!--multiselect_list -->
       <FormMultiSelectList
         v-else-if="field.type === 'multiselect_list'"
-        v-model="cleanedResults"
+        v-model="cleanedResultsLocal"
         :field="field"
       />
 
@@ -407,13 +393,13 @@ defineExpose({
         :rules="getFieldRules(field)"
       >
         <!-- 🔹 TEXT -->
-        <InputText
+        <input
           v-if="field.type === 'text'"
           v-model="field.value as any"
-          fluid
+          type="text"
           :class="{
-            'input-base is-enabled premium-focus': !isFieldDisabled(field),
-            'input-base is-disabled opacity-60': isFieldDisabled(field),
+            'input-base is-enabled premium-focus w-full': !isFieldDisabled(field),
+            'input-base is-disabled opacity-60 w-full': isFieldDisabled(field),
           }"
           :placeholder="field.placeholder || ''"
           :readonly="field.readonly"
@@ -421,13 +407,13 @@ defineExpose({
         />
 
         <!-- 🔹 NUMBER -->
-        <InputText
+        <input
           v-else-if="field.type === 'number'"
           v-model="field.value as any"
           type="number"
           :class="{
-            'input-base is-enabled premium-focus': !isFieldDisabled(field),
-            'input-base is-disabled opacity-60': isFieldDisabled(field),
+            'input-base is-enabled premium-focus w-full': !isFieldDisabled(field),
+            'input-base is-disabled opacity-60 w-full': isFieldDisabled(field),
           }"
           :placeholder="field.placeholder || ''"
           :readonly="field.readonly"
@@ -435,14 +421,13 @@ defineExpose({
         />
 
         <!-- Number -->
-        <InputText
+        <input
           v-else-if="field.type === 'integer'"
           v-model="field.value as any"
-          v-keyfilter.int
-          fluid
+          type="number"
           :class="{
-            'input-base is-enabled premium-focus': !isFieldDisabled(field),
-            'input-base is-disabled opacity-60': isFieldDisabled(field),
+            'input-base is-enabled premium-focus w-full': !isFieldDisabled(field),
+            'input-base is-disabled opacity-60 w-full': isFieldDisabled(field),
           }"
           :placeholder="field.placeholder || ''"
           :readonly="field.readonly"
@@ -452,15 +437,15 @@ defineExpose({
         />
 
         <!-- Double -->
-        <InputText
+        <input
           v-else-if="field.type === 'double'"
           v-model="field.value as any"
-          v-keyfilter.num
-          fluid
+          type="number"
+          step="any"
           maxlength="10"
           :class="{
-            'input-base is-enabled premium-focus': !isFieldDisabled(field),
-            'input-base is-disabled opacity-60': isFieldDisabled(field),
+            'input-base is-enabled premium-focus w-full': !isFieldDisabled(field),
+            'input-base is-disabled opacity-60 w-full': isFieldDisabled(field),
           }"
           :placeholder="field.placeholder || ''"
           :readonly="field.readonly"
@@ -577,7 +562,7 @@ defineExpose({
           "
           @update:model-value="(value: unknown) => handleSelected(value, field)"
           @option:selected="(value: unknown) => handleSelected(value, field)"
-          @scrolling="getMoreDataScroll(field)"
+          @scrolling="emit('scroll-bottom', field)"
         />
 
         <VueSelect
@@ -636,44 +621,37 @@ defineExpose({
         />
 
         <!-- 🔹 DATE -->
-        <DatePicker
+        <input
           v-else-if="field.type === 'date'"
           v-model="field.value as any"
-          show-icon
-          fluid
-          icon-display="input"
-          date-format="mm/dd/yy"
-          :min-date="getMinDate(field) ?? undefined"
-          :max-date="getMaxDate(field) ?? undefined"
+          type="date"
+          :min="getMinDate(field) ?? undefined"
+          :max="getMaxDate(field) ?? undefined"
           :disabled="isFieldDisabled(field)"
           class="w-full"
-          :input-class="{
+          :class="{
             'input-base is-enabled premium-focus': !isFieldDisabled(field),
             'input-base is-disabled opacity-60': isFieldDisabled(field),
           }"
         />
 
         <!-- Time -->
-        <DatePicker
+        <input
           v-else-if="field.type === 'time'"
           v-model="field.value as any"
-          time-only
-          hour-format="12"
-          fluid
-          icon-display="input"
+          type="time"
           :disabled="isFieldDisabled(field)"
           class="w-full"
-          :input-class="{
+          :class="{
             'input-base is-enabled premium-focus': !isFieldDisabled(field),
             'input-base is-disabled opacity-60': isFieldDisabled(field),
           }"
         />
 
         <!-- 🔹 CHECKBOX -->
-        <Checkbox
+        <PraxisCheckbox
           v-else-if="field.type === 'checkbox'"
           v-model="field.value"
-          fluid
           :disabled="isFieldDisabled(field)"
           :binary="true"
         />
@@ -689,16 +667,16 @@ defineExpose({
         </Transition>
       </Field>
 
-      <!--divider_with_components para foem adentro del modal -->
-      <FormDividerWithComponents
+      <slot
         v-if="field.type === 'divider_with_components'"
+        name="divider-component"
         :field="field"
       />
     </div>
   </TransitionGroup>
 
   <!--vital signs history -->
-  <VitalSignsHistory v-if="SelectedDocumentId === 'vital_signs_single_entry'" />
+  <slot name="vital-signs-history" v-if="selectedDocumentId === 'vital_signs_single_entry'" />
 </template>
 
 <style scoped>
@@ -748,3 +726,4 @@ defineExpose({
 }
 </style>
 ```
+

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Field } from "vee-validate";
-import { InputText } from "primevue";
 import VueSelect from "vue-select";
 import { ChevronDown } from "@lucide/vue";
 import { onMounted, watch } from "vue";
@@ -76,12 +75,11 @@ defineEmits(["search", "change"]);
           class="flex-1"
         >
           <div class="flex flex-col">
-            <InputText
+            <input
               v-if="comp.type === 'integer'"
               v-model="comp.value"
-              v-keyfilter.int
-              fluid
-              class="input-base"
+              type="number"
+              class="input-base w-full"
               :min="getMinNumberValue(comp)"
               :max="getMaxNumberValue(comp)"
             />

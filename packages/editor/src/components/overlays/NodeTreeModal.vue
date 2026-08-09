@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, reactive, watch } from "vue";
-import Dialog from "primevue/dialog";
+import PraxisDialog from "@/components/_primitives/PraxisDialog.vue";
 import VueSelect from "vue-select";
 import RequiredLabel from "@/components/ui/base/RequiredLabel.vue";
 import { Form, Field } from "vee-validate";
@@ -89,14 +89,10 @@ const handleCancel = () => {
 </script>
 
 <template>
-  <Dialog
+  <PraxisDialog
     v-model:visible="showModal"
-    :modal="true"
-    :style="{ width: '100%', maxWidth: '1000px', height: 'auto' }"
+    max-width="1000px"
     :closable="false"
-    :close-on-escape="true"
-    :dismissable-mask="false"
-    :content-style="{ 'overflow-y': 'visible' }"
     @hide="handleCancel"
   >
     <template #header>
@@ -192,5 +188,5 @@ const handleCancel = () => {
         </button>
       </div>
     </template>
-  </Dialog>
+  </PraxisDialog>
 </template>

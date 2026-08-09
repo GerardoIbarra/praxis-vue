@@ -2,7 +2,7 @@
 import { Trash } from "@lucide/vue";
 import { toRaw } from "vue";
 import type { TemplateSection } from "@/types/catalog/documentTemplates";
-import { Checkbox } from "primevue";
+import PraxisCheckbox from "@/components/_primitives/PraxisCheckbox.vue";
 import { VueDraggable } from "vue-draggable-plus";
 
 interface Props {
@@ -152,7 +152,7 @@ const handleColumnUpdate = (colIndex: number, newColumn: TemplateSection[]) => {
                       >
                         Is required?
                       </label>
-                      <Checkbox
+                      <PraxisCheckbox
                         v-model="element.is_required"
                         :input-id="`is_required-col${colIndex}-${index}`"
                         :binary="true"

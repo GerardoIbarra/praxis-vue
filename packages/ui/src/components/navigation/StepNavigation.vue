@@ -15,7 +15,6 @@
  *   @next="goToNextStep"
  * />
  */
-import { hasPermission } from "@/utils/permissions";
 import { computed } from "vue";
 
 const props = defineProps({
@@ -64,10 +63,10 @@ const props = defineProps({
     type: String,
     default: "Saving...",
   },
-  /** Permission category to check (e.g., 'patients', 'users') */
-  permissionCategory: {
-    type: String,
-    default: "patients",
+  /** If the user has permission to edit/save */
+  hasPermission: {
+    type: Boolean,
+    default: true,
   },
 });
 
@@ -75,12 +74,7 @@ const emit = defineEmits(["previous", "next", "save"]);
 
 const isDisabled = computed(() => !props.canProceed || props.loading);
 
-const isPermissionDisabled = computed(() => {
-  return !(
-    hasPermission(props.permissionCategory, "U") ||
-    hasPermission(props.permissionCategory, "C")
-  );
-});
+const isPermissionDisabled = computed(() => !props.hasPermission);
 
 // El botón Next solo se bloquea por permisos si estamos en el último paso (showSave)
 const isNextDisabled = computed(

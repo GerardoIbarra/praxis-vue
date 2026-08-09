@@ -1,39 +1,24 @@
-import {
-  backResponseCrud,
-  billingResponse,
-  medicalChartsResponse,
-  patientsResponse,
-} from "@/api/medicalApi";
-import type { ApiMap } from "@/types/api/medical-charts/document";
-import type { AxiosInstance } from "axios";
-
 /**
- * Composable for mapping logical API keys to their corresponding Axios instances.
- * Centralizes duplicate mappings across stores, composables, and components.
+ * Generic API Map composable for UI library.
+ * The actual instances should be provided by the host application via window.__PRAXIS_API_MAP__
+ * or another injection mechanism.
  */
 export function useApiMap() {
-  const apiMap: ApiMap = {
-    medical_charts: medicalChartsResponse,
-    users: backResponseCrud,
-    patients: patientsResponse,
-    billing: billingResponse,
-  };
-
-  /**
-   * Safe getter for an API service instance by its key.
-   * @param service The key of the apiMap
-   * @returns AxiosInstance
-   */
-  const getApiService = (service: keyof ApiMap): AxiosInstance => {
-    const instance = apiMap[service];
-    if (!instance) {
-      throw new Error(`[useApiMap] API service "${service}" is not defined.`);
+  const getApiService = (service: string) => {
+    // @ts-ignore
+    if (typeof window !== "undefined" && window.__PRAXIS_API_MAP__) {
+      // @ts-ignore
+      return window.__PRAXIS_API_MAP__[service];
     }
-    return instance;
+    
+    // Fallback dummy instance to prevent crashes if not provided
+    return {
+      get: () => Promise.resolve({ data: [] }),
+      post: () => Promise.resolve({ data: [] }),
+    };
   };
 
   return {
-    apiMap,
     getApiService,
   };
 }

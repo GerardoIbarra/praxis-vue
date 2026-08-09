@@ -28,10 +28,7 @@ import {
   ClipboardList,
   Users,
 } from "@lucide/vue";
-import { Button } from "primevue";
 import type { GeneralTabsProfile } from "@/types/api/common";
-import type { AuditLogContext } from "@/stores/auditLogSidebar";
-import AuditLogButton from "@/components/ui/data-display/AuditLogButton.vue";
 
 const icons = {
   User,
@@ -66,14 +63,6 @@ const props = defineProps({
   tabs: { type: Array as PropType<GeneralTabsProfile[]>, required: true },
   modelValue: { type: String, required: true },
   protectedTabs: { type: Array as PropType<string[]>, default: () => [] },
-  // Audit Log specific props
-  auditContext: { type: String as PropType<AuditLogContext>, default: null },
-  auditId: { type: [String, Number], default: null },
-  auditEntityName: { type: String, default: null },
-  auditTableName: { type: String, default: null },
-  auditObjectPk: { type: String, default: null },
-  auditUserId: { type: String, default: null },
-  show: { type: Boolean, default: true },
 });
 
 const emit = defineEmits(["update:modelValue", "remove-tab"]);
@@ -105,17 +94,10 @@ const removeTab = (key: string | number) => {
         class="flex overflow-x-auto min-w-0 flex-1 whitespace-nowrap -mb-px text-sm font-medium text-center no-scrollbar"
       >
         <li v-for="tab in visibleTabs" :key="tab.key" class="mr-2">
-          <Button
-            v-tooltip.bottom="{
-              value: tab.tooltip,
-              pt: {
-                root: 'custom-tooltip-width',
-                text: '!font-medium',
-              },
-            }"
-            unstyled
+          <button
+            :title="tab.tooltip"
             :aria-selected="modelValue === tab.key"
-            class="p-4 border-b-2 rounded-t-lg flex items-center transition-colors duration-200"
+            class="p-4 border-b-2 rounded-t-lg flex items-center transition-colors duration-200 outline-none w-full text-left"
             :class="[
               protectedTabs.includes(tab.key) && tab.enabled === false
                 ? 'text-gray-500 border-transparent cursor-not-allowed '
@@ -143,39 +125,14 @@ const removeTab = (key: string | number) => {
             >
               <X class="w-3 h-3" />
             </div>
-          </Button>
+          </button>
         </li>
       </ul>
 
       <div class="flex items-center pr-4 gap-2">
-        <AuditLogButton
-          v-if="show && auditContext"
-          :show="show && $hasPermission('audit-log', 'R')"
-          :audit-context="auditContext!"
-          :audit-id="auditId"
-          :audit-entity-name="auditEntityName"
-          :audit-table-name="auditTableName"
-          :audit-object-pk="auditObjectPk"
-          :audit-user-id="auditUserId"
-        />
+        <slot name="actions" />
         <slot name="getback" />
       </div>
     </div>
   </div>
 </template>
-<style>
-/* 1. Target (p-tooltip): Anula cualquier ancho máximo que PrimeVue imponga al contenedor principal.
-   2. Target (p-tooltip-text): Asegura que el texto pueda expandirse al ancho máximo del contenedor.
-*/
-.p-tooltip.custom-tooltip-width {
-  /* **Este es el punto clave.** Anula el ancho máximo del contenedor principal del tooltip. */
-  max-width: 500px !important; /* O 600px, 800px... el que necesites. */
-  width: max-content !important;
-}
-
-/* Opcional: Aseguramos que el elemento de texto no tenga restricciones */
-.p-tooltip.custom-tooltip-width .p-tooltip-text {
-  max-width: 100% !important;
-  white-space: normal !important; /* Permite que el texto fluya en varias líneas si es muy largo */
-}
-</style>

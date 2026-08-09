@@ -1,18 +1,12 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
-import Dialog from "primevue/dialog";
+import PraxisDialog from "@/components/_primitives/PraxisDialog.vue";
 import { useFormScheduleTemplatesStore } from "@/stores/Forms/formScheduleTemplates";
 import { storeToRefs } from "pinia";
 import RequiredLabel from "@/components/ui/base/RequiredLabel.vue";
-import DatePicker from "primevue/datepicker";
 import SelectableList from "@/components/ui/forms/SelectableList.vue";
 import { toast } from "vue3-toastify";
 import type { FormDataScheduleTemplate } from "@/types/catalog/scheduleTemplates";
-
-const scheduleTemplatesStore = useFormScheduleTemplatesStore();
-const { showTimeSlotModal, activity_options, time_slots, modalType } =
-  storeToRefs(scheduleTemplatesStore);
-const { handleTimeSlotSave } = scheduleTemplatesStore;
 import { checkStartEndTime } from "@/composables/useDateRangeValidation";
 import type { Activities } from "@/types/api/catalog-endpoints/list";
 import type { Activity } from "@/types/api/common";
@@ -230,15 +224,10 @@ const formatTimeToString = (date: string | Date): string => {
 </script>
 
 <template>
-  <Dialog
+  <PraxisDialog
     v-model:visible="showTimeSlotModal"
-    :modal="false"
-    :style="{ width: '650px' }"
-    :closable="true"
-    :close-on-escape="true"
-    :dismissable-mask="true"
-    class="time-slot-modal border border-gray-400 dark:border-gray-700"
-    :content-style="{ 'overflow-y': 'visible' }"
+    max-width="650px"
+    class="time-slot-modal"
   >
     <!-- Header -->
     <template #header>
@@ -331,5 +320,5 @@ const formatTimeToString = (date: string | Date): string => {
         </div>
       </div>
     </template>
-  </Dialog>
+  </PraxisDialog>
 </template>

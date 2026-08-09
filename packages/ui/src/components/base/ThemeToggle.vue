@@ -1,43 +1,49 @@
 <template>
-  <div class="theme-toggle-container">
+  <div class="theme-toggle-container flex items-center justify-center">
     <input
       id="theme-checkbox"
       type="checkbox"
       class="theme-checkbox"
-      :checked="isDark"
+      :checked="modelValue"
       @change="toggleTheme"
     />
     <label for="theme-checkbox" class="theme-label">
-      <span class="sun-icon" :class="{ active: !isDark }">
+      <span class="sun-icon" :class="{ active: !modelValue }">
         <SunIcon :size="20" />
       </span>
-      <span class="moon-icon" :class="{ active: isDark }">
+      <span class="moon-icon" :class="{ active: modelValue }">
         <MoonIcon :size="20" />
       </span>
       <div
         class="theme-toggle"
-        :class="{ 'theme-toggle-checked': isDark }"
+        :class="{ 'theme-toggle-checked': modelValue }"
       ></div>
     </label>
   </div>
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from "pinia";
-import { useThemeStore } from "@/stores/theme";
 import { MoonIcon, SunIcon } from "@lucide/vue";
 
-const themeStore = useThemeStore();
-const { isDark } = storeToRefs(themeStore);
-const { toggleTheme } = themeStore;
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const emit = defineEmits(["update:modelValue", "toggle"]);
+
+const toggleTheme = () => {
+  emit("update:modelValue", !props.modelValue);
+  emit("toggle", !props.modelValue);
+};
 </script>
 
 <style scoped>
-@reference "../../../index.css";
 
-.theme-toggle-container {
-  @apply flex items-center justify-center;
-}
+
+
 
 .theme-checkbox {
   display: none;

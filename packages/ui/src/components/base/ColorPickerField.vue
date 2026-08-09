@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { ColorPicker, InputText } from "primevue";
-import RequiredLabel from "@/components/ui/base/RequiredLabel.vue";
+import RequiredLabel from "@/components/base/RequiredLabel.vue";
 
 // Props del componente
 interface Props {
@@ -27,8 +26,23 @@ const emit = defineEmits<{
 }>();
 
 const colorValue = computed({
-  get: () => props.modelValue,
-  set: (value) => emit("update:modelValue", value),
+  get: () => {
+    const val = props.modelValue || "000000";
+    return val.startsWith("#") ? val : `#${val}`;
+  },
+  set: (value) => {
+    // Return value without #
+    emit("update:modelValue", value.replace("#", ""));
+  },
+});
+
+const textValue = computed({
+  get: () => (props.modelValue || "").replace("#", ""),
+  set: (value) => {
+    // Only allow hex chars
+    const cleaned = value.replace(/[^0-9a-fA-F]/g, "").substring(0, 6);
+    emit("update:modelValue", cleaned);
+  },
 });
 </script>
 
@@ -42,19 +56,23 @@ const colorValue = computed({
     />
 
     <div class="flex items-center space-x-3">
-      <ColorPicker v-model="colorValue" :disabled="disabled" />
-
-      <InputText
-        id="alphabetic"
+      <input
         v-model="colorValue"
-        v-keyfilter.regex="/[0-9a-fA-F]/"
+        type="color"
+        :disabled="disabled"
+        class="w-10 h-10 p-0 border-0 rounded cursor-pointer shrink-0"
+        :class="{ 'opacity-50 cursor-not-allowed': disabled }"
+      />
+
+      <input
+        id="alphabetic"
+        v-model="textValue"
         maxlength="6"
         type="text"
         :placeholder="placeholder"
-        class="input-base"
+        class="input-base w-full"
         :disabled="disabled"
         :class="disabled ? 'is-disabled' : 'is-enabled'"
-        fluid
       />
     </div>
 

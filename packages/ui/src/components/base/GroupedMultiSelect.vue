@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import VueSelect from "vue-select";
-import { ColorPicker } from "primevue";
 import { computed, ref, onMounted } from "vue";
 import "vue-select/dist/vue-select.css";
 
@@ -484,13 +483,11 @@ onMounted(() => {
         />
 
         <!-- Color dot -->
-        <ColorPicker
+        <div
           v-if="showColor && option.color"
-          :model-value="option.color"
-          :inline="false"
-          :disabled="true"
-          class="shrink-0"
-        />
+          class="w-4 h-4 rounded border border-gray-300 shrink-0"
+          :style="{ backgroundColor: option.color?.startsWith('#') ? option.color : '#' + option.color }"
+        ></div>
 
         <!-- Name / Label -->
         <span class="truncate flex-1 text-sm">{{ option.displayName }}</span>
@@ -518,13 +515,11 @@ onMounted(() => {
         v-if="showAllTags || getOptionIndex(option) < 3"
         class="vs__selected"
       >
-        <ColorPicker
+        <div
           v-if="showColor && option.color"
-          :model-value="option.color"
-          :inline="false"
-          :disabled="true"
-          class="shrink-0"
-        />
+          class="w-4 h-4 rounded border border-gray-300 shrink-0"
+          :style="{ backgroundColor: option.color?.startsWith('#') ? option.color : '#' + option.color }"
+        ></div>
         <span class="truncate ml-2 max-w-30"> {{ option.displayName }} </span>
         <button
           v-if="multiple"

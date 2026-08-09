@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive, watch } from "vue";
-import Dialog from "primevue/dialog";
-import Textarea from "primevue/textarea";
-import InputText from "primevue/inputtext";
+import PraxisDialog from "@/components/_primitives/PraxisDialog.vue";
 import { LifeBuoy, Send, X } from "@lucide/vue";
 import * as Sentry from "@sentry/vue";
 import { toast } from "vue3-toastify";
@@ -65,13 +63,10 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <Dialog
+  <PraxisDialog
     v-model:visible="isVisible"
-    modal
-    :draggable="false"
-    class="feedback-dialog"
-    :style="{ width: '100%', maxWidth: '600px' }"
     :closable="false"
+    max-width="600px"
   >
     <template #header>
       <div class="flex justify-between items-center w-full">
@@ -106,9 +101,10 @@ const handleSubmit = async () => {
         <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
           >Name</label
         >
-        <InputText
+        <input
           v-model="form.name"
-          class="w-full"
+          type="text"
+          class="input-base w-full"
           :disabled="!!userFirstName"
         />
       </div>
@@ -117,9 +113,10 @@ const handleSubmit = async () => {
         <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
           >Email</label
         >
-        <InputText
+        <input
           v-model="form.email"
-          class="w-full"
+          type="email"
+          class="input-base w-full"
           :disabled="!!userDataLoginEmail"
         />
       </div>
@@ -128,12 +125,11 @@ const handleSubmit = async () => {
         <label class="text-sm font-medium text-gray-700 dark:text-gray-300"
           >Message <span class="text-red-500">*</span></label
         >
-        <Textarea
+        <textarea
           v-model="form.message"
           rows="4"
-          class="w-full resize-none"
+          class="input-base w-full resize-none"
           placeholder="How can we help you today?"
-          auto-resize
         />
       </div>
     </form>
@@ -163,5 +159,5 @@ const handleSubmit = async () => {
         </div>
       </div>
     </template>
-  </Dialog>
+  </PraxisDialog>
 </template>

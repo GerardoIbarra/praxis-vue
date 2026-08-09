@@ -4,10 +4,9 @@ import {
   type AuditLogContext,
 } from "@/stores/auditLogSidebar";
 import { storeToRefs } from "pinia";
-import Drawer from "primevue/drawer";
+import PraxisDrawer from "@/components/_primitives/PraxisDrawer.vue";
 import { FileClock, Download } from "@lucide/vue";
 import { watch } from "vue";
-import Button from "primevue/button";
 import AuditLogContent from "@/components/ui/overlays/AuditLogContent.vue";
 
 const props = defineProps<{
@@ -49,15 +48,14 @@ watch(
 </script>
 
 <template>
-  <Drawer
+  <PraxisDrawer
     v-model:visible="visible"
     position="right"
-    header="Audit Log History"
-    class="audit-log-drawer w-137.5! max-w-[90vw]"
+    class="audit-log-drawer"
     :style="{ backgroundColor: 'var(--bg-primary)' }"
   >
     <template #header>
-      <div class="flex items-center justify-between w-full pr-8">
+      <div class="flex items-center justify-between w-full">
         <div class="flex items-center gap-2 min-w-0 flex-wrap">
           <FileClock class="w-5 h-5 text-p-secondary shrink-0" />
           <h2 class="text-lg font-bold text-gray-900 dark:text-white">
@@ -72,33 +70,32 @@ watch(
           </span>
         </div>
 
-        <Button
+        <button
           v-if="logs.length > 0"
-          label="Export"
-          class="p-button-sm p-button-outlined p-button-secondary shrink-0"
-          :loading="store.loading"
+          type="button"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors shrink-0 cursor-pointer"
+          :disabled="store.loading"
           @click="store.downloadLogs"
         >
-          <template #icon>
-            <Download class="w-4 h-4 mr-2" />
-          </template>
-        </Button>
+          <Download class="w-4 h-4" />
+          Export
+        </button>
       </div>
     </template>
 
     <!-- Content is isolated to avoid re-rendering the Drawer shell -->
     <AuditLogContent v-if="visible" />
-  </Drawer>
+  </PraxisDrawer>
 </template>
 
 <style scoped>
 @reference "@/index.css";
 
-.audit-log-drawer :deep(.p-drawer-header) {
+.audit-log-drawer :deep(.praxis-drawer-header) {
   @apply bg-primary border-b border-border-light px-6 py-4;
 }
 
-.audit-log-drawer :deep(.p-drawer-content) {
+.audit-log-drawer :deep(.praxis-drawer-content) {
   @apply px-4 py-6 overflow-x-hidden transition-colors;
   background-color: var(--bg-primary);
 }

@@ -1,0 +1,35 @@
+{
+  "name": "praxis-vue-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Monorepo for @praxis/vue component library",
+  "scripts": {
+    "build": "pnpm -r build",
+    "build:ui": "pnpm --filter @praxis/vue build",
+    "build:editor": "pnpm --filter @praxis/editor build",
+    "dev": "pnpm --filter playground dev",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "lint": "eslint . --fix",
+    "format": "prettier --write .",
+    "type-check": "pnpm -r type-check"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/addon-interactions": "^8.4.7",
+    "@storybook/addon-links": "^8.4.7",
+    "@storybook/blocks": "^8.4.7",
+    "@storybook/vue3": "^8.4.7",
+    "@storybook/vue3-vite": "^8.4.7",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/tsconfig": "^0.9.1",
+    "eslint": "^10.8.0",
+    "eslint-plugin-vue": "~10.10.0",
+    "prettier": "^3.9.6",
+    "storybook": "^8.4.7",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.5",
+    "vue": "^3.5.40",
+    "vue-tsc": "^3.3.8"
+  }
+}

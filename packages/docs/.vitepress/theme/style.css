@@ -1,0 +1,367 @@
+/* ================================================================
+   Praxis Vue Docs — Design System CSS
+   Espejo del design system del paquete UI + tokens VitePress
+   ================================================================ */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ---------------------------------------------------------------
+   Root tokens (light mode)
+   --------------------------------------------------------------- */
+:root {
+  --p-primary-50:  #eff6ff;
+  --p-primary-100: #dbeafe;
+  --p-primary-200: #bfdbfe;
+  --p-primary-300: #93c5fd;
+  --p-primary-400: #60a5fa;
+  --p-primary-500: #3b82f6;
+  --p-primary-600: #2563eb;
+  --p-primary-700: #1d4ed8;
+  --p-primary-800: #1e40af;
+  --p-primary-900: #1e3a8a;
+
+  --p-surface-0:   #ffffff;
+  --p-surface-50:  #f8fafc;
+  --p-surface-100: #f1f5f9;
+  --p-surface-200: #e2e8f0;
+  --p-surface-300: #cbd5e1;
+  --p-surface-400: #94a3b8;
+  --p-surface-500: #64748b;
+  --p-surface-600: #475569;
+  --p-surface-700: #334155;
+  --p-surface-800: #1e293b;
+  --p-surface-900: #0f172a;
+
+  --vp-font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* VitePress color overrides */
+  --vp-c-brand-1: var(--p-primary-600);
+  --vp-c-brand-2: var(--p-primary-500);
+  --vp-c-brand-3: var(--p-primary-400);
+  --vp-c-brand-soft: var(--p-primary-50);
+
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-soft: var(--p-surface-50);
+  --vp-c-bg-mute: var(--p-surface-100);
+  --vp-c-border: var(--p-surface-200);
+
+  --vp-code-bg: var(--p-surface-100);
+  --vp-code-color: var(--p-primary-700);
+}
+
+/* ---------------------------------------------------------------
+   Dark mode tokens
+   --------------------------------------------------------------- */
+.dark {
+  --vp-c-bg: #0f172a;
+  --vp-c-bg-soft: #1e293b;
+  --vp-c-bg-mute: #334155;
+  --vp-c-border: #334155;
+  --vp-code-bg: #1e293b;
+  --vp-code-color: #93c5fd;
+}
+
+/* ---------------------------------------------------------------
+   Global typography
+   --------------------------------------------------------------- */
+body {
+  font-family: var(--vp-font-family-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------------------------------------------------------------
+   ComponentDemo card
+   --------------------------------------------------------------- */
+.praxis-demo-card {
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  background: var(--vp-c-bg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.praxis-demo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--vp-c-border);
+  background: var(--vp-c-bg-soft);
+}
+
+.praxis-demo-header-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--vp-c-text-2);
+}
+
+.praxis-demo-body {
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 120px;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.praxis-demo-code-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--vp-c-border);
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-2);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.praxis-demo-code-toggle:hover {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  border-color: var(--vp-c-brand-1);
+}
+
+.praxis-demo-code-section {
+  border-top: 1px solid var(--vp-c-border);
+}
+
+.praxis-demo-code-section .language-vue,
+.praxis-demo-code-section .language-html {
+  margin: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+/* ---------------------------------------------------------------
+   Props / Emits table
+   --------------------------------------------------------------- */
+.praxis-api-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 1rem 0 2rem;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.praxis-api-table th {
+  background: var(--vp-c-bg-soft);
+  padding: 0.625rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--vp-c-text-2);
+  border-bottom: 1px solid var(--vp-c-border);
+}
+
+.praxis-api-table td {
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  vertical-align: top;
+  color: var(--vp-c-text-1);
+}
+
+.praxis-api-table tr:last-child td {
+  border-bottom: none;
+}
+
+.praxis-api-table tr:hover td {
+  background: var(--vp-c-bg-soft);
+}
+
+.prop-name {
+  font-family: var(--vp-font-family-mono);
+  color: var(--p-primary-600);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.dark .prop-name {
+  color: #60a5fa;
+}
+
+.prop-type {
+  font-family: var(--vp-font-family-mono);
+  background: var(--vp-c-bg-mute);
+  color: var(--vp-c-text-2);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.prop-default {
+  font-family: var(--vp-font-family-mono);
+  color: var(--vp-c-text-3);
+  font-size: 0.8rem;
+}
+
+.prop-required {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.1rem 0.5rem;
+  border-radius: 20px;
+  background: #fee2e2;
+  color: #991b1b;
+  margin-left: 0.4rem;
+}
+
+.dark .prop-required {
+  background: rgba(185, 28, 28, 0.2);
+  color: #f87171;
+}
+
+/* ---------------------------------------------------------------
+   Section headers (API sections)
+   --------------------------------------------------------------- */
+.praxis-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 2.5rem 0 1rem;
+}
+
+.praxis-section-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.badge-props { background: #dbeafe; color: #1e40af; }
+.badge-emits { background: #d1fae5; color: #065f46; }
+.badge-slots { background: #fef3c7; color: #92400e; }
+
+.dark .badge-props { background: rgba(30,64,175,0.25); color: #93c5fd; }
+.dark .badge-emits { background: rgba(6,95,70,0.25); color: #6ee7b7; }
+.dark .badge-slots { background: rgba(146,64,14,0.25); color: #fcd34d; }
+
+/* ---------------------------------------------------------------
+   Home page hero
+   --------------------------------------------------------------- */
+.VPHero .text {
+  background: linear-gradient(135deg, var(--p-primary-600) 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ---------------------------------------------------------------
+   Praxis UI component styles imported into VitePress context
+   (Input styling so demos look native)
+   --------------------------------------------------------------- */
+.input-base {
+  display: flex;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: var(--vp-c-bg);
+  color: var(--vp-c-text-1);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-base:focus,
+.input-base.is-enabled:focus {
+  border-color: var(--p-primary-500);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.input-base.is-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--vp-c-bg-soft);
+}
+
+/* Tailwind-like utilities needed by Praxis components */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 0.25rem; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+.w-full { width: 100%; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.z-50 { z-index: 50; }
+.cursor-pointer { cursor: pointer; }
+.rounded-xl { border-radius: 0.75rem; }
+.shadow-xl { box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+.text-sm { font-size: 0.875rem; }
+.text-xs { font-size: 0.75rem; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+.uppercase { text-transform: uppercase; }
+.tracking-wider { letter-spacing: 0.05em; }
+.overflow-y-auto { overflow-y: auto; }
+.overflow-x-hidden { overflow-x: hidden; }
+.scroll-smooth { scroll-behavior: smooth; }
+.transition-all { transition: all 0.2s; }
+.transition-transform { transition: transform 0.2s; }
+.transition-colors { transition: color 0.2s, background-color 0.2s; }
+.duration-200 { transition-duration: 0.2s; }
+.duration-300 { transition-duration: 0.3s; }
+.opacity-0 { opacity: 0; }
+.opacity-100 { opacity: 1; }
+.translate-y-1 { transform: translateY(0.25rem); }
+.translate-y-0 { transform: translateY(0); }
+.rotate-180 { transform: rotate(180deg); }
+.shrink-0 { flex-shrink: 0; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.text-center { text-align: center; }
+.py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.px-3 { padding-left: 0.75rem; padding-right: 0.75rem; }
+.p-3 { padding: 0.75rem; }
+.p-4 { padding: 1rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mr-2 { margin-right: 0.5rem; }
+.ml-2 { margin-left: 0.5rem; }
+.flex-1 { flex: 1 1 0%; }
+.h-48 { height: 12rem; }
+.h-4 { height: 1rem; }
+.w-4 { width: 1rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.border { border-width: 1px; border-style: solid; }
+.border-b { border-bottom-width: 1px; border-bottom-style: solid; }
+.backdrop-blur-md { backdrop-filter: blur(12px); }
+.group { }
+.group:hover .group-hover\:text-primary-500 { color: var(--p-primary-500); }
+
+/* Praxis color vars for components */
+.text-primary-500 { color: var(--p-primary-500); }
+.bg-primary-500 { background-color: var(--p-primary-500); }
+.text-gray-400 { color: #9ca3af; }
+.text-gray-600 { color: #4b5563; }
+.text-gray-700 { color: #374151; }
+.text-white { color: #ffffff; }
+.bg-white { background: #ffffff; }
+.hover\:bg-gray-100:hover { background: #f3f4f6; }
+.ring-2 { box-shadow: 0 0 0 2px; }
+.ring-primary-500\/20 { box-shadow: 0 0 0 2px rgba(59,130,246,0.2); }
+.border-primary-500 { border-color: var(--p-primary-500); }
+.border-gray-100 { border-color: #f3f4f6; }
+.mt-6 { margin-top: 1.5rem; }
+.flex-wrap { flex-wrap: wrap; }

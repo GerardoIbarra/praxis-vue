@@ -10,9 +10,18 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 interface Props {
   url: string;
+  scale?: number;
+  height?: string;
+  initialPage?: number;
+  renderAllPages?: boolean;
 }
 
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  scale: 1.5,
+  height: '600px',
+  initialPage: 1,
+  renderAllPages: true,
+});
 
 const containerRef = ref<HTMLDivElement | null>(null);
 const loading = ref<boolean>(true); // Estado de carga
@@ -35,10 +44,14 @@ const renderPDF = async () => {
 
     containerRef.value.innerHTML = ""; // limpiar
 
-    for (let i = 1; i <= pdf.numPages; i++) {
+    const startPage = props.renderAllPages ? 1 : props.initialPage;
+    const endPage = props.renderAllPages ? pdf.numPages : props.initialPage;
+
+    for (let i = startPage; i <= endPage; i++) {
+      if (i > pdf.numPages || i < 1) break;
+      
       const page = await pdf.getPage(i);
-      const scale = 1.5;
-      const viewport = page.getViewport({ scale });
+      const viewport = page.getViewport({ scale: props.scale });
       const canvas = document.createElement("canvas");
       const context = canvas.getContext("2d");
 
@@ -65,7 +78,7 @@ const renderPDF = async () => {
 };
 
 onMounted(renderPDF);
-watch(() => props.url, renderPDF);
+watch([() => props.url, () => props.scale, () => props.initialPage, () => props.renderAllPages], renderPDF);
 
 const printPDF = async () => {
   try {
@@ -121,7 +134,7 @@ const printPDF = async () => {
 </script>
 
 <template>
-  <div class="flex gap-6 w-full">
+  <div class="flex gap-6 w-full" :style="{ height: props.height }">
     <div class="basis-2/4 p-3">
       <!-- Spinner de carga -->
       <LazyLoadingSpinner v-if="loading" loading-text="Loading PDF..." />

@@ -7,7 +7,7 @@ A slide-in side panel (drawer/sidebar) that appears from the edge of the screen.
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PraxisDrawer } from '@praxis/vue'
+import { PraxisDrawer } from 'praxis-vue-ui'
 
 const open = ref(false)
 </script>

@@ -7,7 +7,7 @@ An international phone number input with country code selector. Backed by `vue-t
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PhoneNumber } from '@praxis/vue'
+import { PhoneNumber } from 'praxis-vue-ui'
 
 const phone = ref('')
 </script>

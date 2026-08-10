@@ -7,7 +7,7 @@ A dropdown selector where each option displays a colored swatch alongside its la
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { ColorSelect } from '@praxis/vue'
+import { ColorSelect } from 'praxis-vue-ui'
 
 const statuses = [
   { id: 1, name: 'Active', color: '22c55e' },

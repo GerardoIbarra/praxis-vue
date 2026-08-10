@@ -36,7 +36,7 @@ A responsive data table component built on native HTML `<table>`. Supports singl
 
 ```vue
 <script setup>
-import { BaseDataTable } from '@praxis/vue'
+import { BaseDataTable } from 'praxis-vue-ui'
 
 const columns = [
   { field: 'name', header: 'Name' },

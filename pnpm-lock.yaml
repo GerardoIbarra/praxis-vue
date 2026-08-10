@@ -178,7 +178,7 @@ importers:
       '@praxis/editor':
         specifier: workspace:*
         version: link:../packages/editor
-      '@praxis/vue':
+      'praxis-vue-ui':
         specifier: workspace:*
         version: link:../packages/ui
       pinia:

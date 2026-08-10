@@ -7,7 +7,7 @@ An enhanced checklist component that combines checkboxes with inline text/select
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { CheckListInputField } from '@praxis/vue'
+import { CheckListInputField } from 'praxis-vue-ui'
 
 const items = ref([])
 </script>

@@ -7,7 +7,7 @@ A compact multi-select component that combines a select dropdown with a tag/badg
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { FormMultiSelectList } from '@praxis/vue'
+import { FormMultiSelectList } from 'praxis-vue-ui'
 
 const tags = [
   { id: 1, name: 'Urgent' },

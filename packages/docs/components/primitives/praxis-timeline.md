@@ -6,7 +6,7 @@ A vertical timeline component for displaying chronological events. Each item ren
 
 ```vue
 <script setup>
-import { PraxisTimeline } from '@praxis/vue'
+import { PraxisTimeline } from 'praxis-vue-ui'
 
 const events = [
   {

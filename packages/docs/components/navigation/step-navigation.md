@@ -38,7 +38,7 @@ Navigation button row for multi-step forms. Provides Previous, Next and optional
 
 ```vue
 <script setup>
-import { StepNavigation } from '@praxis/vue'
+import { StepNavigation } from 'praxis-vue-ui'
 import { ref } from 'vue'
 
 const step = ref(1)

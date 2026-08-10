@@ -7,7 +7,7 @@ A hierarchical tree component for displaying nested data structures. Supports ex
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { BaseTree } from '@praxis/vue'
+import { BaseTree } from 'praxis-vue-ui'
 
 const nodes = ref([
   {

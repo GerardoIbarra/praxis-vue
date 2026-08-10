@@ -7,7 +7,7 @@ A `vue-select` wrapper that triggers a load-more callback when the user scrolls 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { InfiniteScrollSelect } from '@praxis/vue'
+import { InfiniteScrollSelect } from 'praxis-vue-ui'
 
 const options = ref([/* initial page */])
 const hasMore = ref(true)

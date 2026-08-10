@@ -6,7 +6,7 @@ A collapsible accordion component. Renders one or more panels that expand/collap
 
 ```vue
 <script setup>
-import { PraxisAccordion } from '@praxis/vue'
+import { PraxisAccordion } from 'praxis-vue-ui'
 
 const panels = [
   { id: 'info', header: 'Patient Information', content: 'Name, DOB, ID...' },

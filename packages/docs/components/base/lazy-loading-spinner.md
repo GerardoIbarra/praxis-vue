@@ -17,7 +17,7 @@ A simple, centered loading spinner component used to indicate that content is be
 
 ```vue
 <script setup>
-import { LazyLoadingSpinner } from '@praxis/vue'
+import { LazyLoadingSpinner } from 'praxis-vue-ui'
 </script>
 
 <template>

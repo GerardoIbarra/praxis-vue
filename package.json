@@ -2,10 +2,10 @@
   "name": "praxis-vue-monorepo",
   "private": true,
   "version": "0.0.0",
-  "description": "Monorepo for @praxis/vue component library",
+  "description": "Monorepo for praxis-vue-ui component library",
   "scripts": {
     "build": "pnpm -r build",
-    "build:ui": "pnpm --filter @praxis/vue build",
+    "build:ui": "pnpm --filter praxis-vue-ui build",
     "build:editor": "pnpm --filter @praxis/editor build",
     "dev": "pnpm --filter playground dev",
     "docs:dev": "pnpm --filter @praxis/docs dev",

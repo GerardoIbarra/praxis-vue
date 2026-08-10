@@ -21,7 +21,7 @@ import {
   RequiredLabel,
   SelectableList,
   CheckListField
-} from '@praxis/vue'
+} from 'praxis-vue-ui'
 
 import { WordgardEditor } from '@praxis/editor'
 

@@ -6,7 +6,7 @@ A styled card container for dashboard sections. Wraps content in a bordered, rou
 
 ```vue
 <script setup>
-import { DashboardCard } from '@praxis/vue'
+import { DashboardCard } from 'praxis-vue-ui'
 </script>
 
 <template>

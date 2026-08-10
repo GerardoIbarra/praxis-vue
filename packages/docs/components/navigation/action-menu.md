@@ -26,7 +26,7 @@ A compact ⋮ (three-dot) vertical menu that shows a dropdown list of actions on
 ```vue
 <script setup>
 import { Edit, Trash2, Eye } from '@lucide/vue'
-import { ActionMenu } from '@praxis/vue'
+import { ActionMenu } from 'praxis-vue-ui'
 
 const items = [
   { label: 'View', lucideIcon: Eye, command: () => console.log('view') },

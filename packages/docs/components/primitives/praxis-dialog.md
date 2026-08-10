@@ -7,7 +7,7 @@ A modal dialog component. Supports header, content, and footer slots. Renders wi
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PraxisDialog } from '@praxis/vue'
+import { PraxisDialog } from 'praxis-vue-ui'
 
 const visible = ref(false)
 </script>

@@ -23,7 +23,7 @@ Renders a PDF document inline using `pdfjs-dist`. It automatically renders all p
 
 ```vue
 <script setup>
-import { PdfViewer } from '@praxis/vue'
+import { PdfViewer } from 'praxis-vue-ui'
 </script>
 
 <template>

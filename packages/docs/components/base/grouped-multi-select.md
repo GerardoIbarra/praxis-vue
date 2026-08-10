@@ -57,7 +57,7 @@ A multi-select dropdown with grouped options, checkboxes, color swatches, durati
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { GroupedMultiSelect } from '@praxis/vue'
+import { GroupedMultiSelect } from 'praxis-vue-ui'
 
 const selected = ref([])
 const options = [

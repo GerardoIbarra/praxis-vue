@@ -1,9 +1,9 @@
-# @praxis/vue
+# praxis-vue-ui
 
 > A generic, production-ready Vue 3 component library — forms, data-display, layout, navigation, overlays and more.
 
-[![npm version](https://img.shields.io/npm/v/@praxis/vue.svg)](https://www.npmjs.com/package/@praxis/vue)
-[![license](https://img.shields.io/npm/l/@praxis/vue.svg)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/praxis-vue-ui.svg)](https://www.npmjs.com/package/praxis-vue-ui)
+[![license](https://img.shields.io/npm/l/praxis-vue-ui.svg)](LICENSE)
 
 ---
 
@@ -11,17 +11,17 @@
 
 | Package | Description | npm |
 |---|---|---|
-| [`@praxis/vue`](./packages/ui) | 55+ UI components for Vue 3 + PrimeVue | `npm i @praxis/vue` |
+| [`praxis-vue-ui`](./packages/ui) | 55+ UI components for Vue 3 + PrimeVue | `npm i praxis-vue-ui` |
 | [`@praxis/editor`](./packages/editor) | Rich-text editor powered by Wordgard | `npm i @praxis/editor` |
 
 ---
 
 ## Installation
 
-### @praxis/vue
+### praxis-vue-ui
 
 ```bash
-npm install @praxis/vue primevue @primevue/core vee-validate pinia
+npm install praxis-vue-ui primevue @primevue/core vee-validate pinia
 ```
 
 ```ts
@@ -29,7 +29,7 @@ npm install @praxis/vue primevue @primevue/core vee-validate pinia
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
-import '@praxis/vue/dist/praxis-vue.css' // Import styles
+import 'praxis-vue-ui/dist/praxis-vue.css' // Import styles
 import App from './App.vue'
 
 createApp(App)
@@ -39,7 +39,7 @@ createApp(App)
 
 ```vue
 <script setup>
-import { BaseAvatar, DynamicForm, TabComponent } from '@praxis/vue'
+import { BaseAvatar, DynamicForm, TabComponent } from 'praxis-vue-ui'
 </script>
 ```
 
@@ -49,10 +49,10 @@ import { BaseAvatar, DynamicForm, TabComponent } from '@praxis/vue'
 // nuxt.config.ts
 export default defineNuxtConfig({
   css: [
-    '@praxis/vue/dist/praxis-vue.css' // Import styles globally
+    'praxis-vue-ui/dist/praxis-vue.css' // Import styles globally
   ],
   build: {
-    transpile: ['@praxis/vue']
+    transpile: ['praxis-vue-ui']
   }
 })
 ```
@@ -61,7 +61,7 @@ You can then use the components in any page or component:
 
 ```vue
 <script setup>
-import { PraxisTimePicker } from '@praxis/vue'
+import { PraxisTimePicker } from 'praxis-vue-ui'
 </script>
 
 <template>
@@ -96,7 +96,7 @@ const content = ref('<p>Hello world</p>')
 
 ## Component Categories
 
-### `@praxis/vue`
+### `praxis-vue-ui`
 
 | Category | Components |
 |---|---|
@@ -119,7 +119,7 @@ import {
   useDateRangeValidation,
   useZipCode,
   useSelectOptions,
-} from '@praxis/vue'
+} from 'praxis-vue-ui'
 ```
 
 ---

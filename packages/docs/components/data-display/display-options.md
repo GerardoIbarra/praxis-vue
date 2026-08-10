@@ -7,7 +7,7 @@ A compact options bar component for toggling between different view modes or dis
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { DisplayOptions } from '@praxis/vue'
+import { DisplayOptions } from 'praxis-vue-ui'
 
 const view = ref('table')
 const options = [

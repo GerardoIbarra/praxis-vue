@@ -7,7 +7,7 @@ A select dropdown that renders grouped options with clear section headers. Built
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { GroupSelect } from '@praxis/vue'
+import { GroupSelect } from 'praxis-vue-ui'
 
 const groups = [
   { name: 'Physicians', children: [{ id: 1, name: 'Dr. Alice' }, { id: 2, name: 'Dr. Bob' }] },

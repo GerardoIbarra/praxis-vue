@@ -7,7 +7,7 @@ A fully schema-driven form engine. Renders any combination of input types, selec
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { DynamicForm } from '@praxis/vue'
+import { DynamicForm } from 'praxis-vue-ui'
 
 const schema = {
   sections: [

@@ -33,7 +33,7 @@ A full-screen loading overlay that blocks user interaction during async operatio
 
 ```vue
 <script setup>
-import { FullPageLoader } from '@praxis/vue'
+import { FullPageLoader } from 'praxis-vue-ui'
 import { ref } from 'vue'
 
 const loading = ref(false)

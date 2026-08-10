@@ -7,7 +7,7 @@ An accordion-style checklist component for schema-driven forms. Renders a collap
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { CheckListField } from '@praxis/vue'
+import { CheckListField } from 'praxis-vue-ui'
 
 const field = {
   label: 'Medical Conditions',

@@ -1,5 +1,5 @@
 {
-  "name": "@praxis/vue",
+  "name": "praxis-vue-ui",
   "version": "0.1.0",
   "description": "A generic Vue 3 UI component library — forms, data-display, layout, navigation, overlays and more.",
   "keywords": [

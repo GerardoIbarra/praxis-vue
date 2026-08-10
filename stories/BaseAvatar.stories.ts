@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { BaseAvatar } from '@praxis/vue'
+import { BaseAvatar } from 'praxis-vue-ui'
 
 const meta: Meta<typeof BaseAvatar> = {
   title: 'Base/BaseAvatar',

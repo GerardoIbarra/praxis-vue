@@ -6,7 +6,7 @@ A header row component for list views. Renders a title with an optional actions 
 
 ```vue
 <script setup>
-import { ListHeader } from '@praxis/vue'
+import { ListHeader } from 'praxis-vue-ui'
 </script>
 
 <template>

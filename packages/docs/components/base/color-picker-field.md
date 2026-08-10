@@ -26,7 +26,7 @@ A dual-input color picker that syncs a native `<input type="color">` with a hex 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { ColorPickerField } from '@praxis/vue'
+import { ColorPickerField } from 'praxis-vue-ui'
 
 const color = ref('3b82f6')
 </script>

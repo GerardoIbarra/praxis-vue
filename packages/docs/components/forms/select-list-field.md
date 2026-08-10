@@ -7,7 +7,7 @@ A single-select or multi-select field backed by a searchable dropdown. Wraps `vu
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { SelectListField } from '@praxis/vue'
+import { SelectListField } from 'praxis-vue-ui'
 
 const options = ['Option A', 'Option B', 'Option C']
 const selected = ref(null)

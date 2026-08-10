@@ -7,7 +7,7 @@ A styled checkbox component. Supports binary (true/false) mode and array-based m
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PraxisCheckbox } from '@praxis/vue'
+import { PraxisCheckbox } from 'praxis-vue-ui'
 
 const agreed = ref(false)
 const selected = ref([])

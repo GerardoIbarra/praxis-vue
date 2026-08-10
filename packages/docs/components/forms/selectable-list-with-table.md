@@ -7,7 +7,7 @@ An extended version of `SelectableList` that displays selected items in a full `
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { SelectableListWithTable } from '@praxis/vue'
+import { SelectableListWithTable } from 'praxis-vue-ui'
 
 const options = [
   { id: 1, name: 'Dr. Alice', specialty: 'Cardiology' },

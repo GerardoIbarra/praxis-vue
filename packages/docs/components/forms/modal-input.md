@@ -7,7 +7,7 @@ A text input with a built-in modal/dialog trigger button. Useful for opening a s
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { ModalInput } from '@praxis/vue'
+import { ModalInput } from 'praxis-vue-ui'
 
 const value = ref('')
 const showModal = ref(false)

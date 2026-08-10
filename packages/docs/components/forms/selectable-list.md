@@ -7,7 +7,7 @@ A dual-pane list component combining a searchable select/dropdown on top with a 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { SelectableList } from '@praxis/vue'
+import { SelectableList } from 'praxis-vue-ui'
 
 const options = [
   { id: 1, name: 'Alice Johnson' },

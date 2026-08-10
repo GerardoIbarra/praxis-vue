@@ -25,7 +25,7 @@ A scrollable time picker component with 24-hour format. Opens a popover with hou
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PraxisTimePicker } from '@praxis/vue'
+import { PraxisTimePicker } from 'praxis-vue-ui'
 
 const time = ref('09:30')
 </script>

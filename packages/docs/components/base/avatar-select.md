@@ -7,7 +7,7 @@ A searchable select dropdown where each option displays a `BaseAvatar` with the 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { AvatarSelect } from '@praxis/vue'
+import { AvatarSelect } from 'praxis-vue-ui'
 
 const users = [
   { id: 1, name: 'Alice Johnson', email: 'alice@example.com' },

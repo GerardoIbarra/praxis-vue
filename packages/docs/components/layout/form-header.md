@@ -62,7 +62,7 @@ A section header for form pages that automatically generates "Create {title}" or
 
 <PropsTable :rows="[
   { name: 'title', type: 'string', required: true, description: 'Entity name used to generate the header text (e.g. \'User\', \'Patient\').' },
-  { name: 'isEditMode', type: 'boolean', required: true, description: 'When true renders \"Edit {title}\", when false renders \"Create {title}\".' },
+  { name: 'isEditMode', type: 'boolean', required: true, description: 'When true renders \'Edit {title}\', when false renders \'Create {title}\'.' },
   { name: 'validtitle', type: 'boolean', default: 'true', description: 'When false, renders the title prop as-is without Create/Edit prefix.' },
 ]" />
 

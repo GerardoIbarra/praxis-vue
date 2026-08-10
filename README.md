@@ -29,6 +29,7 @@ npm install @praxis/vue primevue @primevue/core vee-validate pinia
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
+import '@praxis/vue/dist/praxis-vue.css' // Import styles
 import App from './App.vue'
 
 createApp(App)
@@ -40,6 +41,32 @@ createApp(App)
 <script setup>
 import { BaseAvatar, DynamicForm, TabComponent } from '@praxis/vue'
 </script>
+```
+
+#### Nuxt 3 Setup
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  css: [
+    '@praxis/vue/dist/praxis-vue.css' // Import styles globally
+  ],
+  build: {
+    transpile: ['@praxis/vue']
+  }
+})
+```
+
+You can then use the components in any page or component:
+
+```vue
+<script setup>
+import { PraxisTimePicker } from '@praxis/vue'
+</script>
+
+<template>
+  <PraxisTimePicker v-model="time" label="Time" />
+</template>
 ```
 
 ### @praxis/editor

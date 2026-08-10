@@ -42,3 +42,38 @@ features:
   --vp-home-hero-image-filter: blur(44px);
 }
 </style>
+
+## Quick Start
+
+```bash
+npm install @praxis/vue primevue @primevue/core vee-validate pinia
+```
+
+### Vue 3 Setup
+
+```ts
+// main.ts
+import { createApp } from 'vue'
+import PrimeVue from 'primevue/config'
+import Aura from '@primeuix/themes/aura'
+import '@praxis/vue/dist/praxis-vue.css' // Import styles
+import App from './App.vue'
+
+createApp(App)
+  .use(PrimeVue, { theme: { preset: Aura } })
+  .mount('#app')
+```
+
+### Nuxt 3 Setup
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  css: [
+    '@praxis/vue/dist/praxis-vue.css' // Import styles globally
+  ],
+  build: {
+    transpile: ['@praxis/vue']
+  }
+})
+```

@@ -7,12 +7,13 @@ import ComponentDemo from './components/ComponentDemo.vue'
 import PropsTable from './components/PropsTable.vue'
 import EmitsTable from './components/EmitsTable.vue'
 import ReloadPrompt from './components/ReloadPrompt.vue'
+import { Analytics } from '@vercel/analytics/vue'
 
 export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
-      'layout-bottom': () => h(ReloadPrompt)
+      'layout-bottom': () => [h(ReloadPrompt), h(Analytics)]
     })
   },
   enhanceApp({ app }) {

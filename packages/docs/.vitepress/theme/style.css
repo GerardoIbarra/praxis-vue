@@ -77,7 +77,7 @@ body {
 .praxis-demo-card {
   border: 1px solid var(--vp-c-border);
   border-radius: 12px;
-  overflow: hidden;
+  overflow: visible; /* Changed from hidden to allow dropdowns to overflow */
   margin: 1.5rem 0;
   background: var(--vp-c-bg);
   box-shadow: 0 1px 3px rgba(0,0,0,0.06);
@@ -90,6 +90,8 @@ body {
   padding: 0.75rem 1.25rem;
   border-bottom: 1px solid var(--vp-c-border);
   background: var(--vp-c-bg-soft);
+  border-top-left-radius: 11px;
+  border-top-right-radius: 11px;
 }
 
 .praxis-demo-header-title {
@@ -133,6 +135,9 @@ body {
 
 .praxis-demo-code-section {
   border-top: 1px solid var(--vp-c-border);
+  border-bottom-left-radius: 11px;
+  border-bottom-right-radius: 11px;
+  overflow: hidden; /* Contains the code block background */
 }
 
 .praxis-demo-code-section .language-vue,

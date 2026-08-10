@@ -6,7 +6,7 @@ import {
 } from "./chunk-S6VNSOLG.js";
 import {
   __export
-} from "./chunk-PZ5AY32C.js";
+} from "./chunk-UVKRO5ER.js";
 
 // ../../node_modules/.pnpm/@lucide+vue@1.31.0_vue@3.5.41_typescript@7.0.2_/node_modules/@lucide/vue/dist/esm/icons/index.mjs
 var icons_exports = {};

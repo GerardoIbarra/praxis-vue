@@ -25,6 +25,9 @@ export default withPwa(defineConfig({
   },
   title: 'Praxis Vue',
   description: 'A premium Vue 3 UI component library — forms, data-display, layout, navigation, and more.',
+  sitemap: {
+    hostname: 'https://praxis-vue.dev'
+  },
 
   head: [
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],

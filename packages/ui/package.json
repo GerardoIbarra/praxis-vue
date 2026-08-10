@@ -32,30 +32,30 @@
     "dev": "vite build --watch"
   },
   "peerDependencies": {
-    "pinia": "^4.0.0",
-    "vee-validate": "^4.15.0",
-    "vue": "^3.5.0"
+    "pinia": "^4.0.2",
+    "vee-validate": "^4.15.1",
+    "vue": "^3.5.41"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.8",
-    "@vueuse/core": "^14.3.0",
-    "typescript": "^6.0.3",
-    "vite": "^8.1.5",
+    "@vueuse/core": "^14.4.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.2.1",
     "vite-plugin-dts": "^5.0.3",
-    "vue": "^3.5.40",
-    "vue-tsc": "^3.3.8"
+    "vue": "^3.5.41",
+    "vue-tsc": "^3.3.9"
   },
   "dependencies": {
-    "@lucide/vue": "^1.27.0",
+    "@lucide/vue": "^1.31.0",
     "@popperjs/core": "^2.11.8",
-    "@tanstack/vue-table": "^9.1.0",
+    "@tanstack/vue-table": "^9.1.2",
     "@vee-validate/i18n": "^4.15.1",
     "@vee-validate/rules": "^4.15.1",
-    "@vueuse/core": "^14.3.0",
+    "@vueuse/core": "^14.4.0",
     "dayjs": "^1.11.21",
-    "libphonenumber-js": "^1.13.9",
+    "libphonenumber-js": "^1.13.10",
     "lodash": "^4.18.1",
-    "pdfjs-dist": "^6.1.200",
+    "pdfjs-dist": "^6.2.108",
     "v-calendar": "^3.1.2",
     "vue-draggable-plus": "^0.6.1",
     "vue-select": "4.0.0-beta.6",

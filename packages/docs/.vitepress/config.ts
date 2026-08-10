@@ -1,7 +1,28 @@
 import { defineConfig } from 'vitepress'
+import { withPwa } from '@vite-pwa/vitepress'
 import { resolve } from 'path'
 
-export default defineConfig({
+export default withPwa(defineConfig({
+  pwa: {
+    outDir: '.vitepress/dist',
+    registerType: 'prompt',
+    manifest: {
+      name: 'Praxis Vue',
+      short_name: 'Praxis',
+      theme_color: '#ffffff',
+      icons: [
+        {
+          src: '/logo.svg',
+          sizes: 'any',
+          type: 'image/svg+xml'
+        }
+      ]
+    },
+    workbox: {
+      globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
+      runtimeCaching: []
+    }
+  },
   title: 'Praxis Vue',
   description: 'A premium Vue 3 UI component library — forms, data-display, layout, navigation, and more.',
 
@@ -143,4 +164,4 @@ export default defineConfig({
       dark: 'github-dark',
     },
   },
-})
+}))

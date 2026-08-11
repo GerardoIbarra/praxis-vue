@@ -1,0 +1,367 @@
+/* ================================================================
+   Praxis Vue UI — Base stylesheet
+   Defines the custom (non-Tailwind) classes referenced throughout
+   this library's components — button/input/select skins, icon
+   colors, and a handful of state modifiers. Import this once
+   alongside the library so those classes actually render.
+   Dark mode follows the same `.dark` class convention used by the
+   library's own `dark:` Tailwind variants.
+   ================================================================ */
+
+:root {
+  --praxis-bg: #ffffff;
+  --praxis-bg-soft: #f8fafc;
+  --praxis-border: #e2e8f0;
+  --praxis-text: #0f172a;
+  --praxis-text-muted: #64748b;
+  --praxis-primary: #2563eb;
+  --praxis-primary-hover: #1d4ed8;
+}
+
+.dark {
+  --praxis-bg: #1e293b;
+  --praxis-bg-soft: #334155;
+  --praxis-border: #334155;
+  --praxis-text: #f1f5f9;
+  --praxis-text-muted: #94a3b8;
+  --praxis-primary: #3b82f6;
+  --praxis-primary-hover: #60a5fa;
+}
+
+/* ---------------------------------------------------------------
+   Buttons
+   --------------------------------------------------------------- */
+.blue-button {
+  background: var(--praxis-primary);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.blue-button:hover:not(:disabled) {
+  background: var(--praxis-primary-hover);
+}
+.blue-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-previous,
+.btn-save {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: transparent;
+  border: 1px solid var(--praxis-border);
+  color: var(--praxis-text);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+.btn-previous:hover:not(:disabled),
+.btn-save:hover:not(:disabled) {
+  background: var(--praxis-bg-soft);
+}
+.btn-previous:disabled,
+.btn-save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-group-end {
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+.btn-delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 4px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.btn-delete:hover {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.not-allowed-cursor {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.loading-animation {
+  width: 1rem;
+  height: 1rem;
+  border-width: 2px;
+  border-style: solid;
+  border-top-color: transparent !important;
+  border-radius: 9999px;
+  animation: praxis-spin 0.6s linear infinite;
+}
+@keyframes praxis-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------------------------------------------------------------
+   Typography
+   --------------------------------------------------------------- */
+.h2-semibold {
+  font-size: 1.0625rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  border: none !important;
+  padding: 0 !important;
+  color: var(--praxis-text);
+}
+
+.field-description {
+  font-size: 0.875rem;
+  color: var(--praxis-text-muted);
+}
+
+.field-value {
+  font-size: 0.875rem;
+  color: var(--praxis-text);
+}
+
+.empty-state-message {
+  font-size: 0.875rem;
+  color: var(--praxis-text-muted);
+}
+
+/* ---------------------------------------------------------------
+   Layout / containers
+   --------------------------------------------------------------- */
+.section-divider {
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--praxis-border);
+}
+
+.form-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.table-background {
+  background: var(--praxis-bg);
+  border: 1px solid var(--praxis-border);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.table-format {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--praxis-text-muted);
+  padding: 0 0.5rem 0.5rem;
+  border-bottom: 1px solid var(--praxis-border);
+}
+
+.data-table-separation {
+  border-bottom: 1px solid var(--praxis-border);
+  padding: 0.5rem;
+}
+.data-table-separation:last-child {
+  border-bottom: none;
+}
+.data-table-separation:hover {
+  background: var(--praxis-bg-soft);
+}
+
+.list-item-interactive {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--praxis-border);
+  border-radius: 6px;
+  background: var(--praxis-bg);
+  margin-bottom: 0.5rem;
+  cursor: grab;
+  transition: background-color 0.15s;
+}
+.list-item-interactive:hover {
+  background: var(--praxis-bg-soft);
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------------------------------------------------------------
+   Icons
+   --------------------------------------------------------------- */
+.icon-amber {
+  color: #f59e0b;
+}
+
+.delete-red-icon {
+  width: 1rem;
+  height: 1rem;
+  color: #dc2626;
+  cursor: pointer;
+}
+.delete-red-icon:hover {
+  color: #b91c1c;
+}
+
+.icon-spacing {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.tree-templete-format {
+  width: 1rem;
+  height: 1rem;
+  color: var(--praxis-text-muted);
+}
+
+.icon-circle-spacing {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  text-align: left;
+}
+
+.icon-circle-contour {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  border-width: 1px;
+  border-style: solid;
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------
+   Loading
+   --------------------------------------------------------------- */
+.loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.loading-text {
+  color: var(--praxis-text-muted);
+}
+
+/* ---------------------------------------------------------------
+   vue-select skin
+   The library's own CSS hardcodes a white dropdown menu with
+   `color: inherit`, and gives every toggle a faint default border
+   that duplicates whatever border a component already applies via
+   Tailwind classes on the `.v-select` root. Fix both globally:
+   --------------------------------------------------------------- */
+.v-select {
+  --vs-border-width: 0; /* components that want a border apply their own via Tailwind classes on .v-select itself */
+  --vs-dropdown-bg: var(--praxis-bg);
+  --vs-dropdown-color: var(--praxis-text);
+  --vs-dropdown-option-color: var(--praxis-text);
+  --vs-controls-color: var(--praxis-text-muted);
+  --vs-search-input-color: var(--praxis-text);
+  --vs-selected-bg: var(--praxis-bg-soft);
+  --vs-selected-color: var(--praxis-text);
+  --vs-dropdown-option--active-bg: var(--praxis-primary);
+  --vs-dropdown-option--active-color: #fff;
+}
+
+/* Several components apply a light-mode-only border (e.g. `border-gray-300`)
+   straight to `.v-select` with no `dark:` companion class, so it stays a
+   bright light-gray line against dark backgrounds. Repoint it in dark mode. */
+.dark .v-select {
+  border-color: var(--praxis-border);
+}
+
+/* Selects that don't already carry their own Tailwind border (used bare) */
+.vue-select-standard {
+  --vs-border-width: 1px;
+  --vs-border-color: var(--praxis-border);
+}
+.vue-select-standard .vs__dropdown-toggle {
+  min-height: 38px;
+  padding: 0.125rem 0.25rem;
+  background: var(--praxis-bg);
+  border-radius: 8px;
+  font-size: 0.875rem;
+}
+.vue-select-standard.is-enabled:focus-within {
+  --vs-border-color: var(--praxis-primary);
+}
+.vue-select-standard.is-enabled:focus-within .vs__dropdown-toggle {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+.vue-select-standard.is-disabled,
+.vue-select-standard[aria-disabled='true'] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.vue-select-standard.is-disabled .vs__dropdown-toggle {
+  background: var(--praxis-bg-soft);
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------
+   Text input skin
+   --------------------------------------------------------------- */
+.input-base {
+  display: flex;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--praxis-border);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  background: var(--praxis-bg);
+  color: var(--praxis-text);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.input-base.is-enabled:focus,
+.input-base:focus {
+  border-color: var(--praxis-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+.input-base.is-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: var(--praxis-bg-soft);
+}
+.input-base.is-readonly {
+  background: var(--praxis-bg-soft);
+  color: var(--praxis-text-muted);
+  cursor: default;
+}
+
+/* ---------------------------------------------------------------
+   Primitive component modifiers
+   --------------------------------------------------------------- */
+.praxis-avatar-has-label {
+  flex-direction: column;
+  gap: 0.375rem;
+  align-items: center;
+}
+
+.praxis-accordion-panel--open {
+  background: var(--praxis-bg-soft);
+}

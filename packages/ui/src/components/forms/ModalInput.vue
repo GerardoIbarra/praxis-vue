@@ -155,7 +155,7 @@ const cleanModal = (): void => {
         <button
           type="button"
           :disabled="files.length !== 1"
-          class="btn-group-end blue-button!"
+          class="btn-group-end blue-button"
           :class="files.length !== 1 ? 'not-allowed-cursor' : ''"
           @click="simulateSend()"
         >

@@ -25,10 +25,10 @@ withDefaults(
 <template>
   <div class="section-divider">
     <div class="flex justify-between items-center">
-      <h2 v-if="validtitle" class="h2-semibold flex items-cent">
+      <h2 v-if="validtitle" class="h2-semibold flex items-center">
         {{ isEditMode ? `Edit ${title}` : `Create ${title}` }}
       </h2>
-      <h2 v-else class="h2-semibold flex items-cent">
+      <h2 v-else class="h2-semibold flex items-center">
         {{ title }}
       </h2>
 

@@ -7,7 +7,7 @@ const props = withDefaults(
   }>(),
   {
     containerClass:
-      "bg-primary border-border-light shadow-xs text-slate-900 dark:text-white",
+      "bg-white dark:bg-surface-800 border-border-light shadow-xs text-slate-900 dark:text-white",
   }
 );
 </script>

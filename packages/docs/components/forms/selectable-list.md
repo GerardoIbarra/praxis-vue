@@ -17,7 +17,7 @@ A dual-pane list component combining a searchable select/dropdown on top with a 
 ## Basic Usage
 
 <ComponentDemo>
-  <div style="padding: 1rem 0;">
+  <div style="padding: 1rem 0; width: 100%;">
     <SelectableList
       title="Team Members"
       :options="options"

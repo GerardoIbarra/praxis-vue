@@ -2,6 +2,7 @@ import { h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
 import 'vue-select/dist/vue-select.css'
+import '@praxis/ui-src/styles/base.css'
 import './style.css'
 
 import ComponentDemo from './components/ComponentDemo.vue'

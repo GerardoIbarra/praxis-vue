@@ -53,7 +53,7 @@ const emit = defineEmits<{
       :class="[
         'icon-circle-contour ',
         {
-          'bg-primary border-p-terciary text-p-secondary':
+          'bg-primary-500 border-p-terciary text-white':
             Number(stepValue) <= Number(activeStep),
           'border-p-terciary text-p-terciary':
             Number(stepValue) > Number(activeStep),

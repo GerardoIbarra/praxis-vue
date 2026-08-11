@@ -68,24 +68,9 @@
   --vp-code-color: #93c5fd;
 }
 
-/* ---------------------------------------------------------------
-   vue-select — dark mode overrides
-   The library's own CSS hardcodes a white dropdown (--vs-dropdown-bg: #fff)
-   with `color: inherit`, so on dark demos the open list renders white text
-   on a white box. Repoint its CSS custom properties at our VitePress tokens.
-   --------------------------------------------------------------- */
-.v-select {
-  --vs-dropdown-bg: var(--vp-c-bg);
-  --vs-dropdown-color: var(--vp-c-text-1);
-  --vs-dropdown-option-color: var(--vp-c-text-1);
-  --vs-controls-color: var(--vp-c-text-2);
-  --vs-border-color: var(--vp-c-border);
-  --vs-search-input-color: var(--vp-c-text-1);
-  --vs-selected-bg: var(--vp-c-bg-mute);
-  --vs-selected-color: var(--vp-c-text-1);
-  --vs-dropdown-option--active-bg: var(--p-primary-600);
-  --vs-dropdown-option--active-color: #fff;
-}
+/* Note: vue-select dark-mode CSS vars and the input/select/h2 skins
+   ship from @praxis/ui-src/styles/base.css (imported in theme/index.ts)
+   so real npm consumers get them too, not just this docs site. */
 
 /* ---------------------------------------------------------------
    Global typography
@@ -293,45 +278,6 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-/* ---------------------------------------------------------------
-   Praxis UI component styles imported into VitePress context
-   (Input styling so demos look native)
-   --------------------------------------------------------------- */
-.input-base {
-  display: flex;
-  width: 100%;
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--vp-c-border);
-  border-radius: 8px;
-  font-size: 0.875rem;
-  background: var(--vp-c-bg);
-  color: var(--vp-c-text-1);
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.input-base:focus,
-.input-base.is-enabled:focus {
-  border-color: var(--p-primary-500);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-
-.input-base.is-disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-  background: var(--vp-c-bg-soft);
-}
-
-.h2-semibold {
-  font-size: 1.0625rem !important;
-  font-weight: 600 !important;
-  line-height: 1.4 !important;
-  margin: 0 !important;
-  border: none !important;
-  padding: 0 !important;
-  color: var(--vp-c-text-1);
 }
 
 /* Tailwind-like utilities needed by Praxis components */

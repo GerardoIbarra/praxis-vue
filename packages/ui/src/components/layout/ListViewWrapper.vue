@@ -21,7 +21,7 @@ const props = withDefaults(
     <div :class="props.class">
       <div
         v-if="!props.noCard"
-        class="p-4 rounded-lg bg-primary border border-border-light shadow-sm h-auto w-full max-w-full overflow-x-auto"
+        class="p-4 rounded-lg bg-white dark:bg-surface-800 border border-border-light shadow-sm h-auto w-full max-w-full overflow-x-auto"
       >
         <!-- Slot por defecto para la tabla de datos -->
         <slot />

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import VueSelect from "vue-select";
 import { Search, X } from "@lucide/vue";
 import InfiniteScrollSelect from "@/components/forms/InfiniteScrollSelect.vue";
@@ -58,7 +58,7 @@ const props = withDefaults(defineProps<Props>(), {
   valueField: "id",
   showColorPicker: false,
   colorField: "color",
-  columns: () => ["Color", "Name", "Actions"],
+  columns: () => [],
   additionalFields: () => [],
   disabled: false,
   selectWidth: "w-[400px]",
@@ -88,6 +88,26 @@ const emit = defineEmits<{
 
 const selectedItemID = ref<string>("");
 const vueSelectRef = ref<InstanceType<typeof VueSelect> | null>(null);
+
+// Cabeceras derivadas de qué celdas se renderizan realmente por fila
+// (showColorPicker / hideLabelColumn / additionalFields / showButtonDelete),
+// para que el grid del header nunca se desalinee con el de las filas.
+// Si `columns` trae exactamente esa misma cantidad de labels, se respeta
+// como override; si no, se ignora y se usan las labels por defecto.
+const defaultColumnLabels = computed<string[]>(() => {
+  const labels: string[] = [];
+  if (props.showColorPicker) labels.push("Color");
+  if (!props.hideLabelColumn) labels.push("Name");
+  labels.push(...props.additionalFields.map((f) => f.label));
+  if (props.showButtonDelete) labels.push("Actions");
+  return labels;
+});
+
+const effectiveColumns = computed<string[]>(() =>
+  props.columns.length === defaultColumnLabels.value.length
+    ? props.columns
+    : defaultColumnLabels.value
+);
 
 // Función para verificar si un item ya está seleccionado
 const isItemSelected = (option: SelectableItem | null | unknown): boolean => {
@@ -218,7 +238,7 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
 <template>
   <div>
     <div class="border-b border-gray-900/10 dark:border-gray-400/10 py-1 px-4">
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
         <h2 class="h2-semibold">
           {{ title }}
           <span v-if="isRequired" class="text-error ml-1">*</span>
@@ -289,7 +309,7 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
             :disabled="disabled"
             :class="[
               selectWidth,
-              'border border-gray-300 px-4 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white dark:bg-secondary vue-select-standard',
+              'border border-gray-300 px-4 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white dark:bg-secondary',
               disabled ? 'is-disabled' : '',
             ]"
             :loading="loading"

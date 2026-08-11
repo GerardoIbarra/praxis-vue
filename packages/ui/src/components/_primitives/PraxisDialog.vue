@@ -136,7 +136,7 @@ onBeforeUnmount(() => {
 .praxis-dialog {
   position: relative;
   width: 100%;
-  background-color: var(--bg-primary, #fff);
+  background-color: var(--praxis-bg, #fff);
   border-radius: 0.75rem;
   box-shadow:
     0 20px 60px rgba(0, 0, 0, 0.3),
@@ -152,14 +152,14 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--border-light, #e5e7eb);
+  border-bottom: 1px solid var(--praxis-border, #e5e7eb);
   flex-shrink: 0;
 }
 
 .praxis-dialog-title {
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--text-primary, #111827);
+  color: var(--praxis-text, #111827);
 }
 
 .praxis-dialog-close {
@@ -168,7 +168,7 @@ onBeforeUnmount(() => {
   justify-content: center;
   padding: 0.25rem;
   border-radius: 0.375rem;
-  color: var(--text-secondary, #6b7280);
+  color: var(--praxis-text-muted, #6b7280);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -176,8 +176,8 @@ onBeforeUnmount(() => {
 }
 
 .praxis-dialog-close:hover {
-  background-color: var(--bg-secondary, #f3f4f6);
-  color: var(--text-primary, #111827);
+  background-color: var(--praxis-bg-soft, #f3f4f6);
+  color: var(--praxis-text, #111827);
 }
 
 .praxis-dialog-content {
@@ -188,7 +188,7 @@ onBeforeUnmount(() => {
 
 .praxis-dialog-footer {
   padding: 1rem 1.5rem;
-  border-top: 1px solid var(--border-light, #e5e7eb);
+  border-top: 1px solid var(--praxis-border, #e5e7eb);
   flex-shrink: 0;
 }
 

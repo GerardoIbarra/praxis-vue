@@ -88,7 +88,7 @@ const removeTab = (key: string | number) => {
 </script>
 
 <template>
-  <div class="mb-4 bg-primary border border-border-light rounded-md">
+  <div class="mb-4 bg-white dark:bg-surface-800 border border-border-light rounded-md">
     <div class="flex justify-between">
       <ul
         class="flex overflow-x-auto min-w-0 flex-1 whitespace-nowrap -mb-px text-sm font-medium text-center no-scrollbar"

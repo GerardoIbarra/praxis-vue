@@ -2,6 +2,8 @@
 // praxis-vue-ui — Public API
 // ============================================================
 
+import './styles/base.css'
+
 // --- Base ---
 export { default as BaseAvatar } from './components/base/BaseAvatar.vue'
 export { default as PraxisAvatar } from './components/base/PraxisAvatar.vue'

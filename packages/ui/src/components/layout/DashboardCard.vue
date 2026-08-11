@@ -14,7 +14,7 @@ withDefaults(defineProps<Props>(), {
 
 <template>
   <div
-    class="bg-primary border border-border-light shadow-sm rounded-2xl transition-all duration-300 hover:shadow-sm"
+    class="bg-white dark:bg-surface-800 border border-border-light shadow-sm rounded-2xl transition-all duration-300 hover:shadow-sm"
     :class="[
       isMetric
         ? 'p-5 flex justify-between items-start'

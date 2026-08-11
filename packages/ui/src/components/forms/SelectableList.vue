@@ -373,10 +373,10 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
       <div
         v-if="selectedItems.length >= 1"
         class="grid items-center bg-gray-400 text-white font-semibold px-4 py-2 rounded-t-md"
-        :class="`grid-cols-${columns.length}`"
+        :class="`grid-cols-${effectiveColumns.length}`"
       >
         <div
-          v-for="column in columns"
+          v-for="column in effectiveColumns"
           :key="column"
           class="flex justify-center items-center"
         >
@@ -389,7 +389,7 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
         v-for="(item, index) in selectedItems"
         :key="index"
         class="grid items-center gap-4 border-b border-gray-900/10 dark:border-border-light px-4 py-2"
-        :class="`grid-cols-${columns.length}`"
+        :class="`grid-cols-${effectiveColumns.length}`"
       >
         <!-- Color (si está habilitado) -->
         <div v-if="showColorPicker" class="flex justify-center items-center">

@@ -1,18 +1,19 @@
 <script setup lang="ts">
+/**
+ * @deprecated Use PraxisLabel instead. This component is kept for backward compatibility.
+ */
+import PraxisLabel from './PraxisLabel.vue'
+
 interface Props {
-  label: string;
-  required?: boolean;
+  label: string
+  required?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   required: false,
-});
+})
 </script>
+
 <template>
-  <label
-    class="block text-[15px] text-gray-600 font-semibold mb-1 dark:text-gray-400"
-  >
-    {{ label }}
-    <span v-if="required" class="text-error">*</span>
-  </label>
+  <PraxisLabel :label="label" :required="required" />
 </template>

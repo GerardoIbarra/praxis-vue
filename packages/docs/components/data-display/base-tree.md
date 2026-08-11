@@ -1,8 +1,38 @@
+<script setup>
+import { ref } from 'vue'
+import BaseTree from '@praxis/ui-src/components/data-display/BaseTree.vue'
+
+const nodes = ref([
+  {
+    id: 1,
+    name: 'Cardiology',
+    children: [
+      { id: 2, name: 'Pediatric Cardiology', children: [] },
+      { id: 3, name: 'Interventional Cardiology', children: [] },
+    ]
+  },
+  {
+    id: 4,
+    name: 'Neurology',
+    children: [
+      { id: 5, name: 'Clinical Neurology', children: [] },
+    ]
+  },
+])
+</script>
+
 # BaseTree
 
 A hierarchical tree component for displaying nested data structures. Supports expand/collapse, selection, drag-and-drop reordering, and custom node rendering via slots.
 
 ## Usage
+
+<ComponentDemo>
+  <div style="padding: 1rem 0; width: 100%; max-width: 400px; border: 1px solid var(--vp-c-divider); border-radius: 8px; padding: 1rem;">
+    <BaseTree :nodes="nodes" label-field="name" />
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -32,6 +62,9 @@ const nodes = ref([
   <BaseTree :nodes="nodes" label-field="name" />
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

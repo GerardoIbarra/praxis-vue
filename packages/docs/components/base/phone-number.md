@@ -1,8 +1,29 @@
+<script setup>
+import { ref } from 'vue'
+import PhoneNumber from '@praxis/ui-src/components/base/PhoneNumber.vue'
+
+const phone = ref('')
+</script>
+
 # PhoneNumber
 
 An international phone number input with country code selector. Backed by `vue-tel-input` and `libphonenumber-js` for validation.
 
 ## Usage
+
+<ComponentDemo>
+  <div style="padding: 1rem 0; width: 100%; max-width: 400px;">
+    <PhoneNumber
+      v-model="phone"
+      label="Phone Number"
+      :required="true"
+    />
+    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--vp-c-text-2);">
+      Value: <strong>{{ phone || 'None' }}</strong>
+    </div>
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -20,6 +41,9 @@ const phone = ref('')
   />
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

@@ -1,8 +1,51 @@
+<script setup>
+import { ref } from 'vue'
+import PraxisCheckbox from '@praxis/ui-src/components/_primitives/PraxisCheckbox.vue'
+
+const agreed = ref(false)
+const selected = ref([])
+</script>
+
 # PraxisCheckbox
 
 A styled checkbox component. Supports binary (true/false) mode and array-based multi-check (like native `<input type="checkbox">`). Wraps PrimeVue's Checkbox.
 
 ## Usage
+
+<ComponentDemo>
+  <div style="display:flex; flex-direction:column; gap:1.5rem;">
+    <!-- Binary mode -->
+    <div>
+      <h3 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">Binary Mode</h3>
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <PraxisCheckbox v-model="agreed" :binary="true" input-id="terms" />
+        <label for="terms" style="cursor:pointer; font-size: 0.9rem;">I agree to the terms</label>
+      </div>
+      <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--vp-c-text-2)">
+        Value: <strong>{{ agreed }}</strong>
+      </p>
+    </div>
+
+    <!-- Array mode -->
+    <div>
+      <h3 style="font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem;">Array Mode</h3>
+      <div style="display:flex; gap: 1rem;">
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <PraxisCheckbox v-model="selected" value="option-a" input-id="a" />
+          <label for="a" style="cursor:pointer; font-size: 0.9rem;">Option A</label>
+        </div>
+        <div style="display:flex; align-items:center; gap:0.5rem;">
+          <PraxisCheckbox v-model="selected" value="option-b" input-id="b" />
+          <label for="b" style="cursor:pointer; font-size: 0.9rem;">Option B</label>
+        </div>
+      </div>
+      <p style="margin-top:0.5rem;font-size:0.8rem;color:var(--vp-c-text-2)">
+        Selected: <strong>{{ selected }}</strong>
+      </p>
+    </div>
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -21,8 +64,13 @@ const selected = ref([])
   <!-- Array mode -->
   <PraxisCheckbox v-model="selected" value="option-a" input-id="a" />
   <label for="a">Option A</label>
+  <PraxisCheckbox v-model="selected" value="option-b" input-id="b" />
+  <label for="b">Option B</label>
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

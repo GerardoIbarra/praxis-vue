@@ -1,8 +1,31 @@
+<script setup>
+import { ref } from 'vue'
+import AvatarSelect from '@praxis/ui-src/components/base/AvatarSelect.vue'
+
+const users = [
+  { id: 1, name: 'Alice Johnson', email: 'alice@example.com' },
+  { id: 2, name: 'Bob Smith', email: 'bob@example.com' },
+]
+const selected = ref(null)
+</script>
+
 # AvatarSelect
 
 A searchable select dropdown where each option displays a `BaseAvatar` with the user's initials alongside their name. Ideal for user/member selection fields.
 
 ## Usage
+
+<ComponentDemo>
+  <div style="padding: 1rem 0; width: 100%; max-width: 300px;">
+    <AvatarSelect
+      v-model="selected"
+      :options="users"
+      label="Assign To"
+      placeholder="Select a team member..."
+    />
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -25,6 +48,9 @@ const selected = ref(null)
   />
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

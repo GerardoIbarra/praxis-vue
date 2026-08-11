@@ -1,31 +1,65 @@
-# PraxisTimeline
-
-A vertical timeline component for displaying chronological events. Each item renders with a date/time marker, icon, and content area.
-
-## Usage
-
-```vue
 <script setup>
-import { PraxisTimeline } from 'praxis-vue-ui'
+import PraxisTimeline from '@praxis/ui-src/components/_primitives/PraxisTimeline.vue'
+import { UserPlus, Calendar, FlaskConical } from 'lucide-vue-next'
 
 const events = [
   {
     date: '2024-01-15',
     title: 'Patient Registered',
     description: 'Initial registration completed.',
-    icon: 'UserPlus',
+    icon: UserPlus,
   },
   {
     date: '2024-02-01',
     title: 'First Appointment',
     description: 'Consultation with Dr. Smith.',
-    icon: 'Calendar',
+    icon: Calendar,
   },
   {
     date: '2024-03-10',
     title: 'Lab Results',
     description: 'Blood work results reviewed.',
-    icon: 'FlaskConical',
+    icon: FlaskConical,
+  },
+]
+</script>
+
+# PraxisTimeline
+
+A vertical timeline component for displaying chronological events. Each item renders with a date/time marker, icon, and content area.
+
+## Usage
+
+<ComponentDemo>
+  <div style="padding: 1rem 0;">
+    <PraxisTimeline :value="events" />
+  </div>
+
+  <template #code>
+
+```vue
+<script setup>
+import { PraxisTimeline } from 'praxis-vue-ui'
+import { UserPlus, Calendar, FlaskConical } from 'lucide-vue-next'
+
+const events = [
+  {
+    date: '2024-01-15',
+    title: 'Patient Registered',
+    description: 'Initial registration completed.',
+    icon: UserPlus,
+  },
+  {
+    date: '2024-02-01',
+    title: 'First Appointment',
+    description: 'Consultation with Dr. Smith.',
+    icon: Calendar,
+  },
+  {
+    date: '2024-03-10',
+    title: 'Lab Results',
+    description: 'Blood work results reviewed.',
+    icon: FlaskConical,
   },
 ]
 </script>
@@ -34,6 +68,9 @@ const events = [
   <PraxisTimeline :value="events" />
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

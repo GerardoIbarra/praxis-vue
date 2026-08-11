@@ -1,8 +1,37 @@
+<script setup>
+import { ref } from 'vue'
+import SelectableListWithTable from '@praxis/ui-src/components/forms/SelectableListWithTable.vue'
+
+const options = [
+  { id: 1, name: 'Dr. Alice', specialty: 'Cardiology' },
+  { id: 2, name: 'Dr. Bob', specialty: 'Neurology' },
+]
+const selected = ref([])
+
+const columns = [
+  { field: 'name', header: 'Name' },
+  { field: 'specialty', header: 'Specialty' },
+]
+</script>
+
 # SelectableListWithTable
 
 An extended version of `SelectableList` that displays selected items in a full `BaseDataTable` instead of a simple list. Useful when the selected items need sortable columns, expandable rows, or custom cell rendering.
 
 ## Usage
+
+<ComponentDemo>
+  <div style="padding: 1rem 0; width: 100%;">
+    <SelectableListWithTable
+      title="Providers"
+      :options="options"
+      :selected-items="selected"
+      :columns="columns"
+      @update:selected-items="selected = $event"
+    />
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -31,6 +60,9 @@ const columns = [
   />
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

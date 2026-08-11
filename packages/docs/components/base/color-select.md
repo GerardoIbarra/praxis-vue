@@ -1,8 +1,34 @@
+<script setup>
+import { ref } from 'vue'
+import ColorSelect from '@praxis/ui-src/components/base/ColorSelect.vue'
+
+const statuses = [
+  { id: 1, name: 'Active', color: '22c55e' },
+  { id: 2, name: 'Pending', color: 'f59e0b' },
+  { id: 3, name: 'Inactive', color: 'ef4444' },
+]
+const selected = ref(null)
+</script>
+
 # ColorSelect
 
 A dropdown selector where each option displays a colored swatch alongside its label. Ideal for category or tag selection where color coding matters.
 
 ## Usage
+
+<ComponentDemo>
+  <div style="padding: 1rem 0; width: 100%; max-width: 300px;">
+    <ColorSelect
+      v-model="selected"
+      :options="statuses"
+      label="Status"
+    />
+    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--vp-c-text-2);">
+      Selected ID: <strong>{{ selected || 'None' }}</strong>
+    </div>
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -25,6 +51,9 @@ const selected = ref(null)
   />
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

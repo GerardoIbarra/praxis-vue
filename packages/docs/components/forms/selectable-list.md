@@ -1,8 +1,32 @@
+<script setup>
+import { ref } from 'vue'
+import SelectableList from '@praxis/ui-src/components/forms/SelectableList.vue'
+
+const options = [
+  { id: 1, name: 'Alice Johnson' },
+  { id: 2, name: 'Bob Smith' },
+  { id: 3, name: 'Carol Williams' },
+]
+const selected = ref([])
+</script>
+
 # SelectableList
 
 A dual-pane list component combining a searchable select/dropdown on top with a table of selected items below. Supports infinite scroll, avatar display, color pickers per item, and additional custom fields.
 
 ## Basic Usage
+
+<ComponentDemo>
+  <div style="padding: 1rem 0;">
+    <SelectableList
+      title="Team Members"
+      :options="options"
+      :selected-items="selected"
+      @update:selected-items="selected = $event"
+    />
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -26,6 +50,9 @@ const selected = ref([])
   />
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

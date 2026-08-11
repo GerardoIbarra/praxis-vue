@@ -1,8 +1,34 @@
+<script setup>
+import { ref } from 'vue'
+import PraxisRadioButton from '@praxis/ui-src/components/_primitives/PraxisRadioButton.vue'
+
+const plan = ref('monthly')
+</script>
+
 # PraxisRadioButton
 
 A styled radio button input. Works with `v-model` in a group — all radio buttons sharing the same `modelValue` ref will behave as a single group.
 
 ## Usage
+
+<ComponentDemo>
+  <div style="display:flex; flex-direction:column; gap:1.5rem;">
+    <div style="display:flex; gap: 2rem;">
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <PraxisRadioButton v-model="plan" value="monthly" input-id="monthly" />
+        <label for="monthly" style="cursor:pointer; font-size: 0.9rem;">Monthly</label>
+      </div>
+      <div style="display:flex; align-items:center; gap:0.5rem;">
+        <PraxisRadioButton v-model="plan" value="annual" input-id="annual" />
+        <label for="annual" style="cursor:pointer; font-size: 0.9rem;">Annual</label>
+      </div>
+    </div>
+    <p style="font-size:0.8rem;color:var(--vp-c-text-2)">
+      Selected Plan: <strong>{{ plan }}</strong>
+    </p>
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -25,6 +51,9 @@ const plan = ref('monthly')
   </div>
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

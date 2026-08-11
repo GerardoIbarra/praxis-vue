@@ -4,12 +4,14 @@
 
 // --- Base ---
 export { default as BaseAvatar } from './components/base/BaseAvatar.vue'
+export { default as PraxisAvatar } from './components/base/PraxisAvatar.vue'
 export { default as AvatarSelect } from './components/base/AvatarSelect.vue'
 export { default as ColorPickerField } from './components/base/ColorPickerField.vue'
 export { default as ColorSelect } from './components/base/ColorSelect.vue'
 export { default as GroupedMultiSelect } from './components/base/GroupedMultiSelect.vue'
 export { default as GroupSelect } from './components/base/GroupSelect.vue'
 export { default as PhoneNumber } from './components/base/PhoneNumber.vue'
+export { default as PraxisLabel } from './components/base/PraxisLabel.vue'
 export { default as RequiredLabel } from './components/base/RequiredLabel.vue'
 export { default as ThemeToggle } from './components/base/ThemeToggle.vue'
 export { default as FullPageLoader } from './components/base/FullPageLoader.vue'

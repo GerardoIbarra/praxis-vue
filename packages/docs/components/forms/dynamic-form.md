@@ -1,8 +1,42 @@
+<script setup>
+import { ref } from 'vue'
+import DynamicForm from '@praxis/ui-src/components/forms/DynamicForm.vue'
+
+const schema = {
+  sections: [
+    {
+      title: 'Personal Info',
+      fields: [
+        { name: 'first_name', label: 'First Name', type: 'text', required: true },
+        { name: 'last_name', label: 'Last Name', type: 'text', required: true },
+        { name: 'dob', label: 'Date of Birth', type: 'date' },
+      ]
+    }
+  ]
+}
+
+const formData = ref({})
+</script>
+
 # DynamicForm
 
 A fully schema-driven form engine. Renders any combination of input types, selects, date pickers, checklists, and file uploads from a `FormSchema` JSON definition. Powers Praxis's form builder.
 
 ## Usage
+
+<ComponentDemo>
+  <div style="padding: 1rem 0; width: 100%;">
+    <DynamicForm
+      :schema="schema"
+      v-model="formData"
+      @submit="console.log"
+    />
+    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--vp-c-text-2);">
+      Form Data: <strong>{{ formData }}</strong>
+    </div>
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -33,6 +67,9 @@ const formData = ref({})
   />
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

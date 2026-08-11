@@ -1,8 +1,34 @@
+<script setup>
+import { ref } from 'vue'
+import FormMultiSelectList from '@praxis/ui-src/components/forms/FormMultiSelectList.vue'
+
+const tags = [
+  { id: 1, name: 'Urgent' },
+  { id: 2, name: 'Follow-up' },
+  { id: 3, name: 'Reviewed' },
+]
+const selected = ref([])
+</script>
+
 # FormMultiSelectList
 
 A compact multi-select component that combines a select dropdown with a tag/badge display of selected items. Styled for use inside form layouts.
 
 ## Usage
+
+<ComponentDemo>
+  <div style="padding: 1rem 0; width: 100%; max-width: 400px;">
+    <FormMultiSelectList
+      v-model="selected"
+      :options="tags"
+      label="Tags"
+    />
+    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--vp-c-text-2);">
+      Selected IDs: <strong>{{ selected }}</strong>
+    </div>
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -25,6 +51,9 @@ const selected = ref([])
   />
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

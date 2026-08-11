@@ -205,6 +205,9 @@ importers:
 
   playground:
     dependencies:
+      '@lucide/vue':
+        specifier: ^1.31.0
+        version: 1.31.0(vue@3.5.41(typescript@6.0.3))
       '@praxis/editor':
         specifier: workspace:*
         version: link:../packages/editor
@@ -5647,6 +5650,10 @@ snapshots:
   '@lucide/vue@1.30.0(vue@3.5.41(typescript@7.0.2))':
     dependencies:
       vue: 3.5.41(typescript@7.0.2)
+
+  '@lucide/vue@1.31.0(vue@3.5.41(typescript@6.0.3))':
+    dependencies:
+      vue: 3.5.41(typescript@6.0.3)
 
   '@lucide/vue@1.31.0(vue@3.5.41(typescript@7.0.2))':
     dependencies:

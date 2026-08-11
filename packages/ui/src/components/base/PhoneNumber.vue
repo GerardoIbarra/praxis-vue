@@ -4,7 +4,7 @@ import "vue-tel-input/vue-tel-input.css";
 import { ChevronDown } from "@lucide/vue";
 import { ref, computed } from "vue";
 import { Field, validate as veeValidate } from "vee-validate";
-import type { PhoneValidationResponse } from "@/types/api/yourTeams/user";
+import type { PhoneValidationResponse } from "@/types/api/phone";
 
 type ValidationRules =
   string | Record<string, unknown> | ((value: unknown) => boolean | string);

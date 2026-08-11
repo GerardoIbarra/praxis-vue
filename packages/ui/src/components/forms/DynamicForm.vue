@@ -27,7 +27,6 @@ const props = defineProps<{
   existingData?: Record<string, unknown>;
   modelValue?: Record<string, unknown>;
   loading?: boolean;
-  selectedDocumentId?: string;
   cleanedResults?: string[];
   calculatedNumbers?: any[];
 }>();
@@ -58,7 +57,7 @@ const { loadingSelect, selectedItems, setSelected, flattenWithIndentation } =
   useSelectOptions();
 
 // Use field autofill composable
-const { selectedRow, handleSelected } = useFieldAutofill(
+const { handleSelected } = useFieldAutofill(
   formData,
   computed(() => props.schema)
 );
@@ -101,9 +100,6 @@ watch(calculatedNumbersLocal, (val) => emit("update:calculatedNumbers", val), { 
 watch(
   () => props.schema,
   (schema) => {
-    if (!cleanedResultsLocal.value.includes("row_left_arm")) {
-      cleanedResultsLocal.value.push("row_left_arm");
-    }
     schema.forEach((field) => {
       // calculatedNumbers
       if (field.type === "calculated_number") {
@@ -133,16 +129,6 @@ watch(
               (props.existingData?.[comp.key] as FormValue) ||
               (comp.value as FormValue) ||
               "";
-
-            if (
-              comp.type === "select" &&
-              (comp.key === "weight_unit" || comp.key === "height_unit")
-            ) {
-              const options = comp.option_source?.options;
-              if (selectedRow.value !== null && options) {
-                comp.value = options[selectedRow.value].value;
-              }
-            }
 
             //rows anidados dentro de multiselect_list
             if (comp.type === "row") {
@@ -300,16 +286,11 @@ defineExpose({
     tag="div"
     class="grid gap-4"
     :class="
-      selectedDocumentId === 'vital_signs_single_entry'
-        ? 'grid-cols-1 px-2 overflow-auto h-128'
-        : selectedDocumentId === 'review_of_systems' ||
-            selectedDocumentId === 'physical_exam'
-          ? 'grid-cols-3'
-          : props.schema.length === 1
-            ? 'grid-cols-1'
-            : props.schema.length <= 16 && props.schema.length > 1
-              ? 'grid-cols-2'
-              : 'grid-cols-4'
+      props.schema.length === 1
+        ? 'grid-cols-1'
+        : props.schema.length <= 16 && props.schema.length > 1
+          ? 'grid-cols-2'
+          : 'grid-cols-4'
     "
   >
     <div
@@ -319,16 +300,12 @@ defineExpose({
       :class="{ 'col-span-full': field.type === 'divider_with_components' }"
     >
       <RequiredLabel
-        v-if="
-          selectedDocumentId !== 'review_of_systems' &&
-          selectedDocumentId !== 'physical_exam' &&
-          field.type !== 'divider_with_components'
-        "
+        v-if="field.type !== 'divider_with_components'"
         :label="field.label || ''"
         :required="field.required"
       />
 
-      <!-- 🔹 CHECK LIST INPUT (physical exam) -->
+      <!-- 🔹 CHECK LIST INPUT -->
       <CheckListInputField
         v-if="field.type === 'check_list_input'"
         :ref="
@@ -341,7 +318,7 @@ defineExpose({
         :default-open="(index as number) < 3"
       />
 
-      <!-- 🔹 CHECK LIST (review of systems) -->
+      <!-- 🔹 CHECK LIST -->
       <CheckListField
         v-else-if="field.type === 'check_list'"
         :ref="
@@ -674,9 +651,6 @@ defineExpose({
       />
     </div>
   </TransitionGroup>
-
-  <!--vital signs history -->
-  <slot name="vital-signs-history" v-if="selectedDocumentId === 'vital_signs_single_entry'" />
 </template>
 
 <style scoped>

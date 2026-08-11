@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import UiDialog from "@/components/_primitives/UiDialog.vue";
 import { CloudUpload, X, File } from "@lucide/vue";
-import type { UploadDocumentFile } from "@/types/api/medical-charts/document";
+import type { UploadDocumentFile } from "@/types/api/uploads";
 
 withDefaults(
   defineProps<{

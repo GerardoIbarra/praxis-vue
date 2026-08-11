@@ -69,7 +69,7 @@ const initials = computed(() => {
   const displayName = props.name || "?";
   // Strip common prefixes
   const clean = displayName
-    .replace(/^(Dr\.|Nurse|CFO|Supervisor)\s*/gi, "")
+    .replace(/^(Dr\.|Mr\.|Mrs\.|Ms\.|Prof\.)\s*/gi, "")
     .trim();
   const words = clean.split(/\s+/);
   if (words.length === 1) return words[0].charAt(0).toUpperCase();

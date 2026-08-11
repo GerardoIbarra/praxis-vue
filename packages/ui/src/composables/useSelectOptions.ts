@@ -30,7 +30,7 @@ const debounce = <Args extends unknown[], R>(
 export function useSelectOptions() {
   const loadingSelect = ref(false);
   const selectedItems = ref<Record<string, unknown[]>>({});
-  const { apiMap } = useApiMap();
+  const { getApiService } = useApiMap();
 
   /**
    * Handle select search with debouncing
@@ -91,9 +91,9 @@ export function useSelectOptions() {
           url = `${endpoint}${separator}${safeSearchParam}=${searchTerm}`;
         }
 
-        if (!(service in apiMap)) return;
-        const optResponse =
-          await apiMap[service as keyof typeof apiMap].get(url);
+        const api = getApiService(service);
+        if (!api) return;
+        const optResponse = await api.get(url);
         const data = optResponse.data.results || optResponse.data || [];
 
         // Update pagination state

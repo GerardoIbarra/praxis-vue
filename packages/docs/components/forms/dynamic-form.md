@@ -76,7 +76,6 @@ const formData = ref({})
   { name: 'modelValue', type: 'Record<string, any>', default: '{}', description: 'Current form data, keyed by field.key. Use with v-model.' },
   { name: 'existingData', type: 'Record<string, unknown>', default: 'undefined', description: 'Pre-existing values used to initialize fields not yet present in modelValue.' },
   { name: 'loading', type: 'boolean', default: 'false', description: 'Passed down to select-type fields to show a loading state.' },
-  { name: 'selectedDocumentId', type: 'string', default: 'undefined', description: 'Controls the grid column layout for a few known document types.' },
   { name: 'cleanedResults', type: 'string[]', default: '[]', description: 'v-model:cleanedResults — tracks keys touched by multiselect_list fields.' },
   { name: 'calculatedNumbers', type: 'any[]', default: '[]', description: 'v-model:calculatedNumbers — tracks fields of type calculated_number.' },
 ]" />

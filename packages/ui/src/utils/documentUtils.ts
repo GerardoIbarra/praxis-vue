@@ -130,7 +130,7 @@ export const removeIgnoredElements = (htmlString: string): string => {
   const parser = new DOMParser();
   const doc = parser.parseFromString(htmlString, "text/html");
 
-  const ignoredIds = ["text_witness_signature", "text_patients_signature"];
+  const ignoredIds = ["text_witness_signature", "text_signer_signature"];
   ignoredIds.forEach((id) => {
     const el = doc.getElementById(id);
     if (el) el.remove();
@@ -233,7 +233,7 @@ export const checkEmptyRequiredSections = (
 };
 
 /**
- * Resets the scroll position of the main clinical content viewport.
+ * Resets the scroll position of the main document content viewport.
  * Crucial when switching tabs or documents to avoid staying at the bottom
  * if the previous document was long.
  */

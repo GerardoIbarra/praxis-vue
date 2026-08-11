@@ -18,7 +18,7 @@ export function useSearchFieldDependency(
   schema: Ref<FormSchemaField[]>,
   delay = 600
 ) {
-  const { apiMap } = useApiMap();
+  const { getApiService } = useApiMap();
 
   // Per-field debounce timers keyed by field.key
   const timers: Record<string, ReturnType<typeof setTimeout>> = {};
@@ -34,8 +34,7 @@ export function useSearchFieldDependency(
     const { service, endpoint, search_param } = field.option_source || {};
     if (!service || !endpoint || !search_param || !resolvedValue) return;
 
-    if (!(service in apiMap)) return;
-    const api = apiMap[service as keyof typeof apiMap];
+    const api = getApiService(service);
     if (!api) return;
 
     try {

@@ -3,21 +3,22 @@
  * SelectableListWithTable Component
  *
  * A reusable component for selecting items from a dropdown and displaying
- * them in a table with remove functionality. Used for Providers and
- * Referring Physicians sections.
+ * them in a table with remove functionality. Useful for any "pick from a
+ * list, show as a table with a remove button" field, e.g. assigned vendors
+ * or team members.
  *
  * @example
  * <SelectableListWithTable
- *   label="Providers"
+ *   label="Vendors"
  *   :required="true"
- *   name="providers"
- *   :selected-items="selectedProvider"
- *   :badge-state="getProvidersBadgeState(errors)"
+ *   name="vendors"
+ *   :selected-items="selectedVendors"
+ *   :badge-state="getVendorsBadgeState(errors)"
  *   :columns="[
  *     { key: 'name', label: 'Name', getValue: (item) => item.name || item.full_name },
- *     { key: 'specialty', label: 'Specialty' }
+ *     { key: 'category', label: 'Category' }
  *   ]"
- *   @remove="removeProvider"
+ *   @remove="removeVendor"
  * >
  *   <template #selector>
  *     <VueSelect ... />

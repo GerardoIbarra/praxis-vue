@@ -29,7 +29,7 @@ export interface InfiniteScrollFetchResult<T> {
  * Composable que encapsula el estado de paginación + búsqueda para cualquier
  * `InfiniteScrollSelect`. Cada instancia del composable maneja de forma
  * independiente sus propios refs, por lo que se puede usar varias veces en
- * el mismo componente (ej. un select para pacientes y otro para staff).
+ * el mismo componente (ej. un select para clientes y otro para productos).
  *
  * @param fetcher - Función asíncrona que recibe `{ search, page, reset }` y
  *   retorna `{ data, hasMore }`. Generalmente llama a la API o al store.
@@ -38,17 +38,17 @@ export interface InfiniteScrollFetchResult<T> {
  * @example
  * ```ts
  * const {
- *   options: patientOptions,
- *   hasMore: patientHasMore,
- *   loading: patientLoading,
- *   handleSearch: searchPatients,
- *   loadMore: loadMorePatients,
- *   fetch: fetchPatients,
+ *   options: customerOptions,
+ *   hasMore: customerHasMore,
+ *   loading: customerLoading,
+ *   handleSearch: searchCustomers,
+ *   loadMore: loadMoreCustomers,
+ *   fetch: fetchCustomers,
  * } = useInfiniteScrollSelect(({ search, page }) =>
- *   patientApi.list({ search, page })
+ *   customerApi.list({ search, page })
  * );
  *
- * onMounted(() => fetchPatients(true));
+ * onMounted(() => fetchCustomers(true));
  * ```
  */
 export function useInfiniteScrollSelect<T = Record<string, unknown>>(

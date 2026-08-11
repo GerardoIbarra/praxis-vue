@@ -266,7 +266,7 @@ defineExpose({
               </div>
             </div>
 
-            <!-- Symptom rows -->
+            <!-- Item rows -->
             <div
               v-for="child in listChildren"
               :key="child.key"
@@ -300,7 +300,7 @@ defineExpose({
                 <label class="flex items-center justify-center cursor-pointer">
                   <input
                     type="radio"
-                    :name="`symptom_${child.key}_${field.label}`"
+                    :name="`item_${child.key}_${field.label}`"
                     value="yes"
                     :checked="getRadioValue(child.key) === 'yes'"
                     class="w-4 h-4 cursor-pointer accent-blue-500 checked:accent-red-500"
@@ -312,7 +312,7 @@ defineExpose({
                 <label class="flex items-center justify-center cursor-pointer">
                   <input
                     type="radio"
-                    :name="`symptom_${child.key}_${field.label}`"
+                    :name="`item_${child.key}_${field.label}`"
                     value="no"
                     :checked="getRadioValue(child.key) === 'no'"
                     class="w-4 h-4 cursor-pointer accent-blue-500 checked:accent-green-500"

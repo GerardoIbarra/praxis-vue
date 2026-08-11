@@ -1,4 +1,4 @@
-import { ref, type Ref } from "vue";
+import type { Ref } from "vue";
 import type { FormSchemaField } from "@/types/api/common";
 
 /**
@@ -13,9 +13,6 @@ export function useFieldAutofill(
   formData: Ref<Record<string, unknown>>,
   schema: Ref<FormSchemaField[]>
 ) {
-  // Track selected row for Weight/Height unit conversion
-  const selectedRow = ref<number | null>(null);
-
   /**
    * Resolve nested object paths (e.g., "strengths[0].amount_formatted")
    * Supports dot notation and array indices
@@ -37,18 +34,6 @@ export function useFieldAutofill(
    * Updates related fields based on autofill configuration
    */
   const handleSelected = (value: unknown, field: FormSchemaField) => {
-    // Special handling for Weight and Height fields (unit conversion)
-    if (field.label === "Weight" || field.label === "Height") {
-      if (
-        (value as { value: string }).value === "pound" ||
-        (value as { value: string }).value === "foot"
-      ) {
-        selectedRow.value = 1;
-      } else {
-        selectedRow.value = 0;
-      }
-    }
-
     // If no autofill configured, nothing to do
     if (!field.autofill) return;
 
@@ -116,7 +101,6 @@ export function useFieldAutofill(
   };
 
   return {
-    selectedRow,
     getNestedValue,
     handleSelected,
   };

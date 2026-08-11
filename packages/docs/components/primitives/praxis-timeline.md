@@ -1,6 +1,6 @@
 <script setup>
 import PraxisTimeline from '@praxis/ui-src/components/_primitives/PraxisTimeline.vue'
-import { UserPlus, Calendar, FlaskConical } from 'lucide-vue-next'
+import { UserPlus, Calendar, FlaskConical } from '@lucide/vue'
 
 const events = [
   {
@@ -40,7 +40,7 @@ A vertical timeline component for displaying chronological events. Each item ren
 ```vue
 <script setup>
 import { PraxisTimeline } from 'praxis-vue-ui'
-import { UserPlus, Calendar, FlaskConical } from 'lucide-vue-next'
+import { UserPlus, Calendar, FlaskConical } from '@lucide/vue'
 
 const events = [
   {

@@ -6,6 +6,12 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Tailwind utilities (no preflight — VitePress owns base typography/reset).
+   Generates every utility class used by packages/ui/src components. */
+@import "tailwindcss/theme.css";
+@import "tailwindcss/utilities.css";
+@config "../../tailwind.config.js";
+
 /* ---------------------------------------------------------------
    Root tokens (light mode)
    --------------------------------------------------------------- */
@@ -60,6 +66,25 @@
   --vp-c-border: #334155;
   --vp-code-bg: #1e293b;
   --vp-code-color: #93c5fd;
+}
+
+/* ---------------------------------------------------------------
+   vue-select — dark mode overrides
+   The library's own CSS hardcodes a white dropdown (--vs-dropdown-bg: #fff)
+   with `color: inherit`, so on dark demos the open list renders white text
+   on a white box. Repoint its CSS custom properties at our VitePress tokens.
+   --------------------------------------------------------------- */
+.v-select {
+  --vs-dropdown-bg: var(--vp-c-bg);
+  --vs-dropdown-color: var(--vp-c-text-1);
+  --vs-dropdown-option-color: var(--vp-c-text-1);
+  --vs-controls-color: var(--vp-c-text-2);
+  --vs-border-color: var(--vp-c-border);
+  --vs-search-input-color: var(--vp-c-text-1);
+  --vs-selected-bg: var(--vp-c-bg-mute);
+  --vs-selected-color: var(--vp-c-text-1);
+  --vs-dropdown-option--active-bg: var(--p-primary-600);
+  --vs-dropdown-option--active-color: #fff;
 }
 
 /* ---------------------------------------------------------------
@@ -297,6 +322,16 @@ body {
   opacity: 0.6;
   cursor: not-allowed;
   background: var(--vp-c-bg-soft);
+}
+
+.h2-semibold {
+  font-size: 1.0625rem !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  margin: 0 !important;
+  border: none !important;
+  padding: 0 !important;
+  color: var(--vp-c-text-1);
 }
 
 /* Tailwind-like utilities needed by Praxis components */

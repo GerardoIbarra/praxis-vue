@@ -2,29 +2,37 @@
 import { ref } from 'vue'
 import FormMultiSelectList from '@praxis/ui-src/components/forms/FormMultiSelectList.vue'
 
-const tags = [
-  { id: 1, name: 'Urgent' },
-  { id: 2, name: 'Follow-up' },
-  { id: 3, name: 'Reviewed' },
-]
+const field = {
+  search: true,
+  options: [
+    {
+      options: [
+        { label: 'Urgent', value: 'urgent' },
+        { label: 'Follow-up', value: 'follow_up' },
+        { label: 'Reviewed', value: 'reviewed' },
+      ],
+    },
+  ],
+  components: [
+    { key: 'urgent', label: 'Urgent', components: [{ type: 'static_text', label: 'Flag for immediate attention' }] },
+    { key: 'follow_up', label: 'Follow-up', components: [{ key: 'follow_up_days', type: 'integer', label: 'Days', value: 7, placeholder: 'Days until follow-up' }] },
+    { key: 'reviewed', label: 'Reviewed', components: [{ type: 'static_text', label: 'Marked as reviewed' }] },
+  ],
+}
 const selected = ref([])
 </script>
 
 # FormMultiSelectList
 
-A compact multi-select component that combines a select dropdown with a tag/badge display of selected items. Styled for use inside form layouts.
+A multi-select dropdown that reveals extra sub-fields for each selected option. Backed by a `field.options[0].options` list for the dropdown, and `field.components` for the sub-fields shown per selection (matched by `key`).
 
 ## Usage
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%; max-width: 400px;">
-    <FormMultiSelectList
-      v-model="selected"
-      :options="tags"
-      label="Tags"
-    />
+    <FormMultiSelectList v-model="selected" :field="field" />
     <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--vp-c-text-2);">
-      Selected IDs: <strong>{{ selected }}</strong>
+      Selected: <strong>{{ selected.join(', ') || 'None' }}</strong>
     </div>
   </div>
 
@@ -35,20 +43,28 @@ A compact multi-select component that combines a select dropdown with a tag/badg
 import { ref } from 'vue'
 import { FormMultiSelectList } from 'praxis-vue-ui'
 
-const tags = [
-  { id: 1, name: 'Urgent' },
-  { id: 2, name: 'Follow-up' },
-  { id: 3, name: 'Reviewed' },
-]
+const field = {
+  search: true,
+  options: [
+    {
+      options: [
+        { label: 'Urgent', value: 'urgent' },
+        { label: 'Follow-up', value: 'follow_up' },
+        { label: 'Reviewed', value: 'reviewed' },
+      ],
+    },
+  ],
+  components: [
+    { key: 'urgent', label: 'Urgent', components: [{ type: 'static_text', label: 'Flag for immediate attention' }] },
+    { key: 'follow_up', label: 'Follow-up', components: [{ key: 'follow_up_days', type: 'integer', label: 'Days', value: 7, placeholder: 'Days until follow-up' }] },
+    { key: 'reviewed', label: 'Reviewed', components: [{ type: 'static_text', label: 'Marked as reviewed' }] },
+  ],
+}
 const selected = ref([])
 </script>
 
 <template>
-  <FormMultiSelectList
-    v-model="selected"
-    :options="tags"
-    label="Tags"
-  />
+  <FormMultiSelectList v-model="selected" :field="field" />
 </template>
 ```
 
@@ -58,11 +74,8 @@ const selected = ref([])
 ## Props
 
 <PropsTable :rows="[
-  { name: 'modelValue', type: 'unknown[]', default: '[]', description: 'Array of selected values. Use with v-model.' },
-  { name: 'options', type: 'unknown[]', required: true, description: 'Available options for the dropdown.' },
-  { name: 'label', type: 'string', default: 'undefined', description: 'Label displayed above the select.' },
-  { name: 'placeholder', type: 'string', default: '\'Select...\'', description: 'Placeholder for the dropdown.' },
-  { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the component.' },
+  { name: 'field', type: 'object', required: true, description: 'Field definition. `field.options[0].options` supplies the dropdown options; `field.components` supplies the sub-fields shown per selected option, matched by key.' },
+  { name: 'modelValue', type: 'unknown[]', default: '[]', description: 'Array of selected option values. Use with v-model.' },
 ]" />
 
 ## Emits

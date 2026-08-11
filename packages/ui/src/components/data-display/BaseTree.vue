@@ -243,7 +243,6 @@ watch(
           </div>
 
           <button
-            v-if="hasPermission('document-templates', 'U')"
             class="px-2 py-1 bg-green-500 text-white rounded disabled:bg-gray-400 disabled:cursor-not-allowed cursor-pointer"
             :disabled="childTypeModel !== 'template' && childTypeModel !== 'form' && !(node as any).isValid"
             @click.stop="handleConfirmClick(node)"

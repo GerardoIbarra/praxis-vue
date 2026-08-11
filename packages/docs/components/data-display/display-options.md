@@ -1,28 +1,42 @@
 <script setup>
 import { ref } from 'vue'
 import DisplayOptions from '@praxis/ui-src/components/data-display/DisplayOptions.vue'
-import { Table, LayoutGrid, Calendar } from 'lucide-vue-next'
 
-const view = ref('table')
-const options = [
-  { key: 'table', label: 'Table', icon: Table },
-  { key: 'card', label: 'Cards', icon: LayoutGrid },
-  { key: 'calendar', label: 'Calendar', icon: Calendar },
-]
+const displayOptions = ref({
+  inputs: [
+    {
+      title: 'Internal Notes',
+      type: 'textarea',
+      items: [{ title: 'Internal Notes', value: '' }],
+    },
+    {
+      title: 'Priority',
+      type: 'radio',
+      value: 'medium',
+      items: [
+        { title: 'Low', value: 'low' },
+        { title: 'Medium', value: 'medium' },
+        { title: 'High', value: 'high' },
+      ],
+    },
+    {
+      title: 'Reference Code',
+      type: 'text',
+      items: [{ title: 'Reference Code', value: '' }],
+    },
+  ],
+})
 </script>
 
 # DisplayOptions
 
-A compact options bar component for toggling between different view modes or display settings (e.g., switching between table/card/calendar view). Renders a group of button options.
+Renders a set of configuration inputs — textarea, radio group, or text — from a `displayOptions.inputs` schema. Each input's value is mutated directly on the object you pass in.
 
 ## Usage
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%; max-width: 400px;">
-    <DisplayOptions v-model="view" :options="options" />
-    <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--vp-c-text-2);">
-      Active View: <strong>{{ view }}</strong>
-    </div>
+    <DisplayOptions :display-options="displayOptions" />
   </div>
 
   <template #code>
@@ -31,18 +45,35 @@ A compact options bar component for toggling between different view modes or dis
 <script setup>
 import { ref } from 'vue'
 import { DisplayOptions } from 'praxis-vue-ui'
-import { Table, LayoutGrid, Calendar } from 'lucide-vue-next'
 
-const view = ref('table')
-const options = [
-  { key: 'table', label: 'Table', icon: Table },
-  { key: 'card', label: 'Cards', icon: LayoutGrid },
-  { key: 'calendar', label: 'Calendar', icon: Calendar },
-]
+const displayOptions = ref({
+  inputs: [
+    {
+      title: 'Internal Notes',
+      type: 'textarea',
+      items: [{ title: 'Internal Notes', value: '' }],
+    },
+    {
+      title: 'Priority',
+      type: 'radio',
+      value: 'medium',
+      items: [
+        { title: 'Low', value: 'low' },
+        { title: 'Medium', value: 'medium' },
+        { title: 'High', value: 'high' },
+      ],
+    },
+    {
+      title: 'Reference Code',
+      type: 'text',
+      items: [{ title: 'Reference Code', value: '' }],
+    },
+  ],
+})
 </script>
 
 <template>
-  <DisplayOptions v-model="view" :options="options" />
+  <DisplayOptions :display-options="displayOptions" />
 </template>
 ```
 
@@ -52,22 +83,28 @@ const options = [
 ## Props
 
 <PropsTable :rows="[
-  { name: 'modelValue', type: 'string', required: true, description: 'Currently active option key. Use with v-model.' },
-  { name: 'options', type: 'DisplayOption[]', required: true, description: 'Array of display options to render as toggle buttons.' },
+  { name: 'displayOptions', type: 'DisplayOptions', required: true, description: 'Schema describing the inputs to render.' },
 ]" />
 
-## DisplayOption Interface
+## DisplayOptions Interface
 
 ```ts
-interface DisplayOption {
-  key: string        // Unique identifier, used as modelValue
-  label: string      // Button text
-  icon?: string      // Optional Lucide icon name
+interface DisplayOptionItem {
+  title: string
+  value: string
+}
+
+interface DisplayOptionInput {
+  title: string
+  type: 'textarea' | 'radio' | 'text'
+  items: DisplayOptionItem[]
+  value?: string   // for radio inputs
+}
+
+interface DisplayOptions {
+  inputs: DisplayOptionInput[]
 }
 ```
 
-## Emits
-
-<EmitsTable :rows="[
-  { name: 'update:modelValue', payload: 'string', description: 'Emitted when the user clicks an option. Value is the clicked option\'s key.' },
-]" />
+> [!NOTE]
+> `DisplayOptions` has no v-model or emits — it mutates `items[i].value` (or `input.value` for radio groups) directly on the object you pass in. Use a `ref`/`reactive` object and read the values back from it.

@@ -17,7 +17,7 @@ A full-screen loading overlay that blocks user interaction during async operatio
 ## FullPageLoader
 
 <ComponentDemo>
-  <div>
+  <div style="padding: 1rem 0; width: 100%; display: flex; align-items: center; justify-content: center;">
     <button
       style="padding:0.5rem 1.25rem;background:var(--p-primary-600);color:white;border:none;border-radius:8px;cursor:pointer;font-size:0.875rem"
       @click="showIt"
@@ -53,7 +53,9 @@ const loading = ref(false)
 A simple inline spinner — useful for list lazy-loading or button loading states.
 
 <ComponentDemo title="LazyLoadingSpinner">
-  <LazyLoadingSpinner />
+  <div style="height: 120px; width: 100%; display: flex; align-items: center; justify-content: center; border: 1px solid var(--vp-c-divider); border-radius: 8px;">
+    <LazyLoadingSpinner />
+  </div>
 
   <template #code>
 

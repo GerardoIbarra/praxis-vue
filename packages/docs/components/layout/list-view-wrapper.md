@@ -23,7 +23,6 @@ A layout wrapper for list pages. Provides a consistent structure with header, fi
           </template>
         </ListHeader>
       </template>
-
       <template #default>
         <div style="padding: 2rem; background: var(--vp-c-bg-soft); border-radius: 8px;">
           <p style="text-align: center; color: var(--vp-c-text-2);">List view content area (e.g. data table)</p>

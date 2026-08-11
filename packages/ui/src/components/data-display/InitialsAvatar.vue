@@ -1,8 +1,8 @@
 <script setup lang="ts">
 /**
- * @deprecated Use PraxisAvatar instead. Kept for backward compatibility.
+ * @deprecated Use UiAvatar instead. Kept for backward compatibility.
  */
-import PraxisAvatar from "@/components/base/PraxisAvatar.vue";
+import UiAvatar from "@/components/base/UiAvatar.vue";
 
 withDefaults(
   defineProps<{
@@ -19,5 +19,5 @@ withDefaults(
 </script>
 
 <template>
-  <PraxisAvatar :name="name || ''" size="xl" />
+  <UiAvatar :name="name || ''" size="xl" />
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import PraxisDialog from "@/components/_primitives/PraxisDialog.vue";
+import UiDialog from "@/components/_primitives/UiDialog.vue";
 import { CloudUpload, X, File } from "@lucide/vue";
 import type { UploadDocumentFile } from "@/types/api/medical-charts/document";
 
@@ -80,7 +80,7 @@ const cleanModal = (): void => {
 
 <template>
   <div class="card flex justify-center">
-    <PraxisDialog
+    <UiDialog
       v-model:visible="visible"
       header="Upload Document"
       :style="{ width: '100%', maxWidth: '50rem' }"
@@ -162,7 +162,7 @@ const cleanModal = (): void => {
           Send
         </button>
       </div>
-    </PraxisDialog>
+    </UiDialog>
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 /**
- * @deprecated Use PraxisLabel instead. This component is kept for backward compatibility.
+ * @deprecated Use UiLabel instead. This component is kept for backward compatibility.
  */
-import PraxisLabel from './PraxisLabel.vue'
+import UiLabel from './UiLabel.vue'
 
 interface Props {
   label: string
@@ -15,5 +15,5 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <template>
-  <PraxisLabel :label="label" :required="required" />
+  <UiLabel :label="label" :required="required" />
 </template>

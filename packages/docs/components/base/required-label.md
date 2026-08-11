@@ -5,7 +5,7 @@ import RequiredLabel from '@praxis/ui-src/components/base/RequiredLabel.vue'
 
 # RequiredLabel
 
-A small utility component that renders a field label with an optional red asterisk when the field is required. Used internally by `ColorPickerField`, `PraxisTimePicker`, and other form components.
+A small utility component that renders a field label with an optional red asterisk when the field is required. Used internally by `ColorPickerField`, `UiTimePicker`, and other form components.
 
 ## Basic Usage
 

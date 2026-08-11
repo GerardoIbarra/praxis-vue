@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ChevronRight, ChevronDown } from "@lucide/vue";
 import { type Ref, ref, onMounted, onUnmounted, computed, toRefs } from "vue";
-import PraxisCheckbox from "@/components/_primitives/PraxisCheckbox.vue";
+import UiCheckbox from "@/components/_primitives/UiCheckbox.vue";
 
 interface ColumnDef {
   field: string;
@@ -158,7 +158,7 @@ defineExpose({
         <tr>
           <!-- Selection Column -->
           <th v-if="selectionMode === 'multiple'" class="p-4 w-4">
-            <PraxisCheckbox
+            <UiCheckbox
               :model-value="allSelected"
               @update:model-value="selectAll"
               :binary="true"
@@ -208,7 +208,7 @@ defineExpose({
             >
               <!-- Selection Cell -->
               <td v-if="selectionMode" class="p-4" @click.stop="toggleSelection(row)">
-                <PraxisCheckbox
+                <UiCheckbox
                   v-if="selectionMode === 'multiple'"
                   :model-value="isSelected(row)"
                   :binary="true"

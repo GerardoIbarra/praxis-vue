@@ -28,7 +28,7 @@ import { computed } from "vue";
 import { Field } from "vee-validate";
 import { X } from "@lucide/vue";
 import RequiredLabel from "@/components/base/RequiredLabel.vue";
-import PraxisBadge from "@/components/_primitives/PraxisBadge.vue";
+import UiBadge from "@/components/_primitives/UiBadge.vue";
 
 type ColumnDefinition = {
   key: string;

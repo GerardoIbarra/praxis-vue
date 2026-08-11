@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch, computed } from "vue";
 import type { FormSchemaField } from "@/types/api/common";
-import PraxisCheckbox from "@/components/_primitives/PraxisCheckbox.vue";
+import UiCheckbox from "@/components/_primitives/UiCheckbox.vue";
 import { ChevronDown, Heading, Minus, Plus } from "@lucide/vue";
 
 const props = defineProps<{
@@ -250,7 +250,7 @@ defineExpose({
 
                 <!-- History checkbox -->
                 <label class="flex items-center justify-center cursor-pointer">
-                <PraxisCheckbox
+                <UiCheckbox
                     :model-value="getCheckboxValue(child.key)"
                     :binary="true"
                     class="w-4 h-4"

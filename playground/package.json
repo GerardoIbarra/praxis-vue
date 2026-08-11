@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@lucide/vue": "^1.31.0",
     "@praxis/editor": "workspace:*",
     "praxis-vue-ui": "workspace:*",
     "pinia": "^4.0.2",

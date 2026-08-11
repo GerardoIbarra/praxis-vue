@@ -7,9 +7,9 @@ import {
   BaseAvatar,
   InitialsAvatar,
   ThemeToggle,
-  PraxisTimePicker,
-  PraxisBadge,
-  PraxisAccordion,
+  UiTimePicker,
+  UiBadge,
+  UiAccordion,
   TabComponent,
   FullPageLoader,
   PhoneNumber,
@@ -20,10 +20,13 @@ import {
   LazyLoadingSpinner,
   RequiredLabel,
   SelectableList,
-  CheckListField
+  CheckListField,
+  NavList,
+  type NavListItem
 } from 'praxis-vue-ui'
+import { Home, Settings, Star } from '@lucide/vue'
 
-import { WordgardEditor } from '@praxis/editor'
+import { PraxisEditor } from '@praxis/editor'
 
 // State variables for examples
 const time = ref('14:30')
@@ -78,6 +81,24 @@ const listOptions = [
 ]
 const selectedListItems = ref([])
 
+// NavList
+const navListCollapsed = ref(false)
+const navListActivePath = ref('/dashboard')
+const navListMenu: NavListItem[] = [
+  { key: 'workspace', label: 'Workspace', separator: true },
+  { key: 'dashboard', label: 'Dashboard', to: '/dashboard', icon: Home },
+  {
+    key: 'favorites',
+    label: 'Favorites',
+    icon: Star,
+    items: [
+      { key: 'starred-a', label: 'Project A', to: '/projects/a' },
+      { key: 'starred-b', label: 'Project B', to: '/projects/b' }
+    ]
+  },
+  { key: 'settings', label: 'Settings', to: '/settings', icon: Settings }
+]
+
 // Simulate full page loading
 const triggerLoader = () => {
   isLoading.value = true
@@ -131,9 +152,10 @@ onMounted(() => {
           <a href="#steps" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Step Navigation</a>
           <a href="#accordion" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Accordion</a>
           <a href="#tabs" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Tabs</a>
+          <a href="#nav-list" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Nav List</a>
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Editor</div>
-          <a href="#rich-text" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Wordgard Editor</a>
+          <a href="#rich-text" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Praxis Editor</a>
         </nav>
       </aside>
 
@@ -191,10 +213,10 @@ onMounted(() => {
           >
             <div class="flex flex-col gap-8 items-center justify-center p-4">
               <div class="flex gap-4 flex-wrap justify-center">
-                <PraxisBadge severity="success">Active</PraxisBadge>
-                <PraxisBadge severity="warning">Pending</PraxisBadge>
-                <PraxisBadge severity="danger">Failed</PraxisBadge>
-                <PraxisBadge severity="info">Info</PraxisBadge>
+                <UiBadge severity="success">Active</UiBadge>
+                <UiBadge severity="warning">Pending</UiBadge>
+                <UiBadge severity="danger">Failed</UiBadge>
+                <UiBadge severity="info">Info</UiBadge>
               </div>
               <div class="flex gap-8 border-t border-surface-200/50 dark:border-surface-700/50 pt-8 w-full justify-center">
                 <RequiredLabel label="Email Address" required />
@@ -224,11 +246,11 @@ onMounted(() => {
 
           <ShowcaseSection 
             id="time-picker"
-            title="Praxis Time Picker" 
+            title="Time Picker"
             description="A beautiful popover-based input for selecting times with scrollable columns."
           >
             <div class="w-full max-w-xs mx-auto">
-              <PraxisTimePicker v-model="time" label="Schedule Time" required />
+              <UiTimePicker v-model="time" label="Schedule Time" required />
               <p class="mt-6 text-sm text-surface-500 dark:text-surface-400 text-center font-mono">
                 Selected: <strong class="text-primary-500">{{ time }}</strong>
               </p>
@@ -273,11 +295,11 @@ onMounted(() => {
                 :paginated="false"
               >
                 <template #status="{ item }">
-                  <PraxisBadge 
+                  <UiBadge 
                     :severity="item.status === 'Active' ? 'success' : item.status === 'Pending' ? 'warning' : 'danger'"
                   >
                     {{ item.status }}
-                  </PraxisBadge>
+                  </UiBadge>
                 </template>
               </BaseDataTable>
             </div>
@@ -344,7 +366,7 @@ onMounted(() => {
             description="Collapsible sections to organize complex information."
           >
             <div class="w-full">
-              <PraxisAccordion :items="[{value: '1', header: 'Section 1', content: 'Content for section 1'}, {value: '2', header: 'Section 2', content: 'Content for section 2'}]" />
+              <UiAccordion :items="[{value: '1', header: 'Section 1', content: 'Content for section 1'}, {value: '2', header: 'Section 2', content: 'Content for section 2'}]" />
             </div>
           </ShowcaseSection>
 
@@ -361,13 +383,42 @@ onMounted(() => {
             </div>
           </ShowcaseSection>
 
+          <ShowcaseSection
+            id="nav-list"
+            title="Nav List"
+            description="Collapsible sidebar navigation with grouped links, section separators, and active-route highlighting."
+          >
+            <div class="flex gap-4">
+              <div class="w-60 border border-surface-200/50 dark:border-surface-700/50 rounded-xl p-2 bg-surface-50 dark:bg-surface-800/50">
+                <NavList
+                  :model="navListMenu"
+                  :collapsed="navListCollapsed"
+                  :active-path="navListActivePath"
+                  @select="(item) => (navListActivePath = item.to || navListActivePath)"
+                >
+                  <template #footer>
+                    <button
+                      class="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-surface-100 dark:hover:bg-surface-700"
+                      @click="navListCollapsed = !navListCollapsed"
+                    >
+                      {{ navListCollapsed ? 'Expand' : 'Collapse' }}
+                    </button>
+                  </template>
+                </NavList>
+              </div>
+              <p class="text-sm text-surface-500 dark:text-surface-400 self-start pt-2">
+                Active path: <strong class="font-mono">{{ navListActivePath }}</strong>
+              </p>
+            </div>
+          </ShowcaseSection>
+
           <ShowcaseSection 
             id="rich-text"
-            title="Wordgard Editor" 
+            title="Praxis Editor" 
             description="Our premium rich-text editing experience, ready for any complex content creation task."
           >
             <div class="w-full">
-              <WordgardEditor
+              <PraxisEditor
                 v-model="editorContent"
                 placeholder="Write something amazing..."
               />

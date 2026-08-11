@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import ModalInput from '@praxis/ui-src/components/forms/ModalInput.vue'
-import PraxisDialog from '@praxis/ui-src/components/_primitives/PraxisDialog.vue'
+import UiDialog from '@praxis/ui-src/components/_primitives/UiDialog.vue'
 
 const value = ref('')
 const showModal = ref(false)
@@ -30,12 +30,12 @@ A text input with a built-in modal/dialog trigger button. Useful for opening a s
   </div>
   
   <ClientOnly>
-    <PraxisDialog v-model:visible="showModal" header="Select Provider">
+    <UiDialog v-model:visible="showModal" header="Select Provider">
       <div style="display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem 0;">
         <button @click="selectProvider('Dr. Alice Johnson')" class="input-base" style="cursor:pointer; text-align:left;">Dr. Alice Johnson</button>
         <button @click="selectProvider('Dr. Bob Smith')" class="input-base" style="cursor:pointer; text-align:left;">Dr. Bob Smith</button>
       </div>
-    </PraxisDialog>
+    </UiDialog>
   </ClientOnly>
 
   <template #code>
@@ -43,7 +43,7 @@ A text input with a built-in modal/dialog trigger button. Useful for opening a s
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { ModalInput, PraxisDialog } from 'praxis-vue-ui'
+import { ModalInput, UiDialog } from 'praxis-vue-ui'
 
 const value = ref('')
 const showModal = ref(false)
@@ -59,9 +59,9 @@ const openModal = () => { showModal.value = true }
     @click="openModal"
   />
 
-  <PraxisDialog v-model:visible="showModal" header="Select Provider">
+  <UiDialog v-model:visible="showModal" header="Select Provider">
     <!-- Modal content and selection logic -->
-  </PraxisDialog>
+  </UiDialog>
 </template>
 ```
 

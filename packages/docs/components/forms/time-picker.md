@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PraxisTimePicker from '@praxis/ui-src/components/forms/PraxisTimePicker.vue'
+import UiTimePicker from '@praxis/ui-src/components/forms/UiTimePicker.vue'
 
 const time = ref('09:30')
 const time12 = ref('14:45')
@@ -15,7 +15,7 @@ A scrollable time picker with **24-hour** and **12-hour (AM/PM)** format support
 
 <ComponentDemo>
   <div style="width:280px">
-    <PraxisTimePicker v-model="time" label="Appointment Time" />
+    <UiTimePicker v-model="time" label="Appointment Time" />
     <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--vp-c-text-2)">
       Value (HH:mm): <strong>{{ time }}</strong>
     </p>
@@ -26,13 +26,13 @@ A scrollable time picker with **24-hour** and **12-hour (AM/PM)** format support
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PraxisTimePicker } from 'praxis-vue-ui'
+import { UiTimePicker } from 'praxis-vue-ui'
 
 const time = ref('09:30')
 </script>
 
 <template>
-  <PraxisTimePicker
+  <UiTimePicker
     v-model="time"
     label="Appointment Time"
   />
@@ -48,7 +48,7 @@ Use `format="12h"` for the US/common format. The display shows `09:30 AM` but th
 
 <ComponentDemo title="12h Format">
   <div style="width:300px">
-    <PraxisTimePicker v-model="time12" label="Meeting Time" format="12h" />
+    <UiTimePicker v-model="time12" label="Meeting Time" format="12h" />
     <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--vp-c-text-2)">
       Value (HH:mm 24h): <strong>{{ time12 }}</strong>
     </p>
@@ -59,14 +59,14 @@ Use `format="12h"` for the US/common format. The display shows `09:30 AM` but th
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PraxisTimePicker } from 'praxis-vue-ui'
+import { UiTimePicker } from 'praxis-vue-ui'
 
 const time = ref('14:45') // stored as 24h
 </script>
 
 <template>
   <!-- Displays as 02:45 PM, stores as 14:45 -->
-  <PraxisTimePicker
+  <UiTimePicker
     v-model="time"
     label="Meeting Time"
     format="12h"
@@ -81,13 +81,13 @@ const time = ref('14:45') // stored as 24h
 
 <ComponentDemo title="Disabled">
   <div style="width:280px">
-    <PraxisTimePicker v-model="timeDisabled" label="Read-only Time" :disabled="true" />
+    <UiTimePicker v-model="timeDisabled" label="Read-only Time" :disabled="true" />
   </div>
 
   <template #code>
 
 ```vue
-<PraxisTimePicker
+<UiTimePicker
   v-model="time"
   label="Read-only Time"
   :disabled="true"
@@ -101,13 +101,13 @@ const time = ref('14:45') // stored as 24h
 
 <ComponentDemo title="No Label">
   <div style="width:220px">
-    <PraxisTimePicker v-model="time" placeholder="Select time" />
+    <UiTimePicker v-model="time" placeholder="Select time" />
   </div>
 
   <template #code>
 
 ```vue
-<PraxisTimePicker v-model="time" placeholder="Select time" />
+<UiTimePicker v-model="time" placeholder="Select time" />
 ```
 
   </template>
@@ -144,4 +144,4 @@ const time = ref('14:45') // stored as 24h
 - The trigger element is keyboard-accessible via `click`.
 - Closes automatically on outside click via `@vueuse/core` `onClickOutside`.
 - Popover uses `z-50` so it always renders above other content.
-- Label is rendered via `PraxisLabel` with proper `for`/`id` association.
+- Label is rendered via `UiLabel` with proper `for`/`id` association.

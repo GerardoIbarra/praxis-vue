@@ -72,4 +72,4 @@ const data = ref({})
 ]" />
 
 > [!NOTE]
-> This component is designed for schema-driven dynamic forms. For simple checklist needs without a schema, consider using `PraxisCheckbox` or `CheckListInputField` directly.
+> This component is designed for schema-driven dynamic forms. For simple checklist needs without a schema, consider using `UiCheckbox` or `CheckListInputField` directly.

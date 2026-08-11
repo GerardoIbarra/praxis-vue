@@ -61,11 +61,11 @@ You can then use the components in any page or component:
 
 ```vue
 <script setup>
-import { PraxisTimePicker } from 'praxis-vue-ui'
+import { UiTimePicker } from 'praxis-vue-ui'
 </script>
 
 <template>
-  <PraxisTimePicker v-model="time" label="Time" />
+  <UiTimePicker v-model="time" label="Time" />
 </template>
 ```
 
@@ -77,14 +77,14 @@ npm install @praxis/editor wordgard
 
 ```vue
 <script setup>
-import { WordgardEditor } from '@praxis/editor'
+import { PraxisEditor } from '@praxis/editor'
 import { ref } from 'vue'
 
 const content = ref('<p>Hello world</p>')
 </script>
 
 <template>
-  <WordgardEditor
+  <PraxisEditor
     v-model="content"
     placeholder="Start writing..."
     :read-only="false"
@@ -100,25 +100,21 @@ const content = ref('<p>Hello world</p>')
 
 | Category | Components |
 |---|---|
-| **Base** | `BaseAvatar`, `AvatarSelect`, `ColorPickerField`, `ColorSelect`, `GroupedMultiSelect`, `GroupSelect`, `PhoneNumber`, `RequiredLabel`, `ThemeToggle`, `FullPageLoader`, `LazyLoadingSpinner` |
-| **Forms** | `DynamicForm`, `CheckListField`, `CheckListInputField`, `InfiniteScrollSelect`, `SelectListField`, `SelectableList`, `WeekDaysSelector`, `ModalInput`, `FormFieldRow` |
-| **Data Display** | `BaseDataTable`, `BaseTree`, `PdfViewer`, `SignatureDocument`, `InitialsAvatar`, `ProfileInfoField`, `AuditLogButton`, `DisplayOptions`, `TreeList` |
-| **Layout** | `ColumnLayout`, `DashboardCard`, `FormHeader`, `PageHeader`, `ListViewWrapper`, `FormDividerWithComponents` |
-| **Navigation** | `TabComponent`, `StepNavigation`, `StepHeader`, `ActionMenu` |
-| **Overlays** | `AuditLogSidebar`, `AuditLogContent`, `FeedbackModal`, `TimeSlotModal`, `NodeTreeModal`, `StaffFormDialog` |
+| **Base** | `BaseAvatar`, `UiAvatar`, `AvatarSelect`, `ColorPickerField`, `ColorSelect`, `GroupedMultiSelect`, `GroupSelect`, `PhoneNumber`, `UiLabel`, `RequiredLabel`, `ThemeToggle`, `FullPageLoader`, `LazyLoadingSpinner` |
+| **Forms** | `DynamicForm`, `CheckListField`, `CheckListInputField`, `InfiniteScrollSelect`, `SelectListField`, `SelectableList`, `SelectableListWithTable`, `WeekDaysSelector`, `ModalInput`, `FormFieldRow`, `FormMultiSelectList`, `UiTimePicker` |
+| **Data Display** | `BaseDataTable`, `BaseTree`, `PdfViewer`, `InitialsAvatar`, `ProfileInfoField`, `DisplayOptions`, `BadgedValueGrid`, `LabeledValueSection`, `ExistingDataTable` |
+| **Layout** | `ColumnLayout`, `DashboardCard`, `FormHeader`, `PageHeader`, `ListViewWrapper`, `ListHeader`, `CardFilterContainer`, `FormViewWrapper` |
+| **Navigation** | `TabComponent`, `StepNavigation`, `StepHeader`, `ActionMenu`, `NavList` |
+| **Primitives** | `UiAccordion`, `UiBadge`, `UiCheckbox`, `UiDialog`, `UiDrawer`, `UiRadioButton`, `UiTimeline` |
 
 ### Composables
 
 ```ts
 import {
   useFieldValidation,
-  useNotifications,
+  useFieldAutofill,
   useInfiniteScrollSelect,
-  useConfirmationModal,
-  useDeleteConfirmation,
-  useDateRangeValidation,
-  useZipCode,
-  useSelectOptions,
+  useDisabledDays,
 } from 'praxis-vue-ui'
 ```
 

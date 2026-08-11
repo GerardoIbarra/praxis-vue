@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DaysChoosen } from "@/types/api/common";
-import PraxisCheckbox from "@/components/_primitives/PraxisCheckbox.vue";
-import PraxisRadioButton from "@/components/_primitives/PraxisRadioButton.vue";
+import UiCheckbox from "@/components/_primitives/UiCheckbox.vue";
+import UiRadioButton from "@/components/_primitives/UiRadioButton.vue";
 import RequiredLabel from "../base/RequiredLabel.vue";
 
 type ModeType = "radio" | "checkbox";
@@ -82,7 +82,7 @@ const isDaySelected = (day: string): boolean => {
         :key="day"
         class="flex items-center"
       >
-        <PraxisRadioButton
+        <UiRadioButton
           v-if="mode === 'radio'"
           :model-value="modelValue"
           :value="day"
@@ -93,7 +93,7 @@ const isDaySelected = (day: string): boolean => {
         />
 
         <!-- Checkbox Mode -->
-        <PraxisCheckbox
+        <UiCheckbox
           v-else
           :model-value="isDaySelected(day)"
           :binary="true"

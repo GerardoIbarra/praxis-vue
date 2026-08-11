@@ -40,7 +40,7 @@ const parseBinding = (
 
 const createTooltipEl = (): HTMLElement => {
   const el = document.createElement("div");
-  el.className = "praxis-tooltip";
+  el.className = "ui-tooltip";
   el.setAttribute("role", "tooltip");
   return el;
 };
@@ -52,7 +52,7 @@ const injectGlobalStyles = (() => {
     injected = true;
     const style = document.createElement("style");
     style.textContent = `
-      .praxis-tooltip {
+      .ui-tooltip {
         background: #1f2937;
         color: #f9fafb;
         padding: 0.375rem 0.625rem;
@@ -67,13 +67,13 @@ const injectGlobalStyles = (() => {
         transition: opacity 0.15s ease;
         box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       }
-      .praxis-tooltip[data-show] {
+      .ui-tooltip[data-show] {
         opacity: 1;
       }
-      .praxis-tooltip[data-popper-placement^='top'] > .praxis-tooltip-arrow {
+      .ui-tooltip[data-popper-placement^='top'] > .ui-tooltip-arrow {
         bottom: -4px;
       }
-      .praxis-tooltip[data-popper-placement^='bottom'] > .praxis-tooltip-arrow {
+      .ui-tooltip[data-popper-placement^='bottom'] > .ui-tooltip-arrow {
         top: -4px;
       }
     `;

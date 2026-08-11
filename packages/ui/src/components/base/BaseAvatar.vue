@@ -1,8 +1,8 @@
 <script setup lang="ts">
 /**
- * @deprecated Use PraxisAvatar instead. Kept for backward compatibility.
+ * @deprecated Use UiAvatar instead. Kept for backward compatibility.
  */
-import PraxisAvatar from './PraxisAvatar.vue'
+import UiAvatar from './UiAvatar.vue'
 import { computed } from 'vue'
 
 const props = withDefaults(
@@ -19,7 +19,7 @@ const props = withDefaults(
   }
 )
 
-/** Map legacy Tailwind size class to PraxisAvatar size preset */
+/** Map legacy Tailwind size class to UiAvatar size preset */
 const sizePreset = computed(() => {
   const s = props.size || ''
   if (s.includes('w-16') || s.includes('w-20')) return 'xl'
@@ -30,5 +30,5 @@ const sizePreset = computed(() => {
 </script>
 
 <template>
-  <PraxisAvatar :name="props.name" :size="sizePreset" />
+  <UiAvatar :name="props.name" :size="sizePreset" />
 </template>

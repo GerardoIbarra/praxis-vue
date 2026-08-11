@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PraxisRadioButton from "@/components/_primitives/PraxisRadioButton.vue";
+import UiRadioButton from "@/components/_primitives/UiRadioButton.vue";
 
 interface DisplayOptionItem {
   title: string;
@@ -47,7 +47,7 @@ const props = defineProps<Props>();
           :key="idx"
           class="flex items-center space-x-2 cursor-pointer"
         >
-          <PraxisRadioButton
+          <UiRadioButton
             v-model="input.value"
             :value="opt.value"
             :input-id="`radio-${i}-${idx}`"

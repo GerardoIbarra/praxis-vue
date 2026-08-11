@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PraxisCheckbox from "@/components/_primitives/PraxisCheckbox.vue";
+import UiCheckbox from "@/components/_primitives/UiCheckbox.vue";
 import { ref, watch, computed } from "vue";
 import VueSelect from "vue-select";
 import RequiredLabel from "@/components/base/RequiredLabel.vue";
@@ -649,7 +649,7 @@ defineExpose({
         />
 
         <!-- 🔹 CHECKBOX -->
-        <PraxisCheckbox
+        <UiCheckbox
           v-else-if="field.type === 'checkbox'"
           v-model="field.value"
           :disabled="isFieldDisabled(field)"

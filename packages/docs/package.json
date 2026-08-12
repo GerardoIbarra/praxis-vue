@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev",
-    "build": "vitepress build",
+    "build": "cd ../editor && pnpm run build && cd ../docs && vitepress build",
     "preview": "vitepress preview"
   },
   "dependencies": {

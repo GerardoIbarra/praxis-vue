@@ -26,11 +26,11 @@ import {
 } from 'praxis-vue-ui'
 import { Home, Settings, Star } from '@lucide/vue'
 
-import { PraxisEditor } from '@praxis/editor'
+import { PraxisEditor } from 'praxis-vue-editor'
 
 // State variables for examples
 const time = ref('14:30')
-const editorContent = ref('<p>Hello from <strong>@praxis/editor</strong>!</p>')
+const editorContent = ref('<p>Hello from <strong>praxis-vue-editor</strong>!</p>')
 const isDark = ref(false)
 const isLoading = ref(false)
 

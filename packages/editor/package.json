@@ -1,5 +1,5 @@
 {
-  "name": "@praxis/editor",
+  "name": "praxis-vue-editor",
   "version": "0.1.1",
   "description": "A premium Vue 3 rich-text editor component powered by Wordgard.",
   "keywords": ["vue", "vue3", "editor", "rich-text", "wordgard", "typescript"],

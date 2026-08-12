@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import { PraxisEditor } from '@praxis/editor'
-import '@praxis/editor/dist/praxis-editor.css'
+import { PraxisEditor } from 'praxis-vue-editor'
+import 'praxis-vue-editor/dist/praxis-editor.css'
 
 const content = ref('<p>Empieza a escribir aquí...</p>')
 </script>
@@ -21,13 +21,13 @@ El `PraxisEditor` es un editor de texto enriquecido basado en Vue, utilizando Ti
 
 ## Uso Básico
 
-Asegúrate de tener el paquete `@praxis/editor` instalado.
+Asegúrate de tener el paquete `praxis-vue-editor` instalado.
 
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { PraxisEditor } from '@praxis/editor'
-import '@praxis/editor/dist/praxis-editor.css'
+import { PraxisEditor } from 'praxis-vue-editor'
+import 'praxis-vue-editor/dist/praxis-editor.css'
 
 const content = ref('<p>Empieza a escribir aquí...</p>')
 </script>

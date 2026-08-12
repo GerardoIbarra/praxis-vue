@@ -12,7 +12,7 @@
 | Package | Description | npm |
 |---|---|---|
 | [`praxis-vue-ui`](./packages/ui) | 55+ UI components for Vue 3 + PrimeVue | `npm i praxis-vue-ui` |
-| [`@praxis/editor`](./packages/editor) | Rich-text editor powered by Wordgard | `npm i @praxis/editor` |
+| [`praxis-vue-editor`](./packages/editor) | Rich-text editor powered by Wordgard | `npm i praxis-vue-editor` |
 
 ---
 
@@ -69,15 +69,15 @@ import { UiTimePicker } from 'praxis-vue-ui'
 </template>
 ```
 
-### @praxis/editor
+### praxis-vue-editor
 
 ```bash
-npm install @praxis/editor wordgard
+npm install praxis-vue-editor wordgard
 ```
 
 ```vue
 <script setup>
-import { PraxisEditor } from '@praxis/editor'
+import { PraxisEditor } from 'praxis-vue-editor'
 import { ref } from 'vue'
 
 const content = ref('<p>Hello world</p>')

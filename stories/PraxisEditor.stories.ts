@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { PraxisEditor } from '@praxis/editor'
+import { PraxisEditor } from 'praxis-vue-editor'
 
 const meta: Meta<typeof PraxisEditor> = {
   title: 'Editor/PraxisEditor',

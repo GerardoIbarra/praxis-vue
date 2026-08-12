@@ -1,6 +1,6 @@
 import {
   __publicField
-} from "./chunk-V6TY7KAL.js";
+} from "./chunk-UVKRO5ER.js";
 
 // ../../node_modules/.pnpm/wordgard@0.3.1/node_modules/wordgard/dist/doc.js
 var TextOutput = class {
@@ -3882,4 +3882,4 @@ export {
   parse,
   serialize
 };
-//# sourceMappingURL=chunk-PIE5HL65.js.map
+//# sourceMappingURL=chunk-H6BVQRKW.js.map

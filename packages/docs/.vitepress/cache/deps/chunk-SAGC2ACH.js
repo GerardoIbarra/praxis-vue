@@ -3,7 +3,7 @@ import {
   GardState,
   Transaction,
   findClusterBreak
-} from "./chunk-WECCLQBO.js";
+} from "./chunk-WDUOLHZY.js";
 import {
   ChangeSet,
   Elt,
@@ -14,10 +14,10 @@ import {
   Pos,
   ValidationError,
   parse
-} from "./chunk-PIE5HL65.js";
+} from "./chunk-H6BVQRKW.js";
 import {
   __publicField
-} from "./chunk-V6TY7KAL.js";
+} from "./chunk-UVKRO5ER.js";
 
 // ../../node_modules/.pnpm/wordgard@0.3.1/node_modules/wordgard/dist/phrases.js
 var phraseOverride = GardState.Facet.define({
@@ -1879,10 +1879,6 @@ var Menu = function(Menu2) {
 }({});
 
 export {
-  PhraseSet,
-  phrases,
-  imagePhrases,
-  colorNames,
   Paragraph,
   Heading,
   CodeBlock,
@@ -1912,6 +1908,10 @@ export {
   BackgroundColor,
   Doc,
   InlineDoc,
+  PhraseSet,
+  phrases,
+  imagePhrases,
+  colorNames,
   Command,
   liftEmptyBlock,
   splitTextblock,
@@ -1963,4 +1963,4 @@ export {
   redo,
   Menu
 };
-//# sourceMappingURL=chunk-PEBEQJNN.js.map
+//# sourceMappingURL=chunk-SAGC2ACH.js.map

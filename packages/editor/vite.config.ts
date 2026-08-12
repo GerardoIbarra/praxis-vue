@@ -16,7 +16,7 @@ export default defineConfig({
         globals: {
           vue: 'Vue',
         },
-        assetFileNames: (assetInfo) => {
+        assetFileNames: (assetInfo: any) => {
           if (assetInfo.name === 'style.css') return 'style.css'
           return assetInfo.name ?? 'asset'
         },

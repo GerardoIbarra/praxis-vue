@@ -22,10 +22,10 @@ import {
   PxDataTable,
   PxStepNavigation,
   type NavListItem
-} from 'px-vue-ui'
+} from 'praxis-vue-ui'
 import { Home, Settings, Star } from '@lucide/vue'
 
-import { PxEditor } from 'px-vue-editor'
+import { PxEditor } from 'praxis-vue-editor'
 
 // State variables for examples
 const time = ref('14:30')

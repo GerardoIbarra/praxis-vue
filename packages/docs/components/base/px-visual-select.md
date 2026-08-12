@@ -20,36 +20,36 @@ const colorOptions = [
 
 # PxVisualSelect
 
-Un componente select unificado que muestra elementos visuales como iconos de usuario o cuadros de color junto a las opciones. Útil para asignar equipos o etiquetas de colores.
+A unified select component that displays visual elements like user icons or color swatches next to options. Useful for assigning teams or color labels.
 
-## Demostración
+## Demonstration
 
 <div class="p-6 border rounded-lg bg-gray-50 flex gap-4">
   <div class="w-1/2">
-    <label class="block mb-2 font-medium text-sm">Seleccionar Equipo (variant="group")</label>
+    <label class="block mb-2 font-medium text-sm">Select Team (variant="group")</label>
     <PxVisualSelect
       v-model="selectedGroup"
       :options="groupOptions"
       variant="group"
       label="name"
-      placeholder="Elige un equipo"
+      placeholder="Choose a team"
     />
-    <p class="mt-2 text-sm text-gray-500">Valor seleccionado: {{ selectedGroup }}</p>
+    <p class="mt-2 text-sm text-gray-500">Selected value: {{ selectedGroup }}</p>
   </div>
   <div class="w-1/2">
-    <label class="block mb-2 font-medium text-sm">Seleccionar Color (variant="color")</label>
+    <label class="block mb-2 font-medium text-sm">Select Color (variant="color")</label>
     <PxVisualSelect
       v-model="selectedColor"
       :options="colorOptions"
       variant="color"
       label="name"
-      placeholder="Elige un color"
+      placeholder="Choose a color"
     />
-    <p class="mt-2 text-sm text-gray-500">Valor seleccionado: {{ selectedColor }}</p>
+    <p class="mt-2 text-sm text-gray-500">Selected value: {{ selectedColor }}</p>
   </div>
 </div>
 
-## Uso Básico
+## Basic Usage
 
 ```vue
 <script setup lang="ts">
@@ -70,14 +70,14 @@ const options = [
     :options="options"
     variant="group"
     label="name"
-    placeholder="Selecciona una opción"
+    placeholder="Select an option"
   />
 </template>
 ```
 
-## Variantes Visuales
+## Visual Variants
 
-Usa la propiedad `variant` para cambiar la presentación visual de las opciones:
+Use the `variant` prop to change the visual presentation of the options:
 
-- `group`: Muestra un icono de "Usuarios". (Por defecto)
-- `color`: Muestra un cuadro de color (requiere que cada objeto opción tenga una propiedad `color` con valor hexadecimal o nombre de color CSS válido).
+- `group`: Displays a "Users" icon. (Default)
+- `color`: Displays a color swatch (requires each option object to have a `color` property with a valid hexadecimal or CSS color name).

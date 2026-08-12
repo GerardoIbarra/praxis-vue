@@ -3,25 +3,25 @@ import { ref } from 'vue'
 import { PxEditor } from 'praxis-vue-editor'
 import 'praxis-vue-editor/dist/praxis-editor.css'
 
-const content = ref('<p>Empieza a escribir aquí...</p>')
+const content = ref('<p>Start typing here...</p>')
 </script>
 
 # Praxis Editor
 
-El `PxEditor` es un editor de texto enriquecido basado en Vue, utilizando Tiptap/ProseMirror debajo. Ofrece una interfaz premium con soporte para múltiples formatos, atajos de teclado y tema oscuro.
+The `PxEditor` is a rich-text editor based on Vue, using Tiptap/ProseMirror underneath. It offers a premium interface with support for multiple formats, keyboard shortcuts, and dark theme.
 
-## Demostración
+## Demonstration
 
 <ClientOnly>
   <div class="my-6 border rounded-xl overflow-hidden shadow-sm bg-white dark:bg-slate-900">
     <PxEditor v-model="content" />
   </div>
-  <p class="text-sm text-gray-500 mt-2">Prueba escribiendo algo en el editor interactivo de arriba. Soporta negritas (Ctrl+B), cursivas (Ctrl+I), y comandos mediante `/`.</p>
+  <p class="text-sm text-gray-500 mt-2">Try typing something in the interactive editor above. It supports bold (Ctrl+B), italic (Ctrl+I), and slash commands `/`.</p>
 </ClientOnly>
 
-## Uso Básico
+## Basic Usage
 
-Asegúrate de tener el paquete `praxis-vue-editor` instalado.
+Make sure you have the `praxis-vue-editor` package installed.
 
 ```vue
 <script setup lang="ts">
@@ -29,7 +29,7 @@ import { ref } from 'vue'
 import { PxEditor } from 'praxis-vue-editor'
 import 'praxis-vue-editor/dist/praxis-editor.css'
 
-const content = ref('<p>Empieza a escribir aquí...</p>')
+const content = ref('<p>Start typing here...</p>')
 </script>
 
 <template>
@@ -41,15 +41,15 @@ const content = ref('<p>Empieza a escribir aquí...</p>')
 
 ## Props
 
-| Prop | Tipo | Por defecto | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `modelValue` | `string` | `""` | El contenido en formato HTML del editor. Úsalo con `v-model`. |
-| `placeholder` | `string` | `"Type '/' for commands"` | Texto de fondo cuando el editor está vacío. |
-| `editable` | `boolean` | `true` | Determina si el usuario puede modificar el contenido. |
-| `minHeight` | `string` | `"200px"` | Altura mínima del contenedor de escritura. |
+| `modelValue` | `string` | `""` | The HTML content of the editor. Use with `v-model`. |
+| `placeholder` | `string` | `"Type '/' for commands"` | Placeholder text when the editor is empty. |
+| `editable` | `boolean` | `true` | Determines if the user can modify the content. |
+| `minHeight` | `string` | `"200px"` | Minimum height of the writing container. |
 
-## Eventos
+## Events
 
-- `@update:modelValue`: Emitido cuando el contenido cambia. Devuelve el HTML como string.
-- `@focus`: Emitido cuando el editor obtiene el foco.
-- `@blur`: Emitido cuando el editor pierde el foco.
+- `@update:modelValue`: Emitted when the content changes. Returns the HTML as a string.
+- `@focus`: Emitted when the editor gains focus.
+- `@blur`: Emitted when the editor loses focus.

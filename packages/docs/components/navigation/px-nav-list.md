@@ -8,12 +8,12 @@ const menu = ref([
   { label: 'Dashboard', icon: Home, to: '/dashboard' },
   { label: 'Users', icon: Users, to: '/users' },
   {
-    label: 'Configuración',
+    label: 'Settings',
     icon: Settings,
     key: 'config',
     items: [
-      { label: 'Perfil', to: '/profile' },
-      { label: 'Seguridad', to: '/security' }
+      { label: 'Profile', to: '/profile' },
+      { label: 'Security', to: '/security' }
     ]
   }
 ])
@@ -21,11 +21,11 @@ const menu = ref([
 
 # Praxis Nav List
 
-El componente `PxNavList` es una lista de navegación colapsable, comúnmente utilizada en barras laterales (sidebars). Renderiza elementos de menú, enlaces agrupados (con un nivel de profundidad) y separadores, incluyendo resaltado de la ruta activa.
+The `PxNavList` component is a collapsible navigation list, commonly used in sidebars. It renders menu items, grouped links (with one level of depth), and separators, including active route highlighting.
 
-## Uso Básico
+## Basic Usage
 
-El componente espera un modelo de datos (`NavListItem[]`) para renderizar los enlaces. No tiene una opinión sobre enrutamiento o autenticación, por lo que debes pasarle los items ya filtrados.
+The component expects a data model (`NavListItem[]`) to render the links. It has no opinion on routing or authentication, so you must pass it the already filtered items.
 
 <ComponentDemo>
   <div class="w-full max-w-sm border-r h-[500px] p-2 bg-white dark:bg-slate-900 border rounded-lg shadow-sm">
@@ -45,12 +45,12 @@ const menu = ref([
   { label: 'Dashboard', icon: Home, to: '/dashboard' },
   { label: 'Users', icon: Users, to: '/users' },
   {
-    label: 'Configuración',
+    label: 'Settings',
     icon: Settings,
     key: 'config',
     items: [
-      { label: 'Perfil', to: '/profile' },
-      { label: 'Seguridad', to: '/security' }
+      { label: 'Profile', to: '/profile' },
+      { label: 'Security', to: '/security' }
     ]
   }
 ])
@@ -68,13 +68,13 @@ const menu = ref([
 
 ## Props
 
-| Prop | Tipo | Por defecto | Descripción |
+| Prop | Type | Default | Description |
 |---|---|---|---|
-| `model` | `NavListItem[]` | Obligatorio | El arreglo de elementos que conforman el menú. |
-| `collapsed` | `boolean` | `false` | Define si el menú se muestra en modo reducido (sólo iconos). |
-| `activePath` | `string` | `""` | Ruta actual, se usa para resaltar el enlace activo y auto-expandir su grupo. |
-| `linkComponent` | `string \| Component` | `"a"` | Etiqueta o componente a usar para renderizar los enlaces (ej. `RouterLink`). |
+| `model` | `NavListItem[]` | Required | The array of items that make up the menu. |
+| `collapsed` | `boolean` | `false` | Defines whether the menu is shown in collapsed mode (icons only). |
+| `activePath` | `string` | `""` | Current path, used to highlight the active link and auto-expand its group. |
+| `linkComponent` | `string \| Component` | `"a"` | Tag or component to use to render the links (e.g. `RouterLink`). |
 
-## Eventos
+## Events
 
-- `@select`: Emitido cuando el usuario hace clic en un elemento de navegación. Recibe el objeto `NavListItem` seleccionado.
+- `@select`: Emitted when the user clicks a navigation item. Receives the selected `NavListItem` object.

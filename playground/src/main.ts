@@ -3,8 +3,8 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 
 import './style.css'
-import 'px-vue-ui/dist/px-vue.css'
-import 'px-vue-editor/dist/px-editor.css'
+import 'praxis-vue-ui/dist/praxis-vue.css'
+import 'praxis-vue-editor/dist/praxis-editor.css'
 
 const app = createApp(App)
 const pinia = createPinia()

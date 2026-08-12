@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "description": "Monorepo for praxis-vue-ui component library",
   "scripts": {
+    "postinstall": "pnpm run build:editor",
     "build": "pnpm -r build",
     "build:ui": "pnpm --filter praxis-vue-ui build",
     "build:editor": "pnpm --filter praxis-vue-editor build",

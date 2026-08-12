@@ -67,6 +67,9 @@ importers:
       '@lucide/vue':
         specifier: ^1.27.0
         version: 1.30.0(vue@3.5.41(typescript@7.0.2))
+      '@praxis/editor':
+        specifier: workspace:*
+        version: link:../editor
       '@vercel/analytics':
         specifier: ^2.0.1
         version: 2.0.1(react@19.2.8)(vue@3.5.41(typescript@7.0.2))

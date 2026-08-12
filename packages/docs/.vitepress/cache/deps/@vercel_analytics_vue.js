@@ -16,7 +16,7 @@ import {
 } from "./chunk-S6VNSOLG.js";
 import {
   __publicField
-} from "./chunk-UVKRO5ER.js";
+} from "./chunk-V6TY7KAL.js";
 
 // ../../node_modules/.pnpm/nostics@1.2.0/node_modules/nostics/dist/index.mjs
 function formatDiagnostic(diagnostic) {
@@ -126,7 +126,7 @@ function defineDiagnostics(options) {
   return result;
 }
 
-// ../../node_modules/.pnpm/vue-router@5.2.0_@vue+compi_45efe40b4f1f7ab1194e937bbb22638e/node_modules/vue-router/dist/useApi-CROJJdhE.js
+// ../../node_modules/.pnpm/vue-router@5.2.0_@vue+compi_363b19b43f87dc2a41b3a8878bf384a6/node_modules/vue-router/dist/useApi-CROJJdhE.js
 var assign = Object.assign;
 var noop = () => {
 };
@@ -3973,7 +3973,7 @@ var _a25;
 (_a25 = target).__VUE_DEVTOOLS_KIT_BROADCAST_RPC_SERVER__ ?? (_a25.__VUE_DEVTOOLS_KIT_BROADCAST_RPC_SERVER__ = null);
 var MAX_SERIALIZED_SIZE = 2 * 1024 * 1024;
 
-// ../../node_modules/.pnpm/vue-router@5.2.0_@vue+compi_45efe40b4f1f7ab1194e937bbb22638e/node_modules/vue-router/dist/devtools-Bpr7ZAVB.js
+// ../../node_modules/.pnpm/vue-router@5.2.0_@vue+compi_363b19b43f87dc2a41b3a8878bf384a6/node_modules/vue-router/dist/devtools-Bpr7ZAVB.js
 var isBrowser2 = typeof document !== "undefined";
 function isSameRouteRecord(a, b) {
   return (a.aliasOf || a) === (b.aliasOf || b);
@@ -3993,7 +3993,7 @@ function isRouteLocation(route) {
   return typeof route === "string" || route && typeof route === "object";
 }
 
-// ../../node_modules/.pnpm/vue-router@5.2.0_@vue+compi_45efe40b4f1f7ab1194e937bbb22638e/node_modules/vue-router/dist/vue-router.js
+// ../../node_modules/.pnpm/vue-router@5.2.0_@vue+compi_363b19b43f87dc2a41b3a8878bf384a6/node_modules/vue-router/dist/vue-router.js
 function useLink(props) {
   const router = inject(routerKey);
   const currentRoute = inject(routeLocationKey);

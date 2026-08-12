@@ -39,8 +39,8 @@ const emit = defineEmits(['update:modelValue', 'focus', 'blur']);
 
 const editorContainer = ref<HTMLElement | null>(null);
 let editorInstance: Wordgard | null = null;
-let isUpdatingFromProp = false;
-let isInternalUpdate = false;
+let lastEmittedHtml = '';
+let emitTimeout: any = null;
 
 const buildConfig = () => {
   const config: any[] = [
@@ -74,28 +74,24 @@ const buildConfig = () => {
   // Update listener to emit changes and handle focus/blur
   config.push(
     Wordgard.updateListener.of((update: any) => {
-      if (isUpdatingFromProp) return;
-
       if (update.docChanged) {
-        // Use Promise to escape the editor's synchronous flush phase
-        Promise.resolve().then(() => {
+        // Use setTimeout to escape the editor's synchronous flush phase and avoid microtask loops
+        if (emitTimeout) clearTimeout(emitTimeout);
+        emitTimeout = setTimeout(() => {
           const html = serialize(update.state.doc).toHTML();
-          isInternalUpdate = true;
+          lastEmittedHtml = html;
           emit('update:modelValue', html);
-          nextTick(() => {
-            isInternalUpdate = false;
-          });
-        });
+        }, 0);
       }
 
       if (update.focusChanged) {
-        Promise.resolve().then(() => {
+        setTimeout(() => {
           if (update.editor.hasFocus()) {
             emit('focus');
           } else {
             emit('blur');
           }
-        });
+        }, 0);
       }
     })
   );
@@ -147,15 +143,12 @@ const reinitEditor = (content?: string) => {
 
 watch(() => props.modelValue, (newVal) => {
   if (!editorInstance) return;
-  if (isInternalUpdate) return;
+  if (newVal === lastEmittedHtml) return;
   
   const currentVal = serialize(editorInstance.state.doc).toHTML();
-  if (newVal !== currentVal) {
-    isUpdatingFromProp = true;
+  // Don't reinit if the only difference is the editor's empty paragraph normalization
+  if (newVal !== currentVal && newVal !== (currentVal === '<p></p>' ? '' : currentVal)) {
     reinitEditor(newVal);
-    nextTick(() => {
-      isUpdatingFromProp = false;
-    });
   }
 });
 
@@ -387,31 +380,47 @@ wg-menu-spacer {
 }
 
 /* Dark mode theme support */
-:global(.dark) .praxis-editor-wrapper,
+html.dark .praxis-editor-wrapper,
 .dark .praxis-editor-wrapper {
-  --bg-editor: #1e1e2e;
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-focus: #6366f1;
-  --bg-toolbar: rgba(30, 30, 46, 0.8);
-  --text-color: #cdd6f4;
-  --text-muted: #a6adc8;
-  --hover-btn: rgba(255, 255, 255, 0.08);
-  --active-btn: rgba(99, 102, 241, 0.2);
-  --active-text: #818cf8;
+  --bg-editor: #1e1e2e !important;
+  --border-color: rgba(255, 255, 255, 0.08) !important;
+  --border-focus: #6366f1 !important;
+  --bg-toolbar: rgba(30, 30, 46, 0.8) !important;
+  --text-color: #cdd6f4 !important;
+  --text-muted: #a6adc8 !important;
+  --hover-btn: rgba(255, 255, 255, 0.08) !important;
+  --active-btn: rgba(99, 102, 241, 0.2) !important;
+  --active-text: #818cf8 !important;
 }
 
-:global(.dark) wg-content h1, 
-:global(.dark) wg-content h2, 
-:global(.dark) wg-content h3,
+html.dark .praxis-editor-wrapper button.wg-menu-button,
+.dark .praxis-editor-wrapper button.wg-menu-button {
+  color: #cdd6f4 !important;
+}
+
+html.dark .praxis-editor-wrapper svg.wg-icon,
+.dark .praxis-editor-wrapper svg.wg-icon {
+  fill: #cdd6f4 !important;
+}
+
+html.dark .praxis-editor-wrapper wg-menubar,
+.dark .praxis-editor-wrapper wg-menubar {
+  background: rgba(30, 30, 46, 0.8) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark wg-content h1, 
+html.dark wg-content h2, 
+html.dark wg-content h3,
 .dark wg-content h1, 
 .dark wg-content h2, 
 .dark wg-content h3 {
-  color: #f5c2e7;
+  color: #f5c2e7 !important;
 }
 
-:global(.dark) wg-menu-list,
+html.dark wg-menu-list,
 .dark wg-menu-list {
-  background: #252538;
-  border-color: rgba(255, 255, 255, 0.08);
+  background: #252538 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 </style>

@@ -2,9 +2,9 @@
 import UiAccordion from '@praxis/ui-src/components/_primitives/UiAccordion.vue'
 
 const panels = [
-  { value: 'info', header: 'Patient Information', content: 'Name, DOB, ID...' },
-  { value: 'contact', header: 'Contact Details', content: 'Phone, Email...' },
-  { value: 'medical', header: 'Medical History', content: 'Diagnoses...' },
+  { value: 'info', header: 'User Information', content: 'Name, Email, Role...' },
+  { value: 'contact', header: 'Contact Details', content: 'Phone, Address...' },
+  { value: 'history', header: 'Account History', content: 'Past transactions...' },
 ]
 </script>
 
@@ -26,9 +26,9 @@ A collapsible accordion component. Renders one or more panels that expand/collap
 import { UiAccordion } from 'praxis-vue-ui'
 
 const panels = [
-  { value: 'info', header: 'Patient Information', content: 'Name, DOB, ID...' },
-  { value: 'contact', header: 'Contact Details', content: 'Phone, Email...' },
-  { value: 'medical', header: 'Medical History', content: 'Diagnoses...' },
+  { value: 'info', header: 'User Information', content: 'Name, Email, Role...' },
+  { value: 'contact', header: 'Contact Details', content: 'Phone, Address...' },
+  { value: 'history', header: 'Account History', content: 'Past transactions...' },
 ]
 </script>
 
@@ -45,10 +45,10 @@ Or with slot-based content:
 <ComponentDemo title="Slots">
   <div style="width: 100%; max-width: 400px;">
     <UiAccordion>
-      <template #header>Patient Information</template>
+      <template #header>User Information</template>
       <div style="padding: 1rem; color: var(--vp-c-text-2);">
         <p>Name: Alice Johnson</p>
-        <p>DOB: 1985-03-15</p>
+        <p>Role: Administrator</p>
       </div>
     </UiAccordion>
   </div>
@@ -57,9 +57,9 @@ Or with slot-based content:
 
 ```vue
 <UiAccordion>
-  <template #header>Patient Information</template>
+  <template #header>User Information</template>
   <p>Name: Alice Johnson</p>
-  <p>DOB: 1985-03-15</p>
+  <p>Role: Administrator</p>
 </UiAccordion>
 ```
 

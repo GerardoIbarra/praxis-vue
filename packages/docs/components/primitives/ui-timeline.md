@@ -1,25 +1,25 @@
 <script setup>
 import UiTimeline from '@praxis/ui-src/components/_primitives/UiTimeline.vue'
-import { UserPlus, Calendar, FlaskConical } from '@lucide/vue'
+import { UserPlus, Calendar, CheckCircle } from '@lucide/vue'
 
 const events = [
   {
     date: '2024-01-15',
-    title: 'Patient Registered',
+    title: 'Account Created',
     description: 'Initial registration completed.',
     icon: UserPlus,
   },
   {
     date: '2024-02-01',
-    title: 'First Appointment',
-    description: 'Consultation with Dr. Smith.',
+    title: 'Onboarding Call',
+    description: 'Initial setup and walkthrough.',
     icon: Calendar,
   },
   {
     date: '2024-03-10',
-    title: 'Lab Results',
-    description: 'Blood work results reviewed.',
-    icon: FlaskConical,
+    title: 'Profile Completed',
+    description: 'All required information provided.',
+    icon: CheckCircle,
   },
 ]
 </script>
@@ -40,26 +40,26 @@ A vertical timeline component for displaying chronological events. Each item ren
 ```vue
 <script setup>
 import { UiTimeline } from 'praxis-vue-ui'
-import { UserPlus, Calendar, FlaskConical } from '@lucide/vue'
+import { UserPlus, Calendar, CheckCircle } from '@lucide/vue'
 
 const events = [
   {
     date: '2024-01-15',
-    title: 'Patient Registered',
+    title: 'Account Created',
     description: 'Initial registration completed.',
     icon: UserPlus,
   },
   {
     date: '2024-02-01',
-    title: 'First Appointment',
-    description: 'Consultation with Dr. Smith.',
+    title: 'Onboarding Call',
+    description: 'Initial setup and walkthrough.',
     icon: Calendar,
   },
   {
     date: '2024-03-10',
-    title: 'Lab Results',
-    description: 'Blood work results reviewed.',
-    icon: FlaskConical,
+    title: 'Profile Completed',
+    description: 'All required information provided.',
+    icon: CheckCircle,
   },
 ]
 </script>

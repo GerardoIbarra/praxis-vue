@@ -39,7 +39,7 @@ createApp(App)
 
 ```vue
 <script setup>
-import { BaseAvatar, DynamicForm, TabComponent } from 'praxis-vue-ui'
+import { BaseAvatar, PraxisDynamicForm, PraxisTabComponent } from 'praxis-vue-ui'
 </script>
 ```
 
@@ -100,11 +100,11 @@ const content = ref('<p>Hello world</p>')
 
 | Category | Components |
 |---|---|
-| **Base** | `BaseAvatar`, `UiAvatar`, `AvatarSelect`, `ColorPickerField`, `ColorSelect`, `GroupedMultiSelect`, `GroupSelect`, `PhoneNumber`, `UiLabel`, `RequiredLabel`, `ThemeToggle`, `FullPageLoader`, `LazyLoadingSpinner` |
-| **Forms** | `DynamicForm`, `CheckListField`, `CheckListInputField`, `InfiniteScrollSelect`, `SelectListField`, `SelectableList`, `SelectableListWithTable`, `WeekDaysSelector`, `ModalInput`, `FormFieldRow`, `FormMultiSelectList`, `UiTimePicker` |
-| **Data Display** | `BaseDataTable`, `BaseTree`, `PdfViewer`, `InitialsAvatar`, `ProfileInfoField`, `DisplayOptions`, `BadgedValueGrid`, `LabeledValueSection`, `ExistingDataTable` |
-| **Layout** | `ColumnLayout`, `DashboardCard`, `FormHeader`, `PageHeader`, `ListViewWrapper`, `ListHeader`, `CardFilterContainer`, `FormViewWrapper` |
-| **Navigation** | `TabComponent`, `StepNavigation`, `StepHeader`, `ActionMenu`, `NavList` |
+| **Base** | `BaseAvatar`, `UiAvatar`, `PraxisAvatarSelect`, `PraxisColorPickerField`, `PraxisColorSelect`, `PraxisGroupedMultiSelect`, `PraxisGroupSelect`, `PraxisPhoneNumber`, `UiLabel`, `PraxisRequiredLabel`, `PraxisThemeToggle`, `PraxisFullPageLoader`, `PraxisLazyLoadingSpinner` |
+| **Forms** | `PraxisDynamicForm`, `PraxisCheckListField`, `PraxisCheckListInputField`, `PraxisInfiniteScrollSelect`, `PraxisSelectListField`, `PraxisSelectableList`, `PraxisSelectableListWithTable`, `PraxisWeekDaysSelector`, `PraxisModalInput`, `PraxisFormFieldRow`, `PraxisFormMultiSelectList`, `UiTimePicker` |
+| **Data Display** | `BaseDataTable`, `BaseTree`, `PraxisPdfViewer`, `PraxisInitialsAvatar`, `PraxisProfileInfoField`, `PraxisDisplayOptions`, `PraxisBadgedValueGrid`, `PraxisLabeledValueSection`, `PraxisExistingDataTable` |
+| **Layout** | `PraxisColumnLayout`, `PraxisDashboardCard`, `PraxisFormHeader`, `PraxisPageHeader`, `PraxisListViewWrapper`, `PraxisListHeader`, `PraxisCardFilterContainer`, `PraxisFormViewWrapper` |
+| **Navigation** | `PraxisTabComponent`, `PraxisStepNavigation`, `PraxisStepHeader`, `PraxisActionMenu`, `PraxisNavList` |
 | **Primitives** | `UiAccordion`, `UiBadge`, `UiCheckbox`, `UiDialog`, `UiDrawer`, `UiRadioButton`, `UiTimeline` |
 
 ### Composables

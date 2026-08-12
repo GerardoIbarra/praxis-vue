@@ -5,19 +5,19 @@ import BaseTree from '@praxis/ui-src/components/data-display/BaseTree.vue'
 const nodes = ref([
   {
     key: '1',
-    label: 'Cardiology',
+    label: 'Engineering',
     has_children: true,
     children: [
-      { key: '2', label: 'Pediatric Cardiology', has_children: false },
-      { key: '3', label: 'Interventional Cardiology', has_children: false },
+      { key: '2', label: 'Frontend Engineering', has_children: false },
+      { key: '3', label: 'Backend Engineering', has_children: false },
     ]
   },
   {
     key: '4',
-    label: 'Neurology',
+    label: 'Design',
     has_children: true,
     children: [
-      { key: '5', label: 'Clinical Neurology', has_children: false },
+      { key: '5', label: 'Product Design', has_children: false },
     ]
   },
 ])
@@ -52,19 +52,19 @@ import { BaseTree } from 'praxis-vue-ui'
 const nodes = ref([
   {
     key: '1',
-    label: 'Cardiology',
+    label: 'Engineering',
     has_children: true,
     children: [
-      { key: '2', label: 'Pediatric Cardiology', has_children: false },
-      { key: '3', label: 'Interventional Cardiology', has_children: false },
+      { key: '2', label: 'Frontend Engineering', has_children: false },
+      { key: '3', label: 'Backend Engineering', has_children: false },
     ]
   },
   {
     key: '4',
-    label: 'Neurology',
+    label: 'Design',
     has_children: true,
     children: [
-      { key: '5', label: 'Clinical Neurology', has_children: false },
+      { key: '5', label: 'Product Design', has_children: false },
     ]
   },
 ])

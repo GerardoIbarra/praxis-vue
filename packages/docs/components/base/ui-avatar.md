@@ -156,7 +156,7 @@ import { UiAvatar } from 'praxis-vue-ui'
 
 ## Deprecated Components
 
-`BaseAvatar` and `InitialsAvatar` are kept for backward compatibility but internally delegate to `UiAvatar`. Migrate when convenient:
+`BaseAvatar` and `PraxisInitialsAvatar` are kept for backward compatibility but internally delegate to `UiAvatar`. Migrate when convenient:
 
 ```diff
 - import { BaseAvatar } from 'praxis-vue-ui'

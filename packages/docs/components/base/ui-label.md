@@ -63,14 +63,14 @@ import { UiLabel } from 'praxis-vue-ui'
 - The asterisk (`*`) has `aria-hidden="true"` so screen readers don't read it as literal punctuation. Required state should still be communicated via `aria-required` on the input.
 - Clicking the label focuses the associated input automatically (native browser behavior).
 
-## Migration from RequiredLabel
+## Migration from PraxisRequiredLabel
 
-`RequiredLabel` is now deprecated. Replace it with `UiLabel`:
+`PraxisRequiredLabel` is now deprecated. Replace it with `UiLabel`:
 
 ```diff
-- import { RequiredLabel } from 'praxis-vue-ui'
+- import { PraxisRequiredLabel } from 'praxis-vue-ui'
 + import { UiLabel } from 'praxis-vue-ui'
 
-- <RequiredLabel label="Name" :required="true" />
+- <PraxisRequiredLabel label="Name" :required="true" />
 + <UiLabel label="Name" for="name-input" :required="true" />
 ```

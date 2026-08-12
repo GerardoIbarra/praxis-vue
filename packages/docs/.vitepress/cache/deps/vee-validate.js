@@ -22,7 +22,7 @@ import {
   watch,
   watchEffect
 } from "./chunk-S6VNSOLG.js";
-import "./chunk-UVKRO5ER.js";
+import "./chunk-XGM4GKIC.js";
 
 // ../../node_modules/.pnpm/vee-validate@4.15.1_vue@3.5.41_typescript@7.0.2_/node_modules/vee-validate/dist/vee-validate.mjs
 function isCallable(fn) {

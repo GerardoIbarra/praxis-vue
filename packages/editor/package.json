@@ -2,7 +2,14 @@
   "name": "praxis-vue-editor",
   "version": "0.1.1",
   "description": "A premium Vue 3 rich-text editor component powered by Wordgard.",
-  "keywords": ["vue", "vue3", "editor", "rich-text", "wordgard", "typescript"],
+  "keywords": [
+    "vue",
+    "vue3",
+    "editor",
+    "rich-text",
+    "wordgard",
+    "typescript"
+  ],
   "license": "MIT",
   "type": "module",
   "main": "./dist/praxis-editor.umd.cjs",
@@ -17,7 +24,9 @@
     "./dist/praxis-editor.css": "./dist/praxis-editor.css",
     "./style.css": "./dist/praxis-editor.css"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "vite build",
     "type-check": "vue-tsc --noEmit",
@@ -28,9 +37,11 @@
     "wordgard": "*"
   },
   "devDependencies": {
+    "@types/node": "^26.2.0",
     "@vitejs/plugin-vue": "^6.0.8",
     "typescript": "^6.0.3",
     "vite": "^8.1.5",
+    "vite-plugin-dts": "^5.0.3",
     "vue": "^3.5.40",
     "vue-tsc": "^3.3.8"
   },

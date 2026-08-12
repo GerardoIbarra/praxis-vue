@@ -393,7 +393,7 @@ onMounted(() => {
                   :model="navListMenu"
                   :collapsed="navListCollapsed"
                   :active-path="navListActivePath"
-                  @select="(item) => (navListActivePath = item.to || navListActivePath)"
+                  @select="(item: any) => (navListActivePath = item.to || navListActivePath)"
                 >
                   <template #footer>
                     <button

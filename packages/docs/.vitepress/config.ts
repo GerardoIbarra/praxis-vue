@@ -73,9 +73,8 @@ export default withPwa(defineConfig({
           { text: 'Ui Avatar', link: '/components/base/ui-avatar' },
           { text: 'Ui Label', link: '/components/base/ui-label' },
           { text: 'Praxis Color Picker', link: '/components/base/praxis-color-picker-field' },
-          { text: 'Praxis Color Select', link: '/components/base/praxis-color-select' },
+          { text: 'Praxis Visual Select', link: '/components/base/praxis-visual-select' },
           { text: 'Praxis Full Page Loader', link: '/components/base/praxis-full-page-loader' },
-          { text: 'Praxis Group Select', link: '/components/base/praxis-group-select' },
           { text: 'Praxis Grouped Multi Select', link: '/components/base/praxis-grouped-multi-select' },
           { text: 'Praxis Lazy Loading Spinner', link: '/components/base/praxis-lazy-loading-spinner' },
           { text: 'Praxis Phone Number', link: '/components/base/praxis-phone-number' },
@@ -90,6 +89,7 @@ export default withPwa(defineConfig({
           { text: 'Praxis Step Header', link: '/components/navigation/praxis-step-header' },
           { text: 'Praxis Step Navigation', link: '/components/navigation/praxis-step-navigation' },
           { text: 'Praxis Tab', link: '/components/navigation/praxis-tab-component' },
+          { text: 'Praxis Nav List', link: '/components/navigation/praxis-nav-list' },
         ],
       },
       {
@@ -126,6 +126,13 @@ export default withPwa(defineConfig({
           { text: 'Ui Drawer', link: '/components/primitives/ui-drawer' },
           { text: 'Ui Radio Button', link: '/components/primitives/ui-radio-button' },
           { text: 'Ui Timeline', link: '/components/primitives/ui-timeline' },
+        ],
+      },
+      {
+        text: 'Editor',
+        collapsed: false,
+        items: [
+          { text: 'Praxis Editor', link: '/components/editor/praxis-editor' },
         ],
       },
     ],

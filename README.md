@@ -103,7 +103,7 @@ const content = ref('<p>Hello world</p>')
 | **Base** | `BaseAvatar`, `UiAvatar`, `PraxisAvatarSelect`, `PraxisColorPickerField`, `PraxisVisualSelect`, `PraxisGroupedMultiSelect`, `PraxisPhoneNumber`, `UiLabel`, `PraxisRequiredLabel`, `PraxisThemeToggle`, `PraxisFullPageLoader`, `PraxisLazyLoadingSpinner` |
 | **Forms** | `PraxisDynamicForm`, `PraxisCheckListField`, `PraxisCheckListInputField`, `PraxisInfiniteScrollSelect`, `PraxisSelectListField`, `PraxisSelectableList`, `PraxisSelectableListWithTable`, `PraxisWeekDaysSelector`, `PraxisModalInput`, `PraxisFormFieldRow`, `PraxisFormMultiSelectList`, `UiTimePicker` |
 | **Data Display** | `BaseDataTable`, `BaseTree`, `PraxisPdfViewer`, `PraxisInitialsAvatar`, `PraxisProfileInfoField`, `PraxisDisplayOptions`, `PraxisBadgedValueGrid`, `PraxisLabeledValueSection`, `PraxisExistingDataTable` |
-| **Layout** | `PraxisColumnLayout`, `PraxisDashboardCard`, `PraxisFormHeader`, `PraxisPageHeader`, `PraxisListViewWrapper`, `PraxisListHeader`, `PraxisCardFilterContainer`, `PraxisFormViewWrapper` |
+| **Layout** | `PraxisColumnLayout`, `PraxisDashboardCard`, `PraxisHeader`, `PraxisListViewWrapper`, `PraxisCardFilterContainer`, `PraxisFormViewWrapper` |
 | **Navigation** | `PraxisTabComponent`, `PraxisStepNavigation`, `PraxisStepHeader`, `PraxisActionMenu`, `PraxisNavList` |
 | **Primitives** | `UiAccordion`, `UiBadge`, `UiCheckbox`, `UiDialog`, `UiDrawer`, `UiRadioButton`, `UiTimeline` |
 

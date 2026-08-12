@@ -46,10 +46,8 @@ export { default as PraxisExistingDataTable } from './components/data-display/Pr
 // --- Layout ---
 export { default as PraxisColumnLayout } from './components/layout/PraxisColumnLayout.vue'
 export { default as PraxisDashboardCard } from './components/layout/PraxisDashboardCard.vue'
-export { default as PraxisFormHeader } from './components/layout/PraxisFormHeader.vue'
-export { default as PraxisPageHeader } from './components/layout/PraxisPageHeader.vue'
+export { default as PraxisHeader } from './components/layout/PraxisHeader.vue'
 export { default as PraxisListViewWrapper } from './components/layout/PraxisListViewWrapper.vue'
-export { default as PraxisListHeader } from './components/layout/PraxisListHeader.vue'
 export { default as PraxisCardFilterContainer } from './components/layout/PraxisCardFilterContainer.vue'
 export { default as PraxisFormViewWrapper } from './components/layout/PraxisFormViewWrapper.vue'
 

@@ -1,6 +1,6 @@
 <script setup>
 import PraxisFormViewWrapper from '@praxis/ui-src/components/layout/PraxisFormViewWrapper.vue'
-import PraxisFormHeader from '@praxis/ui-src/components/layout/PraxisFormHeader.vue'
+import PraxisHeader from '@praxis/ui-src/components/layout/PraxisHeader.vue'
 </script>
 
 # PraxisFormViewWrapper
@@ -12,7 +12,7 @@ A layout wrapper for form/detail pages. Wraps a form with consistent padding and
 <ComponentDemo>
   <div style="width: 100%; border: 1px dashed var(--vp-c-divider); border-radius: 8px;">
     <PraxisFormViewWrapper>
-      <PraxisFormHeader title="Project" :is-edit-mode="false" />
+      <PraxisHeader variant="form" title="Project" :is-edit-mode="false" />
       <div style="padding: 2rem; background: var(--vp-c-bg-soft); border-radius: 8px; margin-top: 1rem;">
         <p style="text-align: center; color: var(--vp-c-text-2);">Form content area</p>
       </div>
@@ -23,12 +23,12 @@ A layout wrapper for form/detail pages. Wraps a form with consistent padding and
 
 ```vue
 <script setup>
-import { PraxisFormViewWrapper, PraxisFormHeader, PraxisStepNavigation } from 'praxis-vue-ui'
+import { PraxisFormViewWrapper, PraxisHeader, PraxisStepNavigation } from 'praxis-vue-ui'
 </script>
 
 <template>
   <PraxisFormViewWrapper>
-    <PraxisFormHeader title="Project" :is-edit-mode="isEdit" />
+    <PraxisHeader variant="form" title="Project" :is-edit-mode="isEdit" />
 
     <form @submit.prevent="save">
       <!-- form fields -->

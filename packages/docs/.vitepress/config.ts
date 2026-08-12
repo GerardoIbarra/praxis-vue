@@ -107,9 +107,7 @@ export default withPwa(defineConfig({
         collapsed: false,
         items: [
           { text: 'Praxis Dashboard Card', link: '/components/layout/praxis-dashboard-card' },
-          { text: 'Praxis Form Header', link: '/components/layout/praxis-form-header' },
-          { text: 'Praxis Page Header', link: '/components/layout/praxis-page-header' },
-          { text: 'Praxis List Header', link: '/components/layout/praxis-list-header' },
+          { text: 'Praxis Header', link: '/components/layout/praxis-header' },
           { text: 'Praxis List View', link: '/components/layout/praxis-list-view-wrapper' },
           { text: 'Praxis Form View', link: '/components/layout/praxis-form-view-wrapper' },
           { text: 'Praxis Card Filter', link: '/components/layout/praxis-card-filter-container' },

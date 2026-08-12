@@ -1,6 +1,6 @@
 <script setup>
 import PraxisListViewWrapper from '@praxis/ui-src/components/layout/PraxisListViewWrapper.vue'
-import PraxisListHeader from '@praxis/ui-src/components/layout/PraxisListHeader.vue'
+import PraxisHeader from '@praxis/ui-src/components/layout/PraxisHeader.vue'
 import BaseDataTable from '@praxis/ui-src/components/data-display/BaseDataTable.vue'
 
 const items = [{ id: 1, name: 'John Doe' }]
@@ -17,11 +17,11 @@ A layout wrapper for list pages. Provides a consistent structure with header, fi
   <div style="width: 100%; border: 1px dashed var(--vp-c-divider); border-radius: 8px;">
     <PraxisListViewWrapper>
       <template #header>
-        <PraxisListHeader title="Projects">
+        <PraxisHeader variant="list" title="Projects">
           <template #actions>
-            <button class="input-base" style="padding: 0.5rem 1rem; cursor: pointer;">Add</button>
+            <button class="text-sm font-medium text-blue-600 dark:text-blue-400">View All</button>
           </template>
-        </PraxisListHeader>
+        </PraxisHeader>
       </template>
       <template #default>
         <div style="padding: 2rem; background: var(--vp-c-bg-soft); border-radius: 8px;">
@@ -35,7 +35,7 @@ A layout wrapper for list pages. Provides a consistent structure with header, fi
 
 ```vue
 <script setup>
-import { PraxisListViewWrapper, PraxisListHeader, BaseDataTable } from 'praxis-vue-ui'
+import { PraxisListViewWrapper, PraxisHeader, BaseDataTable } from 'praxis-vue-ui'
 
 const items = [{ id: 1, name: 'John Doe' }]
 const columns = [{ field: 'name', header: 'Name' }]
@@ -65,5 +65,5 @@ const columns = [{ field: 'name', header: 'Name' }]
 
 | Slot | Description |
 |------|-------------|
-| `header` | Page header area. Typically a `PraxisListHeader`. |
+| `header` | Page header area. Typically a `PraxisHeader` with variant="list". |
 | `default` | Main content area. Typically a `BaseDataTable`. |

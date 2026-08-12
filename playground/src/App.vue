@@ -10,18 +10,17 @@ import {
   UiTimePicker,
   UiBadge,
   UiAccordion,
+  PraxisLoader,
+  PraxisRequiredLabel,
+  PraxisSelectableList,
+  PraxisCheckListField,
+  PraxisNavList,
   PraxisTabComponent,
-  PraxisFullPageLoader,
   PraxisPhoneNumber,
   PraxisColorPickerField,
   PraxisPdfViewer,
   BaseDataTable,
   PraxisStepNavigation,
-  PraxisLazyLoadingSpinner,
-  PraxisRequiredLabel,
-  PraxisSelectableList,
-  PraxisCheckListField,
-  PraxisNavList,
   type NavListItem
 } from 'praxis-vue-ui'
 import { Home, Settings, Star } from '@lucide/vue'
@@ -179,7 +178,7 @@ onMounted(() => {
           </p>
         </header>
 
-        <PraxisFullPageLoader v-if="isLoading" />
+        <PraxisLoader v-if="isLoading" fullscreen message="Saving data..." subMessage="Please wait..." />
 
         <!-- Component Showcases -->
         <div class="flex flex-col gap-12">
@@ -239,7 +238,7 @@ onMounted(() => {
               </button>
 
               <div class="w-full max-w-md border border-surface-200 dark:border-surface-700 rounded-xl p-8 bg-surface-50 dark:bg-surface-800/50">
-                <PraxisLazyLoadingSpinner loadingText="Fetching data..." />
+                <PraxisLoader message="Fetching data..." />
               </div>
             </div>
           </ShowcaseSection>

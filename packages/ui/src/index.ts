@@ -15,8 +15,7 @@ export { default as PraxisPhoneNumber } from './components/base/PraxisPhoneNumbe
 export { default as UiLabel } from './components/base/UiLabel.vue'
 export { default as PraxisRequiredLabel } from './components/base/PraxisRequiredLabel.vue'
 export { default as PraxisThemeToggle } from './components/base/PraxisThemeToggle.vue'
-export { default as PraxisFullPageLoader } from './components/base/PraxisFullPageLoader.vue'
-export { default as PraxisLazyLoadingSpinner } from './components/base/PraxisLazyLoadingSpinner.vue'
+export { default as PraxisLoader } from './components/base/PraxisLoader.vue'
 
 // --- Forms ---
 export { default as PraxisDynamicForm } from './components/forms/PraxisDynamicForm.vue'

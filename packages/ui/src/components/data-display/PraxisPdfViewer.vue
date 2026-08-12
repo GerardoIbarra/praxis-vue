@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from "vue";
-import PraxisLazyLoadingSpinner from "@/components/base/PraxisLazyLoadingSpinner.vue";
+import PraxisLoader from "@/components/base/PraxisLoader.vue";
 import { Printer } from "@lucide/vue";
 
 let pdfjsLib: any = null;
@@ -140,7 +140,7 @@ const printPDF = async () => {
   <div class="flex gap-6 w-full" :style="{ height: props.height }">
     <div class="basis-2/4 p-3">
       <!-- Spinner de carga -->
-      <PraxisLazyLoadingSpinner v-if="loading" loading-text="Loading PDF..." />
+      <PraxisLoader v-if="loading" message="Loading PDF..." />
       <div v-show="!loading" ref="containerRef" class="pdf-wrapper"></div>
     </div>
     <div class="basis-2/4 p-3 relative">

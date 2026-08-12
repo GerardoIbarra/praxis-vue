@@ -40,6 +40,7 @@ const emit = defineEmits(['update:modelValue', 'focus', 'blur']);
 const editorContainer = ref<HTMLElement | null>(null);
 let editorInstance: Wordgard | null = null;
 let isUpdatingFromProp = false;
+let isInternalUpdate = false;
 
 const buildConfig = () => {
   const config: any[] = [
@@ -76,16 +77,25 @@ const buildConfig = () => {
       if (isUpdatingFromProp) return;
 
       if (update.docChanged) {
-        const html = serialize(update.state.doc).toHTML();
-        emit('update:modelValue', html);
+        // Use Promise to escape the editor's synchronous flush phase
+        Promise.resolve().then(() => {
+          const html = serialize(update.state.doc).toHTML();
+          isInternalUpdate = true;
+          emit('update:modelValue', html);
+          nextTick(() => {
+            isInternalUpdate = false;
+          });
+        });
       }
 
       if (update.focusChanged) {
-        if (update.editor.hasFocus()) {
-          emit('focus');
-        } else {
-          emit('blur');
-        }
+        Promise.resolve().then(() => {
+          if (update.editor.hasFocus()) {
+            emit('focus');
+          } else {
+            emit('blur');
+          }
+        });
       }
     })
   );
@@ -137,9 +147,15 @@ const reinitEditor = (content?: string) => {
 
 watch(() => props.modelValue, (newVal) => {
   if (!editorInstance) return;
+  if (isInternalUpdate) return;
+  
   const currentVal = serialize(editorInstance.state.doc).toHTML();
   if (newVal !== currentVal) {
+    isUpdatingFromProp = true;
     reinitEditor(newVal);
+    nextTick(() => {
+      isUpdatingFromProp = false;
+    });
   }
 });
 

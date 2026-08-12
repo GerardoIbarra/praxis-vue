@@ -1,6 +1,23 @@
+<script setup>
+import { ref } from 'vue'
+import { PraxisEditor } from '@praxis/editor'
+import '@praxis/editor/dist/praxis-editor.css'
+
+const content = ref('<p>Empieza a escribir aquí...</p>')
+</script>
+
 # Praxis Editor
 
 El `PraxisEditor` es un editor de texto enriquecido basado en Vue, utilizando Tiptap/ProseMirror debajo. Ofrece una interfaz premium con soporte para múltiples formatos, atajos de teclado y tema oscuro.
+
+## Demostración
+
+<ClientOnly>
+  <div class="my-6 border rounded-xl overflow-hidden shadow-sm bg-white dark:bg-slate-900">
+    <PraxisEditor v-model="content" />
+  </div>
+  <p class="text-sm text-gray-500 mt-2">Prueba escribiendo algo en el editor interactivo de arriba. Soporta negritas (Ctrl+B), cursivas (Ctrl+I), y comandos mediante `/`.</p>
+</ClientOnly>
 
 ## Uso Básico
 

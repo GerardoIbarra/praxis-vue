@@ -115,6 +115,45 @@ const items = [
   </template>
 </ComponentDemo>
 
+## Empty States (Icons)
+
+<ComponentDemo title="Empty States">
+  <div style="width:100%; display: flex; flex-direction: column; gap: 1rem;">
+    <PraxisDataTable
+      :items="[]"
+      :columns="columns"
+      empty-message="No data found in your inbox"
+    />
+    <PraxisDataTable
+      :items="[]"
+      :columns="columns"
+      :is-searching="true"
+      search-empty-message="No results match your search"
+    />
+  </div>
+
+  <template #code>
+
+```vue
+<!-- Standard Empty State (Inbox Icon) -->
+<PraxisDataTable
+  :items="[]"
+  :columns="columns"
+  empty-message="No data found in your inbox"
+/>
+
+<!-- Search Empty State (Search Icon) -->
+<PraxisDataTable
+  :items="[]"
+  :columns="columns"
+  :is-searching="true"
+  search-empty-message="No results match your search"
+/>
+```
+
+  </template>
+</ComponentDemo>
+
 ## Custom Cell Rendering
 
 Use `slotName` on a column to render custom content in that cell:
@@ -150,13 +189,17 @@ const columns = [
   { name: 'items', type: 'Record<string, unknown>[]', default: '[]', description: 'Array of row data objects. Each row should have a unique id field.' },
   { name: 'columns', type: 'ColumnDef[]', default: '[]', description: 'Column definitions. See ColumnDef interface below.' },
   { name: 'loading', type: 'boolean', default: 'false', description: 'Shows a centered spinner and hides row data.' },
-  { name: 'rows', type: 'number', default: '10', description: 'Number of rows per page (for pagination, not yet implemented natively).' },
+  { name: 'paginated', type: 'boolean', default: 'true', description: 'Enables interactive pagination footer. Calculates pages automatically.' },
+  { name: 'rows', type: 'number', default: '10', description: 'Number of rows per page for pagination.' },
+  { name: 'rowsPerPageOptions', type: 'number[]', default: '[10, 20, 50]', description: 'Options available in the rows-per-page dropdown.' },
+  { name: 'sortField', type: 'string', default: 'undefined', description: 'Initial sort field.' },
+  { name: 'sortOrder', type: 'number', default: '1', description: 'Initial sort order (1 for ascending, -1 for descending).' },
   { name: 'selectionMode', type: '\'single\' | \'multiple\' | undefined', default: 'undefined', description: 'Enables row selection. \'multiple\' shows checkboxes, \'single\' shows radio buttons.' },
   { name: 'selectedItems', type: 'Record<string, unknown>[]', default: '[]', description: 'Currently selected rows. Use alongside @selection-change.' },
   { name: 'stripedRows', type: 'boolean', default: 'false', description: 'Alternates row background colors for easier scanning.' },
-  { name: 'emptyMessage', type: 'string', default: '\'No data available\'', description: 'Message shown when items array is empty and not searching.' },
-  { name: 'searchEmptyMessage', type: 'string', default: '\'No results found\'', description: 'Message shown when items is empty and isSearching is true.' },
-  { name: 'isSearching', type: 'boolean', default: 'false', description: 'When true, uses searchEmptyMessage for the empty state.' },
+  { name: 'emptyMessage', type: 'string', default: '\'No data available\'', description: 'Message shown when items array is empty (shows Inbox icon).' },
+  { name: 'searchEmptyMessage', type: 'string', default: '\'No results found\'', description: 'Message shown when items is empty and isSearching is true (shows Search icon).' },
+  { name: 'isSearching', type: 'boolean', default: 'false', description: 'When true, uses searchEmptyMessage and search icon for the empty state.' },
   { name: 'enableRowDblClick', type: 'boolean', default: 'false', description: 'Enables double-click events on rows.' },
   { name: 'expanderCondition', type: '(row) => boolean', default: 'undefined', description: 'Function that returns whether a row should show the expander button.' },
 ]" />
@@ -169,7 +212,7 @@ interface ColumnDef {
   header: string         // Column header text
   slotName?: string      // Named slot for custom cell rendering
   style?: string | Record<string, string>  // CSS styles for the column
-  sortable?: boolean     // Reserved (not implemented)
+  sortable?: boolean     // When true, enables column sorting on click
   frozen?: boolean       // Reserved (not implemented)
 }
 ```
@@ -184,6 +227,8 @@ interface ColumnDef {
   { name: 'row-click', payload: 'unknown', description: 'Emitted 300ms after a single click on a row (debounced to avoid conflict with dblclick).' },
   { name: 'row-dblclick', payload: 'unknown', description: 'Emitted on double-click. Requires enableRowDblClick to be true.' },
   { name: 'selection-change', payload: 'unknown', description: 'Emitted when row selection changes. Returns the full updated selection array.' },
+  { name: 'sort', payload: '{ field: string, order: number }', description: 'Emitted when a column is sorted.' },
+  { name: 'page', payload: '{ page: number, rows: number }', description: 'Emitted when pagination changes.' },
 ]" />
 
 ## Slots

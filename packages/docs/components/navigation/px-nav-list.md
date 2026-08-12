@@ -1,3 +1,24 @@
+<script setup>
+import { ref } from 'vue'
+import PxNavList from '@praxis/px-src/components/navigation/PxNavList.vue'
+import { Home, Users, Settings } from '@lucide/vue'
+
+const menu = ref([
+  { label: 'General', separator: true },
+  { label: 'Dashboard', icon: Home, to: '/dashboard' },
+  { label: 'Users', icon: Users, to: '/users' },
+  {
+    label: 'Configuración',
+    icon: Settings,
+    key: 'config',
+    items: [
+      { label: 'Perfil', to: '/profile' },
+      { label: 'Seguridad', to: '/security' }
+    ]
+  }
+])
+</script>
+
 # Praxis Nav List
 
 El componente `PxNavList` es una lista de navegación colapsable, comúnmente utilizada en barras laterales (sidebars). Renderiza elementos de menú, enlaces agrupados (con un nivel de profundidad) y separadores, incluyendo resaltado de la ruta activa.
@@ -6,11 +27,18 @@ El componente `PxNavList` es una lista de navegación colapsable, comúnmente ut
 
 El componente espera un modelo de datos (`NavListItem[]`) para renderizar los enlaces. No tiene una opinión sobre enrutamiento o autenticación, por lo que debes pasarle los items ya filtrados.
 
+<ComponentDemo>
+  <div class="w-full max-w-sm border-r h-[500px] p-2 bg-white dark:bg-slate-900 border rounded-lg shadow-sm">
+    <PxNavList :model="menu" active-path="/dashboard" />
+  </div>
+
+  <template #code>
+
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
 import { PxNavList } from 'px-vue-ui'
-import { Home, Users, Settings } from 'lucide-vue-next'
+import { Home, Users, Settings } from '@lucide/vue'
 
 const menu = ref([
   { label: 'General', separator: true },
@@ -34,6 +62,9 @@ const menu = ref([
   </div>
 </template>
 ```
+
+  </template>
+</ComponentDemo>
 
 ## Props
 

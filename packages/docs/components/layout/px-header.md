@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import PxHeader from '@praxis/px-src/components/layout/PxHeader.vue'
-import { Plus, Download } from 'lucide-vue-next'
+import { Plus, Download } from '@lucide/vue'
 </script>
 
 # PxHeader
@@ -13,7 +13,7 @@ A unified header component for pages, forms, and lists.
 ```vue
 <script setup lang="ts">
 import { PxHeader } from 'px-vue-ui'
-import { Plus, Download } from 'lucide-vue-next'
+import { Plus, Download } from '@lucide/vue'
 </script>
 ```
 

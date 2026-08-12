@@ -36,7 +36,7 @@ Renders a set of configuration inputs — textarea, radio group, or text — fro
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%; max-width: 400px;">
-    <PxDisplayOptions :px-display-options="displayOptions" />
+    <PxDisplayOptions :display-options="displayOptions" />
   </div>
 
   <template #code>
@@ -73,7 +73,7 @@ const displayOptions = ref({
 </script>
 
 <template>
-  <PxDisplayOptions :px-display-options="displayOptions" />
+  <PxDisplayOptions :display-options="displayOptions" />
 </template>
 ```
 

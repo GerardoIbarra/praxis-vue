@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
-import { PxEditor } from 'px-vue-editor'
-import 'px-vue-editor/dist/px-editor.css'
+import { PxEditor } from 'praxis-vue-editor'
+import 'praxis-vue-editor/dist/praxis-editor.css'
 
 const content = ref('<p>Empieza a escribir aquí...</p>')
 </script>
@@ -21,13 +21,13 @@ El `PxEditor` es un editor de texto enriquecido basado en Vue, utilizando Tiptap
 
 ## Uso Básico
 
-Asegúrate de tener el paquete `px-vue-editor` instalado.
+Asegúrate de tener el paquete `praxis-vue-editor` instalado.
 
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { PxEditor } from 'px-vue-editor'
-import 'px-vue-editor/dist/px-editor.css'
+import { PxEditor } from 'praxis-vue-editor'
+import 'praxis-vue-editor/dist/praxis-editor.css'
 
 const content = ref('<p>Empieza a escribir aquí...</p>')
 </script>

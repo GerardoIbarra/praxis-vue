@@ -2,7 +2,7 @@
 import { ref, watch, computed } from "vue";
 import type { FormSchemaField } from "@/types/api/common";
 import UiCheckbox from "@/components/_primitives/UiCheckbox.vue";
-import { Minus, Plus } from "@lucide/vue";
+import { ChevronDown, Minus, Plus, Heading } from "@lucide/vue";
 
 const props = defineProps<{
   field: FormSchemaField;
@@ -17,11 +17,7 @@ const emit = defineEmits<{
 }>();
 
 // Control accordion state
-const isOpen = ref(!!props.defaultOpen);
-
-const toggleAccordion = () => {
-  isOpen.value = !isOpen.value;
-};
+const isOpen = ref(props.defaultOpen ?? true);
 
 // Local state for form data
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -110,18 +106,6 @@ const handleRadioChange = (childKey: string, value: string) => {
     formData.value[childKey] = {};
   }
   formData.value[childKey].value = value;
-
-  // Logic for "no" selection with altern_value
-  /* if (value === "no") {
-    const child = listChildren.value.find((c) => c.key === childKey);
-   const textComponent = child?.components?.find(
-      (comp) => comp.type === "input"
-    );
-    if (textComponent && textComponent.altern_value) {
-      formData.value[childKey].text = textComponent.altern_value;
-    }
-  }*/
-
   emit("update:modelValue", formData.value);
 };
 
@@ -147,9 +131,13 @@ const handleTextInputChange = (childKey: string, text: string) => {
     // Regresó al texto negativo → restaurar "no"
     formData.value[childKey].value = "no";
   }
-  // No auto-cambiar a "yes" cuando se modifica el texto para evitar inconsistencias.
-  // El usuario debe seleccionar "yes" manualmente si desea marcarlo como positivo.
 
+  emit("update:modelValue", formData.value);
+};
+
+// Handle input father change
+const handleInputFatherChange = () => {
+  formData.value._input_father = inputFatherValue.value;
   emit("update:modelValue", formData.value);
 };
 
@@ -171,6 +159,16 @@ const getTextValue = (childKey: string) => {
 // Get list children from field
 const listChildren = computed(() => {
   return props.field?.fields?.list_children || [];
+});
+
+// Check if has input father
+const hasInputFather = computed(() => {
+  return props.field?.fields?.input_father?.type === "input";
+});
+
+// Check if any child has text input
+const hasAnyTextInput = computed(() => {
+  return listChildren.value.some(child => child.components?.some(c => c.type === 'input'));
 });
 
 // Clear all selections
@@ -201,7 +199,6 @@ const setRestNegative = () => {
       }
       formData.value[child.key].value = "no";
 
-      // Also apply altern_value logic here if needed
       const textComponent = child.components?.find(
         (comp) => comp.type === "input"
       );
@@ -221,7 +218,6 @@ const setAllNegative = () => {
     }
     formData.value[child.key].value = "no";
 
-    // Also apply altern_value logic here if needed
     const textComponent = child.components?.find(
       (comp) => comp.type === "input"
     );
@@ -243,17 +239,32 @@ defineExpose({
 <template>
   <div class="w-full">
     <!-- Accordion for the section -->
-    <div class="border border-gray-200 rounded-md">
-      <div>
-        <button
-          type="button"
-          class="w-full flex justify-between items-center bg-gray-100! dark:bg-white! px-4 py-3 text-sm text-gray-800"
-          @click="toggleAccordion"
-        >
-          <span class="font-semibold text-black!">{{ field.label }}</span>
-        </button>
+    <div class="border border-gray-200 rounded-md overflow-hidden">
+      <!-- Accordion Header -->
+      <button
+        type="button"
+        class="w-full flex items-center justify-between bg-gray-100 dark:bg-gray-800 px-4 py-3 text-sm text-gray-800 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+        @click="isOpen = !isOpen"
+      >
+        <span class="font-semibold text-black dark:text-white">{{ field.label }}</span>
+        <ChevronDown
+          class="w-4 h-4 transition-transform duration-200"
+          :class="{ 'rotate-180': isOpen }"
+        />
+      </button>
 
-        <div v-show="isOpen">
+      <!-- Accordion Content -->
+      <div v-show="isOpen">
+          <!-- Input Father Field -->
+          <div v-if="hasInputFather" class="mt-4 px-4">
+            <textarea
+              v-model="inputFatherValue"
+              class="input-base is-enabled"
+              placeholder="Additional notes..."
+              @input="handleInputFatherChange"
+            />
+          </div>
+
           <div class="p-2">
             <!-- Header row -->
             <div class="grid grid-cols-[1fr_auto] gap-4 px-3 py-2 items-center">
@@ -263,6 +274,7 @@ defineExpose({
               >
                 <span><Plus class="text-red-400 w-4 h-4" /></span>
                 <span><Minus class="text-green-400 w-4 h-4" /></span>
+                <span v-if="!hasAnyTextInput"><Heading class="text-blue-400 w-4 h-4" /></span>
               </div>
             </div>
 
@@ -270,13 +282,13 @@ defineExpose({
             <div
               v-for="child in listChildren"
               :key="child.key"
-              class="grid grid-cols-[1fr_auto] gap-4 px-3 py-2 border-b border-gray-100 last:border-b-0 items-center"
+              class="grid grid-cols-[1fr_auto] gap-4 px-3 py-2 border-b border-gray-100 dark:border-gray-700 last:border-b-0 items-center"
             >
               <div class="flex flex-col gap-1 w-full">
                 <div class="text-black dark:text-gray-300 font-medium text-sm">
                   {{ child.label }}
                 </div>
-                <!-- Text Input for check_list_input -->
+                <!-- Optional Text Input -->
                 <div
                   v-if="child.components?.some((c) => c.type === 'input')"
                   class="w-full"
@@ -284,7 +296,7 @@ defineExpose({
                   <input
                     type="text"
                     :value="getTextValue(child.key)"
-                    class="w-full text-sm border border-gray-300 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
+                    class="w-full text-sm border border-gray-300 dark:border-gray-600 dark:bg-gray-800 rounded px-2 py-1 focus:outline-none focus:border-blue-500"
                     @input="
                       (e: any) =>
                         handleTextInputChange(child.key, e.target.value)
@@ -329,13 +341,12 @@ defineExpose({
                     :model-value="getCheckboxValue(child.key)"
                     :binary="true"
                     class="w-4 h-4 pointer-events-none"
-                    @update:model-value="(val) => handleCheckboxChange(child.key, val)"
+                    @update:model-value="(val) => handleCheckboxChange(child.key, val as boolean)"
                   />
                 </label>
               </div>
             </div>
           </div>
-        </div>
       </div>
     </div>
   </div>

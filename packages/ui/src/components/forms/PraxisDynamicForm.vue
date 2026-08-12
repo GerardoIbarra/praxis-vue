@@ -3,11 +3,10 @@ import UiCheckbox from "@/components/_primitives/UiCheckbox.vue";
 import { ref, watch, computed } from "vue";
 import VueSelect from "vue-select";
 import PraxisRequiredLabel from "@/components/base/PraxisRequiredLabel.vue";
-import PraxisCheckListField from "@/components/forms/PraxisCheckListField.vue";
-import PraxisCheckListInputField from "@/components/forms/PraxisCheckListInputField.vue";
-import PraxisSelectListField from "@/components/forms/PraxisSelectListField.vue";
+import PraxisCheckList from "@/components/forms/PraxisCheckList.vue";
+import PraxisTableSelect from "@/components/forms/PraxisTableSelect.vue";
 import PraxisFormFieldRow from "@/components/forms/PraxisFormFieldRow.vue";
-import PraxisFormMultiSelectList from "@/components/forms/PraxisFormMultiSelectList.vue";
+import PraxisDynamicMultiSelect from "@/components/forms/PraxisDynamicMultiSelect.vue";
 import PraxisInfiniteScrollSelect from "@/components/forms/PraxisInfiniteScrollSelect.vue";
 import { ChevronDown, Search } from "@lucide/vue";
 import { Field } from "vee-validate";
@@ -50,7 +49,7 @@ export interface CheckListInstance {
   setAllNegative: () => void;
 }
 
-const checkListRefs = ref<(CheckListInstance | null)[]>([]); // Para almacenar referencias a PraxisCheckListField components
+const checkListRefs = ref<(CheckListInstance | null)[]>([]); // Para almacenar referencias a PraxisCheckList components
 
 // Use select options composable
 const { loadingSelect, selectedItems, setSelected, flattenWithIndentation } =
@@ -247,7 +246,7 @@ watch(
   { deep: true, immediate: true }
 );
 
-// Methods to control all PraxisCheckListField components
+// Methods to control all PraxisCheckList components
 const clearAllCheckLists = () => {
   checkListRefs.value.forEach((checkListRef) => {
     if (checkListRef && typeof checkListRef.clearAll === "function") {
@@ -306,7 +305,7 @@ defineExpose({
       />
 
       <!-- 🔹 CHECK LIST INPUT -->
-      <PraxisCheckListInputField
+      <PraxisCheckList
         v-if="field.type === 'check_list_input'"
         :ref="
           (el: any) => {
@@ -319,7 +318,7 @@ defineExpose({
       />
 
       <!-- 🔹 CHECK LIST -->
-      <PraxisCheckListField
+      <PraxisCheckList
         v-else-if="field.type === 'check_list'"
         :ref="
           (el: any) => {
@@ -351,14 +350,14 @@ defineExpose({
           type="text"
           class="input-base is-readonly bg-gray-100 w-full"
           :placeholder="field.placeholder || ''"
-          readonly
+        readonly
         />
       </div>
 
       <!--multiselect_list -->
-      <PraxisFormMultiSelectList
+      <PraxisDynamicMultiSelect
         v-else-if="field.type === 'multiselect_list'"
-        v-model="cleanedResultsLocal"
+        v-model="selectedItems[field.key || '']"
         :field="field"
       />
 
@@ -588,13 +587,14 @@ defineExpose({
         </VueSelect>
 
         <!-- Select-List -->
-        <PraxisSelectListField
-          v-else-if="field.type === 'select_list'"
-          v-model="selectedItems[field.key || '']"
+        <PraxisTableSelect
+          v-if="field.type === 'select_list'"
+          v-model:selectedItems="selectedItems[field.key]"
           :field="field"
           :loading-select="loadingSelect"
-          @search="(searchTerm: string) => setSelected(field, searchTerm)"
-          @update:field-value="(value: any) => (field.value = value)"
+          @update:fieldValue="(val: any) => setSelected(field.key, val)"
+          @scroll-bottom="(fieldOpt: FormSchemaField | undefined) => emit('scroll-bottom', fieldOpt)"
+          @search="(query: string) => emit('search', { query, fieldKey: field.key })"
         />
 
         <!-- 🔹 DATE -->

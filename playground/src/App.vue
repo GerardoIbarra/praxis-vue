@@ -12,8 +12,8 @@ import {
   UiAccordion,
   PraxisLoader,
   PraxisRequiredLabel,
-  PraxisSelectableList,
-  PraxisCheckListField,
+  PraxisTableSelect,
+  PraxisCheckList,
   PraxisNavList,
   PraxisTabComponent,
   PraxisPhoneNumber,
@@ -144,7 +144,7 @@ onMounted(() => {
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Data & Advanced</div>
           <a href="#data-table" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Data Table</a>
-          <a href="#praxis-selectable-list" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Selectable List</a>
+          <a href="#praxis-table-select" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Table Select</a>
           <a href="#praxis-pdf-viewer" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">PDF Viewer</a>
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Navigation</div>
@@ -305,15 +305,15 @@ onMounted(() => {
           </ShowcaseSection>
 
           <ShowcaseSection 
-            id="praxis-selectable-list"
-            title="Selectable List" 
-            description="Advanced list selection for forms."
+            id="praxis-table-select"
+            title="Table Select" 
+            description="Advanced list selection with a data table."
           >
             <div class="w-full max-w-lg mx-auto">
               <div class="mb-4">
                 <PraxisRequiredLabel label="Choose a Plan" required />
               </div>
-              <PraxisSelectableList 
+              <PraxisTableSelect 
                 v-model:selectedItems="selectedListItems" 
                 :options="listOptions" 
                 title="Available Plans"

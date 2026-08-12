@@ -19,16 +19,14 @@ export { default as PraxisLoader } from './components/base/PraxisLoader.vue'
 
 // --- Forms ---
 export { default as PraxisDynamicForm } from './components/forms/PraxisDynamicForm.vue'
-export { default as PraxisSelectableList } from './components/forms/PraxisSelectableList.vue'
+export { default as PraxisTableSelect } from './components/forms/PraxisTableSelect.vue'
 export { default as PraxisSelectableListWithTable } from './components/forms/PraxisSelectableListWithTable.vue'
 export { default as PraxisWeekDaysSelector } from './components/forms/PraxisWeekDaysSelector.vue'
 export { default as PraxisModalInput } from './components/forms/PraxisModalInput.vue'
 export { default as PraxisFormFieldRow } from './components/forms/PraxisFormFieldRow.vue'
-export { default as PraxisFormMultiSelectList } from './components/forms/PraxisFormMultiSelectList.vue'
+export { default as PraxisDynamicMultiSelect } from './components/forms/PraxisDynamicMultiSelect.vue'
 export { default as UiTimePicker } from './components/forms/UiTimePicker.vue'
-export { default as PraxisCheckListField } from './components/forms/PraxisCheckListField.vue'
-export { default as PraxisCheckListInputField } from './components/forms/PraxisCheckListInputField.vue'
-export { default as PraxisSelectListField } from './components/forms/PraxisSelectListField.vue'
+export { default as PraxisCheckList } from './components/forms/PraxisCheckList.vue'
 export { default as PraxisInfiniteScrollSelect } from './components/forms/PraxisInfiniteScrollSelect.vue'
 
 // --- Data Display ---

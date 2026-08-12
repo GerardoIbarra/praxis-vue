@@ -1,9 +1,9 @@
-# praxis-vue-ui
+# px-vue-ui
 
 > A generic, production-ready Vue 3 component library — forms, data-display, layout, navigation, overlays and more.
 
-[![npm version](https://img.shields.io/npm/v/praxis-vue-ui.svg)](https://www.npmjs.com/package/praxis-vue-ui)
-[![license](https://img.shields.io/npm/l/praxis-vue-ui.svg)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/px-vue-ui.svg)](https://www.npmjs.com/package/px-vue-ui)
+[![license](https://img.shields.io/npm/l/px-vue-ui.svg)](LICENSE)
 
 ---
 
@@ -11,17 +11,17 @@
 
 | Package | Description | npm |
 |---|---|---|
-| [`praxis-vue-ui`](./packages/ui) | 55+ UI components for Vue 3 + PrimeVue | `npm i praxis-vue-ui` |
-| [`praxis-vue-editor`](./packages/editor) | Rich-text editor powered by Wordgard | `npm i praxis-vue-editor` |
+| [`px-vue-ui`](./packages/ui) | 55+ UI components for Vue 3 + PrimeVue | `npm i px-vue-ui` |
+| [`px-vue-editor`](./packages/editor) | Rich-text editor powered by Wordgard | `npm i px-vue-editor` |
 
 ---
 
 ## Installation
 
-### praxis-vue-ui
+### px-vue-ui
 
 ```bash
-npm install praxis-vue-ui primevue @primevue/core vee-validate pinia
+npm install px-vue-ui primevue @primevue/core vee-validate pinia
 ```
 
 ```ts
@@ -29,7 +29,7 @@ npm install praxis-vue-ui primevue @primevue/core vee-validate pinia
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
-import 'praxis-vue-ui/dist/praxis-vue.css' // Import styles
+import 'px-vue-ui/dist/px-vue.css' // Import styles
 import App from './App.vue'
 
 createApp(App)
@@ -39,7 +39,7 @@ createApp(App)
 
 ```vue
 <script setup>
-import { BaseAvatar, PraxisDynamicForm, PraxisTabComponent } from 'praxis-vue-ui'
+import { PxAvatar, PxDynamicForm, PxTabComponent } from 'px-vue-ui'
 </script>
 ```
 
@@ -49,10 +49,10 @@ import { BaseAvatar, PraxisDynamicForm, PraxisTabComponent } from 'praxis-vue-ui
 // nuxt.config.ts
 export default defineNuxtConfig({
   css: [
-    'praxis-vue-ui/dist/praxis-vue.css' // Import styles globally
+    'px-vue-ui/dist/px-vue.css' // Import styles globally
   ],
   build: {
-    transpile: ['praxis-vue-ui']
+    transpile: ['px-vue-ui']
   }
 })
 ```
@@ -61,30 +61,30 @@ You can then use the components in any page or component:
 
 ```vue
 <script setup>
-import { UiTimePicker } from 'praxis-vue-ui'
+import { PxTimePicker } from 'px-vue-ui'
 </script>
 
 <template>
-  <UiTimePicker v-model="time" label="Time" />
+  <PxTimePicker v-model="time" label="Time" />
 </template>
 ```
 
-### praxis-vue-editor
+### px-vue-editor
 
 ```bash
-npm install praxis-vue-editor wordgard
+npm install px-vue-editor wordgard
 ```
 
 ```vue
 <script setup>
-import { PraxisEditor } from 'praxis-vue-editor'
+import { PxEditor } from 'px-vue-editor'
 import { ref } from 'vue'
 
 const content = ref('<p>Hello world</p>')
 </script>
 
 <template>
-  <PraxisEditor
+  <PxEditor
     v-model="content"
     placeholder="Start writing..."
     :read-only="false"
@@ -96,16 +96,16 @@ const content = ref('<p>Hello world</p>')
 
 ## Component Categories
 
-### `praxis-vue-ui`
+### `px-vue-ui`
 
 | Category | Components |
 |---|---|
-| **Base** | `BaseAvatar`, `UiAvatar`, `PraxisAvatarSelect`, `PraxisColorPickerField`, `PraxisVisualSelect`, `PraxisGroupedMultiSelect`, `PraxisPhoneNumber`, `UiLabel`, `PraxisRequiredLabel`, `PraxisThemeToggle`, `PraxisLoader` |
-| **Forms** | `PraxisDynamicForm`, `PraxisCheckList`, `PraxisInfiniteScrollSelect`, `PraxisTableSelect`, `PraxisSelectableListWithTable`, `PraxisWeekDaysSelector`, `PraxisModalInput`, `PraxisFormFieldRow`, `PraxisFormMultiSelectList`, `UiTimePicker` |
-| **Data Display** | `PraxisDataTable`, `PraxisTree`, `PraxisPdfViewer`, `PraxisInitialsAvatar`, `PraxisProfileInfoField`, `PraxisDisplayOptions`, `PraxisBadgedValueGrid`, `PraxisLabeledValueSection`, `PraxisExistingDataTable` |
-| **Layout** | `PraxisColumnLayout`, `PraxisDashboardCard`, `PraxisHeader`, `PraxisListViewWrapper`, `PraxisCardFilterContainer`, `PraxisFormViewWrapper` |
-| **Navigation** | `PraxisTabComponent`, `PraxisStepNavigation`, `PraxisStepHeader`, `PraxisActionMenu`, `PraxisNavList` |
-| **Primitives** | `UiAccordion`, `UiBadge`, `UiCheckbox`, `UiDialog`, `UiDrawer`, `UiRadioButton`, `UiTimeline` |
+| **Base** | `PxAvatar`, `PxAvatar`, `PxAvatarSelect`, `PxColorPickerField`, `PxVisualSelect`, `PxGroupedMultiSelect`, `PxPhoneNumber`, `PxLabel`, `PxRequiredLabel`, `PxThemeToggle`, `PxLoader` |
+| **Forms** | `PxDynamicForm`, `PxCheckList`, `PxInfiniteScrollSelect`, `PxTableSelect`, `PxSelectableListWithTable`, `PxWeekDaysSelector`, `PxModalInput`, `PxFormFieldRow`, `PxFormMultiSelectList`, `PxTimePicker` |
+| **Data Display** | `PxDataTable`, `PxTree`, `PxPdfViewer`, `PxInitialsAvatar`, `PxProfileInfoField`, `PxDisplayOptions`, `PxBadgedValueGrid`, `PxLabeledValueSection`, `PxExistingDataTable` |
+| **Layout** | `PxColumnLayout`, `PxDashboardCard`, `PxHeader`, `PxListViewWrapper`, `PxCardFilterContainer`, `PxFormViewWrapper` |
+| **Navigation** | `PxTabComponent`, `PxStepNavigation`, `PxStepHeader`, `PxActionMenu`, `PxNavList` |
+| **Primitives** | `PxAccordion`, `PxBadge`, `PxCheckbox`, `PxDialog`, `PxDrawer`, `PxRadioButton`, `PxTimeline` |
 
 ### Composables
 
@@ -115,7 +115,7 @@ import {
   useFieldAutofill,
   useInfiniteScrollSelect,
   useDisabledDays,
-} from 'praxis-vue-ui'
+} from 'px-vue-ui'
 ```
 
 ---

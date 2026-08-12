@@ -7,8 +7,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'PraxisEditor',
-      fileName: 'praxis-editor',
+      name: 'PxEditor',
+      fileName: 'px-editor',
     },
     rollupOptions: {
       external: ['vue', 'wordgard', 'wordgard/editor', 'wordgard/schema', 'wordgard/history', 'wordgard/doc', 'wordgard/state', 'wordgard/command', 'lucide-vue-next'],

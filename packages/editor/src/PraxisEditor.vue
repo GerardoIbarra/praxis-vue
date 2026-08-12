@@ -184,7 +184,7 @@ defineExpose({
 
 <template>
   <div 
-    class="praxis-editor-wrapper" 
+    class="px-editor-wrapper" 
     :class="{ 'is-readonly': readOnly }"
     :style="{
       '--editor-min-height': minHeight,
@@ -197,7 +197,7 @@ defineExpose({
 
 <style>
 /* Style Wordgard components globally or within the wrapper */
-.praxis-editor-wrapper {
+.px-editor-wrapper {
   --bg-editor: #ffffff;
   --border-color: rgba(0, 0, 0, 0.08);
   --border-focus: #4f46e5;
@@ -219,7 +219,7 @@ defineExpose({
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.praxis-editor-wrapper:focus-within {
+.px-editor-wrapper:focus-within {
   border-color: var(--border-focus);
   box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.15), 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
@@ -380,8 +380,8 @@ wg-menu-spacer {
 }
 
 /* Dark mode theme support */
-html.dark .praxis-editor-wrapper,
-.dark .praxis-editor-wrapper {
+html.dark .px-editor-wrapper,
+.dark .px-editor-wrapper {
   --bg-editor: #1e1e2e !important;
   --border-color: rgba(255, 255, 255, 0.08) !important;
   --border-focus: #6366f1 !important;
@@ -393,18 +393,18 @@ html.dark .praxis-editor-wrapper,
   --active-text: #818cf8 !important;
 }
 
-html.dark .praxis-editor-wrapper button.wg-menu-button,
-.dark .praxis-editor-wrapper button.wg-menu-button {
+html.dark .px-editor-wrapper button.wg-menu-button,
+.dark .px-editor-wrapper button.wg-menu-button {
   color: #cdd6f4 !important;
 }
 
-html.dark .praxis-editor-wrapper svg.wg-icon,
-.dark .praxis-editor-wrapper svg.wg-icon {
+html.dark .px-editor-wrapper svg.wg-icon,
+.dark .px-editor-wrapper svg.wg-icon {
   fill: #cdd6f4 !important;
 }
 
-html.dark .praxis-editor-wrapper wg-menubar,
-.dark .praxis-editor-wrapper wg-menubar {
+html.dark .px-editor-wrapper wg-menubar,
+.dark .px-editor-wrapper wg-menubar {
   background: rgba(30, 30, 46, 0.8) !important;
   border-bottom-color: rgba(255, 255, 255, 0.08) !important;
 }

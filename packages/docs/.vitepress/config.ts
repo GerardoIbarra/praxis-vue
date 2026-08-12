@@ -26,7 +26,7 @@ export default withPwa(defineConfig({
   title: 'Praxis Vue',
   description: 'A premium Vue 3 UI component library — forms, data-display, layout, navigation, and more.',
   sitemap: {
-    hostname: 'https://praxis-vue.dev'
+    hostname: 'https://px-vue.dev'
   },
 
   head: [
@@ -45,7 +45,7 @@ export default withPwa(defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Components', link: '/components/forms/time-picker' },
-      { text: 'GitHub', link: 'https://github.com/GerardoIbarra/praxis-vue' },
+      { text: 'GitHub', link: 'https://github.com/GerardoIbarra/px-vue' },
     ],
 
     sidebar: [
@@ -54,86 +54,86 @@ export default withPwa(defineConfig({
         collapsed: false,
         items: [
           { text: 'Ui Time Picker', link: '/components/forms/time-picker' },
-          { text: 'Praxis Table Select', link: '/components/forms/praxis-table-select' },
-          { text: 'Praxis Checklist', link: '/components/forms/praxis-check-list' },
-          { text: 'Praxis Form Field Row', link: '/components/forms/praxis-form-field-row' },
-          { text: 'Praxis Dynamic Multi Select', link: '/components/forms/praxis-dynamic-multi-select' },
-          { text: 'Praxis Infinite Scroll Select', link: '/components/forms/praxis-infinite-scroll-select' },
-          { text: 'Praxis Modal Input', link: '/components/forms/praxis-modal-input' },
-          { text: 'Praxis Week Days Selector', link: '/components/forms/praxis-week-days-selector' },
-          { text: 'Praxis Dynamic Form', link: '/components/forms/praxis-dynamic-form' },
+          { text: 'Praxis Table Select', link: '/components/forms/px-table-select' },
+          { text: 'Praxis Checklist', link: '/components/forms/px-check-list' },
+          { text: 'Praxis Form Field Row', link: '/components/forms/px-form-field-row' },
+          { text: 'Praxis Dynamic Multi Select', link: '/components/forms/px-dynamic-multi-select' },
+          { text: 'Praxis Infinite Scroll Select', link: '/components/forms/px-infinite-scroll-select' },
+          { text: 'Praxis Modal Input', link: '/components/forms/px-modal-input' },
+          { text: 'Praxis Week Days Selector', link: '/components/forms/px-week-days-selector' },
+          { text: 'Praxis Dynamic Form', link: '/components/forms/px-dynamic-form' },
         ],
       },
       {
         text: 'Base',
         collapsed: false,
         items: [
-          { text: 'Ui Avatar', link: '/components/base/ui-avatar' },
-          { text: 'Ui Label', link: '/components/base/ui-label' },
-          { text: 'Praxis Color Picker', link: '/components/base/praxis-color-picker-field' },
-          { text: 'Praxis Visual Select', link: '/components/base/praxis-visual-select' },
-          { text: 'Praxis Grouped Multi Select', link: '/components/base/praxis-grouped-multi-select' },
-          { text: 'Praxis Loader', link: '/components/base/praxis-loader' },
-          { text: 'Praxis Phone Number', link: '/components/base/praxis-phone-number' },
-          { text: 'Praxis Theme Toggle', link: '/components/base/praxis-theme-toggle' },
+          { text: 'Ui Avatar', link: '/components/base/px-avatar' },
+          { text: 'Ui Label', link: '/components/base/px-label' },
+          { text: 'Praxis Color Picker', link: '/components/base/px-color-picker-field' },
+          { text: 'Praxis Visual Select', link: '/components/base/px-visual-select' },
+          { text: 'Praxis Grouped Multi Select', link: '/components/base/px-grouped-multi-select' },
+          { text: 'Praxis Loader', link: '/components/base/px-loader' },
+          { text: 'Praxis Phone Number', link: '/components/base/px-phone-number' },
+          { text: 'Praxis Theme Toggle', link: '/components/base/px-theme-toggle' },
         ],
       },
       {
         text: 'Navigation',
         collapsed: false,
         items: [
-          { text: 'Praxis Action Menu', link: '/components/navigation/praxis-action-menu' },
-          { text: 'Praxis Step Header', link: '/components/navigation/praxis-step-header' },
-          { text: 'Praxis Step Navigation', link: '/components/navigation/praxis-step-navigation' },
-          { text: 'Praxis Tab', link: '/components/navigation/praxis-tab-component' },
-          { text: 'Praxis Nav List', link: '/components/navigation/praxis-nav-list' },
+          { text: 'Praxis Action Menu', link: '/components/navigation/px-action-menu' },
+          { text: 'Praxis Step Header', link: '/components/navigation/px-step-header' },
+          { text: 'Praxis Step Navigation', link: '/components/navigation/px-step-navigation' },
+          { text: 'Praxis Tab', link: '/components/navigation/px-tab-component' },
+          { text: 'Praxis Nav List', link: '/components/navigation/px-nav-list' },
         ],
       },
       {
         text: 'Data Display',
         collapsed: false,
         items: [
-          { text: 'Praxis Data Table', link: '/components/data-display/praxis-data-table' },
-          { text: 'Praxis Tree', link: '/components/data-display/praxis-tree' },
-          { text: 'Praxis Display Options', link: '/components/data-display/praxis-display-options' },
-          { text: 'Praxis PDF Viewer', link: '/components/data-display/praxis-pdf-viewer' },
+          { text: 'Praxis Data Table', link: '/components/data-display/px-data-table' },
+          { text: 'Praxis Tree', link: '/components/data-display/px-tree' },
+          { text: 'Praxis Display Options', link: '/components/data-display/px-display-options' },
+          { text: 'Praxis PDF Viewer', link: '/components/data-display/px-pdf-viewer' },
         ],
       },
       {
         text: 'Layout',
         collapsed: false,
         items: [
-          { text: 'Praxis Dashboard Card', link: '/components/layout/praxis-dashboard-card' },
-          { text: 'Praxis Header', link: '/components/layout/praxis-header' },
-          { text: 'Praxis List View', link: '/components/layout/praxis-list-view-wrapper' },
-          { text: 'Praxis Form View', link: '/components/layout/praxis-form-view-wrapper' },
-          { text: 'Praxis Card Filter', link: '/components/layout/praxis-card-filter-container' },
+          { text: 'Praxis Dashboard Card', link: '/components/layout/px-dashboard-card' },
+          { text: 'Praxis Header', link: '/components/layout/px-header' },
+          { text: 'Praxis List View', link: '/components/layout/px-list-view-wrapper' },
+          { text: 'Praxis Form View', link: '/components/layout/px-form-view-wrapper' },
+          { text: 'Praxis Card Filter', link: '/components/layout/px-card-filter-container' },
         ],
       },
       {
         text: 'Primitives',
         collapsed: true,
         items: [
-          { text: 'Ui Accordion', link: '/components/primitives/ui-accordion' },
-          { text: 'Ui Badge', link: '/components/primitives/ui-badge' },
-          { text: 'Ui Checkbox', link: '/components/primitives/ui-checkbox' },
-          { text: 'Ui Dialog', link: '/components/primitives/ui-dialog' },
-          { text: 'Ui Drawer', link: '/components/primitives/ui-drawer' },
-          { text: 'Ui Radio Button', link: '/components/primitives/ui-radio-button' },
-          { text: 'Ui Timeline', link: '/components/primitives/ui-timeline' },
+          { text: 'Ui Accordion', link: '/components/primitives/px-accordion' },
+          { text: 'Ui Badge', link: '/components/primitives/px-badge' },
+          { text: 'Ui Checkbox', link: '/components/primitives/px-checkbox' },
+          { text: 'Ui Dialog', link: '/components/primitives/px-dialog' },
+          { text: 'Ui Drawer', link: '/components/primitives/px-drawer' },
+          { text: 'Ui Radio Button', link: '/components/primitives/px-radio-button' },
+          { text: 'Ui Timeline', link: '/components/primitives/px-timeline' },
         ],
       },
       {
         text: 'Editor',
         collapsed: false,
         items: [
-          { text: 'Praxis Editor', link: '/components/editor/praxis-editor' },
+          { text: 'Praxis Editor', link: '/components/editor/px-editor' },
         ],
       },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/GerardoIbarra/praxis-vue' },
+      { icon: 'github', link: 'https://github.com/GerardoIbarra/px-vue' },
     ],
 
     search: {
@@ -149,7 +149,7 @@ export default withPwa(defineConfig({
   vite: {
     resolve: {
       alias: {
-        '@praxis/ui-src': resolve(__dirname, '../../ui/src'),
+        '@praxis/px-src': resolve(__dirname, '../../ui/src'),
         '@': resolve(__dirname, '../../ui/src'),
       },
     },

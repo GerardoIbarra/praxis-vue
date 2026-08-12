@@ -4,32 +4,32 @@ import ShowcaseSection from './components/ShowcaseSection.vue'
 
 // Import components from libraries
 import {
-  BaseAvatar,
-  PraxisInitialsAvatar,
-  PraxisThemeToggle,
-  UiTimePicker,
-  UiBadge,
-  UiAccordion,
-  PraxisLoader,
-  PraxisRequiredLabel,
-  PraxisTableSelect,
-  PraxisCheckList,
-  PraxisNavList,
-  PraxisTabComponent,
-  PraxisPhoneNumber,
-  PraxisColorPickerField,
-  PraxisPdfViewer,
-  PraxisDataTable,
-  PraxisStepNavigation,
+  PxAvatar,
+  PxInitialsAvatar,
+  PxThemeToggle,
+  PxTimePicker,
+  PxBadge,
+  PxAccordion,
+  PxLoader,
+  PxRequiredLabel,
+  PxTableSelect,
+  PxCheckList,
+  PxNavList,
+  PxTabComponent,
+  PxPhoneNumber,
+  PxColorPickerField,
+  PxPdfViewer,
+  PxDataTable,
+  PxStepNavigation,
   type NavListItem
-} from 'praxis-vue-ui'
+} from 'px-vue-ui'
 import { Home, Settings, Star } from '@lucide/vue'
 
-import { PraxisEditor } from 'praxis-vue-editor'
+import { PxEditor } from 'px-vue-editor'
 
 // State variables for examples
 const time = ref('14:30')
-const editorContent = ref('<p>Hello from <strong>praxis-vue-editor</strong>!</p>')
+const editorContent = ref('<p>Hello from <strong>px-vue-editor</strong>!</p>')
 const isDark = ref(false)
 const isLoading = ref(false)
 
@@ -80,7 +80,7 @@ const listOptions = [
 ]
 const selectedListItems = ref([])
 
-// PraxisNavList
+// PxNavList
 const navListCollapsed = ref(false)
 const navListActivePath = ref('/dashboard')
 const navListMenu: NavListItem[] = [
@@ -128,13 +128,13 @@ onMounted(() => {
           <h1 class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-primary-600 to-indigo-500 tracking-tight">
             @praxis
           </h1>
-          <PraxisThemeToggle v-model="isDark" />
+          <PxThemeToggle v-model="isDark" />
         </div>
         
         <nav class="flex flex-col gap-1.5 flex-grow overflow-y-auto custom-scrollbar pr-2">
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-4">Base & Forms</div>
-          <a href="#praxis-theme-toggle" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Theme Toggle</a>
+          <a href="#px-theme-toggle" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Theme Toggle</a>
           <a href="#avatars" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Avatars</a>
           <a href="#badges" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Badges & Labels</a>
           <a href="#loaders" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Loaders</a>
@@ -144,14 +144,14 @@ onMounted(() => {
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Data & Advanced</div>
           <a href="#data-table" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Data Table</a>
-          <a href="#praxis-table-select" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Table Select</a>
-          <a href="#praxis-pdf-viewer" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">PDF Viewer</a>
+          <a href="#px-table-select" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Table Select</a>
+          <a href="#px-pdf-viewer" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">PDF Viewer</a>
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Navigation</div>
           <a href="#steps" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Step Navigation</a>
           <a href="#accordion" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Accordion</a>
           <a href="#tabs" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Tabs</a>
-          <a href="#praxis-nav-list" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Nav List</a>
+          <a href="#px-nav-list" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Nav List</a>
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Editor</div>
           <a href="#rich-text" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Praxis Editor</a>
@@ -178,18 +178,18 @@ onMounted(() => {
           </p>
         </header>
 
-        <PraxisLoader v-if="isLoading" fullscreen message="Saving data..." subMessage="Please wait..." />
+        <PxLoader v-if="isLoading" fullscreen message="Saving data..." subMessage="Please wait..." />
 
         <!-- Component Showcases -->
         <div class="flex flex-col gap-12">
 
           <ShowcaseSection 
-            id="praxis-theme-toggle"
+            id="px-theme-toggle"
             title="Theme Toggle" 
             description="A beautiful animated toggle button for switching between light and dark modes."
           >
             <div class="flex items-center justify-center p-8">
-              <PraxisThemeToggle v-model="isDark" />
+              <PxThemeToggle v-model="isDark" />
             </div>
           </ShowcaseSection>
 
@@ -199,9 +199,9 @@ onMounted(() => {
             description="Display user profiles with dynamically colored initials based on the user's name."
           >
             <div class="flex gap-8 items-center justify-center flex-wrap p-4">
-              <BaseAvatar name="Luis Kern" size="w-12 h-12" />
-              <BaseAvatar name="Gerardo Ibarra" size="w-16 h-16" />
-              <PraxisInitialsAvatar name="Jane Doe" />
+              <PxAvatar name="Luis Kern" size="w-12 h-12" />
+              <PxAvatar name="Gerardo Ibarra" size="w-16 h-16" />
+              <PxInitialsAvatar name="Jane Doe" />
             </div>
           </ShowcaseSection>
 
@@ -212,14 +212,14 @@ onMounted(() => {
           >
             <div class="flex flex-col gap-8 items-center justify-center p-4">
               <div class="flex gap-4 flex-wrap justify-center">
-                <UiBadge severity="success">Active</UiBadge>
-                <UiBadge severity="warning">Pending</UiBadge>
-                <UiBadge severity="danger">Failed</UiBadge>
-                <UiBadge severity="info">Info</UiBadge>
+                <PxBadge severity="success">Active</PxBadge>
+                <PxBadge severity="warning">Pending</PxBadge>
+                <PxBadge severity="danger">Failed</PxBadge>
+                <PxBadge severity="info">Info</PxBadge>
               </div>
               <div class="flex gap-8 border-t border-surface-200/50 dark:border-surface-700/50 pt-8 w-full justify-center">
-                <PraxisRequiredLabel label="Email Address" required />
-                <PraxisRequiredLabel label="Optional Field" :required="false" />
+                <PxRequiredLabel label="Email Address" required />
+                <PxRequiredLabel label="Optional Field" :required="false" />
               </div>
             </div>
           </ShowcaseSection>
@@ -238,7 +238,7 @@ onMounted(() => {
               </button>
 
               <div class="w-full max-w-md border border-surface-200 dark:border-surface-700 rounded-xl p-8 bg-surface-50 dark:bg-surface-800/50">
-                <PraxisLoader message="Fetching data..." />
+                <PxLoader message="Fetching data..." />
               </div>
             </div>
           </ShowcaseSection>
@@ -249,7 +249,7 @@ onMounted(() => {
             description="A beautiful popover-based input for selecting times with scrollable columns."
           >
             <div class="w-full max-w-xs mx-auto">
-              <UiTimePicker v-model="time" label="Schedule Time" required />
+              <PxTimePicker v-model="time" label="Schedule Time" required />
               <p class="mt-6 text-sm text-surface-500 dark:text-surface-400 text-center font-mono">
                 Selected: <strong class="text-primary-500">{{ time }}</strong>
               </p>
@@ -262,7 +262,7 @@ onMounted(() => {
             description="International phone number formatting and validation out of the box."
           >
             <div class="w-full max-w-xs mx-auto">
-              <PraxisPhoneNumber v-model="phone" label="Contact Number" />
+              <PxPhoneNumber v-model="phone" label="Contact Number" />
               <p class="mt-6 text-sm text-surface-500 dark:text-surface-400 text-center font-mono">
                 Value: <strong class="text-primary-500">{{ phone || 'Empty' }}</strong>
               </p>
@@ -275,7 +275,7 @@ onMounted(() => {
             description="Interactive color selection field."
           >
             <div class="w-full max-w-xs mx-auto">
-              <PraxisColorPickerField v-model="color" label="Brand Color" />
+              <PxColorPickerField v-model="color" label="Brand Color" />
               <p class="mt-6 text-sm text-surface-500 dark:text-surface-400 text-center font-mono">
                 Selected: <strong :style="{ color: color }">{{ color }}</strong>
               </p>
@@ -288,32 +288,32 @@ onMounted(() => {
             description="Robust table component for displaying and sorting datasets."
           >
             <div class="w-full">
-              <PraxisDataTable 
+              <PxDataTable 
                 :columns="tableColumns" 
                 :data="tableData" 
                 :paginated="false"
               >
                 <template #status="{ item }">
-                  <UiBadge 
+                  <PxBadge 
                     :severity="item.status === 'Active' ? 'success' : item.status === 'Pending' ? 'warning' : 'danger'"
                   >
                     {{ item.status }}
-                  </UiBadge>
+                  </PxBadge>
                 </template>
-              </PraxisDataTable>
+              </PxDataTable>
             </div>
           </ShowcaseSection>
 
           <ShowcaseSection 
-            id="praxis-table-select"
+            id="px-table-select"
             title="Table Select" 
             description="Advanced list selection with a data table."
           >
             <div class="w-full max-w-lg mx-auto">
               <div class="mb-4">
-                <PraxisRequiredLabel label="Choose a Plan" required />
+                <PxRequiredLabel label="Choose a Plan" required />
               </div>
-              <PraxisTableSelect 
+              <PxTableSelect 
                 v-model:selectedItems="selectedListItems" 
                 :options="listOptions" 
                 title="Available Plans"
@@ -323,12 +323,12 @@ onMounted(() => {
           </ShowcaseSection>
           
           <ShowcaseSection 
-            id="praxis-pdf-viewer"
+            id="px-pdf-viewer"
             title="PDF Viewer" 
             description="Embed and render PDF documents directly in the UI."
           >
             <div class="w-full h-[400px] border border-surface-200 dark:border-surface-700 rounded-xl overflow-hidden">
-              <PraxisPdfViewer url="/dummy.pdf" />
+              <PxPdfViewer url="/dummy.pdf" />
             </div>
           </ShowcaseSection>
 
@@ -338,7 +338,7 @@ onMounted(() => {
             description="Guide users through multi-step forms and processes."
           >
             <div class="w-full max-w-3xl mx-auto p-4">
-              <PraxisStepNavigation :steps="steps" :currentStep="currentStep" />
+              <PxStepNavigation :steps="steps" :currentStep="currentStep" />
               
               <div class="mt-12 flex justify-center gap-4">
                 <button 
@@ -365,7 +365,7 @@ onMounted(() => {
             description="Collapsible sections to organize complex information."
           >
             <div class="w-full">
-              <UiAccordion :items="[{value: '1', header: 'Section 1', content: 'Content for section 1'}, {value: '2', header: 'Section 2', content: 'Content for section 2'}]" />
+              <PxAccordion :items="[{value: '1', header: 'Section 1', content: 'Content for section 1'}, {value: '2', header: 'Section 2', content: 'Content for section 2'}]" />
             </div>
           </ShowcaseSection>
 
@@ -375,7 +375,7 @@ onMounted(() => {
             description="Navigate between multiple views or data sets within the same context."
           >
             <div class="w-full">
-              <PraxisTabComponent :tabs="tabs" v-model="activeTab" />
+              <PxTabComponent :tabs="tabs" v-model="activeTab" />
               <div class="p-8 bg-surface-50 dark:bg-surface-800/50 rounded-b-xl border border-t-0 border-surface-200/50 dark:border-surface-700/50 text-surface-600 dark:text-surface-300">
                 {{ tabContent[activeTab] }}
               </div>
@@ -383,13 +383,13 @@ onMounted(() => {
           </ShowcaseSection>
 
           <ShowcaseSection
-            id="praxis-nav-list"
+            id="px-nav-list"
             title="Nav List"
             description="Collapsible sidebar navigation with grouped links, section separators, and active-route highlighting."
           >
             <div class="flex gap-4">
               <div class="w-60 border border-surface-200/50 dark:border-surface-700/50 rounded-xl p-2 bg-surface-50 dark:bg-surface-800/50">
-                <PraxisNavList
+                <PxNavList
                   :model="navListMenu"
                   :collapsed="navListCollapsed"
                   :active-path="navListActivePath"
@@ -403,7 +403,7 @@ onMounted(() => {
                       {{ navListCollapsed ? 'Expand' : 'Collapse' }}
                     </button>
                   </template>
-                </PraxisNavList>
+                </PxNavList>
               </div>
               <p class="text-sm text-surface-500 dark:text-surface-400 self-start pt-2">
                 Active path: <strong class="font-mono">{{ navListActivePath }}</strong>
@@ -417,7 +417,7 @@ onMounted(() => {
             description="Our premium rich-text editing experience, ready for any complex content creation task."
           >
             <div class="w-full">
-              <PraxisEditor
+              <PxEditor
                 v-model="editorContent"
                 placeholder="Write something amazing..."
               />

@@ -1,5 +1,5 @@
 // ============================================================
-// praxis-vue-editor — Public API
+// px-vue-editor — Public API
 // ============================================================
 
-export { default as PraxisEditor } from './PraxisEditor.vue'
+export { default as PxEditor } from './PxEditor.vue'

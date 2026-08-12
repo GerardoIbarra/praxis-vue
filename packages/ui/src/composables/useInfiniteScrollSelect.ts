@@ -27,7 +27,7 @@ export interface InfiniteScrollFetchResult<T> {
  * `useInfiniteScrollSelect`
  *
  * Composable que encapsula el estado de paginación + búsqueda para cualquier
- * `PraxisInfiniteScrollSelect`. Cada instancia del composable maneja de forma
+ * `PxInfiniteScrollSelect`. Cada instancia del composable maneja de forma
  * independiente sus propios refs, por lo que se puede usar varias veces en
  * el mismo componente (ej. un select para clientes y otro para productos).
  *
@@ -100,11 +100,11 @@ export function useInfiniteScrollSelect<T = Record<string, unknown>>(
   };
 
   /**
-   * Manejador para el evento `@search` de `PraxisInfiniteScrollSelect`.
+   * Manejador para el evento `@search` de `PxInfiniteScrollSelect`.
    * Aplica debounce y reinicia la paginación.
    */
   /**
-   * Manejador para el evento `@search` de `PraxisInfiniteScrollSelect`.
+   * Manejador para el evento `@search` de `PxInfiniteScrollSelect`.
    * Aplica debounce y reinicia la paginación.
    */
   const handleSearch = (query: string): void => {
@@ -121,7 +121,7 @@ export function useInfiniteScrollSelect<T = Record<string, unknown>>(
   };
 
   /**
-   * Manejador para el evento `@scrolling` de `PraxisInfiniteScrollSelect`.
+   * Manejador para el evento `@scrolling` de `PxInfiniteScrollSelect`.
    * Carga la siguiente página y hace append al listado.
    */
   const loadMore = async (): Promise<void> => {

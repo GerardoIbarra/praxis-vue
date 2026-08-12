@@ -40,7 +40,7 @@ const parseBinding = (
 
 const createTooltipEl = (): HTMLElement => {
   const el = document.createElement("div");
-  el.className = "ui-tooltip";
+  el.className = "px-tooltip";
   el.setAttribute("role", "tooltip");
   return el;
 };
@@ -52,7 +52,7 @@ const injectGlobalStyles = (() => {
     injected = true;
     const style = document.createElement("style");
     style.textContent = `
-      .ui-tooltip {
+      .px-tooltip {
         background: #1f2937;
         color: #f9fafb;
         padding: 0.375rem 0.625rem;
@@ -67,13 +67,13 @@ const injectGlobalStyles = (() => {
         transition: opacity 0.15s ease;
         box-shadow: 0 4px 6px rgba(0,0,0,0.2);
       }
-      .ui-tooltip[data-show] {
+      .px-tooltip[data-show] {
         opacity: 1;
       }
-      .ui-tooltip[data-popper-placement^='top'] > .ui-tooltip-arrow {
+      .px-tooltip[data-popper-placement^='top'] > .px-tooltip-arrow {
         bottom: -4px;
       }
-      .ui-tooltip[data-popper-placement^='bottom'] > .ui-tooltip-arrow {
+      .px-tooltip[data-popper-placement^='bottom'] > .px-tooltip-arrow {
         top: -4px;
       }
     `;

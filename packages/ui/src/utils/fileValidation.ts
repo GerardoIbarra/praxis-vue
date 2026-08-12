@@ -23,7 +23,7 @@ export const detectMimeType = (
         return;
       }
 
-      const arr = new Uint8Array(e.target.result as ArrayBuffer).subarray(0, 4);
+      const arr = new Pxnt8Array(e.target.result as ArrayBuffer).subarray(0, 4);
       let header = "";
       for (let i = 0; i < arr.length; i++) {
         header += arr[i].toString(16).toUpperCase();

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import BaseDataTable from '@praxis/ui-src/components/data-display/BaseDataTable.vue'
+import PraxisDataTable from '@praxis/ui-src/components/data-display/PraxisDataTable.vue'
 
 const columns = [
   { field: 'name', header: 'Name' },
@@ -21,7 +21,7 @@ const selectedItems = ref([])
 const handleSelection = (val) => { selectedItems.value = val }
 </script>
 
-# BaseDataTable
+# PraxisDataTable
 
 A responsive data table component built on native HTML `<table>`. Supports single/multiple row selection, expandable rows, loading states, striped rows, and custom cell rendering via named slots.
 
@@ -29,14 +29,14 @@ A responsive data table component built on native HTML `<table>`. Supports singl
 
 <ComponentDemo>
   <div style="width:100%">
-    <BaseDataTable :items="items" :columns="columns" />
+    <PraxisDataTable :items="items" :columns="columns" />
   </div>
 
   <template #code>
 
 ```vue
 <script setup>
-import { BaseDataTable } from 'praxis-vue-ui'
+import { PraxisDataTable } from 'praxis-vue-ui'
 
 const columns = [
   { field: 'name', header: 'Name' },
@@ -51,7 +51,7 @@ const items = [
 </script>
 
 <template>
-  <BaseDataTable :items="items" :columns="columns" />
+  <PraxisDataTable :items="items" :columns="columns" />
 </template>
 ```
 
@@ -62,7 +62,7 @@ const items = [
 
 <ComponentDemo title="Multiple Selection">
   <div style="width:100%">
-    <BaseDataTable
+    <PraxisDataTable
       :items="items"
       :columns="columns"
       selection-mode="multiple"
@@ -77,7 +77,7 @@ const items = [
   <template #code>
 
 ```vue
-<BaseDataTable
+<PraxisDataTable
   :items="items"
   :columns="columns"
   selection-mode="multiple"
@@ -93,7 +93,7 @@ const items = [
 
 <ComponentDemo title="Striped + Loading">
   <div style="width:100%">
-    <BaseDataTable
+    <PraxisDataTable
       :items="items"
       :columns="columns"
       :striped-rows="true"
@@ -104,7 +104,7 @@ const items = [
   <template #code>
 
 ```vue
-<BaseDataTable
+<PraxisDataTable
   :items="items"
   :columns="columns"
   :striped-rows="true"
@@ -120,7 +120,7 @@ const items = [
 Use `slotName` on a column to render custom content in that cell:
 
 ```vue
-<BaseDataTable :items="items" :columns="columns">
+<PraxisDataTable :items="items" :columns="columns">
   <template #status="{ data }">
     <span
       class="badge"
@@ -129,7 +129,7 @@ Use `slotName` on a column to render custom content in that cell:
       {{ data.status }}
     </span>
   </template>
-</BaseDataTable>
+</PraxisDataTable>
 ```
 
 Define `slotName` on the column definition:

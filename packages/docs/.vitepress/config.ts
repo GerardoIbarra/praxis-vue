@@ -93,8 +93,8 @@ export default withPwa(defineConfig({
         text: 'Data Display',
         collapsed: false,
         items: [
-          { text: 'Base Data Table', link: '/components/data-display/base-data-table' },
-          { text: 'Base Tree', link: '/components/data-display/base-tree' },
+          { text: 'Praxis Data Table', link: '/components/data-display/praxis-data-table' },
+          { text: 'Praxis Tree', link: '/components/data-display/praxis-tree' },
           { text: 'Praxis Display Options', link: '/components/data-display/praxis-display-options' },
           { text: 'Praxis PDF Viewer', link: '/components/data-display/praxis-pdf-viewer' },
         ],

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import BaseTree from '@praxis/ui-src/components/data-display/BaseTree.vue'
+import PraxisTree from '@praxis/ui-src/components/data-display/PraxisTree.vue'
 
 const nodes = ref([
   {
@@ -26,7 +26,7 @@ const expandedKeys = ref({ '1': true })
 const selectedKey = ref(null)
 </script>
 
-# BaseTree
+# PraxisTree
 
 A recursive tree component for browsing hierarchical catalogs (e.g. document template folders). Supports expand/collapse, node selection, and inline add/edit-child flows via the `newChild*` props.
 
@@ -34,7 +34,7 @@ A recursive tree component for browsing hierarchical catalogs (e.g. document tem
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%; max-width: 400px; border: 1px solid var(--vp-c-divider); border-radius: 8px; padding: 1rem;">
-    <BaseTree
+    <PraxisTree
       :nodes="nodes"
       v-model:expanded-keys="expandedKeys"
       :selected-key="selectedKey"
@@ -47,7 +47,7 @@ A recursive tree component for browsing hierarchical catalogs (e.g. document tem
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { BaseTree } from 'praxis-vue-ui'
+import { PraxisTree } from 'praxis-vue-ui'
 
 const nodes = ref([
   {
@@ -74,7 +74,7 @@ const selectedKey = ref(null)
 </script>
 
 <template>
-  <BaseTree
+  <PraxisTree
     :nodes="nodes"
     v-model:expanded-keys="expandedKeys"
     :selected-key="selectedKey"

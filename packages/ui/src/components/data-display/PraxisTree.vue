@@ -302,7 +302,7 @@ watch(
 
       <!-- Recursive children -->
       <template v-if="node.children?.length && expandedKeysModel[node.key]">
-        <BaseTree
+        <PraxisTree
           :nodes="node.children as any"
           :expanded-keys="expandedKeysModel"
           :selected-key="selectedKey"
@@ -330,13 +330,13 @@ watch(
           <template #actions="slotProps">
             <slot name="actions" :node="slotProps.node" />
           </template>
-        </BaseTree>
+        </PraxisTree>
       </template>
     </template>
   </div>
 </template>
 <script lang="ts">
 export default {
-  name: "BaseTree"
+  name: "PraxisTree"
 }
 </script>

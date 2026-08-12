@@ -1,7 +1,7 @@
 <script setup>
 import PraxisListViewWrapper from '@praxis/ui-src/components/layout/PraxisListViewWrapper.vue'
 import PraxisHeader from '@praxis/ui-src/components/layout/PraxisHeader.vue'
-import BaseDataTable from '@praxis/ui-src/components/data-display/BaseDataTable.vue'
+import PraxisDataTable from '@praxis/ui-src/components/data-display/PraxisDataTable.vue'
 
 const items = [{ id: 1, name: 'John Doe' }]
 const columns = [{ field: 'name', header: 'Name' }]
@@ -35,7 +35,7 @@ A layout wrapper for list pages. Provides a consistent structure with header, fi
 
 ```vue
 <script setup>
-import { PraxisListViewWrapper, PraxisHeader, BaseDataTable } from 'praxis-vue-ui'
+import { PraxisListViewWrapper, PraxisHeader, PraxisDataTable } from 'praxis-vue-ui'
 
 const items = [{ id: 1, name: 'John Doe' }]
 const columns = [{ field: 'name', header: 'Name' }]
@@ -52,7 +52,7 @@ const columns = [{ field: 'name', header: 'Name' }]
     </template>
 
     <template #default>
-      <BaseDataTable :items="items" :columns="columns" />
+      <PraxisDataTable :items="items" :columns="columns" />
     </template>
   </PraxisListViewWrapper>
 </template>
@@ -66,4 +66,4 @@ const columns = [{ field: 'name', header: 'Name' }]
 | Slot | Description |
 |------|-------------|
 | `header` | Page header area. Typically a `PraxisHeader` with variant="list". |
-| `default` | Main content area. Typically a `BaseDataTable`. |
+| `default` | Main content area. Typically a `PraxisDataTable`. |

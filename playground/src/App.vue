@@ -19,7 +19,7 @@ import {
   PraxisPhoneNumber,
   PraxisColorPickerField,
   PraxisPdfViewer,
-  BaseDataTable,
+  PraxisDataTable,
   PraxisStepNavigation,
   type NavListItem
 } from 'praxis-vue-ui'
@@ -288,7 +288,7 @@ onMounted(() => {
             description="Robust table component for displaying and sorting datasets."
           >
             <div class="w-full">
-              <BaseDataTable 
+              <PraxisDataTable 
                 :columns="tableColumns" 
                 :data="tableData" 
                 :paginated="false"
@@ -300,7 +300,7 @@ onMounted(() => {
                     {{ item.status }}
                   </UiBadge>
                 </template>
-              </BaseDataTable>
+              </PraxisDataTable>
             </div>
           </ShowcaseSection>
 

@@ -16,7 +16,7 @@ const columns = [
 
 # PraxisSelectableListWithTable
 
-An extended version of `PraxisSelectableList` that displays selected items in a full `BaseDataTable` instead of a simple list. Useful when the selected items need sortable columns, expandable rows, or custom cell rendering.
+An extended version of `PraxisSelectableList` that displays selected items in a full `PraxisDataTable` instead of a simple list. Useful when the selected items need sortable columns, expandable rows, or custom cell rendering.
 
 ## Usage
 
@@ -70,7 +70,7 @@ const columns = [
   { name: 'options', type: 'SelectableItem[]', required: true, description: 'Available options to select from.' },
   { name: 'selectedItems', type: 'SelectableItem[]', required: true, description: 'Currently selected items shown in the table.' },
   { name: 'title', type: 'string', required: true, description: 'Label displayed above the select input.' },
-  { name: 'columns', type: 'ColumnDef[]', default: '[]', description: 'Column definitions for the BaseDataTable (same as BaseDataTable columns prop).' },
+  { name: 'columns', type: 'ColumnDef[]', default: '[]', description: 'Column definitions for the PraxisDataTable (same as PraxisDataTable columns prop).' },
   { name: 'labelField', type: 'string', default: '\'name\'', description: 'Property name used as display label in the dropdown.' },
   { name: 'valueField', type: 'string', default: '\'id\'', description: 'Property name used as unique key.' },
   { name: 'placeholder', type: 'string', default: '\'Choose item\'', description: 'Dropdown placeholder.' },

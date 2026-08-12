@@ -30,8 +30,8 @@ export { default as PraxisCheckList } from './components/forms/PraxisCheckList.v
 export { default as PraxisInfiniteScrollSelect } from './components/forms/PraxisInfiniteScrollSelect.vue'
 
 // --- Data Display ---
-export { default as BaseDataTable } from './components/data-display/BaseDataTable.vue'
-export { default as BaseTree } from './components/data-display/BaseTree.vue'
+export { default as PraxisDataTable } from './components/data-display/PraxisDataTable.vue'
+export { default as PraxisTree } from './components/data-display/PraxisTree.vue'
 export { default as PraxisPdfViewer } from './components/data-display/PraxisPdfViewer.vue'
 export { default as PraxisInitialsAvatar } from './components/data-display/PraxisInitialsAvatar.vue'
 export { default as PraxisProfileInfoField } from './components/data-display/PraxisProfileInfoField.vue'

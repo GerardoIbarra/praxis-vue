@@ -102,7 +102,7 @@ const content = ref('<p>Hello world</p>')
 |---|---|
 | **Base** | `PxAvatar`, `PxAvatar`, `PxAvatarSelect`, `PxColorPickerField`, `PxVisualSelect`, `PxGroupedMultiSelect`, `PxPhoneNumber`, `PxLabel`, `PxRequiredLabel`, `PxThemeToggle`, `PxLoader` |
 | **Forms** | `PxDynamicForm`, `PxCheckList`, `PxInfiniteScrollSelect`, `PxTableSelect`, `PxSelectableListWithTable`, `PxWeekDaysSelector`, `PxModalInput`, `PxFormFieldRow`, `PxFormMultiSelectList`, `PxTimePicker` |
-| **Data Display** | `PxDataTable`, `PxTree`, `PxPdfViewer`, `PxInitialsAvatar`, `PxProfileInfoField`, `PxDisplayOptions`, `PxBadgedValueGrid`, `PxLabeledValueSection`, `PxExistingDataTable` |
+| **Data Display** | `PxDataTable`, `PxTree`, `PxPdfViewer`, `PxInitialsAvatar`, `PxInfoField`, `PxDisplayOptions`, `PxBadgedValueGrid`, `PxLabeledValueSection`, `PxStatusDataTable` |
 | **Layout** | `PxColumnLayout`, `PxDashboardCard`, `PxHeader`, `PxListViewWrapper`, `PxCardFilterContainer`, `PxFormViewWrapper` |
 | **Navigation** | `PxTabComponent`, `PxStepNavigation`, `PxStepHeader`, `PxActionMenu`, `PxNavList` |
 | **Primitives** | `PxAccordion`, `PxBadge`, `PxCheckbox`, `PxDialog`, `PxDrawer`, `PxRadioButton`, `PxTimeline` |

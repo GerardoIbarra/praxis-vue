@@ -65,7 +65,7 @@ export interface FormSchemaField {
   [key: string]: unknown;
 }
 
-export interface GeneralTabsProfile {
+export interface TabItemConfig {
   key: string;
   label: string;
   icon: string;

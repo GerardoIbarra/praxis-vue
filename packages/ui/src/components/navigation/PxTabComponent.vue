@@ -28,7 +28,7 @@ import {
   ClipboardList,
   Users,
 } from "@lucide/vue";
-import type { GeneralTabsProfile } from "@/types/api/common";
+import type { TabItemConfig } from "@/types/api/common";
 
 const icons = {
   User,
@@ -60,7 +60,7 @@ const icons = {
 };
 
 const props = defineProps({
-  tabs: { type: Array as PropType<GeneralTabsProfile[]>, required: true },
+  tabs: { type: Array as PropType<TabItemConfig[]>, required: true },
   modelValue: { type: String, required: true },
   protectedTabs: { type: Array as PropType<string[]>, default: () => [] },
 });
@@ -74,7 +74,7 @@ const visibleTabs = computed(() => {
   return props.tabs.filter((tab) => tab.show !== false);
 });
 
-function select(tab: GeneralTabsProfile) {
+function select(tab: TabItemConfig) {
   if (tab.command) {
     tab.command();
     return;

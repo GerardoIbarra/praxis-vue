@@ -203,7 +203,7 @@ watch(
 
 
 // Recarga automática de opciones para campos que dependen del valor de otro
-// campo (via option_source.search_field), p.ej. SNOMED que depende de ICD-10.
+// campo (via option_source.search_field), p.ej. Sub-categoría que depende de Categoría.
 useSearchFieldDependency(
   formData,
   computed(() => props.schema)

@@ -33,11 +33,11 @@ export { default as PxDataTable } from './components/data-display/PxDataTable.vu
 export { default as PxTree } from './components/data-display/PxTree.vue'
 export { default as PxPdfViewer } from './components/data-display/PxPdfViewer.vue'
 export { default as PxInitialsAvatar } from './components/data-display/PxInitialsAvatar.vue'
-export { default as PxProfileInfoField } from './components/data-display/PxProfileInfoField.vue'
+export { default as PxInfoField } from './components/data-display/PxInfoField.vue'
 export { default as PxDisplayOptions } from './components/data-display/PxDisplayOptions.vue'
 export { default as PxBadgedValueGrid } from './components/data-display/PxBadgedValueGrid.vue'
 export { default as PxLabeledValueSection } from './components/data-display/PxLabeledValueSection.vue'
-export { default as PxExistingDataTable } from './components/data-display/PxExistingDataTable.vue'
+export { default as PxStatusDataTable } from './components/data-display/PxStatusDataTable.vue'
 
 // --- Layout ---
 export { default as PxColumnLayout } from './components/layout/PxColumnLayout.vue'

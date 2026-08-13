@@ -61,6 +61,26 @@ const day = ref('monday')
   label="Working Days"
 />
 ```
+  </template>
+</ComponentDemo>
+
+## Vertical Mode
+
+<ComponentDemo title="Vertical Layout">
+  <div style="width:100%;max-width:300px">
+    <PxDayPicker v-model="selectedDays" mode="checkbox" vertical label="Schedule Days" />
+  </div>
+
+  <template #code>
+
+```vue
+<PxDayPicker
+  v-model="days"
+  mode="checkbox"
+  vertical
+  label="Schedule Days"
+/>
+```
 
   </template>
 </ComponentDemo>
@@ -78,6 +98,7 @@ const day = ref('monday')
   { name: 'required', type: 'boolean', default: 'false', description: 'Marks the field as required.' },
   { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables all day inputs.' },
   { name: 'showRequired', type: 'boolean', default: 'false', description: 'Shows the required asterisk on the label.' },
+  { name: 'vertical', type: 'boolean', default: 'false', description: 'Stacks the days vertically in a column instead of horizontally.' },
 ]" />
 
 ## DaysChoosen Interface

@@ -14,6 +14,7 @@ interface Props {
   required?: boolean;
   label?: string;
   showRequired?: boolean;
+  vertical?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -22,6 +23,7 @@ const props = withDefaults(defineProps<Props>(), {
   required: false,
   label: "Days of the week",
   showRequired: false,
+  vertical: false,
 });
 
 const emit = defineEmits<{
@@ -76,7 +78,10 @@ const isDaySelected = (day: string): boolean => {
       class="block text-sm font-medium mb-2"
     />
 
-    <div class="flex flex-wrap gap-3">
+    <div
+      class="flex gap-3"
+      :class="vertical ? 'flex-col' : 'flex-row flex-wrap'"
+    >
       <div
         v-for="(dayLabel, day) in weekDays"
         :key="day"

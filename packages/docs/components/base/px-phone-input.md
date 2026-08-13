@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue'
-import PxPhoneNumber from '@praxis/px-src/components/base/PxPhoneNumber.vue'
+import PxPhoneInput from '@praxis/px-src/components/base/PxPhoneInput.vue'
 
 const phone = ref('')
 </script>
 
-# PxPhoneNumber
+# PxPhoneInput
 
 An international phone number input with country code selector. Backed by `vue-tel-input` and `libphonenumber-js` for validation.
 
@@ -13,7 +13,7 @@ An international phone number input with country code selector. Backed by `vue-t
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%; max-width: 400px;">
-    <PxPhoneNumber
+    <PxPhoneInput
       v-model="phone"
       label="Phone Number"
       :required="true"
@@ -28,13 +28,13 @@ An international phone number input with country code selector. Backed by `vue-t
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxPhoneNumber } from 'px-vue-ui'
+import { PxPhoneInput } from 'px-vue-ui'
 
 const phone = ref('')
 </script>
 
 <template>
-  <PxPhoneNumber
+  <PxPhoneInput
     v-model="phone"
     label="Phone Number"
     :required="true"

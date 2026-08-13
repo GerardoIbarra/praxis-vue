@@ -16,7 +16,7 @@ import {
   PxStateChecklist,
   PxNavList,
   PxTabComponent,
-  PxPhoneNumber,
+  PxPhoneInput,
   PxColorPickerField,
   PxPdfViewer,
   PxDataTable,
@@ -262,7 +262,7 @@ onMounted(() => {
             description="International phone number formatting and validation out of the box."
           >
             <div class="w-full max-w-xs mx-auto">
-              <PxPhoneNumber v-model="phone" label="Contact Number" />
+              <PxPhoneInput v-model="phone" label="Contact Number" />
               <p class="mt-6 text-sm text-surface-500 dark:text-surface-400 text-center font-mono">
                 Value: <strong class="text-primary-500">{{ phone || 'Empty' }}</strong>
               </p>

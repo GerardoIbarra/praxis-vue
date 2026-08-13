@@ -74,7 +74,7 @@ export default withPwa(defineConfig({
           { text: 'Praxis Visual Select', link: '/components/base/px-visual-select' },
           { text: 'Praxis Grouped Multi Select', link: '/components/base/px-categorized-select' },
           { text: 'Praxis Loader', link: '/components/base/px-loader' },
-          { text: 'Praxis Phone Number', link: '/components/base/px-phone-number' },
+          { text: 'Praxis Phone Number', link: '/components/base/px-phone-input' },
           { text: 'Praxis Theme Toggle', link: '/components/base/px-theme-toggle' },
         ],
       },

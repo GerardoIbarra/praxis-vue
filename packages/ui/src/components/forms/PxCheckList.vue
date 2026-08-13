@@ -2,7 +2,7 @@
 import { ref, watch, computed } from "vue";
 import type { FormSchemaField } from "@/types/api/common";
 import PxCheckbox from "@/components/_primitives/PxCheckbox.vue";
-import { ChevronDown, Minus, Plus, Heading } from "@lucide/vue";
+import { ChevronDown, Minus, Plus, Flag } from "@lucide/vue";
 
 const props = defineProps<{
   field: FormSchemaField;
@@ -86,7 +86,7 @@ watch(
 
             initialData[child.key] = {
               value: radioComponent?.value || null,
-              history: checkboxComponent?.checked || false,
+              flagged: checkboxComponent?.checked || false,
               text: textComponent?.value || "",
             };
           }
@@ -114,7 +114,7 @@ const handleCheckboxChange = (childKey: string, checked: boolean) => {
   if (!formData.value[childKey]) {
     formData.value[childKey] = {};
   }
-  formData.value[childKey].history = checked;
+  formData.value[childKey].flagged = checked;
   emit("update:modelValue", formData.value);
 };
 
@@ -148,7 +148,7 @@ const getRadioValue = (childKey: string) => {
 
 // Get current checkbox value for a child
 const getCheckboxValue = (childKey: string) => {
-  return formData.value[childKey]?.history || false;
+  return formData.value[childKey]?.flagged || false;
 };
 
 // Get current text value for a child
@@ -181,7 +181,7 @@ const clearAll = () => {
     );
     clearedData[child.key] = {
       value: null,
-      history: false,
+      flagged: false,
       text: textComponent?.value || "",
     };
   });
@@ -190,8 +190,8 @@ const clearAll = () => {
   emit("update:modelValue", formData.value);
 };
 
-// Set all unselected items to "no" (negative)
-const setRestNegative = () => {
+// Set all unselected items to "no" (false)
+const setRestFalse = () => {
   listChildren.value.forEach((child) => {
     if (!formData.value[child.key] || !formData.value[child.key].value) {
       if (!formData.value[child.key]) {
@@ -210,8 +210,8 @@ const setRestNegative = () => {
   emit("update:modelValue", formData.value);
 };
 
-// Set all items to "no" (negative)
-const setAllNegative = () => {
+// Set all items to "no" (false)
+const setAllFalse = () => {
   listChildren.value.forEach((child) => {
     if (!formData.value[child.key]) {
       formData.value[child.key] = {};
@@ -231,8 +231,8 @@ const setAllNegative = () => {
 // Expose methods to parent component
 defineExpose({
   clearAll,
-  setRestNegative,
-  setAllNegative,
+  setRestFalse,
+  setAllFalse,
 });
 </script>
 
@@ -274,7 +274,7 @@ defineExpose({
               >
                 <span><Plus class="text-red-400 w-4 h-4" /></span>
                 <span><Minus class="text-green-400 w-4 h-4" /></span>
-                <span v-if="!hasAnyTextInput"><Heading class="text-blue-400 w-4 h-4" /></span>
+                <span v-if="!hasAnyTextInput"><Flag class="text-blue-400 w-4 h-4" /></span>
               </div>
             </div>
 
@@ -332,7 +332,7 @@ defineExpose({
                   />
                 </label>
 
-                <!-- History checkbox -->
+                <!-- Flagged checkbox -->
                 <label
                   v-if="child.components?.some((c) => c.type === 'checkbox')"
                   class="flex items-center justify-center cursor-pointer"

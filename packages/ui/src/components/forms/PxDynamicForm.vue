@@ -45,8 +45,8 @@ const calculatedNumbersLocal = ref<any[]>(props.calculatedNumbers || []);
 
 export interface CheckListInstance {
   clearAll: () => void;
-  setRestNegative: () => void;
-  setAllNegative: () => void;
+  setRestFalse: () => void;
+  setAllFalse: () => void;
 }
 
 const checkListRefs = ref<(CheckListInstance | null)[]>([]); // Para almacenar referencias a PxCheckList components
@@ -255,18 +255,18 @@ const clearAllCheckLists = () => {
   });
 };
 
-const setAllRestNegative = () => {
+const setAllRestFalse = () => {
   checkListRefs.value.forEach((checkListRef) => {
-    if (checkListRef && typeof checkListRef.setRestNegative === "function") {
-      checkListRef.setRestNegative();
+    if (checkListRef && typeof checkListRef.setRestFalse === "function") {
+      checkListRef.setRestFalse();
     }
   });
 };
 
-const setAllNegative = () => {
+const setAllFalse = () => {
   checkListRefs.value.forEach((checkListRef) => {
-    if (checkListRef && typeof checkListRef.setAllNegative === "function") {
-      checkListRef.setAllNegative();
+    if (checkListRef && typeof checkListRef.setAllFalse === "function") {
+      checkListRef.setAllFalse();
     }
   });
 };
@@ -274,8 +274,8 @@ const setAllNegative = () => {
 // Expose methods to parent component
 defineExpose({
   clearAllCheckLists,
-  setAllRestNegative,
-  setAllNegative,
+  setAllRestFalse,
+  setAllFalse,
 });
 </script>
 

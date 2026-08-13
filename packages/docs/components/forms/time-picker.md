@@ -15,7 +15,7 @@ A scrollable time picker with **24-hour** and **12-hour (AM/PM)** format support
 
 <ComponentDemo>
   <div style="width:280px">
-    <PxTimePicker v-model="time" label="Appointment Time" />
+    <PxTimePicker v-model="time" label="Select Time" />
     <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--vp-c-text-2)">
       Value (HH:mm): <strong>{{ time }}</strong>
     </p>
@@ -34,7 +34,7 @@ const time = ref('09:30')
 <template>
   <PxTimePicker
     v-model="time"
-    label="Appointment Time"
+    label="Select Time"
   />
 </template>
 ```

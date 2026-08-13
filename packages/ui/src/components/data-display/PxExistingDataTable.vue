@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { Heading, Minus, Slash, SquarePlus } from "@lucide/vue";
+import { Flag, Minus, Slash, SquarePlus } from "@lucide/vue";
 
 type TableValue =
   | boolean
   | string
-  | { plus?: boolean; minus?: boolean; history?: boolean }
+  | { plus?: boolean; minus?: boolean; flagged?: boolean }
   | null
   | undefined;
 
@@ -51,9 +51,9 @@ const isPlus = (v: TableValue) =>
 const isMinus = (v: TableValue) =>
   v === true ||
   (typeof v === "object" && v !== null && "minus" in v && v.minus === true);
-const isHistory = (v: TableValue) =>
-  v === "history" ||
-  (typeof v === "object" && v !== null && "history" in v && v.history === true);
+const isFlagged = (v: TableValue) =>
+  v === "flagged" ||
+  (typeof v === "object" && v !== null && "flagged" in v && v.flagged === true);
 </script>
 
 <template>
@@ -113,14 +113,14 @@ const isHistory = (v: TableValue) =>
                   />
 
                   <Minus v-if="isMinus(value)" class="w-4 h-4 text-green-600" />
-                  <Heading
-                    v-if="isHistory(value)"
+                  <Flag
+                    v-if="isFlagged(value)"
                     class="w-4 h-4 text-blue-600"
                   />
 
                   <Slash
                     v-if="
-                      !isPlus(value) && !isMinus(value) && !isHistory(value)
+                      !isPlus(value) && !isMinus(value) && !isFlagged(value)
                     "
                     class="w-2 h-2 text-gray-800"
                   />

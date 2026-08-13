@@ -6,24 +6,24 @@ const fieldData1 = ref({})
 const fieldData2 = ref({})
 
 const sampleField = {
-  label: "Medical History",
+  label: "System Preferences",
   type: "check_list",
   fields: {
     list_children: [
-      { key: "diabetes", label: "Diabetes", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
-      { key: "hypertension", label: "Hypertension", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] }
+      { key: "auto_save", label: "Auto Save", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "dark_mode", label: "Dark Mode", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] }
     ]
   }
 }
 
 const sampleInputField = {
-  label: "Medications",
+  label: "Extensions",
   type: "check_list_input",
   fields: {
     input_father: { type: "input", value: "" },
     list_children: [
-      { key: "med1", label: "Aspirin", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }, { type: "input", value: "" }] },
-      { key: "med2", label: "Ibuprofen", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }, { type: "input", value: "" }] }
+      { key: "ext1", label: "AdBlocker", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }, { type: "input", value: "" }] },
+      { key: "ext2", label: "Grammarly", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }, { type: "input", value: "" }] }
     ]
   }
 }
@@ -31,11 +31,11 @@ const sampleInputField = {
 
 # PxCheckList
 
-A dynamic, schema-driven checklist component designed to render complex boolean/history options (Yes/No/History) for a predefined list of items. It supports optional text inputs per item based on the schema configuration.
+A dynamic, schema-driven checklist component designed to render complex tri-state options (True/False/Flagged) for a predefined list of items. It supports optional text inputs per item based on the schema configuration.
 
 ## Standard Checklist
 
-Renders a list of items with Positive (+), Negative (-), and History (H) options.
+Renders a list of items with True (+), False (-), and Flagged (F) options.
 
 <div class="p-6 border rounded-xl mt-4 bg-gray-50 dark:bg-surface-900">
   <PxCheckList :field="sampleField" v-model="fieldData1" :default-open="true" />
@@ -47,12 +47,12 @@ import { PxCheckList } from 'px-vue-ui'
 
 const data = ref({})
 const field = {
-  label: "Medical History",
+  label: "System Preferences",
   type: "check_list",
   fields: {
     list_children: [
-      { key: "diabetes", label: "Diabetes", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
-      { key: "hypertension", label: "Hypertension", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] }
+      { key: "auto_save", label: "Auto Save", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "dark_mode", label: "Dark Mode", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] }
     ]
   }
 }
@@ -92,8 +92,8 @@ Can be accessed via a template ref to control the checklist programmatically:
 | Name | Description |
 |---|---|
 | `clearAll()` | Resets all selections and text inputs to their default empty states. |
-| `setRestNegative()` | Sets the radio value to "no" for all items that haven't been answered yet. |
-| `setAllNegative()` | Sets the radio value to "no" for all items, overwriting current answers. |
+| `setRestFalse()` | Sets the radio value to "no" for all items that haven't been answered yet. |
+| `setAllFalse()` | Sets the radio value to "no" for all items, overwriting current answers. |
 
 > [!NOTE]
 > This component is designed for schema-driven dynamic forms. For simple checklist needs without a schema, consider using `PxCheckbox` directly.

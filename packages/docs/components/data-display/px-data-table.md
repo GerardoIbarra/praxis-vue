@@ -36,7 +36,7 @@ A responsive data table component built on native HTML `<table>`. Supports singl
 
 ```vue
 <script setup>
-import { PxDataTable } from 'px-vue-ui'
+import { PxDataTable } from 'praxis-vue-ui'
 
 const columns = [
   { field: 'name', header: 'Name' },

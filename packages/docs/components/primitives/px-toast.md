@@ -1,5 +1,6 @@
 <script setup>
-import { PxToast, usePxToast } from 'px-vue-ui'
+import PxToast from '@praxis/px-src/components/_primitives/PxToast.vue'
+import { usePxToast } from '@praxis/px-src/composables/usePxToast'
 
 // Mocking usePxToast since docs might not have PrimeVue app fully instantiated
 // But assuming it does, we can just use the real one.
@@ -33,7 +34,7 @@ To use toasts, you need to add the `<PxToast />` component once in your root lay
 
 ```vue
 <script setup>
-import { PxToast, usePxToast } from 'px-vue-ui'
+import { PxToast, usePxToast } from 'praxis-vue-ui'
 
 const { showSuccess, showError, showInfo, showWarning } = usePxToast()
 

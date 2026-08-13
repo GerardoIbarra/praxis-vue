@@ -40,7 +40,7 @@ A fully schema-driven form engine. Renders a flat array of field definitions —
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxSchemaForm } from 'px-vue-ui'
+import { PxSchemaForm } from 'praxis-vue-ui'
 
 const schema = [
   { key: 'first_name', label: 'First Name', type: 'text', required: true },

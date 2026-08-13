@@ -2,7 +2,7 @@
 import { ref, watch, computed } from "vue";
 import type { FormSchemaField } from "@/types/api/common";
 import PxCheckbox from "@/components/_primitives/PxCheckbox.vue";
-import { ChevronDown, Minus, Plus, Flag } from "@lucide/vue";
+import { ChevronDown, X, Check, Flag } from "@lucide/vue";
 
 const props = defineProps<{
   field: FormSchemaField;
@@ -272,8 +272,8 @@ defineExpose({
               <div
                 class="grid grid-cols-3 gap-2 justify-items-center items-center w-30"
               >
-                <span><Plus class="text-red-400 w-4 h-4" /></span>
-                <span><Minus class="text-green-400 w-4 h-4" /></span>
+                <span><Check class="text-green-500 w-4 h-4" /></span>
+                <span><X class="text-red-500 w-4 h-4" /></span>
                 <span v-if="!hasAnyTextInput"><Flag class="text-blue-400 w-4 h-4" /></span>
               </div>
             </div>
@@ -315,7 +315,7 @@ defineExpose({
                     :name="`item_${child.key}_${field.label}`"
                     value="yes"
                     :checked="getRadioValue(child.key) === 'yes'"
-                    class="w-4 h-4 cursor-pointer accent-blue-500 checked:accent-red-500"
+                    class="w-4 h-4 cursor-pointer accent-blue-500 checked:accent-green-500"
                     @change="handleRadioChange(child.key, 'yes')"
                   />
                 </label>
@@ -327,7 +327,7 @@ defineExpose({
                     :name="`item_${child.key}_${field.label}`"
                     value="no"
                     :checked="getRadioValue(child.key) === 'no'"
-                    class="w-4 h-4 cursor-pointer accent-blue-500 checked:accent-green-500"
+                    class="w-4 h-4 cursor-pointer accent-blue-500 checked:accent-red-500"
                     @change="handleRadioChange(child.key, 'no')"
                   />
                 </label>
@@ -340,7 +340,7 @@ defineExpose({
                   <PxCheckbox
                     :model-value="getCheckboxValue(child.key)"
                     :binary="true"
-                    class="w-4 h-4 pointer-events-none"
+                    class="w-4 h-4"
                     @update:model-value="(val) => handleCheckboxChange(child.key, val as boolean)"
                   />
                 </label>

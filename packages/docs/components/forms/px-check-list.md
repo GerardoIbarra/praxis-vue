@@ -11,7 +11,10 @@ const sampleField = {
   fields: {
     list_children: [
       { key: "auto_save", label: "Auto Save", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
-      { key: "dark_mode", label: "Dark Mode", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] }
+      { key: "dark_mode", label: "Dark Mode", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "notifications", label: "Push Notifications", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "telemetry", label: "Send Telemetry Data", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "hardware_accel", label: "Hardware Acceleration", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] }
     ]
   }
 }
@@ -23,7 +26,9 @@ const sampleInputField = {
     input_father: { type: "input", value: "" },
     list_children: [
       { key: "ext1", label: "AdBlocker", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }, { type: "input", value: "" }] },
-      { key: "ext2", label: "Grammarly", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }, { type: "input", value: "" }] }
+      { key: "ext2", label: "Grammarly", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }, { type: "input", value: "" }] },
+      { key: "ext3", label: "Vue DevTools", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }, { type: "input", value: "" }] },
+      { key: "ext4", label: "React DevTools", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }, { type: "input", value: "" }] }
     ]
   }
 }
@@ -35,7 +40,7 @@ A dynamic, schema-driven checklist component designed to render complex tri-stat
 
 ## Standard Checklist
 
-Renders a list of items with True (+), False (-), and Flagged (F) options.
+Renders a list of items with True (✓), False (✗), and Flagged (⚑) options.
 
 <div class="p-6 border rounded-xl mt-4 bg-gray-50 dark:bg-surface-900">
   <PxCheckList :field="sampleField" v-model="fieldData1" :default-open="true" />
@@ -52,7 +57,10 @@ const field = {
   fields: {
     list_children: [
       { key: "auto_save", label: "Auto Save", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
-      { key: "dark_mode", label: "Dark Mode", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] }
+      { key: "dark_mode", label: "Dark Mode", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "notifications", label: "Push Notifications", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "telemetry", label: "Send Telemetry Data", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "hardware_accel", label: "Hardware Acceleration", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] }
     ]
   }
 }

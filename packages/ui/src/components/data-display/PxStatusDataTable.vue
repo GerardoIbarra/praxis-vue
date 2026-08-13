@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { Flag, Minus, Slash, SquarePlus } from "@lucide/vue";
+import { Flag, X, Slash, CheckSquare } from "@lucide/vue";
 
 type TableValue =
   | boolean
@@ -107,12 +107,12 @@ const isFlagged = (v: TableValue) =>
                 class="p-2 text-center text-gray-500 min-w-25 whitespace-nowrap"
               >
                 <div class="flex items-center justify-center gap-2">
-                  <SquarePlus
+                  <CheckSquare
                     v-if="isPlus(value)"
-                    class="w-4 h-4 text-red-600"
+                    class="w-4 h-4 text-green-600"
                   />
 
-                  <Minus v-if="isMinus(value)" class="w-4 h-4 text-green-600" />
+                  <X v-if="isMinus(value)" class="w-4 h-4 text-red-600" />
                   <Flag
                     v-if="isFlagged(value)"
                     class="w-4 h-4 text-blue-600"

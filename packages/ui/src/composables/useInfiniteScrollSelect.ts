@@ -91,9 +91,7 @@ export function useInfiniteScrollSelect<T = Record<string, unknown>>(
 
       hasMore.value = result.hasMore;
     } catch (error) {
-      throw new Error("[useInfiniteScrollSelect] fetcher error: ", {
-        cause: error,
-      });
+      throw new Error(`[useInfiniteScrollSelect] fetcher error: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       loading.value = false;
     }

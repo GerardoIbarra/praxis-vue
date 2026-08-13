@@ -105,7 +105,7 @@ export function useSelectOptions() {
         // Always replace options when searching or resetting
         field.options = data;
       } catch (err) {
-        throw new Error("Error in select search: ", { cause: err });
+        throw new Error(`Error in select search: ${err instanceof Error ? err.message : String(err)}`);
       } finally {
         loadingSelect.value = false;
       }

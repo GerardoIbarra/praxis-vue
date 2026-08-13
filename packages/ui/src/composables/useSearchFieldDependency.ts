@@ -52,10 +52,7 @@ export function useSearchFieldDependency(
     } catch (error) {
       field.options = [];
       throw new Error(
-        `[useSearchFieldDependency] Failed to reload options for "${field.key}"`,
-        {
-          cause: error,
-        }
+        `[useSearchFieldDependency] Failed to reload options for "${field.key}": ${error instanceof Error ? error.message : String(error)}`
       );
     }
   };

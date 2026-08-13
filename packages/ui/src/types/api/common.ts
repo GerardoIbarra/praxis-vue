@@ -54,7 +54,8 @@ export interface FormSchemaField {
   };
   components?: FormSchemaField[];
   autofill?: AutofillRule[] | Record<string, string>;
-  rules?: Record<string, unknown>;
+  rules?: Record<string, any>;
+  visible_when?: { field: string; value?: unknown };
   pagination?: { page?: number; hasMore?: boolean };
   directories?: boolean;
   search?: boolean;

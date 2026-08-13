@@ -1,4 +1,7 @@
 import {
+  createHooks
+} from "./chunk-KALIYDCG.js";
+import {
   computed,
   defineComponent,
   getCurrentInstance,
@@ -12,11 +15,8 @@ import {
   watchEffect
 } from "./chunk-S6VNSOLG.js";
 import {
-  createHooks
-} from "./chunk-KALIYDCG.js";
-import {
   __publicField
-} from "./chunk-XGM4GKIC.js";
+} from "./chunk-V6TY7KAL.js";
 
 // ../../node_modules/.pnpm/nostics@1.2.0/node_modules/nostics/dist/index.mjs
 function formatDiagnostic(diagnostic) {

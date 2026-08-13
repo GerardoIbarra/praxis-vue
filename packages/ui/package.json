@@ -10,6 +10,19 @@
     "typescript"
   ],
   "license": "MIT",
+  "author": "Luis Kern",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/luiskern/praxis-vue.git",
+    "directory": "packages/ui"
+  },
+  "bugs": {
+    "url": "https://github.com/luiskern/praxis-vue/issues"
+  },
+  "homepage": "https://github.com/luiskern/praxis-vue#readme",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "type": "module",
   "main": "./dist/praxis-vue.umd.cjs",
   "module": "./dist/praxis-vue.js",

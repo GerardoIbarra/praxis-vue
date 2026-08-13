@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# Except these
+!dist/**
+!tailwind.preset.js
+!package.json
+!README.md
+!LICENSE

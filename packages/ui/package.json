@@ -21,10 +21,12 @@
       "types": "./dist/index.d.ts"
     },
     "./dist/praxis-vue.css": "./dist/praxis-vue.css",
-    "./style.css": "./dist/praxis-vue.css"
+    "./style.css": "./dist/praxis-vue.css",
+    "./tailwind.preset.js": "./tailwind.preset.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "tailwind.preset.js"
   ],
   "scripts": {
     "build": "vite build",

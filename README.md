@@ -94,6 +94,53 @@ const content = ref('<p>Hello world</p>')
 
 ---
 
+## Theming & Tailwind
+
+`praxis-vue` is styled using Tailwind CSS and CSS variables, giving you complete control over the color scheme.
+
+### 1. Add the Tailwind Preset
+
+To ensure all library components inherit the correct `primary` and `surface` color palettes, add our preset to your `tailwind.config.js`:
+
+```js
+// tailwind.config.js
+module.exports = {
+  content: [
+    // ... your paths
+    './node_modules/px-vue-ui/src/**/*.{vue,js,ts}'
+  ],
+  presets: [
+    require('px-vue-ui/tailwind.preset.js')
+  ],
+  theme: {
+    extend: {},
+  }
+}
+```
+
+### 2. Customize Colors (CSS Variables)
+
+Our Tailwind preset maps colors directly to CSS variables. You can easily override the default blue theme by redefining these variables in your global CSS file:
+
+```css
+:root {
+  /* Change the primary color to Purple */
+  --ui-primary: #9333ea;
+  --ui-primary-hover: #7e22ce;
+  
+  /* Change the background of the app */
+  --ui-bg: #fafafa;
+}
+
+.dark {
+  /* Dark mode overrides */
+  --ui-primary: #a855f7;
+  --ui-bg: #121212;
+}
+```
+
+---
+
 ## Component Categories
 
 ### `px-vue-ui`

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxGroupedMultiSelect from '@praxis/px-src/components/base/PxGroupedMultiSelect.vue'
+import PxCategorizedSelect from '@praxis/px-src/components/base/PxCategorizedSelect.vue'
 
 const selected = ref([])
 const selected2 = ref([1, 3])
@@ -34,7 +34,7 @@ const options = [
 ]
 </script>
 
-# PxGroupedMultiSelect
+# PxCategorizedSelect
 
 A multi-select dropdown with grouped options, checkboxes, color swatches, duration badges, and a "Select All" header. Built on top of `vue-select` with full custom rendering.
 
@@ -42,7 +42,7 @@ A multi-select dropdown with grouped options, checkboxes, color swatches, durati
 
 <ComponentDemo>
   <div style="width:360px">
-    <PxGroupedMultiSelect
+    <PxCategorizedSelect
       v-model="selected"
       :options="options"
       placeholder="Select activities..."
@@ -57,7 +57,7 @@ A multi-select dropdown with grouped options, checkboxes, color swatches, durati
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxGroupedMultiSelect } from 'px-vue-ui'
+import { PxCategorizedSelect } from 'px-vue-ui'
 
 const selected = ref([])
 const options = [
@@ -74,7 +74,7 @@ const options = [
 </script>
 
 <template>
-  <PxGroupedMultiSelect
+  <PxCategorizedSelect
     v-model="selected"
     :options="options"
     placeholder="Select activities..."
@@ -89,7 +89,7 @@ const options = [
 
 <ComponentDemo title="Pre-selected">
   <div style="width:360px">
-    <PxGroupedMultiSelect
+    <PxCategorizedSelect
       v-model="selected2"
       :options="options"
       placeholder="Select activities..."
@@ -99,7 +99,7 @@ const options = [
   <template #code>
 
 ```vue
-<PxGroupedMultiSelect
+<PxCategorizedSelect
   v-model="selected"
   :options="options"
   placeholder="Select activities..."
@@ -113,7 +113,7 @@ const options = [
 
 <ComponentDemo title="Simplified">
   <div style="width:360px">
-    <PxGroupedMultiSelect
+    <PxCategorizedSelect
       v-model="selected"
       :options="options"
       :show-duration="false"
@@ -125,7 +125,7 @@ const options = [
   <template #code>
 
 ```vue
-<PxGroupedMultiSelect
+<PxCategorizedSelect
   v-model="selected"
   :options="options"
   :show-duration="false"

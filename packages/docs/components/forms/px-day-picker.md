@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxWeekDaysSelector from '@praxis/px-src/components/forms/PxWeekDaysSelector.vue'
+import PxDayPicker from '@praxis/px-src/components/forms/PxDayPicker.vue'
 
 const selectedDay = ref('monday')
 const selectedDays = ref({
@@ -9,7 +9,7 @@ const selectedDays = ref({
 })
 </script>
 
-# PxWeekDaysSelector
+# PxDayPicker
 
 A day-of-week selector that supports both radio (single selection) and checkbox (multi-selection) modes. Renders Mon–Sun labels with accessible inputs.
 
@@ -17,7 +17,7 @@ A day-of-week selector that supports both radio (single selection) and checkbox 
 
 <ComponentDemo>
   <div style="width:100%;max-width:500px">
-    <PxWeekDaysSelector v-model="selectedDay" mode="radio" label="Recurrence Day" />
+    <PxDayPicker v-model="selectedDay" mode="radio" label="Recurrence Day" />
     <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--vp-c-text-2)">
       Selected: <strong>{{ selectedDay }}</strong>
     </p>
@@ -28,13 +28,13 @@ A day-of-week selector that supports both radio (single selection) and checkbox 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxWeekDaysSelector } from 'px-vue-ui'
+import { PxDayPicker } from 'px-vue-ui'
 
 const day = ref('monday')
 </script>
 
 <template>
-  <PxWeekDaysSelector v-model="day" mode="radio" label="Recurrence Day" />
+  <PxDayPicker v-model="day" mode="radio" label="Recurrence Day" />
   <p>Selected: {{ day }}</p>
 </template>
 ```
@@ -46,7 +46,7 @@ const day = ref('monday')
 
 <ComponentDemo title="Checkbox Mode">
   <div style="width:100%;max-width:500px">
-    <PxWeekDaysSelector v-model="selectedDays" mode="checkbox" label="Working Days" />
+    <PxDayPicker v-model="selectedDays" mode="checkbox" label="Working Days" />
     <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--vp-c-text-2)">
       Selected: <strong>{{ Object.entries(selectedDays).filter(([,v]) => v).map(([k]) => k).join(', ') }}</strong>
     </p>
@@ -55,7 +55,7 @@ const day = ref('monday')
   <template #code>
 
 ```vue
-<PxWeekDaysSelector
+<PxDayPicker
   v-model="days"
   mode="checkbox"
   label="Working Days"

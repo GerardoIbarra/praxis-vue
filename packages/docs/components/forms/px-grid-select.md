@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxTableSelect from '@praxis/px-src/components/forms/PxTableSelect.vue'
+import PxGridSelect from '@praxis/px-src/components/forms/PxGridSelect.vue'
 
 const selectedItems = ref([])
 const options = [
@@ -9,7 +9,7 @@ const options = [
 ]
 </script>
 
-# PxTableSelect
+# PxGridSelect
 
 A unified component for selecting items from a dropdown and displaying the selected items in an interactive table beneath it.
 
@@ -18,7 +18,7 @@ Replaces both `PxSelectableList` (for generic options) and `PxSelectListField` (
 ## Basic Usage
 
 <div class="p-6 border rounded-xl mt-4 bg-gray-50 dark:bg-surface-900">
-  <PxTableSelect
+  <PxGridSelect
     v-model:selectedItems="selectedItems"
     :options="options"
     title="Selected Items"
@@ -28,7 +28,7 @@ Replaces both `PxSelectableList` (for generic options) and `PxSelectListField` (
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxTableSelect } from 'px-vue-ui'
+import { PxGridSelect } from 'px-vue-ui'
 
 const selectedItems = ref([])
 const options = [
@@ -38,7 +38,7 @@ const options = [
 </script>
 
 <template>
-  <PxTableSelect
+  <PxGridSelect
     v-model:selectedItems="selectedItems"
     :options="options"
     title="Selected Items"
@@ -48,10 +48,10 @@ const options = [
 
 ## Schema-Driven Usage (Backend Field)
 
-When using `PxDynamicForm`, you can pass a `FormSchemaField` directly using the `field` prop. The component will automatically extract `options`, `label_field`, `value_field`, and handle pagination via infinite scroll if configured.
+When using `PxSchemaForm`, you can pass a `FormSchemaField` directly using the `field` prop. The component will automatically extract `options`, `label_field`, `value_field`, and handle pagination via infinite scroll if configured.
 
 ```vue
-<PxTableSelect
+<PxGridSelect
   v-model:selectedItems="selected"
   :field="mySchemaField"
   @search="handleSearch"

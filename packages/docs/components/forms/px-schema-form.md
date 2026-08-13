@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxDynamicForm from '@praxis/px-src/components/forms/PxDynamicForm.vue'
+import PxSchemaForm from '@praxis/px-src/components/forms/PxSchemaForm.vue'
 
 const schema = [
   { key: 'first_name', label: 'First Name', type: 'text', required: true },
@@ -21,7 +21,7 @@ const schema = [
 const formData = ref({})
 </script>
 
-# PxDynamicForm
+# PxSchemaForm
 
 A fully schema-driven form engine. Renders a flat array of field definitions — text, number, date, select, checklists, and more — into a responsive grid. Powers Praxis's form builder.
 
@@ -29,7 +29,7 @@ A fully schema-driven form engine. Renders a flat array of field definitions —
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%;">
-    <PxDynamicForm :schema="schema" v-model="formData" />
+    <PxSchemaForm :schema="schema" v-model="formData" />
     <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--vp-c-text-2);">
       Form Data: <strong>{{ formData }}</strong>
     </div>
@@ -40,7 +40,7 @@ A fully schema-driven form engine. Renders a flat array of field definitions —
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxDynamicForm } from 'px-vue-ui'
+import { PxSchemaForm } from 'px-vue-ui'
 
 const schema = [
   { key: 'first_name', label: 'First Name', type: 'text', required: true },
@@ -62,7 +62,7 @@ const formData = ref({})
 </script>
 
 <template>
-  <PxDynamicForm :schema="schema" v-model="formData" />
+  <PxSchemaForm :schema="schema" v-model="formData" />
 </template>
 ```
 
@@ -111,4 +111,4 @@ interface FormSchemaField {
 ]" />
 
 > [!NOTE]
-> `PxDynamicForm` is the most complex component in the library. See the schema type definitions in `@/types/api/common` for the full `FormSchemaField` interface, and `PxFormFieldRow` / `PxFormMultiSelectList` / `PxSelectListField` for the sub-field types used by the `row`, `multiselect_list`, and `select_list` field types.
+> `PxSchemaForm` is the most complex component in the library. See the schema type definitions in `@/types/api/common` for the full `FormSchemaField` interface, and `PxFormRow` / `PxFormMultiSelectList` / `PxSelectListField` for the sub-field types used by the `row`, `multiselect_list`, and `select_list` field types.

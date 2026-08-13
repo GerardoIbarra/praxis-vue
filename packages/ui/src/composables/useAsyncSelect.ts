@@ -24,10 +24,10 @@ export interface InfiniteScrollFetchResult<T> {
 }
 
 /**
- * `useInfiniteScrollSelect`
+ * `useAsyncSelect`
  *
  * Composable que encapsula el estado de paginación + búsqueda para cualquier
- * `PxInfiniteScrollSelect`. Cada instancia del composable maneja de forma
+ * `PxAsyncSelect`. Cada instancia del composable maneja de forma
  * independiente sus propios refs, por lo que se puede usar varias veces en
  * el mismo componente (ej. un select para clientes y otro para productos).
  *
@@ -44,14 +44,14 @@ export interface InfiniteScrollFetchResult<T> {
  *   handleSearch: searchCustomers,
  *   loadMore: loadMoreCustomers,
  *   fetch: fetchCustomers,
- * } = useInfiniteScrollSelect(({ search, page }) =>
+ * } = useAsyncSelect(({ search, page }) =>
  *   customerApi.list({ search, page })
  * );
  *
  * onMounted(() => fetchCustomers(true));
  * ```
  */
-export function useInfiniteScrollSelect<T = Record<string, unknown>>(
+export function useAsyncSelect<T = Record<string, unknown>>(
   fetcher: (
     params: InfiniteScrollFetchParams
   ) => Promise<InfiniteScrollFetchResult<T>>,
@@ -91,18 +91,18 @@ export function useInfiniteScrollSelect<T = Record<string, unknown>>(
 
       hasMore.value = result.hasMore;
     } catch (error) {
-      throw new Error(`[useInfiniteScrollSelect] fetcher error: ${error instanceof Error ? error.message : String(error)}`);
+      throw new Error(`[useAsyncSelect] fetcher error: ${error instanceof Error ? error.message : String(error)}`);
     } finally {
       loading.value = false;
     }
   };
 
   /**
-   * Manejador para el evento `@search` de `PxInfiniteScrollSelect`.
+   * Manejador para el evento `@search` de `PxAsyncSelect`.
    * Aplica debounce y reinicia la paginación.
    */
   /**
-   * Manejador para el evento `@search` de `PxInfiniteScrollSelect`.
+   * Manejador para el evento `@search` de `PxAsyncSelect`.
    * Aplica debounce y reinicia la paginación.
    */
   const handleSearch = (query: string): void => {
@@ -119,7 +119,7 @@ export function useInfiniteScrollSelect<T = Record<string, unknown>>(
   };
 
   /**
-   * Manejador para el evento `@scrolling` de `PxInfiniteScrollSelect`.
+   * Manejador para el evento `@scrolling` de `PxAsyncSelect`.
    * Carga la siguiente página y hace append al listado.
    */
   const loadMore = async (): Promise<void> => {

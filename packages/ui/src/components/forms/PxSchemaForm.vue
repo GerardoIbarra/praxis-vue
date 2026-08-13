@@ -3,11 +3,11 @@ import PxCheckbox from "@/components/_primitives/PxCheckbox.vue";
 import { ref, watch, computed } from "vue";
 import VueSelect from "vue-select";
 import PxRequiredLabel from "@/components/base/PxRequiredLabel.vue";
-import PxCheckList from "@/components/forms/PxCheckList.vue";
-import PxTableSelect from "@/components/forms/PxTableSelect.vue";
-import PxFormFieldRow from "@/components/forms/PxFormFieldRow.vue";
-import PxDynamicMultiSelect from "@/components/forms/PxDynamicMultiSelect.vue";
-import PxInfiniteScrollSelect from "@/components/forms/PxInfiniteScrollSelect.vue";
+import PxStateChecklist from "@/components/forms/PxStateChecklist.vue";
+import PxGridSelect from "@/components/forms/PxGridSelect.vue";
+import PxFormRow from "@/components/forms/PxFormRow.vue";
+import PxSchemaMultiSelect from "@/components/forms/PxSchemaMultiSelect.vue";
+import PxAsyncSelect from "@/components/forms/PxAsyncSelect.vue";
 import { ChevronDown, Search } from "@lucide/vue";
 import { Field } from "vee-validate";
 import { setupVeeValidate } from "@/utils/veeValidateConfig";
@@ -49,7 +49,7 @@ export interface CheckListInstance {
   setAllFalse: () => void;
 }
 
-const checkListRefs = ref<(CheckListInstance | null)[]>([]); // Para almacenar referencias a PxCheckList components
+const checkListRefs = ref<(CheckListInstance | null)[]>([]); // Para almacenar referencias a PxStateChecklist components
 
 // Use select options composable
 const { loadingSelect, selectedItems, setSelected, flattenWithIndentation } =
@@ -246,7 +246,7 @@ watch(
   { deep: true, immediate: true }
 );
 
-// Methods to control all PxCheckList components
+// Methods to control all PxStateChecklist components
 const clearAllCheckLists = () => {
   checkListRefs.value.forEach((checkListRef) => {
     if (checkListRef && typeof checkListRef.clearAll === "function") {
@@ -305,7 +305,7 @@ defineExpose({
       />
 
       <!-- 🔹 CHECK LIST INPUT -->
-      <PxCheckList
+      <PxStateChecklist
         v-if="field.type === 'check_list_input'"
         :ref="
           (el: any) => {
@@ -318,7 +318,7 @@ defineExpose({
       />
 
       <!-- 🔹 CHECK LIST -->
-      <PxCheckList
+      <PxStateChecklist
         v-else-if="field.type === 'check_list'"
         :ref="
           (el: any) => {
@@ -331,7 +331,7 @@ defineExpose({
       />
 
       <!--row-->
-      <PxFormFieldRow
+      <PxFormRow
         v-else-if="field.type === 'row'"
         :field="field"
         :get-field-rules="getFieldRules"
@@ -355,7 +355,7 @@ defineExpose({
       </div>
 
       <!--multiselect_list -->
-      <PxDynamicMultiSelect
+      <PxSchemaMultiSelect
         v-else-if="field.type === 'multiselect_list'"
         v-model="selectedItems[field.key || '']"
         :field="field"
@@ -492,7 +492,7 @@ defineExpose({
         </VueSelect>
 
         <!-- 🔹 SELECT -->
-        <PxInfiniteScrollSelect
+        <PxAsyncSelect
           v-else-if="
             field.type === 'select' && field.option_source?.type === 'reference'
           "
@@ -587,7 +587,7 @@ defineExpose({
         </VueSelect>
 
         <!-- Select-List -->
-        <PxTableSelect
+        <PxGridSelect
           v-if="field.type === 'select_list'"
           v-model:selectedItems="selectedItems[field.key]"
           :field="field"

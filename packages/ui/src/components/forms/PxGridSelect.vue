@@ -2,7 +2,7 @@
 import { computed, ref, watch } from "vue";
 import VueSelect from "vue-select";
 import { Search, X } from "@lucide/vue";
-import PxInfiniteScrollSelect from "@/components/forms/PxInfiniteScrollSelect.vue";
+import PxAsyncSelect from "@/components/forms/PxAsyncSelect.vue";
 import PxAvatar from "@/components/base/PxAvatar.vue";
 import type { FormSchemaField } from "@/types/api/common";
 
@@ -308,7 +308,7 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
     <div class="flex gap-2">
       <div class="flex-1 transition-all duration-300">
         <div v-if="resolvedIsInfinity">
-          <PxInfiniteScrollSelect
+          <PxAsyncSelect
             v-model="selectedItemID"
             :options="resolvedOptions"
             :label="resolvedLabelField"
@@ -350,7 +350,7 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
                 </div>
               </slot>
             </template>
-          </PxInfiniteScrollSelect>
+          </PxAsyncSelect>
         </div>
         <div v-else class="w-full">
           <VueSelect

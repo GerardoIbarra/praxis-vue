@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxInfiniteScrollSelect from '@praxis/px-src/components/forms/PxInfiniteScrollSelect.vue'
+import PxAsyncSelect from '@praxis/px-src/components/forms/PxAsyncSelect.vue'
 
 const options = ref([{ id: 1, name: 'Item 1' }, { id: 2, name: 'Item 2' }, { id: 3, name: 'Item 3' }])
 const hasMore = ref(true)
@@ -30,7 +30,7 @@ const loadMore = async () => {
 }
 </script>
 
-# PxInfiniteScrollSelect
+# PxAsyncSelect
 
 A `vue-select` wrapper that triggers a load-more callback when the user scrolls to the bottom of the dropdown options. Designed for large datasets loaded from an API.
 
@@ -38,7 +38,7 @@ A `vue-select` wrapper that triggers a load-more callback when the user scrolls 
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%; max-width: 300px;">
-    <PxInfiniteScrollSelect
+    <PxAsyncSelect
       v-model="selected"
       :options="options"
       :has-more="hasMore"
@@ -57,7 +57,7 @@ A `vue-select` wrapper that triggers a load-more callback when the user scrolls 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxInfiniteScrollSelect } from 'px-vue-ui'
+import { PxAsyncSelect } from 'px-vue-ui'
 
 const options = ref([/* initial page */])
 const hasMore = ref(true)
@@ -72,7 +72,7 @@ const loadMore = async () => {
 </script>
 
 <template>
-  <PxInfiniteScrollSelect
+  <PxAsyncSelect
     v-model="selected"
     :options="options"
     :has-more="hasMore"

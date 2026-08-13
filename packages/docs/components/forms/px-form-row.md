@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxFormFieldRow from '@praxis/px-src/components/forms/PxFormFieldRow.vue'
+import PxFormRow from '@praxis/px-src/components/forms/PxFormRow.vue'
 
 const field = ref({
   required: false,
@@ -13,15 +13,15 @@ const field = ref({
 })
 </script>
 
-# PxFormFieldRow
+# PxFormRow
 
-A schema-driven row of sub-fields. Renders a mix of static text, number inputs, and searchable selects side by side from a `field.components` definition — e.g. a "between X and Y" range field. Used internally by `PxDynamicForm`.
+A schema-driven row of sub-fields. Renders a mix of static text, number inputs, and searchable selects side by side from a `field.components` definition — e.g. a "between X and Y" range field. Used internally by `PxSchemaForm`.
 
 ## Usage
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%; max-width: 500px;">
-    <PxFormFieldRow :field="field" />
+    <PxFormRow :field="field" />
   </div>
 
   <template #code>
@@ -29,7 +29,7 @@ A schema-driven row of sub-fields. Renders a mix of static text, number inputs, 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxFormFieldRow } from 'px-vue-ui'
+import { PxFormRow } from 'px-vue-ui'
 
 const field = ref({
   required: false,
@@ -43,7 +43,7 @@ const field = ref({
 </script>
 
 <template>
-  <PxFormFieldRow :field="field" />
+  <PxFormRow :field="field" />
 </template>
 ```
 

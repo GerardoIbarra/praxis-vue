@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxModalInput from '@praxis/px-src/components/forms/PxModalInput.vue'
+import PxDialogInput from '@praxis/px-src/components/forms/PxDialogInput.vue'
 import PxDialog from '@praxis/px-src/components/_primitives/PxDialog.vue'
 
 const value = ref('')
@@ -13,7 +13,7 @@ const selectProvider = (name) => {
 }
 </script>
 
-# PxModalInput
+# PxDialogInput
 
 A text input with a built-in modal/dialog trigger button. Useful for opening a selection modal from within a form field, showing the selected value as read-only text.
 
@@ -21,7 +21,7 @@ A text input with a built-in modal/dialog trigger button. Useful for opening a s
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%; max-width: 300px;">
-    <PxModalInput
+    <PxDialogInput
       :model-value="value"
       label="Provider"
       placeholder="Click to select a provider..."
@@ -43,7 +43,7 @@ A text input with a built-in modal/dialog trigger button. Useful for opening a s
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxModalInput, PxDialog } from 'px-vue-ui'
+import { PxDialogInput, PxDialog } from 'px-vue-ui'
 
 const value = ref('')
 const showModal = ref(false)
@@ -52,7 +52,7 @@ const openModal = () => { showModal.value = true }
 </script>
 
 <template>
-  <PxModalInput
+  <PxDialogInput
     :model-value="value"
     label="Provider"
     placeholder="Click to select a provider..."

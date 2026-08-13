@@ -42,7 +42,7 @@ const props = withDefaults(defineProps<Props>(), {
   selectable: undefined,
   disabled: false,
   customClass: "vue-select-standard  text-gray-400",
-  testId: "px-infinite-scroll-select",
+  testId: "px-async-select",
   multiple: false,
   clearable: true,
   inputFree: false,

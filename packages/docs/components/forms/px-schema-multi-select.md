@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxDynamicMultiSelect from '@praxis/px-src/components/forms/PxDynamicMultiSelect.vue'
+import PxSchemaMultiSelect from '@praxis/px-src/components/forms/PxSchemaMultiSelect.vue'
 
 const field = {
   search: true,
@@ -22,7 +22,7 @@ const field = {
 const selected = ref([])
 </script>
 
-# PxDynamicMultiSelect
+# PxSchemaMultiSelect
 
 A multi-select dropdown that reveals extra sub-fields for each selected option. Backed by a `field.options[0].options` list for the dropdown, and `field.components` for the sub-fields shown per selection (matched by `key`).
 
@@ -30,7 +30,7 @@ A multi-select dropdown that reveals extra sub-fields for each selected option. 
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%; max-width: 400px;">
-    <PxDynamicMultiSelect v-model="selected" :field="field" />
+    <PxSchemaMultiSelect v-model="selected" :field="field" />
     <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--vp-c-text-2);">
       Selected: <strong>{{ selected.join(', ') || 'None' }}</strong>
     </div>
@@ -41,7 +41,7 @@ A multi-select dropdown that reveals extra sub-fields for each selected option. 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxDynamicMultiSelect } from 'px-vue-ui'
+import { PxSchemaMultiSelect } from 'px-vue-ui'
 
 const field = {
   search: true,
@@ -64,7 +64,7 @@ const selected = ref([])
 </script>
 
 <template>
-  <PxDynamicMultiSelect v-model="selected" :field="field" />
+  <PxSchemaMultiSelect v-model="selected" :field="field" />
 </template>
 ```
 

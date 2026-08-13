@@ -12,8 +12,8 @@ import {
   PxAccordion,
   PxLoader,
   PxRequiredLabel,
-  PxTableSelect,
-  PxCheckList,
+  PxGridSelect,
+  PxStateChecklist,
   PxNavList,
   PxTabComponent,
   PxPhoneNumber,
@@ -144,7 +144,7 @@ onMounted(() => {
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Data & Advanced</div>
           <a href="#data-table" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Data Table</a>
-          <a href="#px-table-select" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Table Select</a>
+          <a href="#px-grid-select" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Table Select</a>
           <a href="#px-pdf-viewer" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">PDF Viewer</a>
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Navigation</div>
@@ -305,7 +305,7 @@ onMounted(() => {
           </ShowcaseSection>
 
           <ShowcaseSection 
-            id="px-table-select"
+            id="px-grid-select"
             title="Table Select" 
             description="Advanced list selection with a data table."
           >
@@ -313,7 +313,7 @@ onMounted(() => {
               <div class="mb-4">
                 <PxRequiredLabel label="Choose a Plan" required />
               </div>
-              <PxTableSelect 
+              <PxGridSelect 
                 v-model:selectedItems="selectedListItems" 
                 :options="listOptions" 
                 title="Available Plans"

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxCheckList from '@praxis/px-src/components/forms/PxCheckList.vue'
+import PxStateChecklist from '@praxis/px-src/components/forms/PxStateChecklist.vue'
 
 const fieldData1 = ref({})
 const fieldData2 = ref({})
@@ -34,7 +34,7 @@ const sampleInputField = {
 }
 </script>
 
-# PxCheckList
+# PxStateChecklist
 
 A dynamic, schema-driven checklist component designed to render complex tri-state options (True/False/Flagged) for a predefined list of items. It supports optional text inputs per item based on the schema configuration.
 
@@ -43,12 +43,12 @@ A dynamic, schema-driven checklist component designed to render complex tri-stat
 Renders a list of items with True (✓), False (✗), and Flagged (⚑) options.
 
 <div class="p-6 border rounded-xl mt-4 bg-gray-50 dark:bg-surface-900">
-  <PxCheckList :field="sampleField" v-model="fieldData1" :default-open="true" />
+  <PxStateChecklist :field="sampleField" v-model="fieldData1" :default-open="true" />
 </div>
 
 ```vue
 <script setup>
-import { PxCheckList } from 'px-vue-ui'
+import { PxStateChecklist } from 'px-vue-ui'
 
 const data = ref({})
 const field = {
@@ -67,7 +67,7 @@ const field = {
 </script>
 
 <template>
-  <PxCheckList :field="field" v-model="data" :default-open="true" />
+  <PxStateChecklist :field="field" v-model="data" :default-open="true" />
 </template>
 ```
 
@@ -76,11 +76,11 @@ const field = {
 If the schema contains `input_father` or `input` components for list children, the component automatically adapts to render text fields.
 
 <div class="p-6 border rounded-xl mt-4 bg-gray-50 dark:bg-surface-900">
-  <PxCheckList :field="sampleInputField" v-model="fieldData2" :default-open="true" />
+  <PxStateChecklist :field="sampleInputField" v-model="fieldData2" :default-open="true" />
 </div>
 
 ```vue
-<PxCheckList :field="inputSchema" v-model="data" :default-open="true" />
+<PxStateChecklist :field="inputSchema" v-model="data" :default-open="true" />
 ```
 
 ## API

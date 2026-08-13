@@ -39,7 +39,7 @@ createApp(App)
 
 ```vue
 <script setup>
-import { PxAvatar, PxDynamicForm, PxTabComponent } from 'px-vue-ui'
+import { PxAvatar, PxSchemaForm, PxTabComponent } from 'px-vue-ui'
 </script>
 ```
 
@@ -100,8 +100,8 @@ const content = ref('<p>Hello world</p>')
 
 | Category | Components |
 |---|---|
-| **Base** | `PxAvatar`, `PxAvatar`, `PxAvatarSelect`, `PxColorPickerField`, `PxVisualSelect`, `PxGroupedMultiSelect`, `PxPhoneNumber`, `PxLabel`, `PxRequiredLabel`, `PxThemeToggle`, `PxLoader` |
-| **Forms** | `PxDynamicForm`, `PxCheckList`, `PxInfiniteScrollSelect`, `PxTableSelect`, `PxSelectableListWithTable`, `PxWeekDaysSelector`, `PxModalInput`, `PxFormFieldRow`, `PxFormMultiSelectList`, `PxTimePicker` |
+| **Base** | `PxAvatar`, `PxAvatar`, `PxAvatarSelect`, `PxColorPickerField`, `PxVisualSelect`, `PxCategorizedSelect`, `PxPhoneNumber`, `PxLabel`, `PxRequiredLabel`, `PxThemeToggle`, `PxLoader` |
+| **Forms** | `PxSchemaForm`, `PxStateChecklist`, `PxAsyncSelect`, `PxGridSelect`, `PxSelectableListWithTable`, `PxDayPicker`, `PxDialogInput`, `PxFormRow`, `PxFormMultiSelectList`, `PxTimePicker` |
 | **Data Display** | `PxDataTable`, `PxTree`, `PxPdfViewer`, `PxInitialsAvatar`, `PxInfoField`, `PxDisplayOptions`, `PxBadgedValueGrid`, `PxLabeledValueSection`, `PxStatusDataTable` |
 | **Layout** | `PxColumnLayout`, `PxDashboardCard`, `PxHeader`, `PxListViewWrapper`, `PxCardFilterContainer`, `PxFormViewWrapper` |
 | **Navigation** | `PxTabComponent`, `PxStepNavigation`, `PxStepHeader`, `PxActionMenu`, `PxNavList` |
@@ -113,7 +113,7 @@ const content = ref('<p>Hello world</p>')
 import {
   useFieldValidation,
   useFieldAutofill,
-  useInfiniteScrollSelect,
+  useAsyncSelect,
   useDisabledDays,
 } from 'px-vue-ui'
 ```

@@ -143,7 +143,7 @@ export default withPwa(defineConfig({
 
     footer: {
       message: 'Built with VitePress',
-      copyright: 'Copyright © 2024 Praxis',
+      copyright: 'Copyright © 2026 Praxis',
     },
   },
 

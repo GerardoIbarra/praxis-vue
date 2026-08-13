@@ -19,7 +19,7 @@ const menu = ref([
 ])
 </script>
 
-# Praxis Nav List
+# Px Nav List
 
 The `PxNavList` component is a collapsible navigation list, commonly used in sidebars. It renders menu items, grouped links (with one level of depth), and separators, including active route highlighting.
 

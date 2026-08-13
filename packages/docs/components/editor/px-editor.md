@@ -6,7 +6,7 @@ import 'praxis-vue-editor/dist/praxis-editor.css'
 const content = ref('<p>Start typing here...</p>')
 </script>
 
-# Praxis Editor
+# Px Editor
 
 The `PxEditor` is a rich-text editor based on Vue, using Tiptap/ProseMirror underneath. It offers a premium interface with support for multiple formats, keyboard shortcuts, and dark theme.
 

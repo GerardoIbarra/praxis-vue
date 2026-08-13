@@ -1,13 +1,13 @@
 <script setup lang="ts">
 /**
- * PxStepHeader Component
+ * PxStepperHeader Component
  *
  * Reusable header for stepper steps with icon, title, and description.
  * Handles active/inactive styling based on current step position.
  *
  * @example
  * <Step v-slot="{ activateCallback, value }">
- *   <PxStepHeader
+ *   <PxStepperHeader
  *     :icon="User"
  *     title="Basic Information"
  *     description="Personal details"

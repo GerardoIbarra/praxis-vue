@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import PxStepHeader from '@praxis/px-src/components/navigation/PxStepHeader.vue'
+import PxStepperHeader from '@praxis/px-src/components/navigation/PxStepperHeader.vue'
 </script>
 
-# PxStepHeader
+# PxStepperHeader
 
 Displays the current step number and title in multi-step form flows. Provides a visual indicator of progress position.
 
@@ -11,17 +11,17 @@ Displays the current step number and title in multi-step form flows. Provides a 
 
 <ComponentDemo>
   <div style="display:flex;flex-direction:column;gap:1rem;width:100%;max-width:500px">
-    <PxStepHeader :step="1" title="Personal Information" />
-    <PxStepHeader :step="2" title="Contact Details" />
-    <PxStepHeader :step="3" title="Review & Submit" />
+    <PxStepperHeader :step="1" title="Personal Information" />
+    <PxStepperHeader :step="2" title="Contact Details" />
+    <PxStepperHeader :step="3" title="Review & Submit" />
   </div>
 
   <template #code>
 
 ```vue
-<PxStepHeader :step="1" title="Personal Information" />
-<PxStepHeader :step="2" title="Contact Details" />
-<PxStepHeader :step="3" title="Review & Submit" />
+<PxStepperHeader :step="1" title="Personal Information" />
+<PxStepperHeader :step="2" title="Contact Details" />
+<PxStepperHeader :step="3" title="Review & Submit" />
 ```
 
   </template>

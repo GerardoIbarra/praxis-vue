@@ -1,6 +1,6 @@
 <script setup>
 import { Edit, Trash2, Eye, Download } from '@lucide/vue'
-import PxActionMenu from '@praxis/px-src/components/navigation/PxActionMenu.vue'
+import PxDropdownMenu from '@praxis/px-src/components/navigation/PxDropdownMenu.vue'
 
 const items = [
   { label: 'View', lucideIcon: Eye, command: () => alert('View') },
@@ -10,7 +10,7 @@ const items = [
 ]
 </script>
 
-# PxActionMenu
+# PxDropdownMenu
 
 A compact ⋮ (three-dot) vertical menu that shows a dropdown list of actions on click. Closes automatically on outside click.
 
@@ -18,7 +18,7 @@ A compact ⋮ (three-dot) vertical menu that shows a dropdown list of actions on
 
 <ComponentDemo>
   <div style="height:180px;display:flex;align-items:flex-start;justify-content:center;padding-top:1rem">
-    <PxActionMenu :items="items" />
+    <PxDropdownMenu :items="items" />
   </div>
 
   <template #code>
@@ -26,7 +26,7 @@ A compact ⋮ (three-dot) vertical menu that shows a dropdown list of actions on
 ```vue
 <script setup>
 import { Edit, Trash2, Eye } from '@lucide/vue'
-import { PxActionMenu } from 'px-vue-ui'
+import { PxDropdownMenu } from 'px-vue-ui'
 
 const items = [
   { label: 'View', lucideIcon: Eye, command: () => console.log('view') },
@@ -36,7 +36,7 @@ const items = [
 </script>
 
 <template>
-  <PxActionMenu :items="items" />
+  <PxDropdownMenu :items="items" />
 </template>
 ```
 

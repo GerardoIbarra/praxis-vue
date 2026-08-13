@@ -1,12 +1,12 @@
 <script setup lang="ts">
 /**
- * PxStepNavigation Component
+ * PxStepper Component
  *
  * Reusable navigation buttons for multi-step forms (steppers).
  * Provides Previous/Next/Save buttons with consistent styling and behavior.
  *
  * @example
- * <PxStepNavigation
+ * <PxStepper
  *   :show-previous="true"
  *   :can-proceed="isStepValid"
  *   :loading="isSaving"

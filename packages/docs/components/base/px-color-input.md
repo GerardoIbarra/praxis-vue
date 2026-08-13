@@ -1,13 +1,13 @@
 <script setup>
 import { ref } from 'vue'
-import PxColorPickerField from '@praxis/px-src/components/base/PxColorPickerField.vue'
+import PxColorInput from '@praxis/px-src/components/base/PxColorInput.vue'
 
 const color1 = ref('3b82f6')
 const color2 = ref('ef4444')
 const colorDisabled = ref('94a3b8')
 </script>
 
-# PxColorPickerField
+# PxColorInput
 
 A dual-input color picker that syncs a native `<input type="color">` with a hex text field. Accepts and emits hex values without the `#` prefix.
 
@@ -15,7 +15,7 @@ A dual-input color picker that syncs a native `<input type="color">` with a hex 
 
 <ComponentDemo>
   <div style="width:280px">
-    <PxColorPickerField v-model="color1" label="Brand Color" />
+    <PxColorInput v-model="color1" label="Brand Color" />
     <p style="margin-top:0.5rem;font-size:0.875rem;color:var(--vp-c-text-2)">
       Value: <strong>#{{ color1 }}</strong>
     </p>
@@ -26,13 +26,13 @@ A dual-input color picker that syncs a native `<input type="color">` with a hex 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxColorPickerField } from 'px-vue-ui'
+import { PxColorInput } from 'px-vue-ui'
 
 const color = ref('3b82f6')
 </script>
 
 <template>
-  <PxColorPickerField
+  <PxColorInput
     v-model="color"
     label="Brand Color"
   />
@@ -47,13 +47,13 @@ const color = ref('3b82f6')
 
 <ComponentDemo title="Required">
   <div style="width:280px">
-    <PxColorPickerField v-model="color2" label="Primary Color" :required="true" />
+    <PxColorInput v-model="color2" label="Primary Color" :required="true" />
   </div>
 
   <template #code>
 
 ```vue
-<PxColorPickerField
+<PxColorInput
   v-model="color"
   label="Primary Color"
   :required="true"
@@ -67,13 +67,13 @@ const color = ref('3b82f6')
 
 <ComponentDemo title="Disabled">
   <div style="width:280px">
-    <PxColorPickerField v-model="colorDisabled" label="Read-only Color" :disabled="true" />
+    <PxColorInput v-model="colorDisabled" label="Read-only Color" :disabled="true" />
   </div>
 
   <template #code>
 
 ```vue
-<PxColorPickerField
+<PxColorInput
   v-model="color"
   label="Read-only Color"
   :disabled="true"

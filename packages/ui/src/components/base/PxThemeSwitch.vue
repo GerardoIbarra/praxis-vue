@@ -1,5 +1,5 @@
 <template>
-  <div class="px-theme-toggle-container flex items-center justify-center">
+  <div class="px-theme-switch-container flex items-center justify-center">
     <input
       id="theme-checkbox"
       type="checkbox"
@@ -15,8 +15,8 @@
         <MoonIcon :size="20" />
       </span>
       <div
-        class="px-theme-toggle"
-        :class="{ 'px-theme-toggle-checked': modelValue }"
+        class="px-theme-switch"
+        :class="{ 'px-theme-switch-checked': modelValue }"
       ></div>
     </label>
   </div>
@@ -108,7 +108,7 @@ const toggleTheme = () => {
   transform: scale(1);
 }
 
-.px-theme-toggle {
+.px-theme-switch {
   position: absolute;
   background-color: var(--toggle-thumb);
   border-radius: 50%;
@@ -122,7 +122,7 @@ const toggleTheme = () => {
   box-shadow: var(--shadow);
 }
 
-.px-theme-toggle-checked {
+.px-theme-switch-checked {
   transform: translateX(2rem);
 }
 

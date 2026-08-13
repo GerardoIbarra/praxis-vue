@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxTabComponent from '@praxis/px-src/components/navigation/PxTabComponent.vue'
+import PxTabs from '@praxis/px-src/components/navigation/PxTabs.vue'
 
 const activeTab = ref('profile')
 
@@ -18,7 +18,7 @@ const tabsWithDisabled = [
 ]
 </script>
 
-# PxTabComponent
+# PxTabs
 
 A horizontal tab bar with icon support, active state highlighting, and optional close/remove tab functionality. Renders only tabs with `show !== false`.
 
@@ -26,7 +26,7 @@ A horizontal tab bar with icon support, active state highlighting, and optional 
 
 <ComponentDemo>
   <div style="width:100%">
-    <PxTabComponent v-model="activeTab" :tabs="tabs" />
+    <PxTabs v-model="activeTab" :tabs="tabs" />
     <div style="padding:1rem;font-size:0.875rem;color:var(--vp-c-text-2)">
       Active tab: <strong>{{ activeTab }}</strong>
     </div>
@@ -37,7 +37,7 @@ A horizontal tab bar with icon support, active state highlighting, and optional 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxTabComponent } from 'px-vue-ui'
+import { PxTabs } from 'px-vue-ui'
 
 const activeTab = ref('profile')
 
@@ -49,7 +49,7 @@ const tabs = [
 </script>
 
 <template>
-  <PxTabComponent v-model="activeTab" :tabs="tabs" />
+  <PxTabs v-model="activeTab" :tabs="tabs" />
   <div>Active: {{ activeTab }}</div>
 </template>
 ```
@@ -61,7 +61,7 @@ const tabs = [
 
 <ComponentDemo title="Protected Tabs">
   <div style="width:100%">
-    <PxTabComponent
+    <PxTabs
       v-model="activeTab"
       :tabs="tabsWithDisabled"
       :protected-tabs="['contact']"
@@ -71,7 +71,7 @@ const tabs = [
   <template #code>
 
 ```vue
-<PxTabComponent
+<PxTabs
   v-model="activeTab"
   :tabs="tabsWithDisabled"
   :protected-tabs="['contact']"

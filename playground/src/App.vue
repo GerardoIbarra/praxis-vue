@@ -6,7 +6,7 @@ import ShowcaseSection from './components/ShowcaseSection.vue'
 import {
   PxAvatar,
   PxInitialsAvatar,
-  PxThemeToggle,
+  PxThemeSwitch,
   PxTimePicker,
   PxBadge,
   PxAccordion,
@@ -15,12 +15,12 @@ import {
   PxGridSelect,
   PxStateChecklist,
   PxNavList,
-  PxTabComponent,
+  PxTabs,
   PxPhoneInput,
-  PxColorPickerField,
-  PxPdfViewer,
+  PxColorInput,
+  PxDocumentViewer,
   PxDataTable,
-  PxStepNavigation,
+  PxStepper,
   type NavListItem
 } from 'praxis-vue-ui'
 import { Home, Settings, Star } from '@lucide/vue'
@@ -128,13 +128,13 @@ onMounted(() => {
           <h1 class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-br from-primary-600 to-indigo-500 tracking-tight">
             @praxis
           </h1>
-          <PxThemeToggle v-model="isDark" />
+          <PxThemeSwitch v-model="isDark" />
         </div>
         
         <nav class="flex flex-col gap-1.5 flex-grow overflow-y-auto custom-scrollbar pr-2">
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-4">Base & Forms</div>
-          <a href="#px-theme-toggle" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Theme Toggle</a>
+          <a href="#px-theme-switch" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Theme Toggle</a>
           <a href="#avatars" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Avatars</a>
           <a href="#badges" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Badges & Labels</a>
           <a href="#loaders" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Loaders</a>
@@ -145,7 +145,7 @@ onMounted(() => {
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Data & Advanced</div>
           <a href="#data-table" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Data Table</a>
           <a href="#px-grid-select" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Table Select</a>
-          <a href="#px-pdf-viewer" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">PDF Viewer</a>
+          <a href="#px-document-viewer" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">PDF Viewer</a>
           
           <div class="text-[10px] font-bold text-surface-400 dark:text-surface-500 uppercase tracking-widest mb-1 mt-6">Navigation</div>
           <a href="#steps" class="px-3 py-1.5 rounded-lg hover:bg-surface-100/50 dark:hover:bg-surface-800/50 text-sm font-medium transition-colors">Step Navigation</a>
@@ -184,12 +184,12 @@ onMounted(() => {
         <div class="flex flex-col gap-12">
 
           <ShowcaseSection 
-            id="px-theme-toggle"
+            id="px-theme-switch"
             title="Theme Toggle" 
             description="A beautiful animated toggle button for switching between light and dark modes."
           >
             <div class="flex items-center justify-center p-8">
-              <PxThemeToggle v-model="isDark" />
+              <PxThemeSwitch v-model="isDark" />
             </div>
           </ShowcaseSection>
 
@@ -275,7 +275,7 @@ onMounted(() => {
             description="Interactive color selection field."
           >
             <div class="w-full max-w-xs mx-auto">
-              <PxColorPickerField v-model="color" label="Brand Color" />
+              <PxColorInput v-model="color" label="Brand Color" />
               <p class="mt-6 text-sm text-surface-500 dark:text-surface-400 text-center font-mono">
                 Selected: <strong :style="{ color: color }">{{ color }}</strong>
               </p>
@@ -323,12 +323,12 @@ onMounted(() => {
           </ShowcaseSection>
           
           <ShowcaseSection 
-            id="px-pdf-viewer"
+            id="px-document-viewer"
             title="PDF Viewer" 
             description="Embed and render PDF documents directly in the UI."
           >
             <div class="w-full h-[400px] border border-surface-200 dark:border-surface-700 rounded-xl overflow-hidden">
-              <PxPdfViewer url="/dummy.pdf" />
+              <PxDocumentViewer url="/dummy.pdf" />
             </div>
           </ShowcaseSection>
 
@@ -338,7 +338,7 @@ onMounted(() => {
             description="Guide users through multi-step forms and processes."
           >
             <div class="w-full max-w-3xl mx-auto p-4">
-              <PxStepNavigation :steps="steps" :currentStep="currentStep" />
+              <PxStepper :steps="steps" :currentStep="currentStep" />
               
               <div class="mt-12 flex justify-center gap-4">
                 <button 
@@ -375,7 +375,7 @@ onMounted(() => {
             description="Navigate between multiple views or data sets within the same context."
           >
             <div class="w-full">
-              <PxTabComponent :tabs="tabs" v-model="activeTab" />
+              <PxTabs :tabs="tabs" v-model="activeTab" />
               <div class="p-8 bg-surface-50 dark:bg-surface-800/50 rounded-b-xl border border-t-0 border-surface-200/50 dark:border-surface-700/50 text-surface-600 dark:text-surface-300">
                 {{ tabContent[activeTab] }}
               </div>

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import PxStepNavigation from '@praxis/px-src/components/navigation/PxStepNavigation.vue'
+import PxStepper from '@praxis/px-src/components/navigation/PxStepper.vue'
 
 const step = ref(1)
 const loading = ref(false)
@@ -14,7 +14,7 @@ const save = async () => {
 }
 </script>
 
-# PxStepNavigation
+# PxStepper
 
 Navigation button row for multi-step forms. Provides Previous, Next and optional Save buttons with loading state, permission gating, and fully customizable labels.
 
@@ -25,7 +25,7 @@ Navigation button row for multi-step forms. Provides Previous, Next and optional
     <div style="margin-bottom:1rem;padding:1rem;background:var(--vp-c-bg-soft);border-radius:8px;font-size:0.875rem;color:var(--vp-c-text-2)">
       Step {{ step }} of 3
     </div>
-    <PxStepNavigation
+    <PxStepper
       :show-previous="step > 1"
       :can-proceed="true"
       next-label="Next: Contact Info"
@@ -38,7 +38,7 @@ Navigation button row for multi-step forms. Provides Previous, Next and optional
 
 ```vue
 <script setup>
-import { PxStepNavigation } from 'px-vue-ui'
+import { PxStepper } from 'px-vue-ui'
 import { ref } from 'vue'
 
 const step = ref(1)
@@ -47,7 +47,7 @@ const prev = () => step.value--
 </script>
 
 <template>
-  <PxStepNavigation
+  <PxStepper
     :show-previous="step > 1"
     :can-proceed="true"
     next-label="Next: Contact Info"
@@ -64,7 +64,7 @@ const prev = () => step.value--
 
 <ComponentDemo title="With Save">
   <div style="width:100%;max-width:500px">
-    <PxStepNavigation
+    <PxStepper
       :show-previous="true"
       :show-save="true"
       :can-proceed="true"
@@ -80,7 +80,7 @@ const prev = () => step.value--
   <template #code>
 
 ```vue
-<PxStepNavigation
+<PxStepper
   :show-previous="true"
   :show-save="true"
   :can-proceed="true"
@@ -100,7 +100,7 @@ const prev = () => step.value--
 
 <ComponentDemo title="No Permission">
   <div style="width:100%;max-width:500px">
-    <PxStepNavigation
+    <PxStepper
       :show-previous="true"
       :can-proceed="true"
       :has-permission="false"
@@ -113,7 +113,7 @@ const prev = () => step.value--
   <template #code>
 
 ```vue
-<PxStepNavigation
+<PxStepper
   :show-previous="true"
   :can-proceed="true"
   :has-permission="false"

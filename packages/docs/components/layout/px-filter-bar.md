@@ -1,8 +1,8 @@
 <script setup>
-import PxCardFilterContainer from '@praxis/px-src/components/layout/PxCardFilterContainer.vue'
+import PxFilterBar from '@praxis/px-src/components/layout/PxFilterBar.vue'
 </script>
 
-# PxCardFilterContainer
+# PxFilterBar
 
 A transparent pass-through container for filter sections on card-based list views. Provides a consistent wrapper for filter controls placed above cards.
 
@@ -10,26 +10,26 @@ A transparent pass-through container for filter sections on card-based list view
 
 <ComponentDemo>
   <div style="padding: 1rem 0; width: 100%;">
-    <PxCardFilterContainer>
+    <PxFilterBar>
       <input type="search" placeholder="Search..." class="input-base" style="padding: 0.5rem; flex: 1; max-width: 200px;" />
       <select class="input-base" style="padding: 0.5rem;">
         <option>All statuses</option>
         <option>Active</option>
       </select>
-    </PxCardFilterContainer>
+    </PxFilterBar>
   </div>
 
   <template #code>
 
 ```vue
 <template>
-  <PxCardFilterContainer>
+  <PxFilterBar>
     <input type="search" placeholder="Search..." />
     <select>
       <option>All statuses</option>
       <option>Active</option>
     </select>
-  </PxCardFilterContainer>
+  </PxFilterBar>
 </template>
 ```
 

@@ -5,7 +5,7 @@ import PxRequiredLabel from '@praxis/px-src/components/base/PxRequiredLabel.vue'
 
 # PxRequiredLabel
 
-A small utility component that renders a field label with an optional red asterisk when the field is required. Used internally by `PxColorPickerField`, `PxTimePicker`, and other form components.
+A small utility component that renders a field label with an optional red asterisk when the field is required. Used internally by `PxColorInput`, `PxTimePicker`, and other form components.
 
 ## Basic Usage
 

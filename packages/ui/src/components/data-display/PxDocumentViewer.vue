@@ -164,7 +164,7 @@ const printPDF = async () => {
   height: 100%;
 }
 
-.px-pdf-viewer {
+.px-document-viewer {
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -175,13 +175,13 @@ const printPDF = async () => {
   padding: 24px;
 }
 
-.px-pdf-viewer :deep(.pdf-page) {
+.px-document-viewer :deep(.pdf-page) {
   background-color: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   border-radius: 2px;
 }
 
-.px-pdf-viewer :deep(.pdf-page canvas) {
+.px-document-viewer :deep(.pdf-page canvas) {
   display: block;
 }
 </style>

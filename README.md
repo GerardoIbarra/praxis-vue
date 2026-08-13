@@ -39,7 +39,7 @@ createApp(App)
 
 ```vue
 <script setup>
-import { PxAvatar, PxSchemaForm, PxTabComponent } from 'px-vue-ui'
+import { PxAvatar, PxSchemaForm, PxTabs } from 'px-vue-ui'
 </script>
 ```
 
@@ -100,11 +100,11 @@ const content = ref('<p>Hello world</p>')
 
 | Category | Components |
 |---|---|
-| **Base** | `PxAvatar`, `PxAvatar`, `PxAvatarSelect`, `PxColorPickerField`, `PxVisualSelect`, `PxCategorizedSelect`, `PxPhoneInput`, `PxLabel`, `PxRequiredLabel`, `PxThemeToggle`, `PxLoader` |
+| **Base** | `PxAvatar`, `PxAvatar`, `PxAvatarSelect`, `PxColorInput`, `PxVisualSelect`, `PxCategorizedSelect`, `PxPhoneInput`, `PxLabel`, `PxRequiredLabel`, `PxThemeSwitch`, `PxLoader` |
 | **Forms** | `PxSchemaForm`, `PxStateChecklist`, `PxAsyncSelect`, `PxGridSelect`, `PxSelectableListWithTable`, `PxDayPicker`, `PxDialogInput`, `PxFormRow`, `PxFormMultiSelectList`, `PxTimePicker` |
-| **Data Display** | `PxDataTable`, `PxTree`, `PxPdfViewer`, `PxInitialsAvatar`, `PxInfoField`, `PxDisplayOptions`, `PxBadgedValueGrid`, `PxLabeledValueSection`, `PxStatusDataTable` |
-| **Layout** | `PxColumnLayout`, `PxDashboardCard`, `PxHeader`, `PxListViewWrapper`, `PxCardFilterContainer`, `PxFormViewWrapper` |
-| **Navigation** | `PxTabComponent`, `PxStepNavigation`, `PxStepHeader`, `PxActionMenu`, `PxNavList` |
+| **Data Display** | `PxDataTable`, `PxTree`, `PxDocumentViewer`, `PxInitialsAvatar`, `PxInfoField`, `PxDisplayOptions`, `PxBadgedValueGrid`, `PxLabeledValueSection`, `PxStatusDataTable` |
+| **Layout** | `PxColumnLayout`, `PxCard`, `PxHeader`, `PxListLayout`, `PxFilterBar`, `PxFormLayout` |
+| **Navigation** | `PxTabs`, `PxStepper`, `PxStepperHeader`, `PxDropdownMenu`, `PxNavList` |
 | **Primitives** | `PxAccordion`, `PxBadge`, `PxCheckbox`, `PxDialog`, `PxDrawer`, `PxRadioButton`, `PxTimeline` |
 
 ### Composables

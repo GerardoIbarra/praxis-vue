@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue'
-import PxThemeToggle from '@praxis/px-src/components/base/PxThemeToggle.vue'
+import PxThemeSwitch from '@praxis/px-src/components/base/PxThemeSwitch.vue'
 
 const isDark = ref(false)
 </script>
 
-# PxThemeToggle
+# PxThemeSwitch
 
 An animated sun/moon toggle switch for controlling light/dark mode. Uses CSS transitions for smooth thumb movement and icon state changes.
 
@@ -13,7 +13,7 @@ An animated sun/moon toggle switch for controlling light/dark mode. Uses CSS tra
 
 <ComponentDemo>
   <div style="display:flex;flex-direction:column;align-items:center;gap:0.75rem">
-    <PxThemeToggle v-model="isDark" />
+    <PxThemeSwitch v-model="isDark" />
     <p style="font-size:0.875rem;color:var(--vp-c-text-2)">
       Current theme: <strong>{{ isDark ? '🌙 Dark' : '☀️ Light' }}</strong>
     </p>
@@ -24,13 +24,13 @@ An animated sun/moon toggle switch for controlling light/dark mode. Uses CSS tra
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxThemeToggle } from 'px-vue-ui'
+import { PxThemeSwitch } from 'px-vue-ui'
 
 const isDark = ref(false)
 </script>
 
 <template>
-  <PxThemeToggle v-model="isDark" />
+  <PxThemeSwitch v-model="isDark" />
   <p>Theme: {{ isDark ? 'Dark' : 'Light' }}</p>
 </template>
 ```
@@ -61,7 +61,7 @@ const isDark = ref(false)
 
 ## Usage with Dark Mode
 
-Pair `PxThemeToggle` with a global dark mode state manager. A common pattern:
+Pair `PxThemeSwitch` with a global dark mode state manager. A common pattern:
 
 ```ts
 // composables/useTheme.ts
@@ -80,6 +80,6 @@ export function useTheme() {
 
 ```vue
 <template>
-  <PxThemeToggle v-model="isDark" @toggle="toggle" />
+  <PxThemeSwitch v-model="isDark" @toggle="toggle" />
 </template>
 ```

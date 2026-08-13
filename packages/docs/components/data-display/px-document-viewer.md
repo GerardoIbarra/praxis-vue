@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue'
-import PxPdfViewer from '@praxis/px-src/components/data-display/PxPdfViewer.vue'
+import PxDocumentViewer from '@praxis/px-src/components/data-display/PxDocumentViewer.vue'
 
 const demoPdf = ref('https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf')
 </script>
 
-# PxPdfViewer
+# PxDocumentViewer
 
 Renders a PDF document inline using `pdfjs-dist`. It automatically renders all pages of the document sequentially and includes a built-in "Print PDF" action button.
 
@@ -15,7 +15,7 @@ Renders a PDF document inline using `pdfjs-dist`. It automatically renders all p
   <div style="width: 100%; height: 500px; border: 1px solid var(--vp-c-divider); border-radius: 8px; overflow: hidden; background: var(--vp-c-bg-soft);">
     <!-- We wrap the component in a scrollable div because it renders all pages at 1.5 scale -->
     <div style="height: 100%; overflow: auto;">
-      <PxPdfViewer :url="demoPdf" />
+      <PxDocumentViewer :url="demoPdf" />
     </div>
   </div>
 
@@ -23,11 +23,11 @@ Renders a PDF document inline using `pdfjs-dist`. It automatically renders all p
 
 ```vue
 <script setup>
-import { PxPdfViewer } from 'px-vue-ui'
+import { PxDocumentViewer } from 'px-vue-ui'
 </script>
 
 <template>
-  <PxPdfViewer url="https://example.com/document.pdf" />
+  <PxDocumentViewer url="https://example.com/document.pdf" />
 </template>
 ```
 

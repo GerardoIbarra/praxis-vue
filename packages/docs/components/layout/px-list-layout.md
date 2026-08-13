@@ -1,5 +1,5 @@
 <script setup>
-import PxListViewWrapper from '@praxis/px-src/components/layout/PxListViewWrapper.vue'
+import PxListLayout from '@praxis/px-src/components/layout/PxListLayout.vue'
 import PxHeader from '@praxis/px-src/components/layout/PxHeader.vue'
 import PxDataTable from '@praxis/px-src/components/data-display/PxDataTable.vue'
 
@@ -7,7 +7,7 @@ const items = [{ id: 1, name: 'John Doe' }]
 const columns = [{ field: 'name', header: 'Name' }]
 </script>
 
-# PxListViewWrapper
+# PxListLayout
 
 A layout wrapper for list pages. Provides a consistent structure with header, filters, and table slots.
 
@@ -15,7 +15,7 @@ A layout wrapper for list pages. Provides a consistent structure with header, fi
 
 <ComponentDemo>
   <div style="width: 100%; border: 1px dashed var(--vp-c-divider); border-radius: 8px;">
-    <PxListViewWrapper>
+    <PxListLayout>
       <template #header>
         <PxHeader variant="list" title="Projects">
           <template #actions>
@@ -28,21 +28,21 @@ A layout wrapper for list pages. Provides a consistent structure with header, fi
           <p style="text-align: center; color: var(--vp-c-text-2);">List view content area (e.g. data table)</p>
         </div>
       </template>
-    </PxListViewWrapper>
+    </PxListLayout>
   </div>
 
   <template #code>
 
 ```vue
 <script setup>
-import { PxListViewWrapper, PxHeader, PxDataTable } from 'px-vue-ui'
+import { PxListLayout, PxHeader, PxDataTable } from 'px-vue-ui'
 
 const items = [{ id: 1, name: 'John Doe' }]
 const columns = [{ field: 'name', header: 'Name' }]
 </script>
 
 <template>
-  <PxListViewWrapper>
+  <PxListLayout>
     <template #header>
       <PxListHeader title="Projects">
         <template #actions>
@@ -54,7 +54,7 @@ const columns = [{ field: 'name', header: 'Name' }]
     <template #default>
       <PxDataTable :items="items" :columns="columns" />
     </template>
-  </PxListViewWrapper>
+  </PxListLayout>
 </template>
 ```
 

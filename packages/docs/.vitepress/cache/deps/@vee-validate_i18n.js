@@ -1,4 +1,4 @@
-import "./chunk-UVKRO5ER.js";
+import "./chunk-XGM4GKIC.js";
 
 // ../../node_modules/.pnpm/@vee-validate+i18n@4.15.1/node_modules/@vee-validate/i18n/dist/vee-validate-i18n.mjs
 function isCallable(fn) {

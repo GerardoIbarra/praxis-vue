@@ -29,7 +29,8 @@
   "scripts": {
     "build": "vite build",
     "type-check": "vue-tsc --noEmit",
-    "dev": "vite build --watch"
+    "dev": "vite build --watch",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "pinia": "^4.0.2",
@@ -38,10 +39,13 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/test-utils": "^2.4.11",
     "@vueuse/core": "^14.4.0",
+    "jsdom": "^30.0.1",
     "typescript": "^7.0.2",
     "vite": "^8.2.1",
     "vite-plugin-dts": "^5.0.3",
+    "vitest": "^4.1.10",
     "vue": "^3.5.41",
     "vue-tsc": "^3.3.9"
   },

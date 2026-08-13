@@ -16,7 +16,8 @@
     "build-storybook": "storybook build",
     "lint": "eslint . --fix",
     "format": "prettier --write .",
-    "type-check": "pnpm -r type-check"
+    "type-check": "pnpm -r type-check",
+    "test": "pnpm --filter praxis-vue-ui test"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.4.7",

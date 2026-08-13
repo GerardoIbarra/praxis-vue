@@ -178,13 +178,13 @@ const onSelect = (item: NavListItem) => emit("select", item);
 .px-nav-list-separator-icon {
   width: 1rem;
   height: 1rem;
-  color: var(--px-text-muted, #64748b);
+  color: var(--ui-text-muted, #64748b);
 }
 
 .px-nav-list-separator-label {
   font-size: 0.6875rem;
   font-weight: 600;
-  color: var(--px-text-muted, #64748b);
+  color: var(--ui-text-muted, #64748b);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -197,7 +197,7 @@ const onSelect = (item: NavListItem) => emit("select", item);
   border-radius: 0.5rem;
   border: none;
   background: transparent;
-  color: var(--px-text, #0f172a);
+  color: var(--ui-text, #0f172a);
   font-size: 0.875rem;
   text-decoration: none;
   cursor: pointer;
@@ -206,11 +206,11 @@ const onSelect = (item: NavListItem) => emit("select", item);
 }
 
 .px-nav-list-item:hover {
-  background: var(--px-bg-soft, #f8fafc);
+  background: var(--ui-bg-soft, #f8fafc);
 }
 
 .px-nav-list-item--active {
-  background: var(--px-primary, #2563eb);
+  background: var(--ui-primary, #2563eb);
   color: #fff;
   font-weight: 600;
 }
@@ -241,6 +241,6 @@ const onSelect = (item: NavListItem) => emit("select", item);
 .px-nav-list-footer {
   margin-top: auto;
   padding-top: 0.5rem;
-  border-top: 1px solid var(--px-border, #e2e8f0);
+  border-top: 1px solid var(--ui-border, #e2e8f0);
 }
 </style>

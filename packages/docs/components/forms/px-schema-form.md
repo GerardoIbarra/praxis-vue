@@ -62,12 +62,25 @@ const formData = ref({})
 </script>
 
 <template>
-  <PxSchemaForm :schema="schema" v-model="formData" />
+  <PxSchemaForm :schema="schema" v-model="formData" :zod-schema="myZodSchema" />
 </template>
 ```
 
   </template>
 </ComponentDemo>
+
+## Zod Integration
+
+You can natively validate the schema using Zod. Just pass a `zod-schema` prop to the component and `PxSchemaForm` will internally wrap the fields inside a Vee-Validate `<Form>` that processes your schema safely.
+
+```ts
+import { z } from 'zod';
+
+const myZodSchema = z.object({
+  first_name: z.string().min(2, "Must be at least 2 characters"),
+  last_name: z.string().min(2, "Must be at least 2 characters")
+});
+```
 
 ## Props
 
@@ -78,6 +91,7 @@ const formData = ref({})
   { name: 'loading', type: 'boolean', default: 'false', description: 'Passed down to select-type fields to show a loading state.' },
   { name: 'cleanedResults', type: 'string[]', default: '[]', description: 'v-model:cleanedResults — tracks keys touched by multiselect_list fields.' },
   { name: 'calculatedNumbers', type: 'any[]', default: '[]', description: 'v-model:calculatedNumbers — tracks fields of type calculated_number.' },
+  { name: 'zodSchema', type: 'ZodSchema<any>', default: 'undefined', description: 'A Zod schema for automatic type-safe form validation using Vee-Validate.' },
 ]" />
 
 ## FormSchemaField Interface

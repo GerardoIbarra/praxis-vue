@@ -121,6 +121,7 @@ export default withPwa(defineConfig({
           { text: 'Px Drawer', link: '/components/primitives/px-drawer' },
           { text: 'Px Radio Button', link: '/components/primitives/px-radio-button' },
           { text: 'Px Timeline', link: '/components/primitives/px-timeline' },
+          { text: 'Px Toast', link: '/components/primitives/px-toast' },
         ],
       },
       {

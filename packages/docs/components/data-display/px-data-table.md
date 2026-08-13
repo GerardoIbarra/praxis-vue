@@ -23,7 +23,7 @@ const handleSelection = (val) => { selectedItems.value = val }
 
 # PxDataTable
 
-A responsive data table component built on native HTML `<table>`. Supports single/multiple row selection, expandable rows, loading states, striped rows, and custom cell rendering via named slots.
+A responsive data table component built on native HTML `<table>`. Supports single/multiple row selection, expandable rows, skeleton loading states, striped rows, elegant empty states, and custom cell rendering via named slots.
 
 ## Basic Usage
 
@@ -89,9 +89,9 @@ const items = [
   </template>
 </ComponentDemo>
 
-## Striped Rows + Loading
+## Striped Rows & Skeleton Loading
 
-<ComponentDemo title="Striped + Loading">
+<ComponentDemo title="Skeleton Loaders">
   <div style="width:100%">
     <PxDataTable
       :items="items"

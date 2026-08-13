@@ -23,7 +23,7 @@ import {
   withDirectives,
   withModifiers
 } from "./chunk-S6VNSOLG.js";
-import "./chunk-XGM4GKIC.js";
+import "./chunk-UVKRO5ER.js";
 
 // ../../node_modules/.pnpm/vue-select@4.0.0-beta.6_vue@3.5.41_typescript@7.0.2_/node_modules/vue-select/dist/vue-select.es.js
 var E = Object.defineProperty;

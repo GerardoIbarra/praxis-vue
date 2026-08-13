@@ -9,7 +9,9 @@ import PxFormRow from "@/components/forms/PxFormRow.vue";
 import PxSchemaMultiSelect from "@/components/forms/PxSchemaMultiSelect.vue";
 import PxAsyncSelect from "@/components/forms/PxAsyncSelect.vue";
 import { ChevronDown, Search } from "@lucide/vue";
-import { Field } from "vee-validate";
+import { Field, Form as VeeForm } from "vee-validate";
+import { toTypedSchema } from "@vee-validate/zod";
+import type { ZodSchema } from "zod";
 import { setupVeeValidate } from "@/utils/veeValidateConfig";
 import { useFieldValidation } from "@/composables/useFieldValidation";
 import { useSelectOptions } from "@/composables/useSelectOptions";
@@ -28,6 +30,7 @@ const props = defineProps<{
   loading?: boolean;
   cleanedResults?: string[];
   calculatedNumbers?: any[];
+  zodSchema?: ZodSchema<any>;
 }>();
 
 const emit = defineEmits<{
@@ -280,10 +283,15 @@ defineExpose({
 </script>
 
 <template>
-  <TransitionGroup
-    name="list"
-    tag="div"
-    class="grid gap-4"
+  <component
+    :is="zodSchema ? VeeForm : 'div'"
+    :validation-schema="zodSchema ? toTypedSchema(zodSchema) : undefined"
+    :as="zodSchema ? 'div' : undefined"
+  >
+    <TransitionGroup
+      name="list"
+      tag="div"
+      class="grid gap-4"
     :class="
       props.schema.length === 1
         ? 'grid-cols-1'
@@ -651,6 +659,7 @@ defineExpose({
       />
     </div>
   </TransitionGroup>
+  </component>
 </template>
 
 <style scoped>

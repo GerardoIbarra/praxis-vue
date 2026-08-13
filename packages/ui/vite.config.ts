@@ -17,6 +17,8 @@ export default defineConfig({
       external: [
         'vue',
         'primevue',
+        'primevue/toast',
+        'primevue/usetoast',
         '@primevue/core',
         '@primeuix/themes',
         'vee-validate',

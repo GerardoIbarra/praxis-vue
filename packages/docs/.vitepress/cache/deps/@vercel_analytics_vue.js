@@ -16,7 +16,7 @@ import {
 } from "./chunk-S6VNSOLG.js";
 import {
   __publicField
-} from "./chunk-XGM4GKIC.js";
+} from "./chunk-UVKRO5ER.js";
 
 // ../../node_modules/.pnpm/nostics@1.2.0/node_modules/nostics/dist/index.mjs
 function formatDiagnostic(diagnostic) {

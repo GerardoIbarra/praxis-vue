@@ -233,7 +233,7 @@ defineExpose({
 <template>
   <div class="flex flex-col bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-700 rounded-xl overflow-hidden shadow-sm">
     <div class="overflow-x-auto">
-      <table class="w-full text-sm text-left text-surface-600 dark:text-surface-400 border-collapse">
+      <table class="w-full min-w-full text-sm text-left text-surface-600 dark:text-surface-400 border-collapse" style="display: table; width: 100%;">
         <thead class="text-xs text-surface-700 dark:text-surface-300 uppercase bg-surface-50 dark:bg-surface-800 border-b border-surface-200 dark:border-surface-700">
           <tr>
             <!-- Selection Column -->
@@ -270,14 +270,17 @@ defineExpose({
           </tr>
         </thead>
         <tbody>
-          <!-- Loading State -->
+          <!-- Loading State (Skeleton) -->
           <template v-if="loading">
-            <tr>
-              <td :colspan="columns.length + (selectionMode ? 1 : 0) + ($slots.expansion ? 1 : 0)" class="text-center py-12">
-                <div class="flex flex-col items-center justify-center space-y-4">
-                  <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-p-secondary"></div>
-                  <span class="text-sm font-medium text-surface-500">Cargando datos...</span>
-                </div>
+            <tr v-for="i in 5" :key="'skeleton-' + i" class="border-b border-surface-200 dark:border-surface-700 last:border-0">
+              <td v-if="selectionMode" class="p-4 w-4">
+                <div class="w-4 h-4 bg-surface-200 dark:bg-surface-700 rounded animate-pulse"></div>
+              </td>
+              <td v-if="$slots.expansion" class="p-4 w-4">
+                <div class="w-4 h-4 bg-surface-200 dark:bg-surface-700 rounded animate-pulse"></div>
+              </td>
+              <td v-for="col in columns" :key="'skeleton-col-' + col.field" class="px-6 py-4">
+                <div class="h-4 bg-surface-200 dark:bg-surface-700 rounded animate-pulse w-2/3"></div>
               </td>
             </tr>
           </template>

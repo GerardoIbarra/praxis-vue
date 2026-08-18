@@ -45,7 +45,7 @@ export default withPwa(defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Components', link: '/components/forms/time-picker' },
-      { text: 'GitHub', link: 'https://github.com/GerardoIbarra/px-vue' },
+      { text: 'GitHub', link: 'https://github.com/GerardoIbarra/praxis-vue' },
     ],
 
     sidebar: [
@@ -134,7 +134,7 @@ export default withPwa(defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/GerardoIbarra/px-vue' },
+      { icon: 'github', link: 'https://github.com/GerardoIbarra/praxis-vue' },
     ],
 
     search: {

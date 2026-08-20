@@ -2,6 +2,8 @@
 import { ChevronRight, ChevronDown, ChevronUp, ChevronsUpDown, Inbox, Search, ChevronLeft, ChevronsLeft, ChevronsRight } from "@lucide/vue";
 import { type Ref, ref, computed, toRefs, watch } from "vue";
 import PxCheckbox from "@/components/_primitives/PxCheckbox.vue";
+import PxEmptyState from "@/components/data-display/PxEmptyState.vue";
+import PxTableSkeleton from "@/components/data-display/PxTableSkeleton.vue";
 
 interface ColumnDef {
   field: string;
@@ -272,30 +274,23 @@ defineExpose({
         <tbody>
           <!-- Loading State (Skeleton) -->
           <template v-if="loading">
-            <tr v-for="i in 5" :key="'skeleton-' + i" class="border-b border-surface-200 dark:border-surface-700 last:border-0">
-              <td v-if="selectionMode" class="p-4 w-4">
-                <div class="w-4 h-4 bg-surface-200 dark:bg-surface-700 rounded animate-pulse"></div>
-              </td>
-              <td v-if="$slots.expansion" class="p-4 w-4">
-                <div class="w-4 h-4 bg-surface-200 dark:bg-surface-700 rounded animate-pulse"></div>
-              </td>
-              <td v-for="col in columns" :key="'skeleton-col-' + col.field" class="px-6 py-4">
-                <div class="h-4 bg-surface-200 dark:bg-surface-700 rounded animate-pulse w-2/3"></div>
-              </td>
-            </tr>
+            <PxTableSkeleton 
+              :columns="columns.length" 
+              :has-selection="!!selectionMode" 
+              :has-expansion="!!$slots.expansion" 
+              :rows="5"
+            />
           </template>
           
           <!-- Empty State -->
           <template v-else-if="!processedItems.length">
             <tr>
-              <td :colspan="columns.length + (selectionMode ? 1 : 0) + ($slots.expansion ? 1 : 0)" class="text-center py-16">
-                <div class="flex flex-col items-center justify-center text-surface-400 dark:text-surface-500 space-y-3">
-                  <Search v-if="isSearching" class="w-12 h-12 opacity-20" />
-                  <Inbox v-else class="w-12 h-12 opacity-20" />
-                  <p class="text-base font-medium">
-                    {{ isSearching ? searchEmptyMessage : emptyMessage }}
-                  </p>
-                </div>
+              <td :colspan="columns.length + (selectionMode ? 1 : 0) + ($slots.expansion ? 1 : 0)" class="text-center p-4">
+                <PxEmptyState 
+                  :title="isSearching ? searchEmptyMessage : emptyMessage" 
+                  :icon="isSearching ? Search : Inbox"
+                  class="my-4"
+                />
               </td>
             </tr>
           </template>

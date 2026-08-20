@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import PxCheckbox from "@/components/_primitives/PxCheckbox.vue";
 import { ref, watch, computed } from "vue";
-import VueSelect from "vue-select";
+import PxSelect from "@/components/_primitives/PxSelect.vue";
+import PxInputText from "@/components/_primitives/PxInputText.vue";
 import PxRequiredLabel from "@/components/base/PxRequiredLabel.vue";
 import PxStateChecklist from "@/components/forms/PxStateChecklist.vue";
 import PxGridSelect from "@/components/forms/PxGridSelect.vue";
 import PxFormRow from "@/components/forms/PxFormRow.vue";
 import PxSchemaMultiSelect from "@/components/forms/PxSchemaMultiSelect.vue";
 import PxAsyncSelect from "@/components/forms/PxAsyncSelect.vue";
-import { ChevronDown, Search } from "@lucide/vue";
+import { Plus, X, UploadCloud, FileText, Image as ImageIcon } from "lucide-vue-next";
 import { Field, Form as VeeForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import type { ZodSchema } from "zod";
@@ -353,12 +354,11 @@ defineExpose({
 
       <!--calculated_number -->
       <div v-else-if="field.type === 'calculated_number'">
-        <input
+        <PxInputText
           v-model="field.value as any"
           type="text"
-          class="input-base is-readonly bg-gray-100 w-full"
           :placeholder="field.placeholder || ''"
-        readonly
+          readonly
         />
       </div>
 
@@ -377,65 +377,53 @@ defineExpose({
         :rules="getFieldRules(field)"
       >
         <!-- 🔹 TEXT -->
-        <input
+        <PxInputText
           v-if="field.type === 'text'"
           v-model="field.value as any"
           type="text"
-          :class="{
-            'input-base is-enabled premium-focus w-full': !isFieldDisabled(field),
-            'input-base is-disabled opacity-60 w-full': isFieldDisabled(field),
-          }"
           :placeholder="field.placeholder || ''"
           :readonly="field.readonly"
           :disabled="isFieldDisabled(field)"
+          :error="errors[0]"
         />
 
         <!-- 🔹 NUMBER -->
-        <input
+        <PxInputText
           v-else-if="field.type === 'number'"
           v-model="field.value as any"
           type="number"
-          :class="{
-            'input-base is-enabled premium-focus w-full': !isFieldDisabled(field),
-            'input-base is-disabled opacity-60 w-full': isFieldDisabled(field),
-          }"
           :placeholder="field.placeholder || ''"
           :readonly="field.readonly"
           :disabled="isFieldDisabled(field)"
+          :error="errors[0]"
         />
 
         <!-- Number -->
-        <input
+        <PxInputText
           v-else-if="field.type === 'integer'"
           v-model="field.value as any"
           type="number"
-          :class="{
-            'input-base is-enabled premium-focus w-full': !isFieldDisabled(field),
-            'input-base is-disabled opacity-60 w-full': isFieldDisabled(field),
-          }"
           :placeholder="field.placeholder || ''"
           :readonly="field.readonly"
           :disabled="isFieldDisabled(field)"
           :min="getMinNumberValue(field) ?? undefined"
           :max="getMaxNumberValue(field) ?? undefined"
+          :error="errors[0]"
         />
 
         <!-- Double -->
-        <input
+        <PxInputText
           v-else-if="field.type === 'double'"
           v-model="field.value as any"
           type="number"
           step="any"
           maxlength="10"
-          :class="{
-            'input-base is-enabled premium-focus w-full': !isFieldDisabled(field),
-            'input-base is-disabled opacity-60 w-full': isFieldDisabled(field),
-          }"
           :placeholder="field.placeholder || ''"
           :readonly="field.readonly"
           :disabled="isFieldDisabled(field)"
           :min="getMinNumberValue(field) ?? undefined"
           :max="getMaxNumberValue(field) ?? undefined"
+          :error="errors[0]"
         />
 
         <!-- 🔹 TEXTAREA -->
@@ -453,19 +441,14 @@ defineExpose({
 
         <!-- Agrupaciones Select (aplanadas con indentación visual) -->
         <!-- 🔹 SELECT de agrupaciones de un mismo nivel -->
-        <VueSelect
+        <PxSelect
           v-else-if="field.directories === true && field.type === 'select'"
           v-model="field.value"
-          :class="{
-            'vue-select-standard is-enabled premium-focus':
-              !isFieldDisabled(field),
-            'vue-select-standard is-disabled': isFieldDisabled(field),
-          }"
           :options="flattenWithIndentation(field.options || [])"
-          :label="field.option_source?.label_field || 'label'"
+          :optionLabel="field.option_source?.label_field || 'label'"
           :multiple="field.multiple"
-          :selectable="(option: any) => !option.disabled"
-          :reduce="
+          :searchable="true"
+          :optionValue="
             (option: any) => {
               if (!option) return null;
               if (
@@ -478,26 +461,13 @@ defineExpose({
             }
           "
           :placeholder="field.placeholder || 'Select...'"
-          :no-options-text="
-            loadingSelect ? 'Loading...' : 'No options available'
-          "
           :clearable="
             field.required && !field.rules?.required_if ? false : true
           "
           :disabled="isFieldDisabled(field)"
           @search="(searchTerm: string) => setSelected(field, searchTerm)"
-          @update:model-value="(value: unknown) => handleSelected(value, field)"
-          @option:selected="(value: unknown) => handleSelected(value, field)"
-        >
-          <template #open-indicator="{ attributes }">
-            <span v-if="field.search" v-bind="attributes">
-              <Search class="w-4 h-4" />
-            </span>
-            <span v-else v-bind="attributes">
-              <ChevronDown class="w-4 h-4" />
-            </span>
-          </template>
-        </VueSelect>
+          @update:modelValue="(value: unknown) => handleSelected(value, field)"
+        />
 
         <!-- 🔹 SELECT -->
         <PxAsyncSelect
@@ -549,22 +519,18 @@ defineExpose({
           @scrolling="emit('scroll-bottom', field)"
         />
 
-        <VueSelect
+        <PxSelect
           v-else-if="field.type === 'select'"
           v-model="field.value"
-          :class="{
-            'vue-select-standard is-enabled premium-focus':
-              !isFieldDisabled(field),
-            'vue-select-standard is-disabled': isFieldDisabled(field),
-          }"
           :options="field.options"
-          :label="field.option_source?.label_field || 'label'"
+          :optionLabel="field.option_source?.label_field || 'label'"
           :multiple="field.multiple"
+          :searchable="true"
           :disabled="isFieldDisabled(field)"
           :clearable="
             field.required && !field.rules?.required_if ? false : true
           "
-          :reduce="
+          :optionValue="
             (option: any) => {
               if (!option) return null;
               if (
@@ -577,22 +543,9 @@ defineExpose({
             }
           "
           :placeholder="field.placeholder || 'Select...'"
-          :no-options-text="
-            loadingSelect ? 'Loading...' : 'No options available'
-          "
           @search="(searchTerm: string) => setSelected(field, searchTerm)"
-          @update:model-value="(value: unknown) => handleSelected(value, field)"
-          @option:selected="(value: unknown) => handleSelected(value, field)"
-        >
-          <template #open-indicator="{ attributes }">
-            <span v-if="field.search" v-bind="attributes">
-              <Search class="w-4 h-4" />
-            </span>
-            <span v-else v-bind="attributes">
-              <ChevronDown class="w-4 h-4" />
-            </span>
-          </template>
-        </VueSelect>
+          @update:modelValue="(value: unknown) => handleSelected(value, field)"
+        />
 
         <!-- Select-List -->
         <PxGridSelect
@@ -643,7 +596,7 @@ defineExpose({
 
         <Transition name="fade-error">
           <span
-            v-if="errors[0]"
+            v-if="errors[0] && field.type !== 'text' && field.type !== 'number' && field.type !== 'integer' && field.type !== 'double'"
             class="text-error text-xs italic"
             aria-live="polite"
           >

@@ -16,7 +16,10 @@ export default {
   extends: DefaultTheme,
   Layout() {
     return h(DefaultTheme.Layout, null, {
-      'layout-bottom': () => [h(ReloadPrompt), h(Analytics)]
+      'layout-bottom': () => [
+        h(ReloadPrompt), 
+        import.meta.env.PROD ? h(Analytics) : null
+      ]
     })
   },
   enhanceApp({ app }) {

@@ -11,9 +11,7 @@ const options = [
 
 # PxGridSelect
 
-A unified component for selecting items from a dropdown and displaying the selected items in an interactive table beneath it.
-
-Replaces both `PxSelectableList` (for generic options) and `PxSelectListField` (for schema-driven fields).
+A complex selector that combines a searchable dropdown with a data grid (table) for selected items. Useful for scenarios where users need to select multiple items and see their details (like name, color, and custom fields) in a structured format before saving. Built natively using `PxSelect`.
 
 ## Basic Usage
 

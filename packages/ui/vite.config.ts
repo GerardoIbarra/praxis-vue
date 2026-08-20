@@ -16,11 +16,6 @@ export default defineConfig({
       // Externalize ALL peer deps — don't bundle them
       external: [
         'vue',
-        'primevue',
-        'primevue/toast',
-        'primevue/usetoast',
-        '@primevue/core',
-        '@primeuix/themes',
         'vee-validate',
         '@vee-validate/rules',
         '@vee-validate/i18n',
@@ -37,7 +32,6 @@ export default defineConfig({
       output: {
         globals: {
           vue: 'Vue',
-          primevue: 'PrimeVue',
         },
         // Keep CSS separate for tree-shaking
         assetFileNames: (assetInfo) => {

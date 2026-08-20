@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, nextTick, watch } from "vue";
-import VueSelect from "vue-select";
-import { Search } from "@lucide/vue";
+import PxSelect from "@/components/_primitives/PxSelect.vue";
 import PxAvatar from "@/components/base/PxAvatar.vue";
 export type SelectableItem = Record<string, unknown>;
 
@@ -67,7 +66,7 @@ const selectValues = ref<string | number | object | null>(null);
 
 const getDropdownListElement = () => {
   if (vSelectRef.value && vSelectRef.value.$el) {
-    return vSelectRef.value.$el.querySelector(".vs__dropdown-menu");
+    return vSelectRef.value.$el.querySelector("ul");
   }
   return null;
 };
@@ -188,33 +187,24 @@ watch(
 </script>
 
 <template>
-  <VueSelect
+  <PxSelect
     ref="vSelectRef"
     :model-value="selectValues"
     :options="options"
     :placeholder="placeholder"
-    :label="label"
-    :reduce="reduce"
-    :filterable="filterable"
+    :optionLabel="label"
+    :optionValue="reduce"
     :data-testid="testId"
     :class="customClass"
-    :selectable="selectable"
     :disabled="disabled"
     :multiple="multiple"
     :clearable="clearable"
-    :taggable="inputFree"
     :searchable="searchable"
     @update:model-value="handleUpdateModelValue"
     @search="handleSearch"
     @open="handleOpen"
     @search:blur="handleBlur"
   >
-    <!-- Search Icon Slot -->
-    <template v-if="showSearchIcon" #open-indicator="{ attributes }">
-      <span v-bind="attributes">
-        <Search class="w-4 h-4" />
-      </span>
-    </template>
 
     <template #no-options>
       <span v-if="loading"> Please wait while searching... </span>
@@ -285,34 +275,6 @@ watch(
         </div>
       </slot>
     </template>
-  </VueSelect>
+  </PxSelect>
 </template>
-
-<style scoped>
-/* Force truncation on vue-select selected option only for single select */
-:deep(.vs--single .vs__selected-options) {
-  flex-wrap: nowrap !important;
-  overflow: hidden !important;
-  min-width: 0 !important;
-}
-
-:deep(.vs--single .vs__selected) {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-}
-
-:deep(.vs--single .vs__selected > div) {
-  overflow: hidden !important;
-  max-width: 100% !important;
-}
-
-:deep(.vs--single .vs__selected span) {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-}
-</style>
 

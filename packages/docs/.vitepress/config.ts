@@ -97,6 +97,7 @@ export default withPwa(defineConfig({
           { text: 'Px Tree', link: '/components/data-display/px-tree' },
           { text: 'Px Display Options', link: '/components/data-display/px-display-options' },
           { text: 'Px Document Viewer', link: '/components/data-display/px-document-viewer' },
+          { text: 'Px Table Skeleton', link: '/components/data-display/px-table-skeleton' },
         ],
       },
       {
@@ -120,6 +121,7 @@ export default withPwa(defineConfig({
           { text: 'Px Dialog', link: '/components/primitives/px-dialog' },
           { text: 'Px Drawer', link: '/components/primitives/px-drawer' },
           { text: 'Px Radio Button', link: '/components/primitives/px-radio-button' },
+          { text: 'Px Select', link: '/components/primitives/px-select' },
           { text: 'Px Timeline', link: '/components/primitives/px-timeline' },
           { text: 'Px Toast', link: '/components/primitives/px-toast' },
         ],

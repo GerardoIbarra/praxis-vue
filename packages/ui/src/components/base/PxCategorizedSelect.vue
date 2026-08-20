@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import VueSelect from "vue-select";
-import { computed, ref, onMounted } from "vue";
-import "vue-select/dist/vue-select.css";
+import PxSelect from "@/components/_primitives/PxSelect.vue";
+import { computed, ref } from "vue";
 
 export interface ActivityOption {
   value?: string | number;
@@ -57,7 +56,7 @@ const props = withDefaults(defineProps<Props>(), {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   reduce: (option: any) => option.id ?? option.value ?? option,
   placeholder: "",
-  selectClass: "vue-select-standard text-gray-400",
+  selectClass: "w-full",
   disabled: false,
   showSelectAll: true,
   showDuration: true,
@@ -69,7 +68,7 @@ const emit = defineEmits<{
   (e: "update:modelValue", value: unknown[]): void;
 }>();
 
-const vueSelectRef = ref<InstanceType<typeof VueSelect> | null>(null);
+const pxSelectRef = ref<InstanceType<typeof PxSelect> | null>(null);
 
 // Helper to get unique value/id from any option
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -139,60 +138,6 @@ const flattenedOptions = computed<FlattenedOption[]>(() => {
       });
     }
   }
-  return result;
-});
-
-const searchQuery = ref("");
-
-const handleSearch = (search: string) => {
-  searchQuery.value = search;
-};
-
-const handleClose = () => {
-  if (vueSelectRef.value) {
-    (vueSelectRef.value as unknown as { search: string }).search = "";
-  }
-  searchQuery.value = "";
-};
-
-// Computed options that deduplicates child activities when searching
-const displayOptions = computed(() => {
-  if (!searchQuery.value) {
-    return flattenedOptions.value;
-  }
-
-  const query = searchQuery.value.toLowerCase().trim();
-  const result: FlattenedOption[] = [];
-  const seenIds = new Set<string | number>();
-
-  // 1. Identify matching group IDs
-  const matchingGroupIds = new Set<string | number>();
-  for (const option of flattenedOptions.value) {
-    if (option.isGroup) {
-      const groupName = (option.displayName || "").toLowerCase();
-      if (groupName.includes(query)) {
-        matchingGroupIds.add(option.id);
-      }
-    }
-  }
-
-  // 2. Filter child activities
-  for (const option of flattenedOptions.value) {
-    if (option.isGroup) continue;
-
-    const nameMatch = (option.displayName || "").toLowerCase().includes(query);
-    const parentMatch =
-      option.parentId !== undefined && matchingGroupIds.has(option.parentId);
-
-    if (nameMatch || parentMatch) {
-      const rawId = getOptionValue(option.raw);
-      if (!seenIds.has(rawId)) {
-        seenIds.add(rawId);
-        result.push(option);
-      }
-    }
-  }
-
   return result;
 });
 
@@ -328,8 +273,6 @@ const emitIds = (ids: (string | number)[]) => {
     }
   }
   emit("update:modelValue", Array.from(newValuesSet));
-
-  handleClose();
 };
 
 const handleOptionClick = (option: FlattenedOption) => {
@@ -343,7 +286,6 @@ const handleOptionClick = (option: FlattenedOption) => {
 // Custom search filter that preserves parent groups when child matches
 const customFilterBy = (
   option: FlattenedOption,
-  label: string,
   search: string
 ) => {
   if (!search) return true;
@@ -379,65 +321,25 @@ const customFilterBy = (
   }
   return false;
 };
-
-const getOptionIndex = (option: FlattenedOption) => {
-  return computedModelValue.value.findIndex((item) => item.id === option.id);
-};
-
-const showAllTags = computed(() => computedModelValue.value.length <= 4);
-
-onMounted(() => {
-  if (vueSelectRef.value) {
-    // Override maybeAdjustScroll to fix the scroll-jumping issue when px-list-header slot is used
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (vueSelectRef.value as any).maybeAdjustScroll = function () {
-      const menu = this.$refs.dropdownMenu;
-      if (!menu) return;
-
-      // Adjust index by +1 if showSelectAll is true because of the header slot
-      const hasHeader =
-        menu.children[0] &&
-        !menu.children[0].classList.contains("vs__dropdown-option");
-      const index = this.typeAheadPointer + (hasHeader ? 1 : 0);
-      const activeEl = menu.children[index];
-      if (activeEl) {
-        const viewport = this.getDropdownViewport();
-        const {
-          top: n,
-          bottom: l,
-          height: i,
-        } = activeEl.getBoundingClientRect();
-
-        if (n < viewport.top) {
-          menu.scrollTop = activeEl.offsetTop;
-        } else if (l > viewport.bottom) {
-          menu.scrollTop = activeEl.offsetTop - (viewport.height - i);
-        }
-      }
-    };
-  }
-});
 </script>
 
 <template>
-  <VueSelect
-    ref="vueSelectRef"
+  <PxSelect
+    ref="pxSelectRef"
     v-model="computedModelValue"
-    :options="displayOptions"
-    :label="'displayName'"
+    :options="flattenedOptions"
+    :optionLabel="'displayName'"
     :multiple="true"
     :disabled="disabled"
-    :selectable="() => true"
-    :filter-by="customFilterBy"
+    :filterBy="customFilterBy"
     :placeholder="placeholder"
-    :class="[selectClass, disabled ? 'is-disabled' : 'is-enabled']"
-    @search="handleSearch"
-    @close="handleClose"
+    :searchable="true"
+    :class="[selectClass, disabled ? 'opacity-50 pointer-events-none' : '']"
   >
     <!-- Header: Seleccionar todo / Select All -->
-    <template v-if="showSelectAll" #px-list-header>
+    <template v-if="showSelectAll" #list-header>
       <div
-        class="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60 cursor-pointer select-none hover:bg-gray-100 dark:hover:bg-gray-700/60 transition-colors"
+        class="flex items-center justify-between px-3 py-2 border-b border-surface-200 dark:border-surface-700 bg-surface-50 dark:bg-surface-800/60 cursor-pointer select-none hover:bg-surface-100 dark:hover:bg-surface-700/60 transition-colors"
         @click.stop.prevent="toggleSelectAll"
       >
         <div class="flex items-center gap-2.5">
@@ -445,16 +347,16 @@ onMounted(() => {
             type="checkbox"
             :checked="isAllSelected"
             :indeterminate="isSomeSelected && !isAllSelected"
-            class="rounded border-gray-300 dark:border-gray-600 text-blue-600 focus:ring-blue-500 w-4 h-4 pointer-events-none"
+            class="rounded border-surface-300 dark:border-surface-600 text-primary-600 focus:ring-primary-500 w-4 h-4 pointer-events-none"
             @click.stop
           />
           <span
-            class="text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-300"
+            class="text-xs font-semibold uppercase tracking-wider text-surface-600 dark:text-surface-300"
           >
             Seleccionar todo
           </span>
         </div>
-        <span class="text-xs font-medium text-gray-400 dark:text-gray-400">
+        <span class="text-xs font-medium text-surface-400 dark:text-surface-400">
           {{ selectedIds.length }} / {{ uniqueChildrenCount }}
         </span>
       </div>
@@ -466,8 +368,8 @@ onMounted(() => {
         class="flex items-center gap-2.5 py-2 px-3 select-none w-full transition-colors"
         :class="[
           option.isGroup
-            ? 'font-semibold text-gray-800 dark:text-gray-100 bg-gray-50/90 dark:bg-gray-800/60 border-y border-gray-100 dark:border-gray-700/50 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700'
-            : 'pl-8 text-gray-600 dark:text-gray-300 font-normal cursor-pointer hover:bg-blue-50/50 dark:hover:bg-blue-900/20',
+            ? 'font-semibold text-surface-800 dark:text-surface-100 bg-surface-50/90 dark:bg-surface-800/60 border-y border-surface-100 dark:border-surface-700/50 cursor-pointer hover:bg-surface-100 dark:hover:bg-surface-700'
+            : 'pl-8 text-surface-600 dark:text-surface-300 font-normal cursor-pointer hover:bg-primary-50/50 dark:hover:bg-primary-900/20',
         ]"
         @click.stop.prevent="handleOptionClick(option)"
       >
@@ -478,14 +380,14 @@ onMounted(() => {
             option.isGroup ? isGroupSelected(option) : isChildSelected(option)
           "
           :indeterminate="option.isGroup && isGroupIndeterminate(option)"
-          class="rounded border-gray-300 dark:border-gray-600 text-blue-600 focus:ring-blue-500 w-4 h-4 pointer-events-none"
+          class="rounded border-surface-300 dark:border-surface-600 text-primary-600 focus:ring-primary-500 w-4 h-4 pointer-events-none"
           @click.stop
         />
 
         <!-- Color dot -->
         <div
           v-if="showColor && option.color"
-          class="w-4 h-4 rounded border border-gray-300 shrink-0"
+          class="w-4 h-4 rounded border border-surface-300 shrink-0"
           :style="{ backgroundColor: option.color?.startsWith('#') ? option.color : '#' + option.color }"
         ></div>
 
@@ -495,7 +397,7 @@ onMounted(() => {
         <!-- Duration Badge -->
         <span
           v-if="!option.isGroup && showDuration && option.duration"
-          class="text-[11px] font-medium text-gray-500 dark:text-gray-400 bg-gray-200/70 dark:bg-gray-700/70 px-1.5 py-0.5 rounded"
+          class="text-[11px] font-medium text-surface-500 dark:text-surface-400 bg-surface-200/70 dark:bg-surface-700/70 px-1.5 py-0.5 rounded"
         >
           {{ option.duration }} min
         </span>
@@ -503,83 +405,15 @@ onMounted(() => {
     </template>
 
     <!-- Selected option tag/pill -->
-    <template
-      #selected-option-container="{
-        option,
-        deselect,
-        multiple,
-        disabled: slotDisabled,
-      }"
-    >
-      <span
-        v-if="showAllTags || getOptionIndex(option) < 3"
-        class="vs__selected"
-      >
+    <template #selected-option="option">
+      <div class="flex items-center gap-1.5">
         <div
           v-if="showColor && option.color"
-          class="w-4 h-4 rounded border border-gray-300 shrink-0"
+          class="w-3 h-3 rounded border border-surface-300 shrink-0"
           :style="{ backgroundColor: option.color?.startsWith('#') ? option.color : '#' + option.color }"
         ></div>
-        <span class="truncate ml-2 max-w-30"> {{ option.displayName }} </span>
-        <button
-          v-if="multiple"
-          :disabled="slotDisabled"
-          type="button"
-          class="vs__deselect"
-          aria-label="Deselect option"
-          @click="deselect(option)"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="10"
-            height="10"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-        </button>
-      </span>
-      <span
-        v-else-if="getOptionIndex(option) === 3"
-        class="vs__selected bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-none font-medium px-2 py-0.5 rounded text-xs select-none"
-      >
-        +{{ computedModelValue.length - 3 }} más
-      </span>
-      <span v-else style="display: none"></span>
+        <span class="truncate max-w-30 text-xs"> {{ option.displayName }} </span>
+      </div>
     </template>
-  </VueSelect>
+  </PxSelect>
 </template>
-
-<style scoped>
-/* Force truncation on vue-select selected option only for single select */
-:deep(.vs--single .vs__selected-options) {
-  flex-wrap: nowrap !important;
-  overflow: hidden !important;
-  min-width: 0 !important;
-}
-
-:deep(.vs--single .vs__selected) {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-}
-
-:deep(.vs--single .vs__selected > div) {
-  overflow: hidden !important;
-  max-width: 100% !important;
-}
-
-:deep(.vs--single .vs__selected span) {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-}
-</style>

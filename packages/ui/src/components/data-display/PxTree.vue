@@ -13,9 +13,9 @@ import {
   ChevronRight,
   ChevronDown
 } from "@lucide/vue";
+import PxCheckbox from "@/components/_primitives/PxCheckbox.vue";
+import PxSelect from "@/components/_primitives/PxSelect.vue";
 import { computed, watch } from "vue";
-import VueSelect from "vue-select";
-import { usePopperPosition } from "@/utils/usePopperPosition";
 import type { PropType } from "vue";
 import { Field } from "vee-validate";
 import { setupVeeValidate } from "@/utils/veeValidateConfig";
@@ -162,21 +162,13 @@ watch(
 
         <!-- Editing state -->
         <template v-if="node.isEditing">
-          <VueSelect
+          <PxSelect
             v-model="childTypeModel"
             :options="newChildTypeOptions"
-            label="label"
-            :reduce="(payerGroup: Record<string, unknown>) => payerGroup.value"
+            optionLabel="label"
+            optionValue="value"
             data-testid="tree-select"
-            :clearable="false"
-            class="w-full sm:min-w-60 md:min-w-50 lg:min-w-50 border border-gray-300 px-4 py-1 rounded-md text-gray-400"
-            :class="
-              node.type !== 'temp' && ((node?.children?.length ?? 0) > 0 || node.has_templates)
-                ? 'cursor-not-allowed is-disabled'
-                : 'is-enabled'
-            "
-            :calculate-position="usePopperPosition"
-            :append-to-body="true"
+            class="w-full sm:min-w-60 md:min-w-50 lg:min-w-50"
             :disabled="node.type !== 'temp' && ((node?.children?.length ?? 0) > 0 || node.has_templates)"
           >
             <template #option="{ label }">
@@ -199,33 +191,27 @@ watch(
                 <span class="text-gray-700 dark:text-gray-100">{{ label }}</span>
               </div>
             </template>
-          </VueSelect>
+          </PxSelect>
 
           <div v-if="childTypeModel === 'template'">
-            <VueSelect
+            <PxSelect
               v-model="catalogItemModel"
               :options="catalogOptions"
-              label="name"
-              :reduce="(status: Record<string, unknown>) => status.id"
-              class="w-full sm:min-w-60 md:min-w-[320px] lg:min-w-[320px] max-h-full border border-gray-300 px-4 py-1 rounded-md"
+              optionLabel="name"
+              optionValue="id"
+              class="w-full sm:min-w-60 md:min-w-[320px] lg:min-w-[320px]"
               placeholder="Select a template"
-              :calculate-position="usePopperPosition"
-              :append-to-body="true"
-              :clearable="false"
             />
           </div>
 
           <div v-if="childTypeModel === 'form'">
-            <VueSelect
+            <PxSelect
               v-model="catalogItemModel"
               :options="catalogOptions"
-              label="name"
-              :reduce="(status: Record<string, unknown>) => status.id"
-              class="w-full sm:min-w-60 md:min-w-[320px] lg:min-w-[320px] max-h-full border border-gray-300 px-4 py-1 rounded-md"
+              optionLabel="name"
+              optionValue="id"
+              class="w-full sm:min-w-60 md:min-w-[320px] lg:min-w-[320px]"
               placeholder="Select a form"
-              :calculate-position="usePopperPosition"
-              :append-to-body="true"
-              :clearable="false"
             />
           </div>
 

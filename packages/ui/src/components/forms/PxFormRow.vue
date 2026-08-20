@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Field } from "vee-validate";
-import VueSelect from "vue-select";
-import { ChevronDown } from "@lucide/vue";
+import PxSelect from "@/components/_primitives/PxSelect.vue";
+import PxInputText from "@/components/_primitives/PxInputText.vue";
 import { onMounted, watch } from "vue";
 
 const props = defineProps({
@@ -75,22 +75,21 @@ defineEmits(["search", "change"]);
           class="flex-1"
         >
           <div class="flex flex-col">
-            <input
+            <PxInputText
               v-if="comp.type === 'integer'"
               v-model="comp.value"
               type="number"
-              class="input-base w-full"
               :min="getMinNumberValue(comp)"
               :max="getMaxNumberValue(comp)"
+              :error="errors[0]"
             />
 
-            <VueSelect
+            <PxSelect
               v-else-if="comp.type === 'select'"
               v-model="comp.value"
-              class="vue-select-standard text-gray-400 is-enabled"
               :options="comp.option_source.options"
-              :label="'label'"
-              :reduce="(option: Record<string, unknown>) => option.value"
+              optionLabel="label"
+              :optionValue="(option: Record<string, unknown>) => option.value"
               :clearable="
                 comp.required && !comp.rules?.required_if ? false : true
               "
@@ -100,21 +99,7 @@ defineEmits(["search", "change"]);
               @option:selected="
                 (option: unknown) => $emit('change', { option, field })
               "
-            >
-              <template #open-indicator="{ attributes }">
-                <span v-bind="attributes">
-                  <ChevronDown class="w-4 h-4" />
-                </span>
-              </template>
-            </VueSelect>
-
-            <span
-              v-if="errors[0]"
-              class="text-error text-xs"
-              aria-live="polite"
-            >
-              {{ errors[0] }}
-            </span>
+            />
           </div>
         </Field>
       </template>

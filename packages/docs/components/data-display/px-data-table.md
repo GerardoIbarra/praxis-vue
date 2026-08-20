@@ -188,7 +188,7 @@ const columns = [
 <PropsTable :rows="[
   { name: 'items', type: 'Record<string, unknown>[]', default: '[]', description: 'Array of row data objects. Each row should have a unique id field.' },
   { name: 'columns', type: 'ColumnDef[]', default: '[]', description: 'Column definitions. See ColumnDef interface below.' },
-  { name: 'loading', type: 'boolean', default: 'false', description: 'Shows a centered spinner and hides row data.' },
+  { name: 'loading', type: 'boolean', default: 'false', description: 'Shows a premium skeleton loader with animated rows simulating text lengths.' },
   { name: 'paginated', type: 'boolean', default: 'true', description: 'Enables interactive pagination footer. Calculates pages automatically.' },
   { name: 'rows', type: 'number', default: '10', description: 'Number of rows per page for pagination.' },
   { name: 'rowsPerPageOptions', type: 'number[]', default: '[10, 20, 50]', description: 'Options available in the rows-per-page dropdown.' },

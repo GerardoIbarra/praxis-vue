@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Field } from "vee-validate";
-import VueSelect from "vue-select";
-import { Search, ChevronDown } from "@lucide/vue";
+import PxSelect from "@/components/_primitives/PxSelect.vue";
+import PxInputText from "@/components/_primitives/PxInputText.vue";
 import PxRequiredLabel from "@/components/base/PxRequiredLabel.vue";
 
 const props = defineProps({
@@ -29,26 +29,13 @@ const activeComponents = computed(() => {
 <template>
   <div class="flex flex-col gap-1">
     <div class="flex flex-col gap-1">
-      <VueSelect
+      <PxSelect
         v-model="internalSelected"
-        class="vue-select-standard text-gray-400 is-enabled"
         :options="field.options[0]?.options || []"
         :multiple="true"
-        :reduce="(option: Record<string, unknown>) => option.value"
-        :selectable="
-          (option: Record<string, unknown>) =>
-            !internalSelected.some((item: unknown) => item === option.value)
-        "
-      >
-        <template #open-indicator="{ attributes }">
-          <span v-if="field.search" v-bind="attributes">
-            <Search class="w-4 h-4" />
-          </span>
-          <span v-else v-bind="attributes">
-            <ChevronDown class="w-4 h-4" />
-          </span>
-        </template>
-      </VueSelect>
+        optionValue="value"
+        :searchable="field.search"
+      />
     </div>
 
     <div v-if="internalSelected.length > 0">
@@ -76,16 +63,13 @@ const activeComponents = computed(() => {
               :rules="subComp.required ? 'required' : ''"
               class="flex-1 max-w-28"
             >
-              <input
+              <PxInputText
                 v-if="subComp.type === 'integer'"
                 v-model="subComp.value"
                 type="number"
-                class="input-base w-full"
                 :placeholder="subComp.placeholder || ''"
+                :error="errors[0]"
               />
-              <span class="text-error text-xs block" aria-live="polite">
-                {{ errors[0] }}
-              </span>
             </Field>
           </template>
         </div>

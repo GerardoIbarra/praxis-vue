@@ -1,8 +1,7 @@
 <script setup lang="ts" generic="T">
-import VueSelect from "vue-select";
-import PxAvatar from "./PxAvatar.vue";
+import PxSelect from "@/components/_primitives/PxSelect.vue";
+import PxAvatar from "@/components/base/PxAvatar.vue";
 import { computed } from "vue";
-import "vue-select/dist/vue-select.css";
 
 // TypeScript interfaces
 export interface AvatarOption {
@@ -69,15 +68,16 @@ const computedValue = computed<
 </script>
 
 <template>
-  <VueSelect
+  <PxSelect
     v-model="computedValue"
     :options="options"
-    :label="label"
-    :reduce="reduce"
+    :optionLabel="label"
+    :optionValue="reduce"
     :placeholder="placeholder"
     :disabled="disabled"
     :multiple="multiple"
     :clearable="clearable"
+    :searchable="true"
     :class="[selectClass, disabled ? 'is-disabled' : 'is-enabled']"
   >
     <template #option="option">
@@ -110,33 +110,5 @@ const computedValue = computed<
         >
       </div>
     </template>
-  </VueSelect>
+  </PxSelect>
 </template>
-
-<style scoped>
-/* Force truncation on vue-select selected option only for single select */
-:deep(.vs--single .vs__selected-options) {
-  flex-wrap: nowrap !important;
-  overflow: hidden !important;
-  min-width: 0 !important;
-}
-
-:deep(.vs--single .vs__selected) {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-}
-
-:deep(.vs--single .vs__selected > div) {
-  overflow: hidden !important;
-  max-width: 100% !important;
-}
-
-:deep(.vs--single .vs__selected span) {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-}
-</style>

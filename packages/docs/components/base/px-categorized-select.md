@@ -36,7 +36,7 @@ const options = [
 
 # PxCategorizedSelect
 
-A multi-select dropdown with grouped options, checkboxes, color swatches, duration badges, and a "Select All" header. Built on top of `vue-select` with full custom rendering.
+A multi-select dropdown with grouped options, checkboxes, color swatches, duration badges, and a "Select All" header. Built natively on top of `PxSelect`.
 
 ## Basic Usage
 
@@ -154,7 +154,7 @@ const options = [
   { name: 'showDuration', type: 'boolean', default: 'true', description: 'Shows duration badges (in minutes) next to each child option.' },
   { name: 'showColor', type: 'boolean', default: 'true', description: 'Shows color dot swatches next to options with a color property.' },
   { name: 'useCombinedId', type: 'boolean', default: 'false', description: 'Uses groupId_childId as the unique key to prevent ID conflicts across groups.' },
-  { name: 'selectClass', type: 'string', default: '\'vue-select-standard text-gray-400\'', description: 'CSS class passed to the vue-select root element.' },
+  { name: 'selectClass', type: 'string', default: '\'w-full\'', description: 'CSS class passed to the underlying PxSelect element.' },
 ]" />
 
 ## Emits

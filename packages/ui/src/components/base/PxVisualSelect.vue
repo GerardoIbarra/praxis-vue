@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import VueSelect from "vue-select";
-import { Users } from "@lucide/vue";
 import { computed } from "vue";
-import "vue-select/dist/vue-select.css";
+import PxSelect from "@/components/_primitives/PxSelect.vue";
+import { Users } from "@lucide/vue";
 
 // TypeScript interfaces
 export interface VisualOption {
@@ -71,16 +70,17 @@ const computedValue = computed<
 </script>
 
 <template>
-  <VueSelect
+  <PxSelect
     v-model="computedValue"
     :options="options"
-    :label="label"
-    :reduce="reduce"
+    :optionLabel="label"
+    :optionValue="reduce"
     :placeholder="placeholder"
     :disabled="disabled"
     :multiple="multiple"
     :clearable="clearable"
-    :input-id="inputId"
+    :searchable="true"
+    :id="inputId"
     :data-testid="dataTestid"
     :class="[selectClass, disabled ? 'is-disabled' : 'is-enabled']"
   >
@@ -109,68 +109,30 @@ const computedValue = computed<
 
     <template #selected-option="option">
       <!-- Group Variant -->
-      <div v-if="variant === 'group'" class="flex items-center gap-2 overflow-hidden max-w-full">
+      <div v-if="variant === 'group'" class="flex items-center gap-2">
         <div class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
-          <Users class="w-2.5 h-2.5" />
+          <Users class="w-3 h-3" />
         </div>
-        <span class="truncate text-gray-700 dark:text-gray-200">
+        <span class="font-medium text-gray-700 dark:text-gray-200">
           {{ option[label] || option.name }}
         </span>
       </div>
 
       <!-- Color Variant -->
-      <div v-else-if="variant === 'color'" class="flex items-center overflow-hidden max-w-full">
+      <div v-else-if="variant === 'color'" class="flex items-center">
         <div 
-          class="w-4 h-4 rounded border border-gray-300 shrink-0" 
+          class="w-3 h-3 rounded border border-gray-300 shrink-0" 
           :style="{ backgroundColor: option.color?.startsWith('#') ? option.color : '#' + option.color }"
         ></div>
-        <span class="ml-2 truncate font-medium text-gray-700 dark:text-gray-200">
+        <span class="ml-2 font-medium text-gray-700 dark:text-gray-200">
           {{ option[label] || option.name }}
         </span>
       </div>
+
+      <!-- Generic -->
+      <div v-else class="flex items-center text-gray-700 dark:text-gray-200">
+        {{ option[label] || option.name }}
+      </div>
     </template>
-  </VueSelect>
+  </PxSelect>
 </template>
-
-<style scoped>
-/* Force truncation on vue-select selected option */
-:deep(.vs--single .vs__selected-options) {
-  flex-wrap: nowrap !important;
-  overflow: hidden !important;
-  min-width: 0 !important;
-}
-
-:deep(.vs--single .vs__selected) {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-}
-
-:deep(.vs--single .vs__selected > div) {
-  overflow: hidden !important;
-  max-width: 100% !important;
-}
-
-:deep(.vs--single .vs__selected span) {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-}
-
-/* Also handle generic selected elements just in case multiple is used without --single */
-:deep(.vs__selected-options) {
-  flex-wrap: nowrap !important;
-  overflow: hidden !important;
-  min-width: 0 !important;
-}
-
-:deep(.vs__selected) {
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap !important;
-  max-width: 100% !important;
-  min-width: 0 !important;
-}
-</style>

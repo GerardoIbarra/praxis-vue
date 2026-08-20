@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch } from "vue";
-import VueSelect from "vue-select";
+import PxSelect from "@/components/_primitives/PxSelect.vue";
 import { Search, X } from "@lucide/vue";
 import PxAsyncSelect from "@/components/forms/PxAsyncSelect.vue";
 import PxAvatar from "@/components/base/PxAvatar.vue";
@@ -160,7 +160,7 @@ watch(
 );
 
 const selectedItemID = ref<string>("");
-const vueSelectRef = ref<InstanceType<typeof VueSelect> | null>(null);
+const pxSelectRef = ref<InstanceType<typeof PxSelect> | null>(null);
 
 const defaultColumnLabels = computed<string[]>(() => {
   const labels: string[] = [];
@@ -201,9 +201,8 @@ watch(
   () => internalSelectedItems.value.length,
   () => {
     selectedItemID.value = "";
-    if (vueSelectRef.value) {
-      (vueSelectRef.value as unknown as { search: string }).search = "";
-    }
+    // We don't have direct access to search input in PxSelect without a method, 
+    // but PxSelect clears its own search on selection if multiple=false or upon closing.
   }
 );
 
@@ -353,30 +352,24 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
           </PxAsyncSelect>
         </div>
         <div v-else class="w-full">
-          <VueSelect
+          <PxSelect
             v-if="showSelected"
             :key="`select-${internalSelectedItems.length}`"
-            ref="vueSelectRef"
+            ref="pxSelectRef"
             v-model="selectedItemID"
             :options="resolvedOptions"
             :placeholder="resolvedPlaceholder"
-            :label="resolvedLabelField"
-            :selectable="(option: SelectableItem) => !isItemSelected(option) && !option.disabled"
+            :optionLabel="resolvedLabelField"
+            :searchable="true"
             :disabled="disabled"
             :class="[
               selectWidth,
-              'border border-gray-300 px-4 py-1 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white dark:bg-secondary w-full',
+              'w-full',
               disabled ? 'is-disabled' : '',
             ]"
-            :loading="loading"
-            @update:model-value="addItem($event)"
+            @update:modelValue="addItem($event)"
             @search="(query: string) => emit('search', query)"
           >
-            <template #open-indicator="{ attributes }">
-              <span v-bind="attributes">
-                <Search class="w-4 h-4" />
-              </span>
-            </template>
 
             <template #option="option">
               <div v-if="showColorPicker" class="flex items-center">
@@ -409,7 +402,7 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
                 <span class="ml-2">{{ name }}</span>
               </div>
             </template>
-          </VueSelect>
+          </PxSelect>
         </div>
       </div>
     </div>
@@ -459,24 +452,23 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
         <!-- Campos adicionales -->
         <div v-for="additionalField in additionalFields" :key="additionalField.field" class="flex items-center px-2 relative focus-within:z-50">
           <template v-if="additionalField.type === 'select'">
-            <VueSelect
+            <PxSelect
               v-model="item[additionalField.field]"
               :options="(item[additionalField.optionsField || ''] as any[]) || []"
-              :label="additionalField.labelField || 'label'"
-              :reduce="(opt: any) => opt.value || opt.id || opt"
-              :selectable="(option: any) => { const selectedArr = (item[additionalField.field] as any[]) || []; const optVal = option.value || option.id || option; return !selectedArr.includes(optVal) && !option.disabled; }"
+              :optionLabel="additionalField.labelField || 'label'"
+              :optionValue="(opt: any) => opt.value || opt.id || opt"
               :placeholder="additionalField.placeholder || 'Select...'"
               :multiple="additionalField.multiple !== false"
-              class="vue-select-standard w-full min-w-50 dark:bg-secondary"
+              :searchable="true"
+              class="w-full min-w-50 dark:bg-secondary"
               :disabled="disabled || (item as any).loadingModifiers"
-              :loading="(item as any).loadingModifiers"
             >
               <template #selected-option="option">
                 <span class="text-xs font-semibold" :title="option[additionalField.labelField || 'label']">
                   {{ option.code || option[additionalField.labelField || "label"] }}
                 </span>
               </template>
-            </VueSelect>
+            </PxSelect>
           </template>
           <template v-else>
             <span class="text-gray-600 dark:text-gray-400">{{ getFieldValue(item, additionalField.field) || "N/A" }}</span>
@@ -505,13 +497,3 @@ const getFieldValue = (item: SelectableItem, fieldStr: string): unknown => {
     </div>
   </div>
 </template>
-
-<style scoped>
-:deep(.vs__dropdown-menu) {
-  max-height: 15rem;
-  overflow-y: auto;
-}
-:deep(.vs__dropdown-option) {
-  padding: 0.5rem 0.75rem;
-}
-</style>

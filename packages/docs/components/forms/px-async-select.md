@@ -32,7 +32,7 @@ const loadMore = async () => {
 
 # PxAsyncSelect
 
-A `vue-select` wrapper that triggers a load-more callback when the user scrolls to the bottom of the dropdown options. Designed for large datasets loaded from an API.
+A `PxSelect` wrapper that triggers a load-more callback when the user scrolls to the bottom of the dropdown options. Designed for large datasets loaded from an API.
 
 ## Usage
 

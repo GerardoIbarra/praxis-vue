@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { Flag, X, Slash, CheckSquare } from "@lucide/vue";
+import PxTableSkeleton from "@/components/data-display/PxTableSkeleton.vue";
 
 type TableValue =
   | boolean
@@ -14,9 +15,13 @@ interface TableData {
   rows: (string | TableValue)[][];
 }
 
-const props = defineProps<{
-  tableData: TableData;
-}>();
+const props = withDefaults(defineProps<{
+  tableData?: TableData;
+  loading?: boolean;
+}>(), {
+  tableData: () => ({ headers: [], rows: [] }),
+  loading: false,
+});
 
 // Process rows to identify section headers vs data rows
 interface ProcessedRow {
@@ -74,7 +79,10 @@ const isFlagged = (v: TableValue) =>
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody v-if="loading">
+          <PxTableSkeleton :columns="tableData.headers.length" :rows="5" />
+        </tbody>
+        <tbody v-else>
           <tr
             v-for="(row, rowIndex) in processedRows"
             :key="rowIndex"

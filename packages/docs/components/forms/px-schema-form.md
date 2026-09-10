@@ -122,6 +122,7 @@ interface FormSchemaField {
   { name: 'update:cleanedResults', payload: 'string[]', description: 'Emitted when multiselect_list selections change.' },
   { name: 'update:calculatedNumbers', payload: 'any[]', description: 'Emitted when calculated_number fields change.' },
   { name: 'scroll-bottom', payload: 'FormSchemaField', description: 'Emitted when a select-type field\'s dropdown is scrolled near the bottom, for pagination.' },
+  { name: 'search', payload: '{ query: string, fieldKey: string }', description: 'Emitted when search input changes in searchable select-list fields.' },
 ]" />
 
 > [!NOTE]

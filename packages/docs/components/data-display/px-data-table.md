@@ -179,6 +179,41 @@ const columns = [
 ]
 ```
 
+## Export to Excel & CSV
+
+<ComponentDemo title="Exportable Table">
+  <div style="width:100%">
+    <PxDataTable
+      :items="items"
+      :columns="columns"
+      title="Team Directory"
+      :exportable="true"
+      export-file-name="company-team"
+      selection-mode="multiple"
+      :selected-items="selectedItems"
+      @selection-change="handleSelection"
+    />
+  </div>
+
+  <template #code>
+
+```vue
+<template>
+  <PxDataTable
+    :items="items"
+    :columns="columns"
+    title="Team Directory"
+    :exportable="true"
+    export-file-name="company-team"
+    selection-mode="multiple"
+    @export="(e) => console.log('Exported', e)"
+  />
+</template>
+```
+
+  </template>
+</ComponentDemo>
+
 ## Props
 
 <div class="px-section-header">
@@ -188,6 +223,10 @@ const columns = [
 <PropsTable :rows="[
   { name: 'items', type: 'Record<string, unknown>[]', default: '[]', description: 'Array of row data objects. Each row should have a unique id field.' },
   { name: 'columns', type: 'ColumnDef[]', default: '[]', description: 'Column definitions. See ColumnDef interface below.' },
+  { name: 'title', type: 'string', default: 'undefined', description: 'Optional table title displayed in the top toolbar.' },
+  { name: 'exportable', type: 'boolean', default: 'false', description: 'Enables native Excel (.xls) and CSV (.csv) export dropdown.' },
+  { name: 'exportFileName', type: 'string', default: '\'table-export\'', description: 'Default filename for exported files (without extension).' },
+  { name: 'exportFormats', type: '(\'csv\' | \'excel\')[]', default: '[\'csv\', \'excel\']', description: 'Available export format options in the dropdown.' },
   { name: 'loading', type: 'boolean', default: 'false', description: 'Shows a premium skeleton loader with animated rows simulating text lengths.' },
   { name: 'paginated', type: 'boolean', default: 'true', description: 'Enables interactive pagination footer. Calculates pages automatically.' },
   { name: 'rows', type: 'number', default: '10', description: 'Number of rows per page for pagination.' },
@@ -229,6 +268,7 @@ interface ColumnDef {
   { name: 'selection-change', payload: 'unknown', description: 'Emitted when row selection changes. Returns the full updated selection array.' },
   { name: 'sort', payload: '{ field: string, order: number }', description: 'Emitted when a column is sorted.' },
   { name: 'page', payload: '{ page: number, rows: number }', description: 'Emitted when pagination changes.' },
+  { name: 'export', payload: '{ format: \'csv\' | \'excel\', count: number }', description: 'Emitted when an export action is completed.' },
 ]" />
 
 ## Slots
@@ -239,5 +279,19 @@ interface ColumnDef {
 
 | Slot | Scope | Description |
 |------|-------|-------------|
+| `toolbar` | `{}` | Custom actions or controls placed in the table header bar next to the export button. |
 | `[slotName]` | `{ data: row }` | Custom cell content. Name must match `slotName` in the column definition. |
 | `expansion` | `{ data: row }` | Expandable row content. Presence of this slot automatically adds an expander column. |
+
+## Exposed Methods
+
+Access these methods via template ref:
+
+```ts
+const tableRef = ref<InstanceType<typeof PxDataTable> | null>(null)
+
+// Export programmatically
+tableRef.value?.exportCSV({ filename: 'custom-export', selectedOnly: false })
+tableRef.value?.exportExcel({ filename: 'custom-export', selectedOnly: false })
+```
+

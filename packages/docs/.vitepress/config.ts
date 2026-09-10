@@ -62,6 +62,7 @@ export default withPwa(defineConfig({
           { text: 'Px Dialog Input', link: '/components/forms/px-dialog-input' },
           { text: 'Px Day Picker', link: '/components/forms/px-day-picker' },
           { text: 'Px Schema Form', link: '/components/forms/px-schema-form' },
+          { text: 'Px Form Wizard', link: '/components/forms/px-form-wizard' },
         ],
       },
       {
@@ -124,6 +125,13 @@ export default withPwa(defineConfig({
           { text: 'Px Select', link: '/components/primitives/px-select' },
           { text: 'Px Timeline', link: '/components/primitives/px-timeline' },
           { text: 'Px Toast', link: '/components/primitives/px-toast' },
+        ],
+      },
+      {
+        text: 'Overlays',
+        collapsed: false,
+        items: [
+          { text: 'Px Command Palette', link: '/components/overlays/px-command-palette' },
         ],
       },
       {

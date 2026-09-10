@@ -193,11 +193,11 @@ Override core theme colors effortlessly:
 
 | Category | Highlights |
 |---|---|
-| **Forms** | `PxSchemaForm`, `PxAsyncSelect`, `PxVisualSelect`, `PxCategorizedSelect`, `PxGridSelect`, `PxDayPicker`, `PxTimePicker`, `PxPhoneInput`, `PxColorInput`, `PxDialogInput`, `PxFormRow` |
+| **Forms** | `PxSchemaForm`, `PxFormWizard`, `PxAsyncSelect`, `PxVisualSelect`, `PxCategorizedSelect`, `PxGridSelect`, `PxDayPicker`, `PxTimePicker`, `PxPhoneInput`, `PxColorInput`, `PxDialogInput`, `PxFormRow` |
 | **Data Display** | `PxDataTable`, `PxTree`, `PxDocumentViewer`, `PxAvatar`, `PxInitialsAvatar`, `PxInfoField`, `PxBadgedValueGrid`, `PxLabeledValueSection`, `PxStatusDataTable` |
 | **Layout** | `PxHeader`, `PxCard`, `PxListLayout`, `PxColumnLayout`, `PxFilterBar`, `PxFormLayout` |
 | **Navigation** | `PxTabs`, `PxStepper`, `PxStepperHeader`, `PxDropdownMenu`, `PxNavList` |
-| **Overlays & Primitives** | `PxDialog`, `PxDrawer`, `PxToast`, `PxAccordion`, `PxBadge`, `PxCheckbox`, `PxRadioButton`, `PxTimeline`, `PxLoader`, `PxThemeSwitch` |
+| **Overlays & Primitives** | `PxCommandPalette`, `PxDialog`, `PxDrawer`, `PxToast`, `PxAccordion`, `PxBadge`, `PxCheckbox`, `PxRadioButton`, `PxTimeline`, `PxLoader`, `PxThemeSwitch` |
 
 ---
 

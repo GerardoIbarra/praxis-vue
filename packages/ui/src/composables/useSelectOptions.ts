@@ -29,7 +29,7 @@ const debounce = <Args extends unknown[], R>(
  */
 export function useSelectOptions() {
   const loadingSelect = ref(false);
-  const selectedItems = ref<Record<string, unknown[]>>({});
+  const selectedItems = ref<Record<string, Record<string, any>[]>>({});
   const { getApiService } = useApiMap();
 
   /**

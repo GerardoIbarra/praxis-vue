@@ -158,11 +158,11 @@ module.exports = {
 | Category | Components |
 |---|---|
 | **Base** | `PxAvatar`, `PxAvatarSelect`, `PxColorInput`, `PxVisualSelect`, `PxCategorizedSelect`, `PxPhoneInput`, `PxLabel`, `PxRequiredLabel`, `PxThemeSwitch`, `PxLoader` |
-| **Forms** | `PxSchemaForm`, `PxStateChecklist`, `PxAsyncSelect`, `PxGridSelect`, `PxSelectableListWithTable`, `PxDayPicker`, `PxDialogInput`, `PxFormRow`, `PxFormMultiSelectList`, `PxTimePicker` |
+| **Forms** | `PxSchemaForm`, `PxFormWizard`, `PxStateChecklist`, `PxAsyncSelect`, `PxGridSelect`, `PxSelectableListWithTable`, `PxDayPicker`, `PxDialogInput`, `PxFormRow`, `PxFormMultiSelectList`, `PxTimePicker` |
 | **Data Display** | `PxDataTable`, `PxTree`, `PxDocumentViewer`, `PxInitialsAvatar`, `PxInfoField`, `PxDisplayOptions`, `PxBadgedValueGrid`, `PxLabeledValueSection`, `PxStatusDataTable` |
 | **Layout** | `PxColumnLayout`, `PxCard`, `PxHeader`, `PxListLayout`, `PxFilterBar`, `PxFormLayout` |
 | **Navigation** | `PxTabs`, `PxStepper`, `PxStepperHeader`, `PxDropdownMenu`, `PxNavList` |
-| **Primitives** | `PxAccordion`, `PxBadge`, `PxCheckbox`, `PxDialog`, `PxDrawer`, `PxRadioButton`, `PxTimeline`, `PxToast` |
+| **Overlays & Primitives** | `PxCommandPalette`, `PxAccordion`, `PxBadge`, `PxCheckbox`, `PxDialog`, `PxDrawer`, `PxRadioButton`, `PxTimeline`, `PxToast` |
 
 ---
 

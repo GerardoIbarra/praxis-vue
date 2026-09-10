@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import PxCheckbox from "@/components/_primitives/PxCheckbox.vue";
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed, toRaw } from "vue";
 import PxSelect from "@/components/_primitives/PxSelect.vue";
 import PxInputText from "@/components/_primitives/PxInputText.vue";
 import PxRequiredLabel from "@/components/base/PxRequiredLabel.vue";
@@ -9,7 +9,7 @@ import PxGridSelect from "@/components/forms/PxGridSelect.vue";
 import PxFormRow from "@/components/forms/PxFormRow.vue";
 import PxSchemaMultiSelect from "@/components/forms/PxSchemaMultiSelect.vue";
 import PxAsyncSelect from "@/components/forms/PxAsyncSelect.vue";
-import { Plus, X, UploadCloud, FileText, Image as ImageIcon } from "lucide-vue-next";
+import { Plus, X, UploadCloud, FileText, Image as ImageIcon } from "@lucide/vue";
 import { Field, Form as VeeForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import type { ZodSchema } from "zod";
@@ -39,6 +39,7 @@ const emit = defineEmits<{
   (e: "update:cleanedResults", value: string[]): void;
   (e: "update:calculatedNumbers", value: any[]): void;
   (e: "scroll-bottom", field: any): void;
+  (e: "search", payload: { query: string; fieldKey: string }): void;
 }>();
 
 // Creamos un objeto reactivo para almacenar los valores
@@ -119,7 +120,10 @@ watch(
 
       if (field.key) {
         formData.value[field.key] =
-          (props.existingData?.[field.key] as FormValue) || "";
+          (props.existingData?.[field.key] as FormValue) ??
+          (props.modelValue?.[field.key] as FormValue) ??
+          (field.value as FormValue) ??
+          "";
       }
 
       if (field.type === "row") {
@@ -186,14 +190,14 @@ watch(
           ...optionsMatches,
           ...selectedOptionsMatches,
         ];
-        const uniqueMatches: unknown[] = [];
+        const uniqueMatches: Record<string, any>[] = [];
         const seenIds = new Set();
 
         allMatches.forEach((item: unknown) => {
           const id = (item as Record<string, unknown>)[valueField] as string;
           if (!seenIds.has(id)) {
             seenIds.add(id);
-            uniqueMatches.push(item);
+            uniqueMatches.push(item as Record<string, any>);
           }
         });
 
@@ -275,6 +279,11 @@ const setAllFalse = () => {
   });
 };
 
+const formatDateForInput = (date: Date | null | undefined): string | undefined => {
+  if (!date || isNaN(date.getTime())) return undefined;
+  return date.toISOString().split("T")[0];
+};
+
 // Expose methods to parent component
 defineExpose({
   clearAllCheckLists,
@@ -286,7 +295,7 @@ defineExpose({
 <template>
   <component
     :is="zodSchema ? VeeForm : 'div'"
-    :validation-schema="zodSchema ? toTypedSchema(zodSchema) : undefined"
+    :validation-schema="zodSchema ? toTypedSchema(toRaw(zodSchema)) : undefined"
     :as="zodSchema ? 'div' : undefined"
   >
     <TransitionGroup
@@ -480,7 +489,7 @@ defineExpose({
               !isFieldDisabled(field),
             'vue-select-standard is-disabled': isFieldDisabled(field),
           }"
-          :options="field.options"
+          :options="(field.options as any[]) || []"
           :label="field.option_source?.label_field || 'label'"
           :multiple="field.multiple"
           :disabled="isFieldDisabled(field)"
@@ -522,7 +531,7 @@ defineExpose({
         <PxSelect
           v-else-if="field.type === 'select'"
           v-model="field.value"
-          :options="field.options"
+          :options="(field.options as any[]) || []"
           :optionLabel="field.option_source?.label_field || 'label'"
           :multiple="field.multiple"
           :searchable="true"
@@ -550,12 +559,17 @@ defineExpose({
         <!-- Select-List -->
         <PxGridSelect
           v-if="field.type === 'select_list'"
-          v-model:selectedItems="selectedItems[field.key]"
+          v-model:selectedItems="selectedItems[field.key || '']"
           :field="field"
           :loading-select="loadingSelect"
-          @update:fieldValue="(val: any) => setSelected(field.key, val)"
+          @update:fieldValue="(val: any) => handleSelected(val, field)"
           @scroll-bottom="(fieldOpt: FormSchemaField | undefined) => emit('scroll-bottom', fieldOpt)"
-          @search="(query: string) => emit('search', { query, fieldKey: field.key })"
+          @search="
+            (query: string) => {
+              setSelected(field, query);
+              emit('search', { query, fieldKey: field.key || '' });
+            }
+          "
         />
 
         <!-- 🔹 DATE -->
@@ -563,8 +577,8 @@ defineExpose({
           v-else-if="field.type === 'date'"
           v-model="field.value as any"
           type="date"
-          :min="getMinDate(field) ?? undefined"
-          :max="getMaxDate(field) ?? undefined"
+          :min="formatDateForInput(getMinDate(field))"
+          :max="formatDateForInput(getMaxDate(field))"
           :disabled="isFieldDisabled(field)"
           class="w-full"
           :class="{
@@ -589,7 +603,7 @@ defineExpose({
         <!-- 🔹 CHECKBOX -->
         <PxCheckbox
           v-else-if="field.type === 'checkbox'"
-          v-model="field.value"
+          v-model="field.value as any"
           :disabled="isFieldDisabled(field)"
           :binary="true"
         />

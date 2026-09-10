@@ -27,6 +27,8 @@ export { default as PxSchemaMultiSelect } from './components/forms/PxSchemaMulti
 export { default as PxTimePicker } from './components/forms/PxTimePicker.vue'
 export { default as PxStateChecklist } from './components/forms/PxStateChecklist.vue'
 export { default as PxAsyncSelect } from './components/forms/PxAsyncSelect.vue'
+export { default as PxFormWizard } from './components/forms/PxFormWizard.vue'
+export type { WizardStep } from './types/ui/formWizard'
 
 // --- Data Display ---
 export { default as PxDataTable } from './components/data-display/PxDataTable.vue'
@@ -57,6 +59,10 @@ export { default as PxDropdownMenu } from './components/navigation/PxDropdownMen
 export { default as PxNavList } from './components/navigation/PxNavList.vue'
 export type { NavListItem, ActionMenuItem } from './types/ui/navigation'
 
+// --- Overlays ---
+export { default as PxCommandPalette } from './components/overlays/PxCommandPalette.vue'
+export type { CommandItem } from './types/ui/commandPalette'
+
 // --- Primitives ---
 export { default as PxAccordion } from './components/_primitives/PxAccordion.vue'
 export { default as PxBadge } from './components/_primitives/PxBadge.vue'
@@ -83,3 +89,4 @@ export * from './utils/fileValidation'
 export * from './utils/downloadHelper'
 export * from './utils/usePopperPosition'
 export * from './utils/documentUtils'
+export * from './utils/tableExport'

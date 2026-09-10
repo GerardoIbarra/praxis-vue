@@ -1,9 +1,24 @@
 <script setup lang="ts">
-import { ChevronRight, ChevronDown, ChevronUp, ChevronsUpDown, Inbox, Search, ChevronLeft, ChevronsLeft, ChevronsRight } from "@lucide/vue";
+import { 
+  ChevronRight, 
+  ChevronDown, 
+  ChevronUp, 
+  ChevronsUpDown, 
+  Inbox, 
+  Search, 
+  ChevronLeft, 
+  ChevronsLeft, 
+  ChevronsRight,
+  Download,
+  FileSpreadsheet,
+  FileText
+} from "@lucide/vue";
 import { type Ref, ref, computed, toRefs, watch } from "vue";
+import { onClickOutside } from "@vueuse/core";
 import PxCheckbox from "@/components/_primitives/PxCheckbox.vue";
 import PxEmptyState from "@/components/data-display/PxEmptyState.vue";
 import PxTableSkeleton from "@/components/data-display/PxTableSkeleton.vue";
+import { exportToCSV, exportToExcel } from "@/utils/tableExport";
 
 interface ColumnDef {
   field: string;
@@ -36,6 +51,10 @@ interface Props {
   sortOrder?: number;
   expanderCondition?: (row: Record<string, unknown>) => boolean;
   paginated?: boolean;
+  exportable?: boolean;
+  exportFileName?: string;
+  exportFormats?: ("csv" | "excel")[];
+  title?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -58,6 +77,10 @@ const props = withDefaults(defineProps<Props>(), {
   sortOrder: 1, // 1 for asc, -1 for desc
   expanderCondition: undefined,
   paginated: true,
+  exportable: false,
+  exportFileName: "table-export",
+  exportFormats: () => ["csv", "excel"],
+  title: undefined,
 });
 
 const emit = defineEmits<{
@@ -66,6 +89,7 @@ const emit = defineEmits<{
   (e: "selection-change", value: unknown): void;
   (e: "sort", event: { field: string; order: number }): void;
   (e: "page", event: { page: number; rows: number }): void;
+  (e: "export", event: { format: "csv" | "excel"; count: number }): void;
 }>();
 
 const { items, loading, columns } = toRefs(props);
@@ -89,17 +113,24 @@ watch(() => props.items, () => {
 const sortedItems = computed(() => {
   let sorted = [...props.items];
   if (currentSortField.value) {
+    const field = currentSortField.value;
     sorted.sort((a, b) => {
-      const valA = a[currentSortField.value as string];
-      const valB = b[currentSortField.value as string];
+      const valA = a[field];
+      const valB = b[field];
       
+      if (valA === valB) return 0;
+      if (valA === null || valA === undefined) return 1;
+      if (valB === null || valB === undefined) return -1;
+
       let result = 0;
-      if (typeof valA === 'string' && typeof valB === 'string') {
+      if (typeof valA === "string" && typeof valB === "string") {
         result = valA.localeCompare(valB);
-      } else if (valA < valB) {
-        result = -1;
-      } else if (valA > valB) {
-        result = 1;
+      } else if (typeof valA === "number" && typeof valB === "number") {
+        result = valA - valB;
+      } else if (typeof valA === "boolean" && typeof valB === "boolean") {
+        result = Number(valA) - Number(valB);
+      } else {
+        result = String(valA).localeCompare(String(valB));
       }
       
       return currentSortOrder.value === 1 ? result : -result;
@@ -173,8 +204,8 @@ const toggleSelection = (row: Record<string, unknown>) => {
   }
 };
 
-const selectAll = (checked: boolean) => {
-  if (checked) {
+const selectAll = (checked: unknown) => {
+  if (Boolean(checked)) {
     selection.value = [...props.items];
   } else {
     selection.value = [];
@@ -225,15 +256,146 @@ const isExpanded = (data: Record<string, unknown>): boolean => {
   return !!expandedRows.value[key];
 };
 
+// Export Handling
+const isExportMenuOpen = ref(false);
+const exportMenuRef = ref<HTMLElement | null>(null);
+
+onClickOutside(exportMenuRef, () => {
+  isExportMenuOpen.value = false;
+});
+
+const exportData = (format: "csv" | "excel", selectedOnly: boolean = false) => {
+  const dataToExport = selectedOnly && props.selectedItems.length > 0 ? props.selectedItems : props.items;
+  const cols = props.columns.map((col) => ({
+    field: col.field,
+    header: col.header || col.field,
+  }));
+
+  if (format === "csv") {
+    exportToCSV(dataToExport, cols, { filename: props.exportFileName });
+  } else {
+    exportToExcel(dataToExport, cols, { filename: props.exportFileName });
+  }
+
+  isExportMenuOpen.value = false;
+  emit("export", { format, count: dataToExport.length });
+};
+
 defineExpose({
-  exportCSV: () => {
-    console.warn("CSV export not implemented in native table");
+  exportCSV: (options?: { filename?: string; selectedOnly?: boolean }) => {
+    const dataToExport = options?.selectedOnly && props.selectedItems.length > 0 ? props.selectedItems : props.items;
+    const cols = props.columns.map((col) => ({ field: col.field, header: col.header || col.field }));
+    exportToCSV(dataToExport, cols, { filename: options?.filename || props.exportFileName });
+  },
+  exportExcel: (options?: { filename?: string; selectedOnly?: boolean }) => {
+    const dataToExport = options?.selectedOnly && props.selectedItems.length > 0 ? props.selectedItems : props.items;
+    const cols = props.columns.map((col) => ({ field: col.field, header: col.header || col.field }));
+    exportToExcel(dataToExport, cols, { filename: options?.filename || props.exportFileName });
   },
 });
 </script>
 
 <template>
   <div class="flex flex-col bg-white dark:bg-surface-900 border border-surface-200 dark:border-surface-700 rounded-xl overflow-hidden shadow-sm">
+    <!-- Header / Toolbar -->
+    <div
+      v-if="title || exportable || $slots.toolbar"
+      class="flex flex-col sm:flex-row sm:items-center justify-between px-6 py-3.5 border-b border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-900 gap-3"
+    >
+      <div class="flex items-center gap-3">
+        <h3 v-if="title" class="text-sm font-semibold text-surface-900 dark:text-surface-50">
+          {{ title }}
+        </h3>
+        <span
+          v-if="title && items.length"
+          class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300"
+        >
+          {{ items.length }}
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3 ml-auto">
+        <slot name="toolbar" />
+
+        <!-- Export Dropdown -->
+        <div v-if="exportable" ref="exportMenuRef" class="relative inline-block text-left">
+          <button
+            type="button"
+            @click="isExportMenuOpen = !isExportMenuOpen"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-lg border border-surface-300 dark:border-surface-600 bg-white dark:bg-surface-800 text-surface-700 dark:text-surface-200 hover:bg-surface-50 dark:hover:bg-surface-700 focus:outline-none focus:ring-2 focus:ring-p-primary/50 transition-colors shadow-sm"
+          >
+            <Download class="w-3.5 h-3.5 text-surface-500 dark:text-surface-400" />
+            <span>Exportar</span>
+            <ChevronDown class="w-3 h-3 text-surface-400 transition-transform" :class="{ 'rotate-180': isExportMenuOpen }" />
+          </button>
+
+          <!-- Dropdown Popover -->
+          <div
+            v-if="isExportMenuOpen"
+            class="absolute right-0 mt-1 w-56 rounded-xl bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 shadow-xl py-1.5 z-30 focus:outline-none animate-in fade-in zoom-in-95 duration-100"
+          >
+            <div class="px-3 py-1 text-[10px] font-semibold tracking-wider text-surface-400 uppercase">
+              Formatos de descarga
+            </div>
+
+            <button
+              v-if="exportFormats.includes('excel')"
+              type="button"
+              @click="exportData('excel', false)"
+              class="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-surface-700 dark:text-surface-200 hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors text-left"
+            >
+              <FileSpreadsheet class="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <div class="flex flex-col">
+                <span class="font-medium">Excel (.xls)</span>
+                <span class="text-[10px] text-surface-400">Hoja de cálculo completa</span>
+              </div>
+            </button>
+
+            <button
+              v-if="exportFormats.includes('csv')"
+              type="button"
+              @click="exportData('csv', false)"
+              class="w-full flex items-center gap-2.5 px-3 py-2 text-xs text-surface-700 dark:text-surface-200 hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors text-left"
+            >
+              <FileText class="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0" />
+              <div class="flex flex-col">
+                <span class="font-medium">CSV (.csv)</span>
+                <span class="text-[10px] text-surface-400">Texto separado por comas (UTF-8)</span>
+              </div>
+            </button>
+
+            <!-- Export Selected Only -->
+            <template v-if="selectedItems && selectedItems.length > 0">
+              <div class="my-1 border-t border-surface-100 dark:border-surface-700" />
+              <div class="px-3 py-1 text-[10px] font-semibold tracking-wider text-surface-400 uppercase">
+                Seleccionados ({{ selectedItems.length }})
+              </div>
+
+              <button
+                v-if="exportFormats.includes('excel')"
+                type="button"
+                @click="exportData('excel', true)"
+                class="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-surface-700 dark:text-surface-200 hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors text-left"
+              >
+                <FileSpreadsheet class="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                <span>Excel seleccionados</span>
+              </button>
+
+              <button
+                v-if="exportFormats.includes('csv')"
+                type="button"
+                @click="exportData('csv', true)"
+                class="w-full flex items-center gap-2.5 px-3 py-1.5 text-xs text-surface-700 dark:text-surface-200 hover:bg-surface-100 dark:hover:bg-surface-700 transition-colors text-left"
+              >
+                <FileText class="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                <span>CSV seleccionados</span>
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="overflow-x-auto">
       <table class="w-full min-w-full text-sm text-left text-surface-600 dark:text-surface-400 border-collapse" style="display: table; width: 100%;">
         <thead class="text-xs text-surface-700 dark:text-surface-300 uppercase bg-surface-50 dark:bg-surface-800 border-b border-surface-200 dark:border-surface-700">
@@ -297,7 +459,7 @@ defineExpose({
   
           <!-- Data Rows -->
           <template v-else>
-            <template v-for="(row, rowIndex) in processedItems" :key="row.id || rowIndex">
+            <template v-for="(row, rowIndex) in processedItems" :key="((row.id as PropertyKey) ?? rowIndex)">
               <tr
                 class="border-b dark:border-surface-700/50 hover:bg-surface-50/80 dark:hover:bg-surface-800/80 transition-colors group"
                 :class="{ 'bg-surface-50/50 dark:bg-surface-800/30': stripedRows && rowIndex % 2 !== 0 }"

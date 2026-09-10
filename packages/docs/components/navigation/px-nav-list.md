@@ -28,11 +28,11 @@ The `PxNavList` component is a collapsible navigation list, commonly used in sid
 The component expects a data model (`NavListItem[]`) to render the links. It has no opinion on routing or authentication, so you must pass it the already filtered items.
 
 <ComponentDemo>
-  <div class="w-full max-w-sm border-r h-[500px] p-2 bg-white dark:bg-slate-900 border rounded-lg shadow-sm">
+  <div class="w-full max-w-sm border-r h-125 p-2 bg-white dark:bg-slate-900 border rounded-lg shadow-sm">
     <PxNavList :model="menu" active-path="/dashboard" />
   </div>
 
-  <template #code>
+<template #code>
 
 ```vue
 <script setup lang="ts">
@@ -50,9 +50,9 @@ const menu = ref([
     key: 'config',
     items: [
       { label: 'Profile', to: '/profile' },
-      { label: 'Security', to: '/security' }
-    ]
-  }
+      { label: 'Security', to: '/security' },
+    ],
+  },
 ])
 </script>
 
@@ -68,12 +68,12 @@ const menu = ref([
 
 ## Props
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `model` | `NavListItem[]` | Required | The array of items that make up the menu. |
-| `collapsed` | `boolean` | `false` | Defines whether the menu is shown in collapsed mode (icons only). |
-| `activePath` | `string` | `""` | Current path, used to highlight the active link and auto-expand its group. |
-| `linkComponent` | `string \| Component` | `"a"` | Tag or component to use to render the links (e.g. `RouterLink`). |
+| Prop            | Type                  | Default  | Description                                                                |
+| --------------- | --------------------- | -------- | -------------------------------------------------------------------------- |
+| `model`         | `NavListItem[]`       | Required | The array of items that make up the menu.                                  |
+| `collapsed`     | `boolean`             | `false`  | Defines whether the menu is shown in collapsed mode (icons only).          |
+| `activePath`    | `string`              | `""`     | Current path, used to highlight the active link and auto-expand its group. |
+| `linkComponent` | `string \| Component` | `"a"`    | Tag or component to use to render the links (e.g. `RouterLink`).           |
 
 ## Events
 

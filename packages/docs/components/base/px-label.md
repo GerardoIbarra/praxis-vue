@@ -28,7 +28,7 @@ A semantic HTML label component that associates text with a form control. Suppor
 
 ```vue
 <script setup>
-import { PxLabel } from 'px-vue-ui'
+import { PxLabel } from 'praxis-vue-ui'
 </script>
 
 <template>
@@ -68,8 +68,8 @@ import { PxLabel } from 'px-vue-ui'
 `PxRequiredLabel` is now deprecated. Replace it with `PxLabel`:
 
 ```diff
-- import { PxRequiredLabel } from 'px-vue-ui'
-+ import { PxLabel } from 'px-vue-ui'
+- import { PxRequiredLabel } from 'praxis-vue-ui'
++ import { PxLabel } from 'praxis-vue-ui'
 
 - <PxRequiredLabel label="Name" :required="true" />
 + <PxLabel label="Name" for="name-input" :required="true" />

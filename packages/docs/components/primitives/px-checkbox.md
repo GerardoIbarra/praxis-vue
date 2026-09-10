@@ -50,7 +50,7 @@ Selected: <strong>{{ selected }}</strong>
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxCheckbox } from 'px-vue-ui'
+import { PxCheckbox } from 'praxis-vue-ui'
 
 const agreed = ref(false)
 const selected = ref([])

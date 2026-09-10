@@ -17,7 +17,7 @@ A unified loading indicator component that supports both inline/lazy-loading sce
 
 ```vue
 <script setup lang="ts">
-import { PxLoader } from 'px-vue-ui'
+import { PxLoader } from 'praxis-vue-ui'
 </script>
 ```
 

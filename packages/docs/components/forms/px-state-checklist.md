@@ -48,7 +48,7 @@ Renders a list of items with True (✓), False (✗), and Flagged (⚑) options.
 
 ```vue
 <script setup>
-import { PxStateChecklist } from 'px-vue-ui'
+import { PxStateChecklist } from 'praxis-vue-ui'
 
 const data = ref({})
 const field = {

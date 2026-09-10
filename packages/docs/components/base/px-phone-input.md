@@ -28,7 +28,7 @@ An international phone number input with country code selector. Backed by `vue-t
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxPhoneInput } from 'px-vue-ui'
+import { PxPhoneInput } from 'praxis-vue-ui'
 
 const phone = ref('')
 </script>

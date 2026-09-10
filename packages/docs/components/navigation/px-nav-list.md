@@ -37,7 +37,7 @@ The component expects a data model (`NavListItem[]`) to render the links. It has
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { PxNavList } from 'px-vue-ui'
+import { PxNavList } from 'praxis-vue-ui'
 import { Home, Users, Settings } from '@lucide/vue'
 
 const menu = ref([

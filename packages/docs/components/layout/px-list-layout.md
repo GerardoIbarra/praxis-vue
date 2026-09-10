@@ -35,7 +35,7 @@ A layout wrapper for list pages. Provides a consistent structure with header, fi
 
 ```vue
 <script setup>
-import { PxListLayout, PxHeader, PxDataTable } from 'px-vue-ui'
+import { PxListLayout, PxHeader, PxDataTable } from 'praxis-vue-ui'
 
 const items = [{ id: 1, name: 'John Doe' }]
 const columns = [{ field: 'name', header: 'Name' }]

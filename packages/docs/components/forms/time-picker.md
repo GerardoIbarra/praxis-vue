@@ -26,7 +26,7 @@ A scrollable time picker with **24-hour** and **12-hour (AM/PM)** format support
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxTimePicker } from 'px-vue-ui'
+import { PxTimePicker } from 'praxis-vue-ui'
 
 const time = ref('09:30')
 </script>
@@ -59,7 +59,7 @@ Use `format="12h"` for the US/common format. The display shows `09:30 AM` but th
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxTimePicker } from 'px-vue-ui'
+import { PxTimePicker } from 'praxis-vue-ui'
 
 const time = ref('14:45') // stored as 24h
 </script>

@@ -43,7 +43,7 @@ A text input with a built-in modal/dialog trigger button. Useful for opening a s
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxDialogInput, PxDialog } from 'px-vue-ui'
+import { PxDialogInput, PxDialog } from 'praxis-vue-ui'
 
 const value = ref('')
 const showModal = ref(false)

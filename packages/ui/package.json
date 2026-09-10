@@ -39,7 +39,8 @@
   },
   "files": [
     "dist",
-    "tailwind.preset.js"
+    "tailwind.preset.js",
+    "README.md"
   ],
   "scripts": {
     "build": "vite build",

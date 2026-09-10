@@ -44,7 +44,7 @@ Renders a set of configuration inputs — textarea, radio group, or text — fro
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxDisplayOptions } from 'px-vue-ui'
+import { PxDisplayOptions } from 'praxis-vue-ui'
 
 const displayOptions = ref({
   inputs: [

@@ -21,7 +21,7 @@ A unified avatar component that displays a person's initials or photo. Colors ar
 
 ```vue
 <script setup>
-import { PxAvatar } from 'px-vue-ui'
+import { PxAvatar } from 'praxis-vue-ui'
 </script>
 
 <template>
@@ -159,8 +159,8 @@ import { PxAvatar } from 'px-vue-ui'
 `PxAvatar` and `PxInitialsAvatar` are kept for backward compatibility but internally delegate to `PxAvatar`. Migrate when convenient:
 
 ```diff
-- import { PxAvatar } from 'px-vue-ui'
-+ import { PxAvatar } from 'px-vue-ui'
+- import { PxAvatar } from 'praxis-vue-ui'
++ import { PxAvatar } from 'praxis-vue-ui'
 
 - <PxAvatar :name="user.name" size="w-8 h-8" />
 + <PxAvatar :name="user.name" size="md" />

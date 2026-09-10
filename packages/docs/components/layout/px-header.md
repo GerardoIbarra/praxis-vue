@@ -12,7 +12,7 @@ A unified header component for pages, forms, and lists.
 
 ```vue
 <script setup lang="ts">
-import { PxHeader } from 'px-vue-ui'
+import { PxHeader } from 'praxis-vue-ui'
 import { Plus, Download } from '@lucide/vue'
 </script>
 ```

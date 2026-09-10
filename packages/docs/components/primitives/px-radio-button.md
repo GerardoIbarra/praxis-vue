@@ -33,7 +33,7 @@ A styled radio button input. Works with `v-model` in a group — all radio butto
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxRadioButton } from 'px-vue-ui'
+import { PxRadioButton } from 'praxis-vue-ui'
 
 const plan = ref('monthly')
 </script>

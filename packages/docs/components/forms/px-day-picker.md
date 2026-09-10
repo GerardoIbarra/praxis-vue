@@ -28,7 +28,7 @@ A day-of-week selector that supports both radio (single selection) and checkbox 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxDayPicker } from 'px-vue-ui'
+import { PxDayPicker } from 'praxis-vue-ui'
 
 const day = ref('monday')
 </script>

@@ -1,190 +1,192 @@
-# px-vue-ui
+# praxis-vue
 
-> A generic, production-ready Vue 3 component library — forms, data-display, layout, navigation, overlays and more.
+<p align="center">
+  <a href="https://www.npmjs.com/package/praxis-vue-ui">
+    <img src="https://img.shields.io/npm/v/praxis-vue-ui.svg?style=flat-square&color=6366f1" alt="npm version" />
+  </a>
+  <a href="https://www.npmjs.com/package/praxis-vue-ui">
+    <img src="https://img.shields.io/npm/dm/praxis-vue-ui.svg?style=flat-square&color=10b981" alt="npm downloads" />
+  </a>
+  <a href="https://bundlephobia.com/package/praxis-vue-ui">
+    <img src="https://img.shields.io/bundlephobia/minzip/praxis-vue-ui?style=flat-square&color=f59e0b" alt="bundle size" />
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/npm/l/praxis-vue-ui.svg?style=flat-square&color=64748b" alt="license" />
+  </a>
+  <a href="https://vuejs.org/">
+    <img src="https://img.shields.io/badge/Vue-3.5+-42b883.svg?style=flat-square&logo=vue.js" alt="vue version" />
+  </a>
+</p>
 
-[![npm version](https://img.shields.io/npm/v/px-vue-ui.svg)](https://www.npmjs.com/package/px-vue-ui)
-[![license](https://img.shields.io/npm/l/px-vue-ui.svg)](LICENSE)
+<p align="center">
+  An enterprise-grade monorepo containing production-ready Vue 3 components, schema-driven forms, rich data tables, and an advanced WYSIWYG editor.
+</p>
 
 ---
 
-## Packages
+## 📦 Packages in this Monorepo
 
-| Package | Description | npm |
+| Package | Description | Version & Install |
 |---|---|---|
-| [`px-vue-ui`](./packages/ui) | 55+ UI components for Vue 3 + PrimeVue | `npm i px-vue-ui` |
-| [`px-vue-editor`](./packages/editor) | Rich-text editor powered by Wordgard | `npm i px-vue-editor` |
+| [**`praxis-vue-ui`**](./packages/ui) | 55+ UI components built with PrimeVue headless + Tailwind CSS | [![npm](https://img.shields.io/npm/v/praxis-vue-ui.svg?style=flat-square&label=npm)](https://www.npmjs.com/package/praxis-vue-ui) `npm i praxis-vue-ui` |
+| [**`praxis-vue-editor`**](./packages/editor) | Modern rich-text editor component powered by Wordgard | [![npm](https://img.shields.io/npm/v/praxis-vue-editor.svg?style=flat-square&label=npm)](https://www.npmjs.com/package/praxis-vue-editor) `npm i praxis-vue-editor` |
+| [**`@praxis/docs`**](./packages/docs) | VitePress interactive documentation site & PWA | Internal Docs Workspace |
+| [**`playground`**](./playground) | Development sandbox application | `pnpm dev` |
 
 ---
 
-## Installation
+## ⚡ Quick Start (`praxis-vue-ui`)
 
-### px-vue-ui
+### 1. Installation
 
 ```bash
-npm install px-vue-ui primevue @primevue/core vee-validate pinia
+# npm
+npm install praxis-vue-ui primevue @primevue/core vee-validate pinia
+
+# pnpm
+pnpm add praxis-vue-ui primevue @primevue/core vee-validate pinia
+
+# yarn
+yarn add praxis-vue-ui primevue @primevue/core vee-validate pinia
 ```
+
+### 2. Configure Plugin & CSS
 
 ```ts
 // main.ts
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
-import 'px-vue-ui/dist/px-vue.css' // Import styles
+import 'praxis-vue-ui/dist/praxis-vue.css' // Core UI styles
 import App from './App.vue'
 
-createApp(App)
-  .use(PrimeVue, { theme: { preset: Aura } })
-  .mount('#app')
+const app = createApp(App)
+
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura,
+    options: {
+      darkModeSelector: '.dark'
+    }
+  }
+})
+
+app.mount('#app')
 ```
+
+### 3. Usage Example
 
 ```vue
-<script setup>
-import { PxAvatar, PxSchemaForm, PxTabs } from 'px-vue-ui'
+<script setup lang="ts">
+import { PxDataTable, PxAvatar, PxBadge } from 'praxis-vue-ui'
+
+const columns = [
+  { key: 'name', label: 'User' },
+  { key: 'role', label: 'Role' },
+  { key: 'status', label: 'Status' }
+]
+
+const users = [
+  { id: 1, name: 'Alex Morgan', role: 'Lead Architect', status: 'Active' },
+  { id: 2, name: 'Sofia Chen', role: 'UI Engineer', status: 'In Review' }
+]
 </script>
+
+<template>
+  <PxDataTable :columns="columns" :data="users">
+    <template #cell-name="{ row }">
+      <div class="flex items-center gap-3">
+        <PxAvatar :name="row.name" size="sm" />
+        <span class="font-medium">{{ row.name }}</span>
+      </div>
+    </template>
+
+    <template #cell-status="{ row }">
+      <PxBadge :variant="row.status === 'Active' ? 'success' : 'warning'">
+        {{ row.status }}
+      </PxBadge>
+    </template>
+  </PxDataTable>
+</template>
 ```
 
-#### Nuxt 3 Setup
+---
+
+## 🌐 Nuxt 3 Setup
 
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
   css: [
-    'px-vue-ui/dist/px-vue.css' // Import styles globally
+    'praxis-vue-ui/dist/praxis-vue.css'
   ],
   build: {
-    transpile: ['px-vue-ui']
+    transpile: ['praxis-vue-ui']
   }
 })
 ```
 
-You can then use the components in any page or component:
-
-```vue
-<script setup>
-import { PxTimePicker } from 'px-vue-ui'
-</script>
-
-<template>
-  <PxTimePicker v-model="time" label="Time" />
-</template>
-```
-
-### px-vue-editor
-
-```bash
-npm install px-vue-editor wordgard
-```
-
-```vue
-<script setup>
-import { PxEditor } from 'px-vue-editor'
-import { ref } from 'vue'
-
-const content = ref('<p>Hello world</p>')
-</script>
-
-<template>
-  <PxEditor
-    v-model="content"
-    placeholder="Start writing..."
-    :read-only="false"
-  />
-</template>
-```
-
 ---
 
-## Theming & Tailwind
+## 🎨 Tailwind CSS Integration
 
-`praxis-vue` is styled using Tailwind CSS and CSS variables, giving you complete control over the color scheme.
-
-### 1. Add the Tailwind Preset
-
-To ensure all library components inherit the correct `primary` and `surface` color palettes, add our preset to your `tailwind.config.js`:
+Add our preset to your `tailwind.config.js`:
 
 ```js
 // tailwind.config.js
 module.exports = {
   content: [
-    // ... your paths
-    './node_modules/px-vue-ui/src/**/*.{vue,js,ts}'
+    './index.html',
+    './src/**/*.{vue,js,ts,jsx,tsx}',
+    './node_modules/praxis-vue-ui/dist/**/*.{js,vue}'
   ],
   presets: [
-    require('px-vue-ui/tailwind.preset.js')
+    require('praxis-vue-ui/tailwind.preset.js')
   ],
   theme: {
-    extend: {},
+    extend: {}
   }
 }
 ```
 
-### 2. Customize Colors (CSS Variables)
-
-Our Tailwind preset maps colors directly to CSS variables. You can easily override the default blue theme by redefining these variables in your global CSS file:
-
-```css
-:root {
-  /* Change the primary color to Purple */
-  --ui-primary: #9333ea;
-  --ui-primary-hover: #7e22ce;
-  
-  /* Change the background of the app */
-  --ui-bg: #fafafa;
-}
-
-.dark {
-  /* Dark mode overrides */
-  --ui-primary: #a855f7;
-  --ui-bg: #121212;
-}
-```
-
 ---
 
-## Component Categories
+## 📂 Component Categories
 
-### `px-vue-ui`
+### `praxis-vue-ui`
 
 | Category | Components |
 |---|---|
-| **Base** | `PxAvatar`, `PxAvatar`, `PxAvatarSelect`, `PxColorInput`, `PxVisualSelect`, `PxCategorizedSelect`, `PxPhoneInput`, `PxLabel`, `PxRequiredLabel`, `PxThemeSwitch`, `PxLoader` |
+| **Base** | `PxAvatar`, `PxAvatarSelect`, `PxColorInput`, `PxVisualSelect`, `PxCategorizedSelect`, `PxPhoneInput`, `PxLabel`, `PxRequiredLabel`, `PxThemeSwitch`, `PxLoader` |
 | **Forms** | `PxSchemaForm`, `PxStateChecklist`, `PxAsyncSelect`, `PxGridSelect`, `PxSelectableListWithTable`, `PxDayPicker`, `PxDialogInput`, `PxFormRow`, `PxFormMultiSelectList`, `PxTimePicker` |
 | **Data Display** | `PxDataTable`, `PxTree`, `PxDocumentViewer`, `PxInitialsAvatar`, `PxInfoField`, `PxDisplayOptions`, `PxBadgedValueGrid`, `PxLabeledValueSection`, `PxStatusDataTable` |
 | **Layout** | `PxColumnLayout`, `PxCard`, `PxHeader`, `PxListLayout`, `PxFilterBar`, `PxFormLayout` |
 | **Navigation** | `PxTabs`, `PxStepper`, `PxStepperHeader`, `PxDropdownMenu`, `PxNavList` |
-| **Primitives** | `PxAccordion`, `PxBadge`, `PxCheckbox`, `PxDialog`, `PxDrawer`, `PxRadioButton`, `PxTimeline` |
-
-### Composables
-
-```ts
-import {
-  useFieldValidation,
-  useFieldAutofill,
-  useAsyncSelect,
-  useDisabledDays,
-} from 'px-vue-ui'
-```
+| **Primitives** | `PxAccordion`, `PxBadge`, `PxCheckbox`, `PxDialog`, `PxDrawer`, `PxRadioButton`, `PxTimeline`, `PxToast` |
 
 ---
 
-## Development
+## 🛠️ Monorepo Development Commands
 
 ```bash
 # Install dependencies
 pnpm install
 
-# Start playground
+# Start playground locally
 pnpm dev
+
+# Start documentation server (VitePress)
+pnpm docs:dev
 
 # Build all packages
 pnpm build
 
-# Open Storybook
-pnpm storybook
+# Run unit tests
+pnpm test
 ```
 
 ---
 
-## License
+## 📄 License
 
-MIT © Luis Kern
+MIT © [Luis Kern](https://github.com/luiskern)

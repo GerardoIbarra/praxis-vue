@@ -29,7 +29,7 @@ A schema-driven row of sub-fields. Renders a mix of static text, number inputs, 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxFormRow } from 'px-vue-ui'
+import { PxFormRow } from 'praxis-vue-ui'
 
 const field = ref({
   required: false,

@@ -46,7 +46,7 @@ features:
 ## Quick Start
 
 ```bash
-npm install px-vue-ui primevue @primevue/core vee-validate pinia
+npm install praxis-vue-ui primevue @primevue/core vee-validate pinia
 ```
 
 ### Vue 3 Setup
@@ -56,7 +56,7 @@ npm install px-vue-ui primevue @primevue/core vee-validate pinia
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
-import 'px-vue-ui/dist/px-vue.css' // Import styles
+import 'praxis-vue-ui/dist/praxis-vue.css' // Import styles
 import App from './App.vue'
 
 createApp(App)
@@ -70,10 +70,10 @@ createApp(App)
 // nuxt.config.ts
 export default defineNuxtConfig({
   css: [
-    'px-vue-ui/dist/px-vue.css', // Import styles globally
+    'praxis-vue-ui/dist/praxis-vue.css', // Import styles globally
   ],
   build: {
-    transpile: ['px-vue-ui'],
+    transpile: ['praxis-vue-ui'],
   },
 })
 ```

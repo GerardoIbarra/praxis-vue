@@ -26,7 +26,7 @@ A complex selector that combines a searchable dropdown with a data grid (table) 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxGridSelect } from 'px-vue-ui'
+import { PxGridSelect } from 'praxis-vue-ui'
 
 const selectedItems = ref([])
 const options = [

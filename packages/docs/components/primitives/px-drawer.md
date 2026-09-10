@@ -38,7 +38,7 @@ A slide-in side panel (drawer/sidebar) that appears from the edge of the screen.
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxDrawer } from 'px-vue-ui'
+import { PxDrawer } from 'praxis-vue-ui'
 
 const open = ref(false)
 const position = ref('right')

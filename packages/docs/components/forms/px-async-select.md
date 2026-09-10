@@ -57,7 +57,7 @@ A `PxSelect` wrapper that triggers a load-more callback when the user scrolls to
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxAsyncSelect } from 'px-vue-ui'
+import { PxAsyncSelect } from 'praxis-vue-ui'
 
 const options = ref([/* initial page */])
 const hasMore = ref(true)

@@ -37,7 +37,7 @@ A horizontal tab bar with icon support, active state highlighting, and optional 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxTabs } from 'px-vue-ui'
+import { PxTabs } from 'praxis-vue-ui'
 
 const activeTab = ref('profile')
 

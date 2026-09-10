@@ -36,7 +36,7 @@ An extended version of `PxSelectableList` that displays selected items in a full
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxSelectableListWithTable } from 'px-vue-ui'
+import { PxSelectableListWithTable } from 'praxis-vue-ui'
 
 const options = [
   { id: 1, name: 'Alice Smith', department: 'Engineering' },

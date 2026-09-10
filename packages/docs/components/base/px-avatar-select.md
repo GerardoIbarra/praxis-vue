@@ -30,7 +30,7 @@ A searchable select dropdown where each option displays a `PxAvatar` with the us
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxAvatarSelect } from 'px-vue-ui'
+import { PxAvatarSelect } from 'praxis-vue-ui'
 
 const users = [
   { id: 1, name: 'Alice Johnson', email: 'alice@example.com' },

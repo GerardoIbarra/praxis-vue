@@ -39,7 +39,7 @@ A vertical timeline component for displaying chronological events. Each item ren
 
 ```vue
 <script setup>
-import { PxTimeline } from 'px-vue-ui'
+import { PxTimeline } from 'praxis-vue-ui'
 import { UserPlus, Calendar, CheckCircle } from '@lucide/vue'
 
 const events = [

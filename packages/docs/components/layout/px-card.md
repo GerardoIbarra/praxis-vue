@@ -20,7 +20,7 @@ A styled card container for dashboard sections. Wraps content in a bordered, rou
 
 ```vue
 <script setup>
-import { PxCard } from 'px-vue-ui'
+import { PxCard } from 'praxis-vue-ui'
 </script>
 
 <template>

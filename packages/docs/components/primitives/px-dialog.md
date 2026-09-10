@@ -40,7 +40,7 @@ A modal dialog component. Supports header, content, and footer slots. Renders wi
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxDialog } from 'px-vue-ui'
+import { PxDialog } from 'praxis-vue-ui'
 
 const visible = ref(false)
 

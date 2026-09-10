@@ -24,7 +24,7 @@ An animated sun/moon toggle switch for controlling light/dark mode. Uses CSS tra
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxThemeSwitch } from 'px-vue-ui'
+import { PxThemeSwitch } from 'praxis-vue-ui'
 
 const isDark = ref(false)
 </script>

@@ -41,7 +41,7 @@ A multi-select dropdown that reveals extra sub-fields for each selected option. 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxSchemaMultiSelect } from 'px-vue-ui'
+import { PxSchemaMultiSelect } from 'praxis-vue-ui'
 
 const field = {
   search: true,

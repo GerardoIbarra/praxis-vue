@@ -47,7 +47,7 @@ A recursive tree component for browsing hierarchical catalogs (e.g. document tem
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxTree } from 'px-vue-ui'
+import { PxTree } from 'praxis-vue-ui'
 
 const nodes = ref([
   {

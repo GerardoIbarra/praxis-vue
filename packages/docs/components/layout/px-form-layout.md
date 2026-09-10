@@ -23,7 +23,7 @@ A layout wrapper for form/detail pages. Wraps a form with consistent padding and
 
 ```vue
 <script setup>
-import { PxFormLayout, PxHeader, PxStepper } from 'px-vue-ui'
+import { PxFormLayout, PxHeader, PxStepper } from 'praxis-vue-ui'
 </script>
 
 <template>

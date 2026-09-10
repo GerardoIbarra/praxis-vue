@@ -54,7 +54,7 @@ A unified select component that displays visual elements like user icons or colo
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { PxVisualSelect } from 'px-vue-ui'
+import { PxVisualSelect } from 'praxis-vue-ui'
 
 const selected = ref(null)
 

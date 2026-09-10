@@ -19,7 +19,7 @@ A small, stylized badge chip for displaying status, tags, or category labels. Su
 
 ```vue
 <script setup>
-import { PxBadge } from 'px-vue-ui'
+import { PxBadge } from 'praxis-vue-ui'
 </script>
 
 <template>

@@ -23,7 +23,7 @@ A collapsible accordion component. Renders one or more panels that expand/collap
 
 ```vue
 <script setup>
-import { PxAccordion } from 'px-vue-ui'
+import { PxAccordion } from 'praxis-vue-ui'
 
 const panels = [
   { value: 'info', header: 'User Information', content: 'Name, Email, Role...' },

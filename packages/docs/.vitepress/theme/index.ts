@@ -11,6 +11,7 @@ import EmitsTable from './components/EmitsTable.vue'
 import SlotsTable from './components/SlotsTable.vue'
 import ReloadPrompt from './components/ReloadPrompt.vue'
 import { Analytics } from '@vercel/analytics/vue'
+import { SpeedInsights } from '@vercel/speed-insights/vue'
 
 export default {
   extends: DefaultTheme,
@@ -18,7 +19,8 @@ export default {
     return h(DefaultTheme.Layout, null, {
       'layout-bottom': () => [
         h(ReloadPrompt), 
-        import.meta.env.PROD ? h(Analytics) : null
+        import.meta.env.PROD ? h(Analytics) : null,
+        import.meta.env.PROD ? h(SpeedInsights) : null,
       ]
     })
   },

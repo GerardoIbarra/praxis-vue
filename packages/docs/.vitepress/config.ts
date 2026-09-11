@@ -38,6 +38,25 @@ export default withPwa(defineConfig({
     }],
   ],
 
+  locales: {
+    root: {
+      label: 'English',
+      lang: 'en',
+    },
+    es: {
+      label: 'Español',
+      lang: 'es',
+      link: '/es/',
+      themeConfig: {
+        nav: [
+          { text: 'Inicio', link: '/es/' },
+          { text: 'Componentes', link: '/components/forms/time-picker' },
+          { text: 'Cookbook', link: '/cookbook/data-table-remote' },
+        ],
+      },
+    },
+  },
+
   themeConfig: {
     logo: '/logo.svg',
     siteTitle: 'Praxis Vue',
@@ -154,6 +173,7 @@ export default withPwa(defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/GerardoIbarra/praxis-vue' },
+      { icon: 'npm', link: 'https://www.npmjs.com/package/praxis-vue-ui' },
     ],
 
     search: {

@@ -15,13 +15,16 @@ A complex selector that combines a searchable dropdown with a data grid (table) 
 
 ## Basic Usage
 
-<div class="p-6 border rounded-xl mt-4 bg-gray-50 dark:bg-surface-900">
-  <PxGridSelect
-    v-model:selectedItems="selectedItems"
-    :options="options"
-    title="Selected Items"
-  />
-</div>
+<ComponentDemo title="Basic Usage">
+  <div style="width:100%">
+    <PxGridSelect
+      v-model:selectedItems="selectedItems"
+      :options="options"
+      title="Selected Items"
+    />
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -44,6 +47,9 @@ const options = [
 </template>
 ```
 
+  </template>
+</ComponentDemo>
+
 ## Schema-Driven Usage (Backend Field)
 
 When using `PxSchemaForm`, you can pass a `FormSchemaField` directly using the `field` prop. The component will automatically extract `options`, `label_field`, `value_field`, and handle pagination via infinite scroll if configured.
@@ -57,15 +63,6 @@ When using `PxSchemaForm`, you can pass a `FormSchemaField` directly using the `
 />
 ```
 
-## API
+## API Reference
 
-### Key Props
-
-| Name | Type | Default | Description |
-|---|---|---|---|
-| `options` | `Array` | `[]` | List of available options for selection. |
-| `selectedItems` | `Array` | `[]` | The currently selected items (use `v-model:selectedItems`). |
-| `field` | `FormSchemaField` | `undefined` | Optional. If provided, overrides options and fields based on the schema. |
-| `title` | `string` | `""` | Title to display above the dropdown. |
-| `showColorPicker` | `boolean` | `false` | Whether to display a color picker column in the table. |
-| `additionalFields` | `Array` | `[]` | Extra columns to render for each selected item (e.g., text, select). |
+<ApiReference component="PxGridSelect" />

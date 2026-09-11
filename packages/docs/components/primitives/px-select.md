@@ -27,19 +27,22 @@ A robust, fully native, and highly customizable select/combobox component. Repla
 
 ### Single Select
 
-<div class="p-6 border border-gray-200 dark:border-gray-700 rounded-lg mb-4 flex gap-4">
-  <div class="w-64">
-    <PxSelect 
-      v-model="selectedSingle" 
-      :options="options" 
-      placeholder="Select a fruit" 
-    />
+<ComponentDemo title="Single Select">
+  <div style="width:100%;display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap;">
+    <div style="min-width:240px;">
+      <PxSelect 
+        v-model="selectedSingle" 
+        :options="options" 
+        placeholder="Select a fruit" 
+      />
+    </div>
+    <div style="flex:1;min-width:200px;">
+      <p style="font-size:0.85rem;font-weight:600;margin-bottom:4px;">Selected Value:</p>
+      <pre style="margin:0;padding:8px;border-radius:6px;background:var(--vp-c-bg-alt);font-size:0.8rem;font-family:monospace;">{{ selectedSingle }}</pre>
+    </div>
   </div>
-  <div class="flex-1">
-    <p class="text-sm font-semibold">Selected Value:</p>
-    <pre class="bg-surface-100 dark:bg-surface-800 p-2 rounded text-sm">{{ selectedSingle }}</pre>
-  </div>
-</div>
+
+  <template #code>
 
 ```vue
 <script setup>
@@ -62,67 +65,45 @@ const options = [
 </template>
 ```
 
+  </template>
+</ComponentDemo>
+
 ### Multi Select & Search
 
 Set `multiple` to `true` to enable chip-based multi-selection, and `searchable` to `true` to enable a search input within the dropdown.
 
-<div class="p-6 border border-gray-200 dark:border-gray-700 rounded-lg mb-4 flex gap-4">
-  <div class="w-64">
-    <PxSelect 
-      v-model="selectedMultiple" 
-      :options="options" 
-      :multiple="true"
-      :searchable="true"
-      placeholder="Select fruits..." 
-    />
+<ComponentDemo title="Multi-Select & Search">
+  <div style="width:100%;display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap;">
+    <div style="min-width:240px;flex:1;">
+      <PxSelect 
+        v-model="selectedMultiple" 
+        :options="options" 
+        :multiple="true"
+        :searchable="true"
+        placeholder="Select fruits..." 
+      />
+    </div>
+    <div style="flex:1;min-width:200px;">
+      <p style="font-size:0.85rem;font-weight:600;margin-bottom:4px;">Selected Values:</p>
+      <pre style="margin:0;padding:8px;border-radius:6px;background:var(--vp-c-bg-alt);font-size:0.8rem;font-family:monospace;">{{ selectedMultiple }}</pre>
+    </div>
   </div>
-  <div class="flex-1">
-    <p class="text-sm font-semibold">Selected Values:</p>
-    <pre class="bg-surface-100 dark:bg-surface-800 p-2 rounded text-sm">{{ selectedMultiple }}</pre>
-  </div>
-</div>
+
+  <template #code>
 
 ```vue
 <PxSelect 
   v-model="selectedMultiple" 
   :options="options" 
-  :multiple="true"
-  :searchable="true"
+  :multiple="true" 
+  :searchable="true" 
   placeholder="Select fruits..." 
 />
 ```
 
-## Props
+  </template>
+</ComponentDemo>
 
-<PropsTable :rows="[
-  { name: 'modelValue', type: 'unknown | unknown[]', default: 'undefined', description: 'The bound value of the select.' },
-  { name: 'options', type: 'any[]', default: '[]', description: 'Array of objects or strings to be used as options.' },
-  { name: 'optionLabel', type: 'string', default: '\'label\'', description: 'The object key to display as the option text.' },
-  { name: 'optionValue', type: 'string | function', default: 'undefined', description: 'The property or function to use as the returned value. If undefined, the whole object is returned.' },
-  { name: 'multiple', type: 'boolean', default: 'false', description: 'Enables multiple selection (chips).' },
-  { name: 'searchable', type: 'boolean', default: 'false', description: 'Shows an inline search input inside the dropdown.' },
-  { name: 'filterBy', type: 'function', default: 'undefined', description: 'Custom filter function for search: (option, search) => boolean.' },
-  { name: 'placeholder', type: 'string', default: '\'Select an option\'', description: 'Placeholder text.' },
-  { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the select interaction.' }
-]" />
+## API Reference
 
-## Slots
-
-| Slot Name | Description | Scope |
-| --- | --- | --- |
-| `selected-option` | Customizes the selected item display (or chip). | `{ option }` |
-| `option` | Customizes the rendering of each item in the dropdown list. | `{ option, index }` |
-| `list-header` | Content to inject at the top of the dropdown menu (e.g. Select All). | `-` |
-| `list-footer` | Content to inject at the bottom of the dropdown menu (e.g. Infinite Loader). | `-` |
-| `no-options` | What to display when there are no options or no search results. | `-` |
-| `icon` | The icon to show on the right side of the select (default: Chevron). | `-` |
-
-## Emits
-
-- **update:modelValue**: Emitted when the selection changes.
-- **change**: Same as `update:modelValue`.
-- **open**: Emitted when the dropdown opens.
-- **close**: Emitted when the dropdown closes.
-- **search**: Emitted when the user types in the search input.
-- **search:blur**: Emitted when the search input loses focus.
-- **option:selected**: Emitted specifically when an option is clicked, passing the selected option object.
+<ApiReference component="PxSelect" />

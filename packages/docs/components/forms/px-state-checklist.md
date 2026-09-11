@@ -42,12 +42,16 @@ A dynamic, schema-driven checklist component designed to render complex tri-stat
 
 Renders a list of items with True (✓), False (✗), and Flagged (⚑) options.
 
-<div class="p-6 border rounded-xl mt-4 bg-gray-50 dark:bg-surface-900">
-  <PxStateChecklist :field="sampleField" v-model="fieldData1" :default-open="true" />
-</div>
+<ComponentDemo title="Standard Checklist">
+  <div style="width:100%">
+    <PxStateChecklist :field="sampleField" v-model="fieldData1" :default-open="true" />
+  </div>
+
+  <template #code>
 
 ```vue
 <script setup>
+import { ref } from 'vue'
 import { PxStateChecklist } from 'praxis-vue-ui'
 
 const data = ref({})
@@ -71,27 +75,30 @@ const field = {
 </template>
 ```
 
+  </template>
+</ComponentDemo>
+
 ## Checklist With Inputs
 
 If the schema contains `input_father` or `input` components for list children, the component automatically adapts to render text fields.
 
-<div class="p-6 border rounded-xl mt-4 bg-gray-50 dark:bg-surface-900">
-  <PxStateChecklist :field="sampleInputField" v-model="fieldData2" :default-open="true" />
-</div>
+<ComponentDemo title="Checklist with Inputs">
+  <div style="width:100%">
+    <PxStateChecklist :field="sampleInputField" v-model="fieldData2" :default-open="true" />
+  </div>
+
+  <template #code>
 
 ```vue
 <PxStateChecklist :field="inputSchema" v-model="data" :default-open="true" />
 ```
 
-## API
+  </template>
+</ComponentDemo>
 
-### Props
+## API Reference
 
-| Name | Type | Default | Description |
-|---|---|---|---|
-| `field` | `FormSchemaField` | **Required** | The schema configuration defining the checklist structure, including `list_children` and `components`. |
-| `modelValue` | `Record<string, any>` | `{}` | The v-model binding containing the selected values. |
-| `defaultOpen` | `boolean` | `true` | Whether the accordion section should be open initially. |
+<ApiReference component="PxStateChecklist" />
 
 ### Exposed Methods
 

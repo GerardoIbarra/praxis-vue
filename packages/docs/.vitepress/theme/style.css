@@ -666,3 +666,483 @@ body {
   border-color: rgba(153, 27, 27, 0.3);
   color: #fca5a5;
 }
+
+/* ---------------------------------------------------------------
+   HeroShowcase Interactive Window
+   --------------------------------------------------------------- */
+.praxis-hero-showcase {
+  position: relative;
+  max-width: 1040px;
+  margin: 2.5rem auto 3.5rem;
+  padding: 0 1.25rem;
+}
+
+.praxis-hero-glow {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 380px;
+  background: radial-gradient(circle at 50% 35%, rgba(59, 130, 246, 0.15) 0%, rgba(139, 92, 246, 0.12) 35%, transparent 70%);
+  filter: blur(45px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dark .praxis-hero-glow {
+  background: radial-gradient(circle at 50% 35%, rgba(59, 130, 246, 0.22) 0%, rgba(139, 92, 246, 0.18) 40%, transparent 70%);
+}
+
+.praxis-hero-window {
+  position: relative;
+  z-index: 1;
+  border-radius: 16px;
+  background: var(--vp-c-bg);
+  border: 1px solid rgba(226, 232, 240, 0.85);
+  box-shadow: 0 20px 45px -15px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.02);
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dark .praxis-hero-window {
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.praxis-hero-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1.25rem;
+  background: var(--vp-c-bg-soft);
+  border-bottom: 1px solid var(--vp-c-border);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.praxis-window-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.window-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green { background: #27c93f; }
+
+.praxis-window-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--vp-c-bg);
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-border);
+}
+
+.praxis-window-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.praxis-window-tab:hover {
+  color: var(--vp-c-text-1);
+}
+
+.praxis-window-tab.is-active {
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg-mute);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.praxis-tab-badge {
+  font-size: 0.65rem;
+  line-height: 1;
+  padding: 0.15rem 0.4rem;
+  border-radius: 9999px;
+  background: var(--p-primary-50);
+  color: var(--p-primary-600);
+}
+
+.dark .praxis-tab-badge {
+  background: rgba(37, 99, 235, 0.2);
+  color: #93c5fd;
+}
+
+.praxis-quick-shortcut-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-border);
+  font-size: 0.75rem;
+  color: var(--vp-c-text-2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.praxis-quick-shortcut-btn:hover {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+
+.praxis-quick-shortcut-btn kbd {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.7rem;
+  background: var(--vp-c-bg-mute);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  border: 1px solid var(--vp-c-border);
+}
+
+.praxis-hero-body {
+  padding: 2rem;
+  min-height: 320px;
+}
+
+.praxis-showcase-view {
+  width: 100%;
+}
+
+.praxis-view-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.praxis-view-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.015em;
+}
+
+.praxis-view-sub {
+  font-size: 0.8125rem;
+  color: var(--vp-c-text-2);
+  margin: 0.25rem 0 0;
+}
+
+.praxis-selection-counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-border);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+}
+
+.counter-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+}
+
+.praxis-table-container {
+  background: var(--vp-c-bg);
+  border-radius: 10px;
+  border: 1px solid var(--vp-c-border);
+  overflow-x: auto;
+}
+
+.praxis-cell-member {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.praxis-member-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-name {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  color: var(--vp-c-text-1);
+}
+
+.member-email {
+  font-size: 0.7rem;
+  color: var(--vp-c-text-3);
+}
+
+.praxis-status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.55rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.status-active {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.dark .status-active {
+  background: rgba(22, 163, 74, 0.18);
+  color: #4ade80;
+}
+
+.status-busy {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.dark .status-busy {
+  background: rgba(217, 119, 6, 0.18);
+  color: #fcd34d;
+}
+
+.status-offline {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.dark .status-offline {
+  background: rgba(100, 116, 139, 0.2);
+  color: #94a3b8;
+}
+
+/* Command Palette Showcase */
+.praxis-command-view {
+  padding: 1.5rem 0;
+}
+
+.praxis-command-hero-box {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.praxis-command-trigger-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.25rem;
+  border-radius: 12px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-border);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1.5rem;
+}
+
+.praxis-command-trigger-banner:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 6px 24px -2px rgba(59, 130, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+.trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--vp-c-text-2);
+  font-size: 0.875rem;
+}
+
+.trigger-shortcut kbd {
+  font-family: var(--vp-font-family-mono);
+  font-size: 0.75rem;
+  background: var(--vp-c-bg-mute);
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid var(--vp-c-border);
+  color: var(--vp-c-text-2);
+}
+
+.praxis-command-chips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.chips-label {
+  font-size: 0.75rem;
+  color: var(--vp-c-text-3);
+}
+
+.praxis-command-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 8px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-border);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.praxis-command-chip:hover {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+
+.chip-group {
+  font-size: 0.65rem;
+  color: var(--vp-c-text-3);
+  text-transform: uppercase;
+}
+
+/* Sandbox Showcase */
+.praxis-sandbox-view {
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.praxis-sandbox-card {
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.praxis-sandbox-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.sandbox-step-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  font-size: 0.8125rem;
+  color: var(--vp-c-text-3);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.sandbox-step-btn.active {
+  color: var(--vp-c-brand-1);
+  font-weight: 600;
+}
+
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--vp-c-bg-mute);
+  font-size: 0.7rem;
+}
+
+.sandbox-step-btn.active .step-num {
+  background: var(--vp-c-brand-1);
+  color: #fff;
+}
+
+.step-connector {
+  width: 30px;
+  height: 2px;
+  background: var(--vp-c-border);
+}
+
+.sandbox-avatar-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.sandbox-input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.sandbox-input-group label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+}
+
+.praxis-sandbox-input {
+  width: 100%;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--vp-c-border);
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.praxis-sandbox-input:focus {
+  border-color: var(--vp-c-brand-1);
+}
+
+.sandbox-controls-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1.5rem 0;
+  gap: 1.5rem;
+}
+
+.control-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.control-label {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--vp-c-text-2);
+}
+
+.sandbox-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--vp-c-border);
+  padding-top: 1rem;
+}

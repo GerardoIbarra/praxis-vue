@@ -2,6 +2,119 @@ import { defineConfig } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 import { resolve } from 'path'
 
+const sidebar = [
+  {
+    text: 'Cookbook (Recetas)',
+    collapsed: false,
+    items: [
+      { text: 'Data Table Remota con Filtros', link: '/cookbook/data-table-remote' },
+      { text: 'Multi-Step Wizard con Zod', link: '/cookbook/zod-wizard' },
+    ],
+  },
+  {
+    text: 'Forms',
+    collapsed: false,
+    items: [
+      { text: 'Px Time Picker', link: '/components/forms/time-picker' },
+      { text: 'Px Grid Select', link: '/components/forms/px-grid-select' },
+      { text: 'Px State Checklist', link: '/components/forms/px-state-checklist' },
+      { text: 'Px Form Row', link: '/components/forms/px-form-row' },
+      { text: 'Px Schema Multi Select', link: '/components/forms/px-schema-multi-select' },
+      { text: 'Px Async Select', link: '/components/forms/px-async-select' },
+      { text: 'Px Dialog Input', link: '/components/forms/px-dialog-input' },
+      { text: 'Px Day Picker', link: '/components/forms/px-day-picker' },
+      { text: 'Px Schema Form', link: '/components/forms/px-schema-form' },
+      { text: 'Px Form Wizard', link: '/components/forms/px-form-wizard' },
+    ],
+  },
+  {
+    text: 'Base',
+    collapsed: false,
+    items: [
+      { text: 'Px Avatar', link: '/components/base/px-avatar' },
+      { text: 'Px Label', link: '/components/base/px-label' },
+      { text: 'Px Color Input', link: '/components/base/px-color-input' },
+      { text: 'Px Visual Select', link: '/components/base/px-visual-select' },
+      { text: 'Px Categorized Select', link: '/components/base/px-categorized-select' },
+      { text: 'Px Loader', link: '/components/base/px-loader' },
+      { text: 'Px Phone Input', link: '/components/base/px-phone-input' },
+      { text: 'Px Theme Switch', link: '/components/base/px-theme-switch' },
+    ],
+  },
+  {
+    text: 'Navigation',
+    collapsed: false,
+    items: [
+      { text: 'Px Dropdown Menu', link: '/components/navigation/px-dropdown-menu' },
+      { text: 'Px Stepper Header', link: '/components/navigation/px-stepper-header' },
+      { text: 'Px Stepper', link: '/components/navigation/px-stepper' },
+      { text: 'Px Tabs', link: '/components/navigation/px-tabs' },
+      { text: 'Px Nav List', link: '/components/navigation/px-nav-list' },
+    ],
+  },
+  {
+    text: 'Data Display',
+    collapsed: false,
+    items: [
+      { text: 'Px Data Table', link: '/components/data-display/px-data-table' },
+      { text: 'Px Tree', link: '/components/data-display/px-tree' },
+      { text: 'Px Display Options', link: '/components/data-display/px-display-options' },
+      { text: 'Px Document Viewer', link: '/components/data-display/px-document-viewer' },
+      { text: 'Px Table Skeleton', link: '/components/data-display/px-table-skeleton' },
+    ],
+  },
+  {
+    text: 'Layout',
+    collapsed: false,
+    items: [
+      { text: 'Px Card', link: '/components/layout/px-card' },
+      { text: 'Px Header', link: '/components/layout/px-header' },
+      { text: 'Px List Layout', link: '/components/layout/px-list-layout' },
+      { text: 'Px Form Layout', link: '/components/layout/px-form-layout' },
+      { text: 'Px Filter Bar', link: '/components/layout/px-filter-bar' },
+    ],
+  },
+  {
+    text: 'Primitives',
+    collapsed: true,
+    items: [
+      { text: 'Px Accordion', link: '/components/primitives/px-accordion' },
+      { text: 'Px Badge', link: '/components/primitives/px-badge' },
+      { text: 'Px Checkbox', link: '/components/primitives/px-checkbox' },
+      { text: 'Px Dialog', link: '/components/primitives/px-dialog' },
+      { text: 'Px Drawer', link: '/components/primitives/px-drawer' },
+      { text: 'Px Radio Button', link: '/components/primitives/px-radio-button' },
+      { text: 'Px Select', link: '/components/primitives/px-select' },
+      { text: 'Px Timeline', link: '/components/primitives/px-timeline' },
+      { text: 'Px Toast', link: '/components/primitives/px-toast' },
+    ],
+  },
+  {
+    text: 'Overlays',
+    collapsed: false,
+    items: [
+      { text: 'Px Command Palette', link: '/components/overlays/px-command-palette' },
+    ],
+  },
+  {
+    text: 'Editor',
+    collapsed: false,
+    items: [
+      { text: 'Px Editor', link: '/components/editor/px-editor' },
+    ],
+  },
+]
+
+function prefixSidebar(items: typeof sidebar, prefix = '/es') {
+  return items.map(group => ({
+    ...group,
+    items: group.items.map(item => ({
+      ...item,
+      link: `${prefix}${item.link}`
+    }))
+  }))
+}
+
 export default withPwa(defineConfig({
   pwa: {
     outDir: '.vitepress/dist',
@@ -50,9 +163,10 @@ export default withPwa(defineConfig({
       themeConfig: {
         nav: [
           { text: 'Inicio', link: '/es/' },
-          { text: 'Componentes', link: '/components/forms/time-picker' },
-          { text: 'Cookbook', link: '/cookbook/data-table-remote' },
+          { text: 'Componentes', link: '/es/components/forms/time-picker' },
+          { text: 'Cookbook', link: '/es/cookbook/data-table-remote' },
         ],
+        sidebar: prefixSidebar(sidebar, '/es'),
       },
     },
   },
@@ -68,108 +182,7 @@ export default withPwa(defineConfig({
       { text: 'GitHub', link: 'https://github.com/GerardoIbarra/praxis-vue' },
     ],
 
-    sidebar: [
-      {
-        text: 'Cookbook (Recetas)',
-        collapsed: false,
-        items: [
-          { text: 'Data Table Remota con Filtros', link: '/cookbook/data-table-remote' },
-          { text: 'Multi-Step Wizard con Zod', link: '/cookbook/zod-wizard' },
-        ],
-      },
-      {
-        text: 'Forms',
-        collapsed: false,
-        items: [
-          { text: 'Px Time Picker', link: '/components/forms/time-picker' },
-          { text: 'Px Grid Select', link: '/components/forms/px-grid-select' },
-          { text: 'Px State Checklist', link: '/components/forms/px-state-checklist' },
-          { text: 'Px Form Row', link: '/components/forms/px-form-row' },
-          { text: 'Px Schema Multi Select', link: '/components/forms/px-schema-multi-select' },
-          { text: 'Px Async Select', link: '/components/forms/px-async-select' },
-          { text: 'Px Dialog Input', link: '/components/forms/px-dialog-input' },
-          { text: 'Px Day Picker', link: '/components/forms/px-day-picker' },
-          { text: 'Px Schema Form', link: '/components/forms/px-schema-form' },
-          { text: 'Px Form Wizard', link: '/components/forms/px-form-wizard' },
-        ],
-      },
-      {
-        text: 'Base',
-        collapsed: false,
-        items: [
-          { text: 'Px Avatar', link: '/components/base/px-avatar' },
-          { text: 'Px Label', link: '/components/base/px-label' },
-          { text: 'Px Color Input', link: '/components/base/px-color-input' },
-          { text: 'Px Visual Select', link: '/components/base/px-visual-select' },
-          { text: 'Px Categorized Select', link: '/components/base/px-categorized-select' },
-          { text: 'Px Loader', link: '/components/base/px-loader' },
-          { text: 'Px Phone Input', link: '/components/base/px-phone-input' },
-          { text: 'Px Theme Switch', link: '/components/base/px-theme-switch' },
-        ],
-      },
-      {
-        text: 'Navigation',
-        collapsed: false,
-        items: [
-          { text: 'Px Dropdown Menu', link: '/components/navigation/px-dropdown-menu' },
-          { text: 'Px Stepper Header', link: '/components/navigation/px-stepper-header' },
-          { text: 'Px Stepper', link: '/components/navigation/px-stepper' },
-          { text: 'Px Tabs', link: '/components/navigation/px-tabs' },
-          { text: 'Px Nav List', link: '/components/navigation/px-nav-list' },
-        ],
-      },
-      {
-        text: 'Data Display',
-        collapsed: false,
-        items: [
-          { text: 'Px Data Table', link: '/components/data-display/px-data-table' },
-          { text: 'Px Tree', link: '/components/data-display/px-tree' },
-          { text: 'Px Display Options', link: '/components/data-display/px-display-options' },
-          { text: 'Px Document Viewer', link: '/components/data-display/px-document-viewer' },
-          { text: 'Px Table Skeleton', link: '/components/data-display/px-table-skeleton' },
-        ],
-      },
-      {
-        text: 'Layout',
-        collapsed: false,
-        items: [
-          { text: 'Px Card', link: '/components/layout/px-card' },
-          { text: 'Px Header', link: '/components/layout/px-header' },
-          { text: 'Px List Layout', link: '/components/layout/px-list-layout' },
-          { text: 'Px Form Layout', link: '/components/layout/px-form-layout' },
-          { text: 'Px Filter Bar', link: '/components/layout/px-filter-bar' },
-        ],
-      },
-      {
-        text: 'Primitives',
-        collapsed: true,
-        items: [
-          { text: 'Px Accordion', link: '/components/primitives/px-accordion' },
-          { text: 'Px Badge', link: '/components/primitives/px-badge' },
-          { text: 'Px Checkbox', link: '/components/primitives/px-checkbox' },
-          { text: 'Px Dialog', link: '/components/primitives/px-dialog' },
-          { text: 'Px Drawer', link: '/components/primitives/px-drawer' },
-          { text: 'Px Radio Button', link: '/components/primitives/px-radio-button' },
-          { text: 'Px Select', link: '/components/primitives/px-select' },
-          { text: 'Px Timeline', link: '/components/primitives/px-timeline' },
-          { text: 'Px Toast', link: '/components/primitives/px-toast' },
-        ],
-      },
-      {
-        text: 'Overlays',
-        collapsed: false,
-        items: [
-          { text: 'Px Command Palette', link: '/components/overlays/px-command-palette' },
-        ],
-      },
-      {
-        text: 'Editor',
-        collapsed: false,
-        items: [
-          { text: 'Px Editor', link: '/components/editor/px-editor' },
-        ],
-      },
-    ],
+    sidebar: sidebar,
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/GerardoIbarra/praxis-vue' },

@@ -1,4 +1,4 @@
-import { readdirSync, statSync, writeFileSync, mkdirSync } from 'node:fs'
+import { readdirSync, statSync, writeFileSync, mkdirSync, copyFileSync, existsSync } from 'node:fs'
 import { join, resolve, basename, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { parse } from 'vue-docgen-api'
@@ -99,6 +99,36 @@ async function extract() {
   mkdirSync(OUTPUT_DIR, { recursive: true })
   writeFileSync(OUTPUT_FILE, JSON.stringify(manifest, null, 2), 'utf-8')
   console.log(`✅ API metadata generated for ${Object.keys(manifest).length} components -> ${OUTPUT_FILE}`)
+
+  // Sync docs to /es/ locale
+  syncLocales()
+}
+
+function copyDir(src, dest) {
+  if (!existsSync(src)) return
+  mkdirSync(dest, { recursive: true })
+  for (const entry of readdirSync(src, { withFileTypes: true })) {
+    const srcPath = join(src, entry.name)
+    const destPath = join(dest, entry.name)
+    if (entry.isDirectory()) {
+      copyDir(srcPath, destPath)
+    } else {
+      if (!existsSync(destPath) || statSync(srcPath).mtimeMs > statSync(destPath).mtimeMs) {
+        copyFileSync(srcPath, destPath)
+      }
+    }
+  }
+}
+
+function syncLocales() {
+  const componentsSrc = resolve(ROOT_DIR, 'components')
+  const componentsDest = resolve(ROOT_DIR, 'es/components')
+  const cookbookSrc = resolve(ROOT_DIR, 'cookbook')
+  const cookbookDest = resolve(ROOT_DIR, 'es/cookbook')
+
+  copyDir(componentsSrc, componentsDest)
+  copyDir(cookbookSrc, cookbookDest)
+  console.log('🌐 Synchronized components and cookbook into /es/ locale')
 }
 
 extract()

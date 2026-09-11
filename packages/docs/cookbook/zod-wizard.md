@@ -125,7 +125,6 @@ Prueba avanzar sin completar los campos requeridos: `PxFormWizard` detendrá la 
       complete-label="Confirmar y Crear Cuenta"
       @complete="handleComplete"
     />
-
     <div v-if="submissionResult" style="margin-top:16px;padding:16px;border-radius:12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);font-size:0.85rem;">
       <div style="font-weight:600;color:var(--vp-c-brand-1);margin-bottom:8px;">✓ Payload Final Validado:</div>
       <pre style="margin:0;font-family:monospace;font-size:0.8rem;">{{ JSON.stringify(submissionResult, null, 2) }}</pre>

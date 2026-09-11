@@ -8,16 +8,16 @@ import {
 } from "./chunk-S6VNSOLG.js";
 import "./chunk-UVKRO5ER.js";
 
-// ../../node_modules/.pnpm/@vercel+analytics@2.0.1_rea_446be4039134db493a0099301b3ec4dc/node_modules/@vercel/analytics/dist/vue/index.mjs
+// ../../node_modules/.pnpm/@vercel+speed-insights@2.0._23da0085c3c33b296d0d1b84e92561d4/node_modules/@vercel/speed-insights/dist/vue/index.mjs
 var initQueue = () => {
-  if (window.va) return;
-  window.va = function a(...params) {
-    if (!window.vaq) window.vaq = [];
-    window.vaq.push(params);
+  if (window.si) return;
+  window.si = function a(...params) {
+    window.siq = window.siq || [];
+    window.siq.push(params);
   };
 };
-var name = "@vercel/analytics";
-var version = "2.0.1";
+var name = "@vercel/speed-insights";
+var version = "2.0.0";
 function isBrowser() {
   return typeof window !== "undefined";
 }
@@ -31,19 +31,8 @@ function detectEnvironment() {
   }
   return "production";
 }
-function setMode(mode = "auto") {
-  if (mode === "auto") {
-    window.vam = detectEnvironment();
-    return;
-  }
-  window.vam = mode;
-}
-function getMode() {
-  const mode = isBrowser() ? window.vam : detectEnvironment();
-  return mode || "production";
-}
 function isDevelopment() {
-  return getMode() === "development";
+  return detectEnvironment() === "development";
 }
 function computeRoute(pathname, pathParams) {
   if (!pathname || !pathParams) {
@@ -84,12 +73,15 @@ function getScriptSrc(props) {
     return makeAbsolute(props.scriptSrc);
   }
   if (isDevelopment()) {
-    return "https://va.vercel-scripts.com/v1/script.debug.js";
+    return "https://va.vercel-scripts.com/v1/speed-insights/script.debug.js";
+  }
+  if (props.dsn) {
+    return "https://va.vercel-scripts.com/v1/speed-insights/script.js";
   }
   if (props.basePath) {
-    return makeAbsolute(`${props.basePath}/insights/script.js`);
+    return makeAbsolute(`${props.basePath}/speed-insights/script.js`);
   }
-  return "/_vercel/insights/script.js";
+  return "/_vercel/speed-insights/script.js";
 }
 function loadProps(explicitProps, confString) {
   var _a;
@@ -97,28 +89,21 @@ function loadProps(explicitProps, confString) {
   if (confString) {
     try {
       props = {
-        ...(_a = JSON.parse(confString)) == null ? void 0 : _a.analytics,
+        ...(_a = JSON.parse(confString)) == null ? void 0 : _a.speedInsights,
         ...explicitProps
       };
     } catch {
     }
   }
-  setMode(props.mode);
   const dataset = {
     sdkn: name + (props.framework ? `/${props.framework}` : ""),
     sdkv: version
   };
-  if (props.disableAutoTrack) {
-    dataset.disableAutoTrack = "1";
+  if (props.sampleRate) {
+    dataset.sampleRate = props.sampleRate.toString();
   }
-  if (props.viewEndpoint) {
-    dataset.viewEndpoint = makeAbsolute(props.viewEndpoint);
-  }
-  if (props.eventEndpoint) {
-    dataset.eventEndpoint = makeAbsolute(props.eventEndpoint);
-  }
-  if (props.sessionEndpoint) {
-    dataset.sessionEndpoint = makeAbsolute(props.sessionEndpoint);
+  if (props.route) {
+    dataset.route = props.route;
   }
   if (isDevelopment() && props.debug === false) {
     dataset.debug = "false";
@@ -127,50 +112,45 @@ function loadProps(explicitProps, confString) {
     dataset.dsn = props.dsn;
   }
   if (props.endpoint) {
-    dataset.endpoint = props.endpoint;
+    dataset.endpoint = makeAbsolute(props.endpoint);
   } else if (props.basePath) {
-    dataset.endpoint = makeAbsolute(`${props.basePath}/insights`);
+    dataset.endpoint = makeAbsolute(`${props.basePath}/speed-insights/vitals`);
   }
   return {
-    beforeSend: props.beforeSend,
     src: getScriptSrc(props),
+    beforeSend: props.beforeSend,
     dataset
   };
 }
 function makeAbsolute(url) {
   return url.startsWith("http://") || url.startsWith("https://") || url.startsWith("/") ? url : `/${url}`;
 }
-function inject(props = {
-  debug: true
-}, confString) {
+function injectSpeedInsights(props = {}, confString) {
   var _a;
-  if (!isBrowser()) return;
-  const { beforeSend, src, dataset } = loadProps(props, confString);
+  if (!isBrowser() || props.route === null) return null;
   initQueue();
+  const { beforeSend, src, dataset } = loadProps(props, confString);
+  if (document.head.querySelector(`script[src*="${src}"]`)) return null;
   if (beforeSend) {
-    (_a = window.va) == null ? void 0 : _a.call(window, "beforeSend", beforeSend);
+    (_a = window.si) == null ? void 0 : _a.call(window, "beforeSend", beforeSend);
   }
-  if (document.head.querySelector(`script[src*="${src}"]`)) return;
   const script = document.createElement("script");
   script.src = src;
+  script.defer = true;
   for (const [key, value] of Object.entries(dataset)) {
     script.dataset[key] = value;
   }
-  script.defer = true;
   script.onerror = () => {
-    const errorMessage = isDevelopment() ? "Please check if any ad blockers are enabled and try again." : "Be sure to enable Web Analytics for your project and deploy again. See https://vercel.com/docs/analytics/quickstart for more information.";
     console.log(
-      `[Vercel Web Analytics] Failed to load script from ${src}. ${errorMessage}`
+      `[Vercel Speed Insights] Failed to load script from ${src}. Please check if any content blockers are enabled and try again.`
     );
   };
   document.head.appendChild(script);
-}
-function pageview({
-  route,
-  path
-}) {
-  var _a;
-  (_a = window.va) == null ? void 0 : _a.call(window, "pageview", { route, path });
+  return {
+    setRoute: (route) => {
+      script.dataset.route = route ?? void 0;
+    }
+  };
 }
 function getBasePath() {
   try {
@@ -186,28 +166,30 @@ function getConfigString() {
 }
 function createComponent(framework = "vue") {
   return defineComponent({
-    props: ["dsn", "beforeSend", "debug", "scriptSrc", "endpoint", "mode"],
+    props: [
+      "dsn",
+      "sampleRate",
+      "beforeSend",
+      "debug",
+      "scriptSrc",
+      "endpoint"
+    ],
     setup(props) {
       const route = useRoute();
-      inject(
+      const configure = injectSpeedInsights(
         {
-          // trim out undefined values to avoid overriding config values
           ...Object.fromEntries(
+            // trim out undefined values to avoid overriding config values
             Object.entries(props).filter(([_, v]) => v !== void 0)
           ),
-          basePath: getBasePath(),
-          // keep auto-tracking unless we have route support (Nuxt or vue-router).
-          disableAutoTrack: Boolean(route),
-          framework
+          framework,
+          basePath: getBasePath()
         },
         getConfigString()
       );
-      if (route && typeof window !== "undefined") {
+      if (route && configure) {
         const changeRoute = () => {
-          pageview({
-            route: computeRoute(route.path, route.params),
-            path: route.path
-          });
+          configure.setRoute(computeRoute(route.path, route.params));
         };
         changeRoute();
         watch(route, changeRoute);
@@ -219,8 +201,8 @@ function createComponent(framework = "vue") {
     }
   });
 }
-var Analytics = createComponent();
+var SpeedInsights = createComponent();
 export {
-  Analytics
+  SpeedInsights
 };
-//# sourceMappingURL=@vercel_analytics_vue.js.map
+//# sourceMappingURL=@vercel_speed-insights_vue.js.map

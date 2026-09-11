@@ -12,6 +12,7 @@
     "docs:dev": "pnpm --filter @praxis/docs dev",
     "docs:build": "pnpm --filter @praxis/docs build",
     "docs:preview": "pnpm --filter @praxis/docs preview",
+    "docs:api": "pnpm --filter @praxis/docs docs:api",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint . --fix",

@@ -9,6 +9,7 @@ import ComponentDemo from './components/ComponentDemo.vue'
 import PropsTable from './components/PropsTable.vue'
 import EmitsTable from './components/EmitsTable.vue'
 import SlotsTable from './components/SlotsTable.vue'
+import ApiReference from './components/ApiReference.vue'
 import ReloadPrompt from './components/ReloadPrompt.vue'
 import { Analytics } from '@vercel/analytics/vue'
 import { SpeedInsights } from '@vercel/speed-insights/vue'
@@ -30,5 +31,6 @@ export default {
     app.component('PropsTable', PropsTable)
     app.component('EmitsTable', EmitsTable)
     app.component('SlotsTable', SlotsTable)
+    app.component('ApiReference', ApiReference)
   },
 } satisfies Theme

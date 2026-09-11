@@ -1,0 +1,3408 @@
+{
+  "PxAvatar": {
+    "name": "PxAvatar",
+    "description": "",
+    "props": [
+      {
+        "name": "name",
+        "type": "string | null",
+        "default": "null",
+        "required": false,
+        "description": "Name used to generate initials and as tooltip/alt text"
+      },
+      {
+        "name": "src",
+        "type": "string | null",
+        "default": "null",
+        "required": false,
+        "description": "Image URL — takes priority over initials when provided"
+      },
+      {
+        "name": "size",
+        "type": "\"sm\" | \"md\" | \"lg\" | \"xl\"",
+        "default": "\"md\"",
+        "required": false,
+        "description": "Size preset"
+      },
+      {
+        "name": "shape",
+        "type": "\"circle\" | \"square\"",
+        "default": "\"circle\"",
+        "required": false,
+        "description": "Shape of the avatar"
+      },
+      {
+        "name": "color",
+        "type": "string | \"auto\"",
+        "default": "\"auto\"",
+        "required": false,
+        "description": "Auto-color from name hash, or a custom CSS color string"
+      },
+      {
+        "name": "label",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Optional footer label (shows the full name below the avatar)"
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxAvatarSelect": {
+    "name": "PxAvatarSelect",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "string | number | Record | null | TSParenthesizedType[]",
+        "default": "null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "options",
+        "type": "T[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "default": "\"name\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "reduce",
+        "type": "TSFunctionType",
+        "default": "(option: T) => {\r\n  const o = option as unknown as Record<string, unknown>;\r\n  return o.id !== undefined ? o.id : o.value;\r\n}",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "selectClass",
+        "type": "string",
+        "default": "\"w-full border border-gray-300 px-4 py-1 rounded-md focus:ring-2 focus:ring-blue-500 text-gray-400\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "union",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxCategorizedSelect": {
+    "name": "PxCategorizedSelect",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "TSParenthesizedType[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "options",
+        "type": "GroupOption[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "default": "\"label\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "reduce",
+        "type": "TSFunctionType",
+        "default": "(option: any) => option.id ?? option.value ?? option",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "selectClass",
+        "type": "string",
+        "default": "\"w-full\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showSelectAll",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showDuration",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showColor",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "useCombinedId",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "Array",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxColorInput": {
+    "name": "PxColorInput",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "default": "\"000000\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "error",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "string",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxLabel": {
+    "name": "PxLabel",
+    "description": "",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "description": "Text content of the label"
+      },
+      {
+        "name": "for",
+        "type": "string",
+        "required": false,
+        "description": "Associates the label with an input via its id"
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Shows a red asterisk indicating the associated field is required"
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxLoader": {
+    "name": "PxLoader",
+    "description": "",
+    "props": [
+      {
+        "name": "fullscreen",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "If true, the loader will overlay the entire screen with a backdrop blur"
+      },
+      {
+        "name": "message",
+        "type": "string",
+        "default": "'Loading...'",
+        "required": false,
+        "description": "The main text to display below the spinner"
+      },
+      {
+        "name": "subMessage",
+        "type": "string",
+        "default": "'Please wait while we process your request.'",
+        "required": false,
+        "description": "Additional subtext, mostly used in fullscreen mode"
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxPhoneInput": {
+    "name": "PxPhoneInput",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "default": "\"\"",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "rules",
+        "type": "ValidationRules",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxRequiredLabel": {
+    "name": "PxRequiredLabel",
+    "description": "",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxThemeSwitch": {
+    "name": "PxThemeSwitch",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "toggle",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxVisualSelect": {
+    "name": "PxVisualSelect",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "string | number | Record | null | TSParenthesizedType[]",
+        "default": "null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "options",
+        "type": "VisualOption[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "variant",
+        "type": "\"color\" | \"group\"",
+        "default": "\"group\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "default": "\"label\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "reduce",
+        "type": "TSFunctionType",
+        "default": "(option: any) => option?.id || option?.value || option",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "selectClass",
+        "type": "string",
+        "default": "\"vue-select-standard text-gray-400\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "inputId",
+        "type": "string",
+        "default": "\"px-visual-select\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "dataTestid",
+        "type": "string",
+        "default": "\"px-visual-select\"",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "union",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxBadgedValueGrid": {
+    "name": "PxBadgedValueGrid",
+    "description": "",
+    "props": [
+      {
+        "name": "badgeSeverety",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "badgeValue",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "items",
+        "type": "BasicLabelValue[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "classGrid",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxDataTable": {
+    "name": "PxDataTable",
+    "description": "",
+    "props": [
+      {
+        "name": "items",
+        "type": "Record[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "columns",
+        "type": "ColumnDef[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "rows",
+        "type": "number",
+        "default": "10",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "rowsPerPageOptions",
+        "type": "number[]",
+        "default": "() => [10, 20, 50]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "enableRowDblClick",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "selectionMode",
+        "type": "\"single\" | \"multiple\"",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "selectedItems",
+        "type": "Record[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "stripedRows",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "emptyMessage",
+        "type": "string",
+        "default": "\"No data available\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "searchEmptyMessage",
+        "type": "string",
+        "default": "\"No results found\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "isSearching",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "rowGroupMode",
+        "type": "\"subheader\" | \"rowspan\"",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "groupRowsBy",
+        "type": "string | string[]",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "sortMode",
+        "type": "\"single\" | \"multiple\"",
+        "default": "\"single\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "sortField",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "sortOrder",
+        "type": "number",
+        "default": "1",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "expanderCondition",
+        "type": "TSFunctionType",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "paginated",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "exportable",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "exportFileName",
+        "type": "string",
+        "default": "\"table-export\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "exportFormats",
+        "type": "TSParenthesizedType[]",
+        "default": "() => [\"csv\", \"excel\"]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "row-click",
+        "payload": "unknown",
+        "description": ""
+      },
+      {
+        "name": "row-dblclick",
+        "payload": "unknown",
+        "description": ""
+      },
+      {
+        "name": "selection-change",
+        "payload": "unknown",
+        "description": ""
+      },
+      {
+        "name": "sort",
+        "payload": "{ field: string; order: number }",
+        "description": ""
+      },
+      {
+        "name": "page",
+        "payload": "{ page: number; rows: number }",
+        "description": ""
+      },
+      {
+        "name": "export",
+        "payload": "{ format: \"csv\" | \"excel\"; count: number }",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "toolbar",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "col.slotName",
+        "props": "0, 1",
+        "description": ""
+      },
+      {
+        "name": "expansion",
+        "props": "0",
+        "description": ""
+      }
+    ]
+  },
+  "PxDisplayOptions": {
+    "name": "PxDisplayOptions",
+    "description": "",
+    "props": [
+      {
+        "name": "displayOptions",
+        "type": "PxDisplayOptions",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxDocumentViewer": {
+    "name": "PxDocumentViewer",
+    "description": "",
+    "props": [
+      {
+        "name": "url",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "scale",
+        "type": "number",
+        "default": "1.5",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "height",
+        "type": "string",
+        "default": "'600px'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "initialPage",
+        "type": "number",
+        "default": "1",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "renderAllPages",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxEmptyState": {
+    "name": "PxEmptyState",
+    "description": "",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "type": "Component",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": [
+      {
+        "name": "icon",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "action",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxInfoField": {
+    "name": "PxInfoField",
+    "description": "",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "string | number",
+        "default": "\"N/A\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "valueClass",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": [
+      {
+        "name": "icon",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxInitialsAvatar": {
+    "name": "PxInitialsAvatar",
+    "description": "",
+    "props": [
+      {
+        "name": "name",
+        "type": "string | null",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "\"normal\" | \"large\" | \"xlarge\"",
+        "default": "\"xlarge\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "lightOnly",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxLabeledValueSection": {
+    "name": "PxLabeledValueSection",
+    "description": "",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "items",
+        "type": "BasicLabelValue[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "classGrid",
+        "type": "string",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": [
+      {
+        "name": "header-right",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxStatusDataTable": {
+    "name": "PxStatusDataTable",
+    "description": "",
+    "props": [
+      {
+        "name": "tableData",
+        "type": "TableData",
+        "default": "() => ({ headers: [], rows: [] })",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxTableSkeleton": {
+    "name": "PxTableSkeleton",
+    "description": "",
+    "props": [
+      {
+        "name": "columns",
+        "type": "number",
+        "required": true,
+        "description": "Número de columnas a renderizar en el skeleton"
+      },
+      {
+        "name": "rows",
+        "type": "number",
+        "default": "5",
+        "required": false,
+        "description": "Número de filas a renderizar en el skeleton"
+      },
+      {
+        "name": "hasSelection",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Si la tabla tiene una columna de selección/checkbox a la izquierda"
+      },
+      {
+        "name": "hasExpansion",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Si la tabla tiene una columna de expansión/chevron a la izquierda"
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxTree": {
+    "name": "PxTree",
+    "description": "",
+    "props": [
+      {
+        "name": "nodes",
+        "type": "StoreTreeNode[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "expandedKeys",
+        "type": "Record",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "selectedKey",
+        "type": "string | null",
+        "default": "null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "selectable",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "newChildName",
+        "type": "string | null",
+        "default": "null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "newChildType",
+        "type": "boolean | string | null",
+        "default": "null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "newChildTypeOptions",
+        "type": "Record[] | null",
+        "default": "null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "catalogItemId",
+        "type": "string | null",
+        "default": "null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "catalogOptions",
+        "type": "Record[] | null",
+        "default": "null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "newChildRequiered",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "level",
+        "type": "number",
+        "default": "1",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "nodeClick",
+        "payload": "StoreTreeNode",
+        "description": ""
+      },
+      {
+        "name": "update:expandedKeys",
+        "payload": "Record",
+        "description": ""
+      },
+      {
+        "name": "update:newChildName",
+        "payload": "string",
+        "description": ""
+      },
+      {
+        "name": "update:newChildType",
+        "payload": "union",
+        "description": ""
+      },
+      {
+        "name": "update:catalogItemId",
+        "payload": "string",
+        "description": ""
+      },
+      {
+        "name": "update:newChildRequiered",
+        "payload": "boolean",
+        "description": ""
+      },
+      {
+        "name": "confirmAddChild",
+        "payload": "StoreTreeNode",
+        "description": ""
+      },
+      {
+        "name": "cancelAddChild",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "confirmEditNode",
+        "payload": "StoreTreeNode",
+        "description": ""
+      },
+      {
+        "name": "cancelEditNode",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "startAddChild",
+        "payload": "StoreTreeNode",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "actions",
+        "props": "0",
+        "description": ""
+      }
+    ]
+  },
+  "PxAsyncSelect": {
+    "name": "PxAsyncSelect",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "string | number | object | null",
+        "default": "null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "options",
+        "type": "unknown[] | SelectableItem[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "default": "\"name\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "reduce",
+        "type": "TSFunctionType",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "filterable",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "hasMore",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "searchable",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showSearchIcon",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "selectable",
+        "type": "TSFunctionType",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "customClass",
+        "type": "string | string[]",
+        "default": "\"vue-select-standard  text-gray-400\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "testId",
+        "type": "string",
+        "default": "\"px-async-select\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "inputFree",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showAvatar",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "unknown",
+        "description": ""
+      },
+      {
+        "name": "search",
+        "payload": "string",
+        "description": ""
+      },
+      {
+        "name": "open",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "select",
+        "payload": "unknown",
+        "description": ""
+      },
+      {
+        "name": "scrolling",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "name",
+        "props": "0",
+        "description": ""
+      },
+      {
+        "name": "option",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "selected-option",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxDayPicker": {
+    "name": "PxDayPicker",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "DaysChoosen | string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "mode",
+        "type": "ModeType",
+        "default": "\"radio\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "default": "\"Days of the week\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showRequired",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "vertical",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "union",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxDialogInput": {
+    "name": "PxDialogInput",
+    "description": "",
+    "props": [
+      {
+        "name": "theme",
+        "type": "\"light\" | \"dark\" | \"default\"",
+        "default": "\"default\"",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "close",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "uploadComplete",
+        "payload": "UploadDocumentFile",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxFormRow": {
+    "name": "PxFormRow",
+    "description": "",
+    "props": [
+      {
+        "name": "field",
+        "type": "object",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "getFieldRules",
+        "type": "func",
+        "default": "() => \"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "getMinNumberValue",
+        "type": "func",
+        "default": "() => null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "validateMinRange",
+        "type": "func",
+        "default": "() => {}",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "getMaxNumberValue",
+        "type": "func",
+        "default": "() => null",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "validateMaxRange",
+        "type": "func",
+        "default": "() => {}",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "search",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "change",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxFormWizard": {
+    "name": "PxFormWizard",
+    "description": "",
+    "props": [
+      {
+        "name": "steps",
+        "type": "WizardStep[]",
+        "default": "() => []",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "modelValue",
+        "type": "Record",
+        "default": "() => ({})",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "linear",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "nextLabel",
+        "type": "string",
+        "default": "\"Siguiente\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "previousLabel",
+        "type": "string",
+        "default": "\"Anterior\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "completeLabel",
+        "type": "string",
+        "default": "\"Completar\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loadingLabel",
+        "type": "string",
+        "default": "\"Guardando...\"",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "Record",
+        "description": ""
+      },
+      {
+        "name": "step-change",
+        "payload": "number",
+        "description": ""
+      },
+      {
+        "name": "complete",
+        "payload": "Record",
+        "description": ""
+      },
+      {
+        "name": "error",
+        "payload": "{ stepIndex: number; message: string }",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "before-form",
+        "props": "0, 1",
+        "description": ""
+      },
+      {
+        "name": "after-form",
+        "props": "0, 1",
+        "description": ""
+      },
+      {
+        "name": "actions",
+        "props": "0, 1, 2",
+        "description": ""
+      }
+    ]
+  },
+  "PxGridSelect": {
+    "name": "PxGridSelect",
+    "description": "",
+    "props": [
+      {
+        "name": "options",
+        "type": "SelectableItem[] | any[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "selectedItems",
+        "type": "SelectableItem[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "isRequired",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "default": "\"Choose item...\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "labelField",
+        "type": "TSTypeOperator",
+        "default": "\"name\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "valueField",
+        "type": "string",
+        "default": "\"id\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "field",
+        "type": "FormSchemaField",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showColorPicker",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "colorField",
+        "type": "string",
+        "default": "\"color\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "columns",
+        "type": "string[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "additionalFields",
+        "type": "AdditionalField[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "selectWidth",
+        "type": "string",
+        "default": "\"w-[400px]\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "maxHeight",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showCustomOptionTemplate",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showSelected",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showButtonDelete",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "hideLabelColumn",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "isInfinity",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loadMoreScroll",
+        "type": "TSFunctionType",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "hasMore",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loadingScroll",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "searchFunction",
+        "type": "TSFunctionType",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "nonRemovableField",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "nonRemovableValue",
+        "type": "string | number | null",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "showAvatar",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:selectedItems",
+        "payload": "Array",
+        "description": ""
+      },
+      {
+        "name": "update:fieldValue",
+        "payload": "Array",
+        "description": ""
+      },
+      {
+        "name": "add-item",
+        "payload": "SelectableItem",
+        "description": ""
+      },
+      {
+        "name": "remove-item",
+        "payload": "SelectableItem",
+        "description": ""
+      },
+      {
+        "name": "search",
+        "payload": "string",
+        "description": ""
+      },
+      {
+        "name": "scroll-bottom",
+        "payload": "union",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "option-template",
+        "props": "0",
+        "description": ""
+      }
+    ]
+  },
+  "PxSchemaForm": {
+    "name": "PxSchemaForm",
+    "description": "",
+    "props": [
+      {
+        "name": "schema",
+        "type": "FormSchemaField[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "existingData",
+        "type": "Record",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "modelValue",
+        "type": "Record",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "cleanedResults",
+        "type": "string[]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "calculatedNumbers",
+        "type": "any[]",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "zodSchema",
+        "type": "ZodSchema",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "Record",
+        "description": ""
+      },
+      {
+        "name": "update:cleanedResults",
+        "payload": "Array",
+        "description": ""
+      },
+      {
+        "name": "update:calculatedNumbers",
+        "payload": "Array",
+        "description": ""
+      },
+      {
+        "name": "scroll-bottom",
+        "payload": "any",
+        "description": ""
+      },
+      {
+        "name": "search",
+        "payload": "{ query: string; fieldKey: string }",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "divider-component",
+        "props": "0",
+        "description": ""
+      }
+    ]
+  },
+  "PxSchemaMultiSelect": {
+    "name": "PxSchemaMultiSelect",
+    "description": "",
+    "props": [
+      {
+        "name": "field",
+        "type": "object",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "modelValue",
+        "type": "array",
+        "default": "[]",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxSelectableListWithTable": {
+    "name": "PxSelectableListWithTable",
+    "description": "",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "description": "Label for the field"
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Whether this field is required"
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "description": "Field name for vee-validate"
+      },
+      {
+        "name": "selectedItems",
+        "type": "any[]",
+        "required": true,
+        "description": "Array of selected items"
+      },
+      {
+        "name": "badgeState",
+        "type": "BadgeState",
+        "default": "() => ({ class: \"count-badge\", severity: \"secondary\" })",
+        "required": false,
+        "description": "Badge state object with class and severity"
+      },
+      {
+        "name": "columns",
+        "type": "ColumnDefinition[]",
+        "required": true,
+        "description": "Column definitions for the table\nEach column: { key: string, label: string, getValue?: (item) => string }"
+      },
+      {
+        "name": "rules",
+        "type": "string",
+        "required": false,
+        "description": "Validation rules for the field"
+      },
+      {
+        "name": "marginClass",
+        "type": "string",
+        "default": "\"mb-8\"",
+        "required": false,
+        "description": "Bottom margin class"
+      }
+    ],
+    "emits": [
+      {
+        "name": "remove",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "selector",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxStateChecklist": {
+    "name": "PxStateChecklist",
+    "description": "",
+    "props": [
+      {
+        "name": "field",
+        "type": "FormSchemaField",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "modelValue",
+        "type": "Record",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "defaultOpen",
+        "type": "boolean",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "Record",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxTimePicker": {
+    "name": "PxTimePicker",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "string | null",
+        "required": false,
+        "description": "Valor del tiempo en formato HH:mm (24h) — siempre en 24h internamente"
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "description": "Etiqueta superior del input"
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "required": false,
+        "description": "Si el campo es obligatorio (muestra asterisco rojo)"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "required": false,
+        "description": "Deshabilita el input"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "description": "Placeholder opcional"
+      },
+      {
+        "name": "format",
+        "type": "\"24h\" | \"12h\"",
+        "required": false,
+        "description": "Formato de visualización: '24h' (default) o '12h' (AM/PM)"
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "union",
+        "description": ""
+      },
+      {
+        "name": "change",
+        "payload": "union",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxCard": {
+    "name": "PxCard",
+    "description": "",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "isMetric",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": [
+      {
+        "name": "header-action",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "default",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxColumnLayout": {
+    "name": "PxColumnLayout",
+    "description": "",
+    "props": [
+      {
+        "name": "element",
+        "type": "TemplateSection",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "log",
+        "type": "TSFunctionType",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "clone",
+        "type": "TSFunctionType",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "hasEditPermission",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:element",
+        "payload": "TemplateSection",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxFilterBar": {
+    "name": "PxFilterBar",
+    "description": "",
+    "props": [],
+    "emits": [],
+    "slots": [
+      {
+        "name": "default",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxFormLayout": {
+    "name": "PxFormLayout",
+    "description": "",
+    "props": [],
+    "emits": [],
+    "slots": [
+      {
+        "name": "default",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxHeader": {
+    "name": "PxHeader",
+    "description": "",
+    "props": [
+      {
+        "name": "variant",
+        "type": "\"page\" | \"form\" | \"list\"",
+        "default": "'page'",
+        "required": false,
+        "description": "The variant defines the visual hierarchy and layout of the header"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "description": "Main title text"
+      },
+      {
+        "name": "subtitle",
+        "type": "string",
+        "required": false,
+        "description": "Subtitle text (mostly used in 'page' variant)"
+      },
+      {
+        "name": "containerClass",
+        "type": "string",
+        "required": false,
+        "description": "Custom class for the outermost container"
+      },
+      {
+        "name": "isEditMode",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "If true, prefixes the title with \"Edit \" instead of \"Create \" (only for 'form' variant)"
+      },
+      {
+        "name": "disablePrefix",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "If true, disables the automatic \"Create/Edit\" prefix in 'form' variant"
+      }
+    ],
+    "emits": [],
+    "slots": [
+      {
+        "name": "title",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "subtitle",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "actions",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxListLayout": {
+    "name": "PxListLayout",
+    "description": "",
+    "props": [
+      {
+        "name": "class",
+        "type": "string | null",
+        "default": "\"px-4\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "noCard",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": [
+      {
+        "name": "tabs",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "filter",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "default",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxDropdownMenu": {
+    "name": "PxDropdownMenu",
+    "description": "",
+    "props": [
+      {
+        "name": "items",
+        "type": "ActionMenuItem[]",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": []
+  },
+  "PxNavList": {
+    "name": "PxNavList",
+    "description": "",
+    "props": [
+      {
+        "name": "model",
+        "type": "NavListItem[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "collapsed",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "activePath",
+        "type": "string",
+        "default": "\"\"",
+        "required": false,
+        "description": "Current route path, used to highlight the active link and auto-expand its group"
+      },
+      {
+        "name": "linkComponent",
+        "type": "string | Component",
+        "default": "\"a\"",
+        "required": false,
+        "description": "Component or tag used to render leaf links (defaults to a plain anchor)"
+      }
+    ],
+    "emits": [
+      {
+        "name": "select",
+        "payload": "NavListItem",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "header",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "footer",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxStepper": {
+    "name": "PxStepper",
+    "description": "",
+    "props": [
+      {
+        "name": "showPrevious",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": "Whether to show the Previous button"
+      },
+      {
+        "name": "canProceed",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": "Whether the Next/Proceed button is enabled"
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Loading state - disables buttons and shows spinner"
+      },
+      {
+        "name": "nextLabel",
+        "type": "string",
+        "default": "\"Next\"",
+        "required": false,
+        "description": "Label for the Next button"
+      },
+      {
+        "name": "previousLabel",
+        "type": "string",
+        "default": "\"Previous\"",
+        "required": false,
+        "description": "Label for the Previous button"
+      },
+      {
+        "name": "loadingLabel",
+        "type": "string",
+        "default": "\"Processing...\"",
+        "required": false,
+        "description": "Loading text shown when loading is true"
+      },
+      {
+        "name": "showSave",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Whether to show a Save button alongside Next"
+      },
+      {
+        "name": "saveLabel",
+        "type": "string",
+        "default": "\"Save\"",
+        "required": false,
+        "description": "Label for the Save button"
+      },
+      {
+        "name": "saveLoadingLabel",
+        "type": "string",
+        "default": "\"Saving...\"",
+        "required": false,
+        "description": "Loading text for Save button"
+      },
+      {
+        "name": "hasPermission",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": "If the user has permission to edit/save"
+      }
+    ],
+    "emits": [
+      {
+        "name": "previous",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "next",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "save",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxStepperHeader": {
+    "name": "PxStepperHeader",
+    "description": "",
+    "props": [
+      {
+        "name": "icon",
+        "type": "Component",
+        "required": true,
+        "description": "Lucide icon component to display"
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": true,
+        "description": "Step title text"
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": true,
+        "description": "Step description text"
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Whether this step is required (shows red asterisk)"
+      },
+      {
+        "name": "stepValue",
+        "type": "string | number",
+        "default": "\"1\"",
+        "required": false,
+        "description": "Current step's value from PrimeVue Step slot"
+      },
+      {
+        "name": "activeStep",
+        "type": "string | number",
+        "default": "\"1\"",
+        "required": false,
+        "description": "Current active step value"
+      }
+    ],
+    "emits": [
+      {
+        "name": "activate",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxTabs": {
+    "name": "PxTabs",
+    "description": "",
+    "props": [
+      {
+        "name": "tabs",
+        "type": "TabItemConfig[]",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "modelValue",
+        "type": "string",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "protectedTabs",
+        "type": "string[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "remove-tab",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "actions",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "getback",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxCommandPalette": {
+    "name": "PxCommandPalette",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "commands",
+        "type": "CommandItem[]",
+        "default": "() => []",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "default": "\"Escribe un comando o busca...\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "emptyText",
+        "type": "string",
+        "default": "\"No se encontraron resultados\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disableShortcut",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "shortcutKey",
+        "type": "string",
+        "default": "\"k\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "maxHeight",
+        "type": "string",
+        "default": "\"max-h-80\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "closeOnSelect",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "boolean",
+        "description": ""
+      },
+      {
+        "name": "select",
+        "payload": "CommandItem",
+        "description": ""
+      },
+      {
+        "name": "open",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "close",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "empty",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "group-header",
+        "props": "0",
+        "description": ""
+      },
+      {
+        "name": "item",
+        "props": "0, 1",
+        "description": ""
+      },
+      {
+        "name": "footer",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxAccordion": {
+    "name": "PxAccordion",
+    "description": "",
+    "props": [
+      {
+        "name": "items",
+        "type": "AccordionItem[]",
+        "default": "undefined",
+        "required": false,
+        "description": "Items for programmatic use (optional)"
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Whether multiple panels can be open simultaneously"
+      },
+      {
+        "name": "value",
+        "type": "string | string[]",
+        "default": "undefined",
+        "required": false,
+        "description": "Default open values"
+      }
+    ],
+    "emits": [],
+    "slots": [
+      {
+        "name": "default",
+        "props": "0, 1",
+        "description": ""
+      }
+    ]
+  },
+  "PxBadge": {
+    "name": "PxBadge",
+    "description": "",
+    "props": [
+      {
+        "name": "value",
+        "type": "string | number",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "severity",
+        "type": "BadgeSeverity",
+        "default": "\"primary\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "class",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": [
+      {
+        "name": "default",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxButton": {
+    "name": "PxButton",
+    "description": "",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "\"sm\" | \"md\" | \"lg\"",
+        "default": "'md'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "variant",
+        "type": "\"primary\" | \"secondary\" | \"danger\" | \"ghost\" | \"link\"",
+        "default": "'primary'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "loading",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "iconLeft",
+        "type": "Component",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "iconRight",
+        "type": "Component",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "type",
+        "type": "\"button\" | \"submit\" | \"reset\"",
+        "default": "'button'",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "block",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": [
+      {
+        "name": "default",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxCheckbox": {
+    "name": "PxCheckbox",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "binary",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "binary mode — single boolean"
+      },
+      {
+        "name": "inputId",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "unknown",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "class",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "union",
+        "description": ""
+      },
+      {
+        "name": "change",
+        "payload": "union",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxDialog": {
+    "name": "PxDialog",
+    "description": "",
+    "props": [
+      {
+        "name": "visible",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "header",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "closable",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "modal",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "style",
+        "type": "Record",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "class",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "maxWidth",
+        "type": "string",
+        "default": "\"560px\"",
+        "required": false,
+        "description": "Max-width shorthand, e.g. '600px'"
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:visible",
+        "payload": "boolean",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "header",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "default",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "footer",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxDrawer": {
+    "name": "PxDrawer",
+    "description": "",
+    "props": [
+      {
+        "name": "visible",
+        "type": "boolean",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "header",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "position",
+        "type": "DrawerPosition",
+        "default": "\"right\"",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "closable",
+        "type": "boolean",
+        "default": "true",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "class",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "style",
+        "type": "Record",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:visible",
+        "payload": "boolean",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "header",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "default",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxInputText": {
+    "name": "PxInputText",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "string | number",
+        "default": "''",
+        "required": false,
+        "description": "The value of the input"
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "description": "The label text"
+      },
+      {
+        "name": "error",
+        "type": "string",
+        "required": false,
+        "description": "An error message. Changes input to error state."
+      },
+      {
+        "name": "hint",
+        "type": "string",
+        "required": false,
+        "description": "Hint text to display below the input"
+      },
+      {
+        "name": "type",
+        "type": "\"text\" | \"password\" | \"email\" | \"number\" | \"search\" | \"tel\" | \"url\"",
+        "default": "'text'",
+        "required": false,
+        "description": "Input type, defaults to text"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Native disabled state"
+      },
+      {
+        "name": "readonly",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Native readonly state"
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Mark field as required"
+      },
+      {
+        "name": "iconLeft",
+        "type": "Component",
+        "required": false,
+        "description": "Left icon component"
+      },
+      {
+        "name": "iconRight",
+        "type": "Component",
+        "required": false,
+        "description": "Right icon component"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "required": false,
+        "description": "Placeholder text"
+      },
+      {
+        "name": "autocomplete",
+        "type": "string",
+        "required": false,
+        "description": "Native autocomplete attribute"
+      },
+      {
+        "name": "min",
+        "type": "string | number",
+        "required": false,
+        "description": "Number min"
+      },
+      {
+        "name": "max",
+        "type": "string | number",
+        "required": false,
+        "description": "Number max"
+      },
+      {
+        "name": "step",
+        "type": "string | number",
+        "required": false,
+        "description": "Number step"
+      },
+      {
+        "name": "maxlength",
+        "type": "string | number",
+        "required": false,
+        "description": "Max length"
+      }
+    ],
+    "emits": [
+      {
+        "name": "blur",
+        "payload": "FocusEvent",
+        "description": ""
+      },
+      {
+        "name": "focus",
+        "payload": "FocusEvent",
+        "description": ""
+      },
+      {
+        "name": "update:modelValue",
+        "payload": "union",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxRadioButton": {
+    "name": "PxRadioButton",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "unknown",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "value",
+        "type": "unknown",
+        "required": true,
+        "description": ""
+      },
+      {
+        "name": "inputId",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      },
+      {
+        "name": "class",
+        "type": "string",
+        "default": "undefined",
+        "required": false,
+        "description": ""
+      }
+    ],
+    "emits": [
+      {
+        "name": "update:modelValue",
+        "payload": "unknown",
+        "description": ""
+      },
+      {
+        "name": "change",
+        "payload": "unknown",
+        "description": ""
+      }
+    ],
+    "slots": []
+  },
+  "PxSelect": {
+    "name": "PxSelect",
+    "description": "",
+    "props": [
+      {
+        "name": "modelValue",
+        "type": "any",
+        "required": false,
+        "description": "The value of the select"
+      },
+      {
+        "name": "options",
+        "type": "any[]",
+        "default": "() => []",
+        "required": true,
+        "description": "Array of options to select from"
+      },
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "description": "The label text"
+      },
+      {
+        "name": "error",
+        "type": "string",
+        "required": false,
+        "description": "An error message. Changes select to error state."
+      },
+      {
+        "name": "hint",
+        "type": "string",
+        "required": false,
+        "description": "Hint text to display below the select"
+      },
+      {
+        "name": "placeholder",
+        "type": "string",
+        "default": "'Select...'",
+        "required": false,
+        "description": "Placeholder text"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Native disabled state"
+      },
+      {
+        "name": "required",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Mark field as required"
+      },
+      {
+        "name": "optionLabel",
+        "type": "string",
+        "default": "'label'",
+        "required": false,
+        "description": "Property to use as the label if options are objects"
+      },
+      {
+        "name": "optionValue",
+        "type": "string | TSParenthesizedType",
+        "required": false,
+        "description": "Property to use as the value if options are objects. Can be a string key or a reduce function. If not provided, the whole object is returned."
+      },
+      {
+        "name": "multiple",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Allow multiple selections"
+      },
+      {
+        "name": "searchable",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Enable search input"
+      },
+      {
+        "name": "clearable",
+        "type": "boolean",
+        "default": "false",
+        "required": false,
+        "description": "Allow clearing the selection"
+      },
+      {
+        "name": "filterBy",
+        "type": "TSFunctionType",
+        "required": false,
+        "description": "Custom filter function"
+      }
+    ],
+    "emits": [
+      {
+        "name": "search:blur",
+        "payload": "string",
+        "description": ""
+      },
+      {
+        "name": "update:modelValue",
+        "payload": "any",
+        "description": ""
+      },
+      {
+        "name": "change",
+        "payload": "any",
+        "description": ""
+      },
+      {
+        "name": "search",
+        "payload": "string",
+        "description": ""
+      },
+      {
+        "name": "option:selected",
+        "payload": "any",
+        "description": ""
+      },
+      {
+        "name": "open",
+        "payload": "",
+        "description": ""
+      },
+      {
+        "name": "close",
+        "payload": "",
+        "description": ""
+      }
+    ],
+    "slots": [
+      {
+        "name": "selected-option",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "list-header",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "option",
+        "props": "",
+        "description": ""
+      },
+      {
+        "name": "list-footer",
+        "props": "",
+        "description": ""
+      }
+    ]
+  },
+  "PxTimeline": {
+    "name": "PxTimeline",
+    "description": "",
+    "props": [
+      {
+        "name": "value",
+        "type": "T[]",
+        "required": true,
+        "description": ""
+      }
+    ],
+    "emits": [],
+    "slots": [
+      {
+        "name": "marker",
+        "props": "0, 1",
+        "description": ""
+      },
+      {
+        "name": "content",
+        "props": "0, 1",
+        "description": ""
+      },
+      {
+        "name": "opposite",
+        "props": "0, 1",
+        "description": ""
+      }
+    ]
+  },
+  "PxToast": {
+    "name": "PxToast",
+    "description": "",
+    "props": [],
+    "emits": [],
+    "slots": []
+  }
+}

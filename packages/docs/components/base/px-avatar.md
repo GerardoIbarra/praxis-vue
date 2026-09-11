@@ -1,11 +1,74 @@
 <script setup>
 import { ref } from 'vue'
 import PxAvatar from '@praxis/px-src/components/base/PxAvatar.vue'
+
+const demoName = ref('Luis Kern')
+const demoSize = ref('lg')
+const demoShape = ref('circle')
+const demoLabel = ref(true)
 </script>
 
 # Avatar
 
 A unified avatar component that displays a person's initials or photo. Colors are automatically derived from the name via a hash function for consistent per-person coloring.
+
+## Interactive Playground
+
+<ComponentDemo title="Playground" badge="Interactive" background="dots">
+  <template #controls>
+    <div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;width:100%">
+      <div style="display:flex;align-items:center;gap:0.5rem">
+        <span style="font-size:0.75rem;font-weight:600;color:var(--vp-c-text-2)">Size:</span>
+        <div style="display:inline-flex;padding:2px;background:var(--vp-c-bg-mute);border-radius:6px">
+          <button
+            v-for="s in ['sm', 'md', 'lg', 'xl']"
+            :key="s"
+            style="padding:2px 8px;font-size:0.75rem;border-radius:4px;border:none;cursor:pointer;transition:all 0.15s"
+            :style="demoSize === s ? 'background:var(--vp-c-brand-1);color:#fff;font-weight:600' : 'background:transparent;color:var(--vp-c-text-2)'"
+            @click="demoSize = s"
+          >{{ s }}</button>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.5rem">
+        <span style="font-size:0.75rem;font-weight:600;color:var(--vp-c-text-2)">Shape:</span>
+        <div style="display:inline-flex;padding:2px;background:var(--vp-c-bg-mute);border-radius:6px">
+          <button
+            v-for="sh in ['circle', 'square']"
+            :key="sh"
+            style="padding:2px 8px;font-size:0.75rem;border-radius:4px;border:none;cursor:pointer;transition:all 0.15s"
+            :style="demoShape === sh ? 'background:var(--vp-c-brand-1);color:#fff;font-weight:600' : 'background:transparent;color:var(--vp-c-text-2)'"
+            @click="demoShape = sh"
+          >{{ sh }}</button>
+        </div>
+      </div>
+      <label style="display:flex;align-items:center;gap:0.4rem;cursor:pointer;font-size:0.75rem;color:var(--vp-c-text-1)">
+        <input type="checkbox" v-model="demoLabel" style="accent-color:var(--vp-c-brand-1)" />
+        Show footer label
+      </label>
+    </div>
+  </template>
+  <template #default>
+    <PxAvatar
+      :name="demoName"
+      :size="demoSize"
+      :shape="demoShape"
+      :label="demoLabel"
+    />
+  </template>
+
+  <template #code>
+
+```vue
+<PxAvatar
+  name="Luis Kern"
+  :size="demoSize"
+  :shape="demoShape"
+  :label="demoLabel"
+/>
+```
+
+  </template>
+</ComponentDemo>
 
 ## Initials (Basic)
 
@@ -139,20 +202,9 @@ import { PxAvatar } from 'praxis-vue-ui'
   </template>
 </ComponentDemo>
 
-## Props
+## API Reference
 
-<div class="px-section-header">
-  <span class="px-section-badge badge-props">Props</span>
-</div>
-
-<PropsTable :rows="[
-  { name: 'name', type: 'string | null', default: 'null', description: 'Full name used to generate initials (first + last letter) and as the tooltip.' },
-  { name: 'src', type: 'string | null', default: 'null', description: 'Image URL. When provided and loadable, it replaces the initials. Falls back to initials on error.' },
-  { name: 'size', type: '\'sm\' | \'md\' | \'lg\' | \'xl\'', default: '\'md\'', description: 'Size preset. Maps to fixed pixel dimensions: sm=28px, md=36px, lg=48px, xl=64px.' },
-  { name: 'shape', type: '\'circle\' | \'square\'', default: '\'circle\'', description: 'Shape of the avatar container.' },
-  { name: 'color', type: 'string | \'auto\'', default: '\'auto\'', description: 'Background color. \'auto\' derives the color from the name hash. Pass any CSS color string for custom color.' },
-  { name: 'label', type: 'boolean', default: 'false', description: 'When true, displays the full name below the avatar as a footer label.' },
-]" />
+<ApiReference component="PxAvatar" />
 
 ## Deprecated Components
 

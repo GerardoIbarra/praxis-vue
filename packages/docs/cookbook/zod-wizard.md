@@ -16,49 +16,49 @@ const submissionResult = ref(null)
 const steps = [
   {
     id: 'account',
-    title: 'Información Personal',
-    description: 'Tus credenciales y datos de contacto',
+    title: 'Personal Info',
+    description: 'Your credentials and contact info',
     schema: [
       {
         key: 'fullName',
-        label: 'Nombre Completo',
+        label: 'Full Name',
         type: 'text',
-        placeholder: 'ej. Elena Rostova',
+        placeholder: 'e.g. Elena Rostova',
         required: true
       },
       {
         key: 'email',
-        label: 'Correo Corporativo',
+        label: 'Corporate Email',
         type: 'text',
-        placeholder: 'elena@empresa.com',
+        placeholder: 'elena@company.com',
         required: true
       }
     ],
     validate: (data) => {
       if (!data.fullName || data.fullName.trim().length < 3) {
-        return 'El nombre completo debe tener al menos 3 caracteres'
+        return 'Full name must have at least 3 characters'
       }
       if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-        return 'Por favor ingresa un correo electrónico válido'
+        return 'Please enter a valid email address'
       }
       return true
     }
   },
   {
     id: 'company',
-    title: 'Organización & Rol',
-    description: 'Datos del equipo de trabajo',
+    title: 'Organization & Role',
+    description: 'Workspace and team details',
     schema: [
       {
         key: 'orgName',
-        label: 'Nombre de la Organización',
+        label: 'Organization Name',
         type: 'text',
-        placeholder: 'ej. Praxis Labs',
+        placeholder: 'e.g. Praxis Labs',
         required: true
       },
       {
         key: 'role',
-        label: 'Tu Cargo / Especialidad',
+        label: 'Role / Specialty',
         type: 'select',
         options: [
           { label: 'Engineering / Dev', value: 'eng' },
@@ -71,26 +71,26 @@ const steps = [
     ],
     validate: (data) => {
       if (!data.orgName || data.orgName.trim().length < 2) {
-        return 'El nombre de la organización es obligatorio'
+        return 'Organization name is required'
       }
       if (!data.role) {
-        return 'Selecciona tu cargo o especialidad'
+        return 'Please select your role or specialty'
       }
       return true
     }
   },
   {
     id: 'plan',
-    title: 'Plan & Preferencias',
-    description: 'Configuración final de cuenta',
+    title: 'Plan & Summary',
+    description: 'Account subscription tier',
     schema: [
       {
         key: 'plan',
-        label: 'Selecciona tu Plan',
+        label: 'Select Your Plan',
         type: 'select',
         options: [
-          { label: 'Starter (Gratis)', value: 'free' },
-          { label: 'Professional ($29/mes)', value: 'pro' },
+          { label: 'Starter (Free)', value: 'free' },
+          { label: 'Professional ($29/mo)', value: 'pro' },
           { label: 'Enterprise (Custom)', value: 'enterprise' }
         ]
       }
@@ -103,30 +103,30 @@ function handleComplete(payload) {
 }
 </script>
 
-# Multi-Step Form Wizard con Validación de Esquemas Zod
+# Multi-Step Form Wizard with Zod Schema Validation
 
-Los flujos de registro empresarial, configuración de proyectos o checkouts complejos suelen dividirse en múltiples pasos para no saturar al usuario. Sin embargo, un desafío crítico es **asegurar que cada paso valide sus campos de forma estricta antes de permitir avanzar**, evitando estados inválidos en la base de datos.
+Enterprise registration flows, project setups, or complex checkout journeys are typically divided into multiple steps to avoid overwhelming users. A critical engineering requirement is **ensuring that each step strictly validates its input before allowing progression**, preventing partial or invalid states from reaching the server.
 
-Esta receta enseña a orquestar `PxFormWizard` en conjunto con **Zod** para una validación robusta y tipada por cada etapa del formulario.
+This recipe teaches how to integrate `PxFormWizard` with **Zod** for robust, typed validation per step.
 
 ---
 
-## Demostración Interactiva
+## Interactive Demonstration
 
-Prueba avanzar sin completar los campos requeridos: `PxFormWizard` detendrá la navegación, mostrará una alerta descriptiva y focalizará el error. Al completar el último paso, se capturará el payload final.
+Try advancing without filling in the required fields: `PxFormWizard` intercepts navigation, displays a focused error message, and retains step state. Upon completing the final step, the validated payload is emitted.
 
-<ComponentDemo title="Wizard de Registro con Validación por Paso">
+<ComponentDemo title="Multi-Step Registration Wizard with Step-Level Validation">
   <div style="width:100%" class="space-y-4">
     <PxFormWizard
       v-model="wizardState"
       :steps="steps"
-      next-label="Continuar"
-      previous-label="Atrás"
-      complete-label="Confirmar y Crear Cuenta"
+      next-label="Continue"
+      previous-label="Back"
+      complete-label="Confirm & Create Account"
       @complete="handleComplete"
     />
     <div v-if="submissionResult" style="margin-top:16px;padding:16px;border-radius:12px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);font-size:0.85rem;">
-      <div style="font-weight:600;color:var(--vp-c-brand-1);margin-bottom:8px;">✓ Payload Final Validado:</div>
+      <div style="font-weight:600;color:var(--vp-c-brand-1);margin-bottom:8px;">✓ Validated Final Payload:</div>
       <pre style="margin:0;font-family:monospace;font-size:0.8rem;">{{ JSON.stringify(submissionResult, null, 2) }}</pre>
     </div>
   </div>
@@ -139,18 +139,18 @@ import { ref } from 'vue'
 import { PxFormWizard, type WizardStep } from 'praxis-vue-ui'
 import { z } from 'zod'
 
-// 1. Definición de Esquemas Zod por Paso
+// 1. Zod Schemas per step
 const accountSchema = z.object({
-  fullName: z.string().min(3, 'El nombre debe tener al menos 3 caracteres'),
-  email: z.string().email('Ingresa un correo electrónico corporativo válido')
+  fullName: z.string().min(3, 'Full name must have at least 3 characters'),
+  email: z.string().email('Please enter a valid corporate email')
 })
 
 const companySchema = z.object({
-  orgName: z.string().min(2, 'El nombre de la empresa es obligatorio'),
-  role: z.string().min(1, 'Selecciona tu cargo')
+  orgName: z.string().min(2, 'Organization name is required'),
+  role: z.string().min(1, 'Please select your role')
 })
 
-// 2. Estado reactivo del formulario completo
+// 2. Reactive form state across all steps
 const formState = ref({
   fullName: '',
   email: '',
@@ -159,34 +159,33 @@ const formState = ref({
   plan: 'pro'
 })
 
-// 3. Configuración de Pasos con Validación Zod
+// 3. Step configurations with Zod safeParse
 const steps: WizardStep[] = [
   {
     id: 'account',
-    title: 'Información Personal',
-    description: 'Credenciales de acceso',
+    title: 'Personal Info',
+    description: 'Login credentials',
     schema: [
-      { key: 'fullName', label: 'Nombre Completo', type: 'text', required: true },
-      { key: 'email', label: 'Correo Corporativo', type: 'text', required: true }
+      { key: 'fullName', label: 'Full Name', type: 'text', required: true },
+      { key: 'email', label: 'Corporate Email', type: 'text', required: true }
     ],
-    // Validador utilizando el schema Zod
     validate: (data) => {
       const result = accountSchema.safeParse(data)
       if (!result.success) {
-        return result.error.issues[0]?.message || 'Error en los datos de cuenta'
+        return result.error.issues[0]?.message || 'Account validation error'
       }
       return true
     }
   },
   {
     id: 'company',
-    title: 'Organización & Rol',
-    description: 'Detalles del espacio de trabajo',
+    title: 'Organization & Role',
+    description: 'Workspace details',
     schema: [
-      { key: 'orgName', label: 'Organización', type: 'text', required: true },
+      { key: 'orgName', label: 'Organization', type: 'text', required: true },
       {
         key: 'role',
-        label: 'Cargo',
+        label: 'Role',
         type: 'select',
         options: [
           { label: 'Engineering', value: 'eng' },
@@ -198,15 +197,15 @@ const steps: WizardStep[] = [
     validate: (data) => {
       const result = companySchema.safeParse(data)
       if (!result.success) {
-        return result.error.issues[0]?.message || 'Error en datos corporativos'
+        return result.error.issues[0]?.message || 'Organization validation error'
       }
       return true
     }
   },
   {
     id: 'plan',
-    title: 'Plan & Resumen',
-    description: 'Selección de suscripción',
+    title: 'Plan & Summary',
+    description: 'Subscription selection',
     schema: [
       {
         key: 'plan',
@@ -214,7 +213,7 @@ const steps: WizardStep[] = [
         type: 'select',
         options: [
           { label: 'Starter', value: 'free' },
-          { label: 'Pro ($29/mes)', value: 'pro' }
+          { label: 'Pro ($29/mo)', value: 'pro' }
         ]
       }
     ]
@@ -222,8 +221,8 @@ const steps: WizardStep[] = [
 ]
 
 async function onWizardComplete(finalPayload: typeof formState.value) {
-  console.log('Enviando payload al backend:', finalPayload)
-  // Envío a la API: await api.post('/register', finalPayload)
+  console.log('Submitting validated payload:', finalPayload)
+  // await api.post('/register', finalPayload)
 }
 </script>
 
@@ -231,9 +230,9 @@ async function onWizardComplete(finalPayload: typeof formState.value) {
   <PxFormWizard
     v-model="formState"
     :steps="steps"
-    next-label="Continuar"
-    previous-label="Atrás"
-    complete-label="Finalizar Registro"
+    next-label="Continue"
+    previous-label="Back"
+    complete-label="Complete Registration"
     @complete="onWizardComplete"
   />
 </template>
@@ -244,22 +243,22 @@ async function onWizardComplete(finalPayload: typeof formState.value) {
 
 ---
 
-## Patrones y Buenas Prácticas
+## Patterns & Best Practices
 
-### 1. `safeParse` en lugar de `parse`
-Al validar formularios reactivos, evita que Zod arroje excepciones no controladas (`throw`). Utiliza `safeParse()`:
+### 1. `safeParse` instead of `parse`
+When validating user forms reactively, avoid letting Zod throw uncaught exceptions. Use `safeParse()`:
 
 ```ts
 const result = accountSchema.safeParse(data)
 if (!result.success) {
-  // Retorna el primer mensaje de error para mostrar al usuario
+  // Return the first human-readable error message to display
   return result.error.issues[0]?.message
 }
 return true
 ```
 
-### 2. Guardado de Progreso en `localStorage`
-Para evitar frustraciones si el usuario recarga la página por accidente o pierde la conexión, puedes sincronizar el modelo del Wizard con `useStorage` de `@vueuse/core`:
+### 2. Persisting Progress to `localStorage`
+To prevent user frustration from accidental page reloads or network drops, synchronize wizard state with `useStorage` from `@vueuse/core`:
 
 ```ts
 import { useStorage } from '@vueuse/core'
@@ -272,20 +271,20 @@ const formState = useStorage('praxis_onboarding_draft', {
   plan: 'pro'
 })
 
-// Al completar con éxito, limpias el borrador:
+// Clear draft on successful completion:
 function onWizardComplete() {
   localStorage.removeItem('praxis_onboarding_draft')
 }
 ```
 
-### 3. Validación Asíncrona (Unicidad de Usuario o Subdominio)
-Si requieres verificar si un nombre de usuario o subdominio ya existe en el servidor antes de permitir pasar al paso 2, la función `validate` de cada paso puede ser asíncrona:
+### 3. Asynchronous Validation (Username / Subdomain Uniqueness)
+If you need to check whether an organization name or subdomain is available on the server before proceeding to step 2, step `validate` functions can be async:
 
 ```ts
 validate: async (data) => {
   const isAvailable = await checkOrgAvailability(data.orgName)
   if (!isAvailable) {
-    return 'Este nombre de organización ya se encuentra en uso'
+    return 'This organization name is already taken'
   }
   return true
 }

@@ -113,7 +113,7 @@ function copyDir(src, dest) {
     if (entry.isDirectory()) {
       copyDir(srcPath, destPath)
     } else {
-      if (!existsSync(destPath) || statSync(srcPath).mtimeMs > statSync(destPath).mtimeMs) {
+      if (!existsSync(destPath)) {
         copyFileSync(srcPath, destPath)
       }
     }

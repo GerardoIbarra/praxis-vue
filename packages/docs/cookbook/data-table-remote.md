@@ -20,11 +20,11 @@ const DATABASE = [
 ]
 
 const columns = [
-  { field: 'name', header: 'Usuario', sortable: true },
-  { field: 'role', header: 'Rol / Puesto', sortable: true },
-  { field: 'department', header: 'Departamento', sortable: true },
-  { field: 'status', header: 'Estado', sortable: false },
-  { field: 'sales', header: 'Ventas ($)', sortable: true },
+  { field: 'name', header: 'User', sortable: true },
+  { field: 'role', header: 'Role / Position', sortable: true },
+  { field: 'department', header: 'Department', sortable: true },
+  { field: 'status', header: 'Status', sortable: false },
+  { field: 'sales', header: 'Sales ($)', sortable: true },
 ]
 
 // Remote state
@@ -110,30 +110,30 @@ onMounted(() => {
 })
 </script>
 
-# Data Table Remota: Paginación, Ordenamiento y Búsqueda Debounced
+# Remote Data Table: Server-Side Pagination, Sorting & Debounced Search
 
-En aplicaciones empresariales con miles o millones de registros, cargar todo el conjunto de datos en el navegador del cliente es inviable. Esta receta demuestra la arquitectura recomendada para implementar **paginación server-side**, **ordenamiento remoto** y **búsqueda en tiempo real con debounce** utilizando `PxDataTable`.
+In enterprise applications with thousands or millions of records, loading the entire dataset into the client browser is unfeasible. This recipe demonstrates the recommended architecture for implementing **server-side pagination**, **remote sorting**, and **real-time debounced search** using `PxDataTable`.
 
 ---
 
-## Demostración Interactiva
+## Interactive Demonstration
 
-Interactúa con la tabla a continuación. Los datos se consultan con un retardo simulado de **400ms** mostrando el estado de carga (`loading`), conservando los parámetros de consulta y recalculando el total de páginas dinámicamente.
+Interact with the table below. The data is fetched with a simulated **400ms network delay**, displaying the loading skeleton state (`loading`), preserving query parameters, and dynamically updating total count and pages.
 
-<ComponentDemo title="Tabla Remota con Búsqueda y Paginación Asíncrona">
+<ComponentDemo title="Remote Table with Async Search and Pagination">
   <div style="width:100%" class="space-y-4">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;gap:12px;flex-wrap:wrap;">
       <div style="position:relative;max-width:320px;width:100%;">
         <input
           type="text"
           :value="searchQuery"
-          placeholder="Buscar por nombre, rol..."
+          placeholder="Search by name, role, department..."
           @input="handleSearchInput"
           style="width:100%;padding:7px 12px;font-size:0.875rem;border-radius:8px;border:1px solid var(--vp-c-divider);background:var(--vp-c-bg-alt);color:var(--vp-c-text-1);outline:none;transition:border-color 0.15s;"
         />
       </div>
       <div style="font-size:0.8rem;color:var(--vp-c-text-2);">
-        Registros filtrados: <strong style="color:var(--vp-c-brand-1)">{{ totalRecords }}</strong>
+        Filtered records: <strong style="color:var(--vp-c-brand-1)">{{ totalRecords }}</strong>
       </div>
     </div>
     <PxDataTable
@@ -180,14 +180,14 @@ interface UserItem {
 }
 
 const columns = [
-  { field: 'name', header: 'Usuario', sortable: true },
-  { field: 'role', header: 'Rol / Puesto', sortable: true },
-  { field: 'department', header: 'Departamento', sortable: true },
-  { field: 'status', header: 'Estado', sortable: false },
-  { field: 'sales', header: 'Ventas ($)', sortable: true },
+  { field: 'name', header: 'User', sortable: true },
+  { field: 'role', header: 'Role / Position', sortable: true },
+  { field: 'department', header: 'Department', sortable: true },
+  { field: 'status', header: 'Status', sortable: false },
+  { field: 'sales', header: 'Sales ($)', sortable: true },
 ]
 
-// Estado remoto
+// Remote state
 const items = ref<UserItem[]>([])
 const totalRecords = ref(0)
 const isLoading = ref(false)
@@ -199,7 +199,7 @@ const sortOrder = ref(1)
 
 let debounceTimer: ReturnType<typeof setTimeout> | null = null
 
-// Función de consulta a tu backend (API REST / GraphQL)
+// Backend fetcher (REST API / GraphQL)
 async function fetchFromApi(params: {
   page: number
   limit: number
@@ -264,21 +264,21 @@ onMounted(() => {
 
 <template>
   <div class="space-y-4">
-    <!-- Barra de Búsqueda -->
+    <!-- Search Bar -->
     <div class="flex justify-between items-center">
       <input
         type="search"
         :value="searchQuery"
-        placeholder="Buscar usuarios..."
+        placeholder="Search users..."
         class="px-3 py-1.5 text-sm rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900"
         @input="handleSearch"
       />
       <span class="text-xs text-slate-500">
-        Total: {{ totalRecords }} registros
+        Total: {{ totalRecords }} records
       </span>
     </div>
 
-    <!-- Data Table Reactiva -->
+    <!-- Reactive Data Table -->
     <PxDataTable
       :items="items"
       :columns="columns"
@@ -290,7 +290,7 @@ onMounted(() => {
       @page="handlePageChange"
       @sort="handleSort"
     >
-      <!-- Renderizado Personalizado con Slots -->
+      <!-- Custom Slot Renderers -->
       <template #status="{ row }">
         <PxBadge :variant="row.status === 'Active' ? 'success' : 'neutral'">
           {{ row.status }}
@@ -312,33 +312,33 @@ onMounted(() => {
 
 ---
 
-## Paso a Paso: Implementación
+## Step-by-Step Implementation
 
-### 1. Definición del Contrato de Estado
-Para sincronizar la vista con el servidor, mantén variables reactivas dedicadas:
-- `currentPage`: Página activa (1-indexed).
-- `pageSize`: Cantidad de filas por página (`10`, `25`, `50`).
-- `sortField` y `sortOrder`: Columna y dirección (`1` para ascendente, `-1` para descendente).
-- `isLoading`: Para mostrar el estado visual esqueleto de `PxDataTable`.
+### 1. State Contract Definition
+To synchronize the table view with the server, maintain dedicated reactive variables:
+- `currentPage`: Current active page (1-indexed).
+- `pageSize`: Number of rows per page (`10`, `25`, `50`).
+- `sortField` & `sortOrder`: Active sorting column and direction (`1` for ascending, `-1` for descending).
+- `isLoading`: Triggers the built-in skeleton loading state of `PxDataTable`.
 
-### 2. Evitar peticiones redundantes con Debounce
-Al escribir en el campo de búsqueda, nunca dispares una solicitud HTTP por cada tecla pulsada. Utiliza un temporizador o `useDebounceFn` de `@vueuse/core` con un retraso estándar de **300ms**:
+### 2. Avoid Redundant Queries with Debounce
+When typing in the search input, never dispatch an HTTP request on every keystroke. Use a timer or `useDebounceFn` from `@vueuse/core` with a standard **300ms** delay:
 
 ```ts
 import { useDebounceFn } from '@vueuse/core'
 
 const debouncedSearch = useDebounceFn((term: string) => {
   searchQuery.value = term
-  currentPage.value = 1 // Reinicia a la primera página tras filtrar
+  currentPage.value = 1 // Reset to first page when query changes
   loadData()
 }, 300)
 ```
 
-### 3. Escuchar los Eventos `@page` y `@sort`
-`PxDataTable` emite eventos limpios con el nuevo payload cada vez que el usuario interactúa:
-- `@page="{ page, rows }"`: Cuando cambia de página o altera el selector de filas.
-- `@sort="{ field, order }"`: Al pulsar sobre cualquier cabecera con `sortable: true`.
+### 3. Listening to `@page` and `@sort` Events
+`PxDataTable` emits clean payloads whenever the user interacts:
+- `@page="{ page, rows }"`: When changing page number or changing rows per page.
+- `@sort="{ field, order }"`: When clicking any header with `sortable: true`.
 
-::: tip Cancelación de Solicitudes Anteriores (AbortController)
-Si el usuario escribe rápidamente o cambia de página varias veces seguidas, es una buena práctica utilizar `AbortController` para abortar cualquier petición en vuelo y evitar condiciones de carrera (*race conditions*).
+::: tip Request Cancellation (AbortController)
+If users rapidly type or switch pages, utilize an `AbortController` to abort any pending in-flight HTTP request to prevent race conditions.
 :::

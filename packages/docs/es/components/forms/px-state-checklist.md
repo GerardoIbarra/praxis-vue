@@ -36,13 +36,13 @@ const sampleInputField = {
 
 # PxStateChecklist
 
-A dynamic, schema-driven checklist component designed to render complex tri-state options (True/False/Flagged) for a predefined list of items. It supports optional text inputs per item based on the schema configuration.
+Un componente dinámico impulsado por esquemas, diseñado para representar opciones de tres estados (Verdadero/Falso/Marcado) sobre listas de elementos. Soporta campos de texto opcionales por elemento según la configuración del esquema.
 
-## Standard Checklist
+## Lista de Verificación Estándar
 
-Renders a list of items with True (✓), False (✗), and Flagged (⚑) options.
+Renderiza una lista de elementos con opciones de Verdadero (✓), Falso (✗) y Marcado (⚑).
 
-<ComponentDemo title="Standard Checklist">
+<ComponentDemo title="Lista de Verificación Estándar">
   <div style="width:100%">
     <PxStateChecklist :field="sampleField" v-model="fieldData1" :default-open="true" />
   </div>
@@ -56,15 +56,15 @@ import { PxStateChecklist } from 'praxis-vue-ui'
 
 const data = ref({})
 const field = {
-  label: "System Preferences",
+  label: "Preferencias del Sistema",
   type: "check_list",
   fields: {
     list_children: [
-      { key: "auto_save", label: "Auto Save", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
-      { key: "dark_mode", label: "Dark Mode", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
-      { key: "notifications", label: "Push Notifications", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
-      { key: "telemetry", label: "Send Telemetry Data", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
-      { key: "hardware_accel", label: "Hardware Acceleration", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] }
+      { key: "auto_save", label: "Guardado Automático", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "dark_mode", label: "Modo Oscuro", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "notifications", label: "Notificaciones Push", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "telemetry", label: "Enviar Telemetría", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] },
+      { key: "hardware_accel", label: "Aceleración por Hardware", components: [{ type: "radio", value: null }, { type: "checkbox", checked: false }] }
     ]
   }
 }
@@ -78,11 +78,11 @@ const field = {
   </template>
 </ComponentDemo>
 
-## Checklist With Inputs
+## Lista con Campos de Entrada
 
-If the schema contains `input_father` or `input` components for list children, the component automatically adapts to render text fields.
+Si el esquema contiene componentes `input_father` o `input` para elementos hijos, el componente se adapta automáticamente para mostrar campos de entrada de texto.
 
-<ComponentDemo title="Checklist with Inputs">
+<ComponentDemo title="Checklist con Entradas de Texto">
   <div style="width:100%">
     <PxStateChecklist :field="sampleInputField" v-model="fieldData2" :default-open="true" />
   </div>
@@ -96,19 +96,19 @@ If the schema contains `input_father` or `input` components for list children, t
   </template>
 </ComponentDemo>
 
-## API Reference
+## Referencia de la API
 
 <ApiReference component="PxStateChecklist" />
 
-### Exposed Methods
+### Métodos Expuestos
 
-Can be accessed via a template ref to control the checklist programmatically:
+Se puede acceder mediante una referencia de plantilla (`template ref`) para controlar la lista de verificación de forma programática:
 
-| Name | Description |
+| Nombre | Descripción |
 |---|---|
-| `clearAll()` | Resets all selections and text inputs to their default empty states. |
-| `setRestFalse()` | Sets the radio value to "no" for all items that haven't been answered yet. |
-| `setAllFalse()` | Sets the radio value to "no" for all items, overwriting current answers. |
+| `clearAll()` | Restablece todas las selecciones y campos de texto a sus estados vacíos predeterminados. |
+| `setRestFalse()` | Establece el valor de radio en "no" para todos los elementos que aún no han sido respondidos. |
+| `setAllFalse()` | Establece el valor de radio en "no" para todos los elementos, sobrescribiendo las respuestas actuales. |
 
 > [!NOTE]
-> This component is designed for schema-driven dynamic forms. For simple checklist needs without a schema, consider using `PxCheckbox` directly.
+> Este componente está diseñado para formularios dinámicos guiados por esquemas. Para listas de verificación simples sin esquemas, considere usar `PxCheckbox` directamente.

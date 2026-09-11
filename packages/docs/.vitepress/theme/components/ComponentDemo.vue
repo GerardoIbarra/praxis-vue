@@ -16,6 +16,7 @@ const props = withDefaults(defineProps<{
 
 const showCode = ref(props.defaultOpenCode)
 const copied = ref(false)
+const openingStackBlitz = ref(false)
 const codeContainer = ref<HTMLElement | null>(null)
 
 const toggleCode = () => {
@@ -35,6 +36,91 @@ const copyCode = async () => {
     // clipboard not available
   }
 }
+
+const openStackBlitz = async () => {
+  const rawCode = codeContainer.value?.querySelector('code')?.textContent || ''
+  if (!rawCode) return
+
+  openingStackBlitz.value = true
+  try {
+    const { default: sdk } = await import('@stackblitz/sdk')
+
+    let appContent = rawCode.trim()
+    if (!appContent.includes('<template>')) {
+      appContent = `<script setup>\nimport { ref } from 'vue'\nimport 'praxis-vue-ui/dist/praxis-vue.css'\n</` + `script>\n\n<template>\n  <div style="padding: 2.5rem; display: flex; justify-content: center; align-items: center; min-height: 100vh;">\n    ${appContent}\n  </div>\n</template>`
+    }
+
+    sdk.openProject(
+      {
+        title: `Praxis Vue - ${props.title}`,
+        description: `Live interactive playground for ${props.title}`,
+        template: 'node',
+        files: {
+          'package.json': JSON.stringify(
+            {
+              name: 'praxis-vue-playground',
+              private: true,
+              version: '0.0.0',
+              type: 'module',
+              scripts: {
+                dev: 'vite',
+                build: 'vite build',
+              },
+              dependencies: {
+                vue: '^3.5.0',
+                'praxis-vue-ui': 'latest',
+                primevue: '^4.0.0',
+                '@primeuix/themes': 'latest',
+                '@lucide/vue': 'latest',
+              },
+              devDependencies: {
+                vite: '^5.4.0',
+                '@vitejs/plugin-vue': '^5.1.0',
+              },
+            },
+            null,
+            2
+          ),
+          'vite.config.js': `import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
+export default defineConfig({
+  plugins: [vue()],
+})`,
+          'index.html': `<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Praxis Vue - ${props.title}</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></` + `script>
+  </body>
+</html>`,
+          'src/main.js': `import { createApp } from 'vue'
+import PrimeVue from 'primevue/config'
+import Aura from '@primeuix/themes/aura'
+import 'praxis-vue-ui/dist/praxis-vue.css'
+import App from './App.vue'
+
+const app = createApp(App)
+app.use(PrimeVue, { theme: { preset: Aura } })
+app.mount('#app')`,
+          'src/App.vue': appContent,
+        },
+      },
+      {
+        openFile: 'src/App.vue',
+      }
+    )
+  } catch (err) {
+    console.error('Failed to open StackBlitz:', err)
+  } finally {
+    openingStackBlitz.value = false
+  }
+}
 </script>
 
 <template>
@@ -46,6 +132,20 @@ const copyCode = async () => {
       </div>
 
       <div class="praxis-demo-header-actions">
+        <!-- StackBlitz Button (visible when code slot exists) -->
+        <button
+          v-if="$slots.code"
+          class="praxis-demo-btn praxis-demo-btn-stackblitz"
+          :disabled="openingStackBlitz"
+          title="Open in StackBlitz cloud sandbox"
+          @click="openStackBlitz"
+        >
+          <svg class="praxis-demo-btn-icon text-amber-500" width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <span>{{ openingStackBlitz ? 'Loading...' : 'StackBlitz' }}</span>
+        </button>
+
         <!-- Copy Button (visible when code slot exists) -->
         <button
           v-if="$slots.code"

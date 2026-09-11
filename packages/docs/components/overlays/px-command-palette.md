@@ -123,22 +123,9 @@ const commands: CommandItem[] = [
   </template>
 </ComponentDemo>
 
-## Props
+## API Reference
 
-<div class="px-section-header">
-  <span class="px-section-badge badge-props">Props</span>
-</div>
-
-<PropsTable :rows="[
-  { name: 'modelValue', type: 'boolean', default: 'false', description: 'Controls the visibility of the palette modal (two-way binding via v-model).' },
-  { name: 'commands', type: 'CommandItem[]', default: '[]', description: 'Array of command objects to display and filter.' },
-  { name: 'placeholder', type: 'string', default: '\'Escribe un comando o busca...\'', description: 'Placeholder for the search input.' },
-  { name: 'emptyText', type: 'string', default: '\'No se encontraron resultados\'', description: 'Text shown when search yields no matches.' },
-  { name: 'disableShortcut', type: 'boolean', default: 'false', description: 'Disables the global Ctrl+K / Cmd+K listener.' },
-  { name: 'shortcutKey', type: 'string', default: '\'k\'', description: 'Key combined with Ctrl/Cmd to toggle the palette.' },
-  { name: 'maxHeight', type: 'string', default: '\'max-h-80\'', description: 'Tailwind max-height class for the command list.' },
-  { name: 'closeOnSelect', type: 'boolean', default: 'true', description: 'Automatically closes the palette when an action is selected.' },
-]" />
+<ApiReference component="PxCommandPalette" />
 
 ### CommandItem Interface
 
@@ -156,29 +143,3 @@ interface CommandItem {
   perform?: (item: CommandItem) => void
 }
 ```
-
-## Emits
-
-<div class="px-section-header">
-  <span class="px-section-badge badge-emits">Emits</span>
-</div>
-
-<EmitsTable :rows="[
-  { name: 'update:modelValue', payload: 'boolean', description: 'Emitted when visibility changes.' },
-  { name: 'select', payload: 'CommandItem', description: 'Emitted when a command is executed via Enter or click.' },
-  { name: 'open', payload: 'void', description: 'Emitted when the palette opens.' },
-  { name: 'close', payload: 'void', description: 'Emitted when the palette closes.' },
-]" />
-
-## Slots
-
-<div class="px-section-header">
-  <span class="px-section-badge badge-slots">Slots</span>
-</div>
-
-| Slot | Scope | Description |
-|------|-------|-------------|
-| `item` | `{ item: CommandItem, active: boolean }` | Custom command item template. |
-| `group-header` | `{ group: string }` | Custom header for grouped sections. |
-| `empty` | `{}` | Custom empty state when no items match. |
-| `footer` | `{}` | Custom footer bar with shortcut hints. |

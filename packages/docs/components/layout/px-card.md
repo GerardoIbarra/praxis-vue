@@ -34,8 +34,6 @@ import { PxCard } from 'praxis-vue-ui'
   </template>
 </ComponentDemo>
 
-## Slots
+## API Reference
 
-| Slot | Description |
-|------|-------------|
-| `default` | Card body content. |
+<ApiReference component="PxCard" />

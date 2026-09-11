@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@lucide/vue": "^1.27.0",
+    "@stackblitz/sdk": "^1.11.1",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "@vueuse/core": "^14.3.0",

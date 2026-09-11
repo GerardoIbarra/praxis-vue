@@ -45,10 +45,19 @@ export default withPwa(defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Components', link: '/components/forms/time-picker' },
+      { text: 'Cookbook', link: '/cookbook/data-table-remote' },
       { text: 'GitHub', link: 'https://github.com/GerardoIbarra/praxis-vue' },
     ],
 
     sidebar: [
+      {
+        text: 'Cookbook (Recetas)',
+        collapsed: false,
+        items: [
+          { text: 'Data Table Remota con Filtros', link: '/cookbook/data-table-remote' },
+          { text: 'Multi-Step Wizard con Zod', link: '/cookbook/zod-wizard' },
+        ],
+      },
       {
         text: 'Forms',
         collapsed: false,

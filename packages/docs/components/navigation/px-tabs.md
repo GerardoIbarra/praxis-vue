@@ -81,25 +81,17 @@ const tabs = [
   </template>
 </ComponentDemo>
 
-## Props
+## API Reference
 
-<div class="px-section-header">
-  <span class="px-section-badge badge-props">Props</span>
-</div>
+<ApiReference component="PxTabs" />
 
-<PropsTable :rows="[
-  { name: 'tabs', type: 'GeneralTabsProfile[]', required: true, description: 'Array of tab definitions. Each item must have key, label, icon, and show.' },
-  { name: 'modelValue', type: 'string', required: true, description: 'The key of the currently active tab. Use with v-model.' },
-  { name: 'protectedTabs', type: 'string[]', default: '[]', description: 'Array of tab keys that are disabled when their enabled property is false.' },
-]" />
-
-## Tab Object Shape
+### Tab Object Shape
 
 ```ts
-interface GeneralTabsProfile {
+interface TabItemConfig {
   key: string            // Unique identifier, used as modelValue
   label: string          // Display text
-  icon: string           // Lucide icon name (e.g. 'User', 'Calendar')
+  icon?: string          // Lucide icon name (e.g. 'User', 'Calendar')
   show?: boolean         // Hide tab entirely when false (default: true)
   enabled?: boolean      // Used with protectedTabs to disable a tab
   tooltip?: string       // Optional tooltip on hover
@@ -107,25 +99,3 @@ interface GeneralTabsProfile {
   command?: () => void   // Custom function to run on click (skips tab switching)
 }
 ```
-
-## Emits
-
-<div class="px-section-header">
-  <span class="px-section-badge badge-emits">Emits</span>
-</div>
-
-<EmitsTable :rows="[
-  { name: 'update:modelValue', payload: 'string', description: 'Emitted when the user clicks a tab. Value is the clicked tab\'s key.' },
-  { name: 'remove-tab', payload: 'string | number', description: 'Emitted when the user clicks the ✕ remove button on a tab (requires removeTab: true on the tab).' },
-]" />
-
-## Slots
-
-<div class="px-section-header">
-  <span class="px-section-badge badge-slots">Slots</span>
-</div>
-
-| Slot | Description |
-|------|-------------|
-| `actions` | Content placed in the right side of the tab bar. Useful for action buttons. |
-| `getback` | Additional right-side slot for back/return navigation. |

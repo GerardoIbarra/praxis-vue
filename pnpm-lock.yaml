@@ -67,6 +67,9 @@ importers:
       '@lucide/vue':
         specifier: ^1.27.0
         version: 1.30.0(vue@3.5.41(typescript@7.0.2))
+      '@stackblitz/sdk':
+        specifier: ^1.11.1
+        version: 1.11.1
       '@vercel/analytics':
         specifier: ^2.0.1
         version: 2.0.1(react@19.2.8)(vue@3.5.41(typescript@7.0.2))
@@ -1763,6 +1766,9 @@ packages:
 
   '@shikijs/vscode-textmate@10.0.2':
     resolution: {integrity: sha512-83yeghZ2xxin3Nj8z1NMd/NCuca+gsYXswywDy5bHvwlWL8tpTQmzGeUuHd9FC3E/SBEMvzJRwWEOz5gGes9Qg==}
+
+  '@stackblitz/sdk@1.11.1':
+    resolution: {integrity: sha512-5wl1j3IhtmE7POTl2W9VGQdbQyBQrRsF3jcYBK+0V353AuO8H2GFZkiFNyTRxL+TDY3HIFCHc3G983Osmg76Lg==}
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
@@ -6433,6 +6439,8 @@ snapshots:
       '@types/hast': 3.0.5
 
   '@shikijs/vscode-textmate@10.0.2': {}
+
+  '@stackblitz/sdk@1.11.1': {}
 
   '@standard-schema/spec@1.1.0': {}
 

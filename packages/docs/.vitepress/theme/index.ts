@@ -11,6 +11,7 @@ import EmitsTable from './components/EmitsTable.vue'
 import SlotsTable from './components/SlotsTable.vue'
 import ApiReference from './components/ApiReference.vue'
 import HeroShowcase from './components/HeroShowcase.vue'
+import ThemeColorPicker from './components/ThemeColorPicker.vue'
 import ReloadPrompt from './components/ReloadPrompt.vue'
 import { Analytics } from '@vercel/analytics/vue'
 import { SpeedInsights } from '@vercel/speed-insights/vue'
@@ -20,6 +21,7 @@ export default {
   Layout() {
     return h(DefaultTheme.Layout, null, {
       'home-hero-after': () => h(HeroShowcase),
+      'nav-bar-content-after': () => h(ThemeColorPicker),
       'layout-bottom': () => [
         h(ReloadPrompt), 
         import.meta.env.PROD ? h(Analytics) : null,
@@ -35,5 +37,6 @@ export default {
     app.component('SlotsTable', SlotsTable)
     app.component('ApiReference', ApiReference)
     app.component('HeroShowcase', HeroShowcase)
+    app.component('ThemeColorPicker', ThemeColorPicker)
   },
 } satisfies Theme

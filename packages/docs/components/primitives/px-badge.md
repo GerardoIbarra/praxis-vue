@@ -32,10 +32,6 @@ import { PxBadge } from 'praxis-vue-ui'
   </template>
 </ComponentDemo>
 
-## Props
+## API Reference
 
-<PropsTable :rows="[
-  { name: 'value', type: 'string | number', default: 'undefined', description: 'Text or number displayed inside the badge.' },
-  { name: 'severity', type: '\'success\' | \'info\' | \'warning\' | \'danger\' | \'secondary\'', default: '\'info\'', description: 'Color variant of the badge.' },
-  { name: 'size', type: '\'small\' | \'normal\' | \'large\'', default: '\'normal\'', description: 'Size of the badge.' },
-]" />
+<ApiReference component="PxBadge" />

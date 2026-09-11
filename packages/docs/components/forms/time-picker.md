@@ -113,31 +113,9 @@ const time = ref('14:45') // stored as 24h
   </template>
 </ComponentDemo>
 
-## Props
+## API Reference
 
-<div class="px-section-header">
-  <span class="px-section-badge badge-props">Props</span>
-</div>
-
-<PropsTable :rows="[
-  { name: 'modelValue', type: 'string | null', default: 'null', description: 'The selected time value in HH:mm format (24h). Use with v-model.' },
-  { name: 'label', type: 'string', default: 'undefined', description: 'Text label displayed above the input field.' },
-  { name: 'format', type: '\'24h\' | \'12h\'', default: '\'24h\'', description: 'Display format. In 12h mode, hours 01-12 + AM/PM column are shown. The v-model value always stays in HH:mm (24h).' },
-  { name: 'required', type: 'boolean', default: 'false', description: 'Marks the field as required. Shows a red asterisk next to the label.' },
-  { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the picker, preventing user interaction.' },
-  { name: 'placeholder', type: 'string', default: '\'00:00\'', description: 'Placeholder shown when no value is selected.' },
-]" />
-
-## Emits
-
-<div class="px-section-header">
-  <span class="px-section-badge badge-emits">Emits</span>
-</div>
-
-<EmitsTable :rows="[
-  { name: 'update:modelValue', payload: 'string | null', description: 'Emitted when the user selects a new hour or minute. Value is always in HH:mm format (24h).' },
-  { name: 'change', payload: 'string | null', description: 'Also emitted on every selection change. Useful when you cannot use v-model.' },
-]" />
+<ApiReference component="PxTimePicker" />
 
 ## Accessibility
 

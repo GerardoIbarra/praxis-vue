@@ -126,33 +126,6 @@ const prev = () => step.value--
   </template>
 </ComponentDemo>
 
-## Props
+## API Reference
 
-<div class="px-section-header">
-  <span class="px-section-badge badge-props">Props</span>
-</div>
-
-<PropsTable :rows="[
-  { name: 'showPrevious', type: 'boolean', default: 'true', description: 'Whether to render the Previous button. Set to false on the first step.' },
-  { name: 'canProceed', type: 'boolean', default: 'true', description: 'Enables or disables the Next button. Use for step-level validation.' },
-  { name: 'loading', type: 'boolean', default: 'false', description: 'Puts all buttons in loading state. Shows spinner and loading labels.' },
-  { name: 'nextLabel', type: 'string', default: '\'Next\'', description: 'Label text for the Next/Proceed button.' },
-  { name: 'previousLabel', type: 'string', default: '\'Previous\'', description: 'Label text for the Previous button.' },
-  { name: 'loadingLabel', type: 'string', default: '\'Processing...\'', description: 'Text shown inside Next button while loading is true.' },
-  { name: 'showSave', type: 'boolean', default: 'false', description: 'Show the optional Save button alongside Next. Useful on the last step.' },
-  { name: 'saveLabel', type: 'string', default: '\'Save\'', description: 'Label for the Save button.' },
-  { name: 'saveLoadingLabel', type: 'string', default: '\'Saving...\'', description: 'Text shown inside Save button while loading is true.' },
-  { name: 'hasPermission', type: 'boolean', default: 'true', description: 'When false, disables the Save button (and Next on the last step). Use for role-based access control.' },
-]" />
-
-## Emits
-
-<div class="px-section-header">
-  <span class="px-section-badge badge-emits">Emits</span>
-</div>
-
-<EmitsTable :rows="[
-  { name: 'previous', payload: 'void', description: 'Emitted when the Previous button is clicked.' },
-  { name: 'next', payload: 'void', description: 'Emitted when the Next button is clicked and not disabled.' },
-  { name: 'save', payload: 'void', description: 'Emitted when the Save button is clicked and not disabled.' },
-]" />
+<ApiReference component="PxStepper" />

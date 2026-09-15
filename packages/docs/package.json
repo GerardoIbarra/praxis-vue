@@ -29,6 +29,8 @@
     "tailwindcss": "^4.3.3",
     "vite-plugin-pwa": "^1.3.0",
     "vitepress": "^1.6.3",
+    "vitepress-plugin-npm-commands": "^0.10.0",
+    "vitepress-plugin-tabs": "^0.9.1",
     "vue-docgen-api": "^4.79.2",
     "workbox-window": "^7.4.1"
   }

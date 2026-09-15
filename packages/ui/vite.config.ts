@@ -19,7 +19,6 @@ export default defineConfig({
         'vee-validate',
         '@vee-validate/rules',
         '@vee-validate/i18n',
-        'pinia',
         '@vueuse/core',
         '@lucide/vue',
         'dayjs',
@@ -27,7 +26,6 @@ export default defineConfig({
         'libphonenumber-js',
         'pdfjs-dist',
         '@popperjs/core',
-        'vue-draggable-plus',
       ],
       output: {
         globals: {

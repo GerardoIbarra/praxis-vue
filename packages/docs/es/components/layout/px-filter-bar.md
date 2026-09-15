@@ -4,7 +4,7 @@ import PxFilterBar from '@praxis/px-src/components/layout/PxFilterBar.vue'
 
 # PxFilterBar
 
-A transparent pass-through container for filter sections on card-based list views. Provides a consistent wrapper for filter controls placed above cards.
+A bordered, padded card wrapper for filter sections on list views. Provides a consistent surface for filter controls placed above a data table or card grid.
 
 ## Usage
 

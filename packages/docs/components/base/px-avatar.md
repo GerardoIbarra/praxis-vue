@@ -208,12 +208,12 @@ import { PxAvatar } from 'praxis-vue-ui'
 
 ## Deprecated Components
 
-`PxAvatar` and `PxInitialsAvatar` are kept for backward compatibility but internally delegate to `PxAvatar`. Migrate when convenient:
+[`PxInitialsAvatar`](/components/data-display/px-initials-avatar) is kept for backward compatibility but internally delegates to `PxAvatar`. Migrate when convenient:
 
 ```diff
-- import { PxAvatar } from 'praxis-vue-ui'
+- import { PxInitialsAvatar } from 'praxis-vue-ui'
 + import { PxAvatar } from 'praxis-vue-ui'
 
-- <PxAvatar :name="user.name" size="w-8 h-8" />
-+ <PxAvatar :name="user.name" size="md" />
+- <PxInitialsAvatar name="Alice Johnson" size="xlarge" />
++ <PxAvatar name="Alice Johnson" size="xl" />
 ```

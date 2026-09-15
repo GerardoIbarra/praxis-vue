@@ -1,29 +1,35 @@
 <script setup>
-import { ref } from 'vue'
 import PxInitialsAvatar from '@praxis/px-src/components/data-display/PxInitialsAvatar.vue'
 </script>
 
 # PxInitialsAvatar
 
-Renders a circular avatar with the user's initials derived from their first and last name. Supports custom size and background color.
+::: warning Deprecated
+This component is a thin wrapper around [`PxAvatar`](/es/components/base/px-avatar) (it always renders `PxAvatar` with `size="xl"`, ignoring its own `size` prop) and only exists for backward compatibility. Prefer using `PxAvatar` directly.
+:::
+
+Renders a circular avatar with initials derived from a full name string. The first and last word each contribute one letter (e.g. `"Alice Johnson"` → `"AJ"`).
 
 ## Basic Usage
 
 <ComponentDemo>
   <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
-    <PxInitialsAvatar first-name="Alice" last-name="Johnson" />
-    <PxInitialsAvatar first-name="Bob" last-name="Smith" />
-    <PxInitialsAvatar first-name="Carol" last-name="Williams" />
-    <PxInitialsAvatar first-name="David" last-name="Brown" />
+    <PxInitialsAvatar name="Alice Johnson" />
+    <PxInitialsAvatar name="Bob Smith" />
+    <PxInitialsAvatar name="Carol Williams" />
+    <PxInitialsAvatar name="David Brown" />
   </div>
 
   <template #code>
 
 ```vue
-<PxInitialsAvatar
-  first-name="Alice"
-  last-name="Johnson"
-/>
+<script setup>
+import { PxInitialsAvatar } from 'praxis-vue-ui'
+</script>
+
+<template>
+  <PxInitialsAvatar name="Alice Johnson" />
+</template>
 ```
 
   </template>
@@ -36,6 +42,7 @@ Renders a circular avatar with the user's initials derived from their first and 
 </div>
 
 <PropsTable :rows="[
-  { name: 'firstName', type: 'string', required: true, description: 'First name of the user. First character used as initials.' },
-  { name: 'lastName', type: 'string', required: true, description: 'Last name of the user. First character used as initials.' },
+  { name: 'name', type: 'string | null', default: '\'\'', description: 'Full name used to generate initials (e.g. \'Alice Johnson\' → \'AJ\').' },
+  { name: 'size', type: '\'normal\' | \'large\' | \'xlarge\'', default: '\'xlarge\'', description: 'Accepted for backward compatibility, but has no effect — the underlying PxAvatar is always rendered at its \'xl\' size.' },
+  { name: 'lightOnly', type: 'boolean', default: 'false', description: 'Accepted for backward compatibility, but not used by the current implementation.' },
 ]" />

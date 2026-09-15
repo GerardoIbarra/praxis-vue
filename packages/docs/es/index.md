@@ -62,35 +62,33 @@ features:
 
 Instala el paquete oficial desde npm con tu gestor favorito:
 
-::: code-group
-
-```bash [npm]
-npm install praxis-vue-ui primevue @primeuix/themes @lucide/vue
+```bash
+npm install praxis-vue-ui vee-validate pinia // [!=npm auto]
 ```
 
-```bash [pnpm]
-pnpm add praxis-vue-ui primevue @primeuix/themes @lucide/vue
-```
-
-```bash [yarn]
-yarn add praxis-vue-ui primevue @primeuix/themes @lucide/vue
-```
-
-:::
-
-### Configuración en Vue 3
-
-Configura el plugin de estilos y tema en tu archivo de entrada:
+::: tabs
+== Vue 3
 
 ```ts
 // main.ts
 import { createApp } from 'vue'
-import PrimeVue from 'primevue/config'
-import Aura from '@primeuix/themes/aura'
 import 'praxis-vue-ui/dist/praxis-vue.css' // Importa los estilos oficiales
 import App from './App.vue'
 
-createApp(App)
-  .use(PrimeVue, { theme: { preset: Aura } })
-  .mount('#app')
+createApp(App).mount('#app')
 ```
+
+== Nuxt 3
+
+```ts
+// nuxt.config.ts
+export default defineNuxtConfig({
+  css: [
+    'praxis-vue-ui/dist/praxis-vue.css', // Importa los estilos globalmente
+  ],
+  build: {
+    transpile: ['praxis-vue-ui'],
+  },
+})
+```
+:::

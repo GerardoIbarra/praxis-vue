@@ -1,14 +1,26 @@
 import { defineConfig } from 'vitepress'
 import { withPwa } from '@vite-pwa/vitepress'
 import { resolve } from 'path'
+import { tabsMarkdownPlugin } from 'vitepress-plugin-tabs'
+import { npmCommandsMarkdownPlugin } from 'vitepress-plugin-npm-commands'
 
 const sidebar = [
+  {
+    text: 'Guide',
+    collapsed: false,
+    items: [
+      { text: 'Theming', link: '/guide/theming' },
+      { text: 'Accessibility', link: '/guide/accessibility' },
+    ],
+  },
   {
     text: 'Cookbook (Recipes)',
     collapsed: false,
     items: [
       { text: 'Remote Data Table with Filters', link: '/cookbook/data-table-remote' },
       { text: 'Multi-Step Wizard with Zod', link: '/cookbook/zod-wizard' },
+      { text: 'Admin List Page', link: '/cookbook/admin-list-page' },
+      { text: 'Persisted Dark Mode Toggle', link: '/cookbook/persisted-dark-mode' },
     ],
   },
   {
@@ -25,6 +37,7 @@ const sidebar = [
       { text: 'Px Day Picker', link: '/components/forms/px-day-picker' },
       { text: 'Px Schema Form', link: '/components/forms/px-schema-form' },
       { text: 'Px Form Wizard', link: '/components/forms/px-form-wizard' },
+      { text: 'Px Selectable List With Table', link: '/components/forms/px-selectable-list-with-table' },
     ],
   },
   {
@@ -32,7 +45,9 @@ const sidebar = [
     collapsed: false,
     items: [
       { text: 'Px Avatar', link: '/components/base/px-avatar' },
+      { text: 'Px Avatar Select', link: '/components/base/px-avatar-select' },
       { text: 'Px Label', link: '/components/base/px-label' },
+      { text: 'Px Required Label', link: '/components/base/px-required-label' },
       { text: 'Px Color Input', link: '/components/base/px-color-input' },
       { text: 'Px Visual Select', link: '/components/base/px-visual-select' },
       { text: 'Px Categorized Select', link: '/components/base/px-categorized-select' },
@@ -61,6 +76,9 @@ const sidebar = [
       { text: 'Px Display Options', link: '/components/data-display/px-display-options' },
       { text: 'Px Document Viewer', link: '/components/data-display/px-document-viewer' },
       { text: 'Px Table Skeleton', link: '/components/data-display/px-table-skeleton' },
+      { text: 'Px Initials Avatar', link: '/components/data-display/px-initials-avatar' },
+      { text: 'Px Empty State', link: '/components/data-display/px-empty-state' },
+      { text: 'Px Info Field', link: '/components/data-display/px-info-field' },
     ],
   },
   {
@@ -80,9 +98,11 @@ const sidebar = [
     items: [
       { text: 'Px Accordion', link: '/components/primitives/px-accordion' },
       { text: 'Px Badge', link: '/components/primitives/px-badge' },
+      { text: 'Px Button', link: '/components/primitives/px-button' },
       { text: 'Px Checkbox', link: '/components/primitives/px-checkbox' },
       { text: 'Px Dialog', link: '/components/primitives/px-dialog' },
       { text: 'Px Drawer', link: '/components/primitives/px-drawer' },
+      { text: 'Px Input Text', link: '/components/primitives/px-input-text' },
       { text: 'Px Radio Button', link: '/components/primitives/px-radio-button' },
       { text: 'Px Select', link: '/components/primitives/px-select' },
       { text: 'Px Timeline', link: '/components/primitives/px-timeline' },
@@ -107,11 +127,21 @@ const sidebar = [
 
 const sidebarEs = [
   {
+    text: 'Guía',
+    collapsed: false,
+    items: [
+      { text: 'Theming', link: '/es/guide/theming' },
+      { text: 'Accesibilidad', link: '/es/guide/accessibility' },
+    ],
+  },
+  {
     text: 'Cookbook (Recetas)',
     collapsed: false,
     items: [
       { text: 'Data Table Remota con Filtros', link: '/es/cookbook/data-table-remote' },
       { text: 'Multi-Step Wizard con Zod', link: '/es/cookbook/zod-wizard' },
+      { text: 'Admin List Page', link: '/es/cookbook/admin-list-page' },
+      { text: 'Toggle de Modo Oscuro Persistente', link: '/es/cookbook/persisted-dark-mode' },
     ],
   },
   {
@@ -128,6 +158,7 @@ const sidebarEs = [
       { text: 'Px Day Picker', link: '/es/components/forms/px-day-picker' },
       { text: 'Px Schema Form', link: '/es/components/forms/px-schema-form' },
       { text: 'Px Form Wizard', link: '/es/components/forms/px-form-wizard' },
+      { text: 'Px Selectable List With Table', link: '/es/components/forms/px-selectable-list-with-table' },
     ],
   },
   {
@@ -135,7 +166,9 @@ const sidebarEs = [
     collapsed: false,
     items: [
       { text: 'Px Avatar', link: '/es/components/base/px-avatar' },
+      { text: 'Px Avatar Select', link: '/es/components/base/px-avatar-select' },
       { text: 'Px Label', link: '/es/components/base/px-label' },
+      { text: 'Px Required Label', link: '/es/components/base/px-required-label' },
       { text: 'Px Color Input', link: '/es/components/base/px-color-input' },
       { text: 'Px Visual Select', link: '/es/components/base/px-visual-select' },
       { text: 'Px Categorized Select', link: '/es/components/base/px-categorized-select' },
@@ -164,6 +197,9 @@ const sidebarEs = [
       { text: 'Px Display Options', link: '/es/components/data-display/px-display-options' },
       { text: 'Px Document Viewer', link: '/es/components/data-display/px-document-viewer' },
       { text: 'Px Table Skeleton', link: '/es/components/data-display/px-table-skeleton' },
+      { text: 'Px Initials Avatar', link: '/es/components/data-display/px-initials-avatar' },
+      { text: 'Px Empty State', link: '/es/components/data-display/px-empty-state' },
+      { text: 'Px Info Field', link: '/es/components/data-display/px-info-field' },
     ],
   },
   {
@@ -183,9 +219,11 @@ const sidebarEs = [
     items: [
       { text: 'Px Accordion', link: '/es/components/primitives/px-accordion' },
       { text: 'Px Badge', link: '/es/components/primitives/px-badge' },
+      { text: 'Px Button', link: '/es/components/primitives/px-button' },
       { text: 'Px Checkbox', link: '/es/components/primitives/px-checkbox' },
       { text: 'Px Dialog', link: '/es/components/primitives/px-dialog' },
       { text: 'Px Drawer', link: '/es/components/primitives/px-drawer' },
+      { text: 'Px Input Text', link: '/es/components/primitives/px-input-text' },
       { text: 'Px Radio Button', link: '/es/components/primitives/px-radio-button' },
       { text: 'Px Select', link: '/es/components/primitives/px-select' },
       { text: 'Px Timeline', link: '/es/components/primitives/px-timeline' },
@@ -236,12 +274,22 @@ export default withPwa(defineConfig({
   },
 
   head: [
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     ['link', {
       rel: 'stylesheet',
       href: 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'
     }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:title', content: 'Praxis Vue' }],
+    ['meta', { property: 'og:description', content: 'A premium Vue 3 UI component library — forms, data-display, layout, navigation, and more.' }],
+    ['meta', { property: 'og:image', content: 'https://px-vue.dev/logo.svg' }],
+    ['meta', { property: 'og:url', content: 'https://px-vue.dev' }],
+    ['meta', { name: 'twitter:card', content: 'summary' }],
+    ['meta', { name: 'twitter:title', content: 'Praxis Vue' }],
+    ['meta', { name: 'twitter:description', content: 'A premium Vue 3 UI component library — forms, data-display, layout, navigation, and more.' }],
+    ['meta', { name: 'twitter:image', content: 'https://px-vue.dev/logo.svg' }],
   ],
 
   locales: {
@@ -256,8 +304,8 @@ export default withPwa(defineConfig({
       themeConfig: {
         nav: [
           { text: 'Inicio', link: '/es/' },
-          { text: 'Componentes', link: '/es/components/forms/time-picker' },
-          { text: 'Cookbook', link: '/es/cookbook/data-table-remote' },
+          { text: 'Componentes', link: '/es/components/' },
+          { text: 'Cookbook', link: '/es/cookbook/' },
         ],
         sidebar: sidebarEs,
       },
@@ -270,8 +318,8 @@ export default withPwa(defineConfig({
 
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Components', link: '/components/forms/time-picker' },
-      { text: 'Cookbook', link: '/cookbook/data-table-remote' },
+      { text: 'Components', link: '/components/' },
+      { text: 'Cookbook', link: '/cookbook/' },
       { text: 'GitHub', link: 'https://github.com/GerardoIbarra/praxis-vue' },
     ],
 
@@ -311,6 +359,10 @@ export default withPwa(defineConfig({
     theme: {
       light: 'github-light',
       dark: 'github-dark',
+    },
+    config(md) {
+      md.use(tabsMarkdownPlugin)
+      md.use(npmCommandsMarkdownPlugin)
     },
   },
 }))

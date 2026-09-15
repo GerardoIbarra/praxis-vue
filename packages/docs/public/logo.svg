@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="praxis-logo-gradient" x1="4" y1="4" x2="60" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#praxis-logo-gradient)"/>
+  <path d="M22 46V18h11.5a9 9 0 0 1 0 18H26v10h-4Zm4-14h7.5a5 5 0 0 0 0-10H26v10Z" fill="#fff"/>
+</svg>

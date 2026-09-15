@@ -93,7 +93,7 @@ const handleComplete = (data) => {
 
 # PxFormWizard
 
-A multi-step form wizard that seamlessly combines **`PxStepper`** step navigation with **`PxSchemaForm`** dynamic rendering and per-step **Zod** schema validation.
+A multi-step form wizard that combines a built-in step navigation header with **`PxSchemaForm`** dynamic rendering and per-step **Zod** schema validation.
 
 ## Basic Usage
 
@@ -107,7 +107,6 @@ A multi-step form wizard that seamlessly combines **`PxStepper`** step navigatio
       complete-label="Finalizar Registro"
       @complete="handleComplete"
     />
-
     <div v-if="completedSubmission" class="mt-4 p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 text-xs text-emerald-800 dark:text-emerald-200 font-mono">
       <strong>✓ Formulario completado:</strong>
       <pre class="mt-2">{{ JSON.stringify(completedSubmission, null, 2) }}</pre>

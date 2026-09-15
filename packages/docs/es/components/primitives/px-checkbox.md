@@ -8,7 +8,7 @@ const selected = ref([])
 
 # PxCheckbox
 
-A styled checkbox component. Supports binary (true/false) mode and array-based multi-check (like native `<input type="checkbox">`). Wraps PrimeVue's Checkbox.
+A styled checkbox component. Supports binary (true/false) mode and array-based multi-check (like native `<input type="checkbox">`). Built as a self-contained component (no external checkbox library).
 
 ## Usage
 

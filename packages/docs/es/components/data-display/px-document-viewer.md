@@ -51,8 +51,5 @@ import { PxDocumentViewer } from 'praxis-vue-ui'
 ## Features
 
 - **Automatic Worker**: Automatically configures the `pdfjs-dist` web worker.
-- **Full Document Rendering**: Parses the document and renders all pages sequentially inside `<canvas>` elements.
-- **Scale**: The zoom scale is currently hardcoded to `1.5x` for optimal readability.
+- **Configurable rendering**: Use `renderAllPages` to render every page sequentially, or set it to `false` and pair it with `initialPage` to render a single page. `scale` controls the zoom level (default `1.5`).
 - **Print Support**: Includes a built-in "Print PDF" button that downloads the file to memory as a Blob and opens the native browser print dialog.
-
-*(Note: The component does not currently accept dynamic zoom or pagination props. It renders the entire document at once.)*

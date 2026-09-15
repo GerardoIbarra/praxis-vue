@@ -40,15 +40,19 @@ const panels = [
   </template>
 </ComponentDemo>
 
-Or with slot-based content:
+Without `items`, `PxAccordion` renders a single default scoped slot instead — build your own panel markup and call `toggle`/`isOpen` yourself:
 
-<ComponentDemo title="Slots">
+<ComponentDemo title="Slot-based">
   <div style="width: 100%; max-width: 400px;">
-    <PxAccordion>
-      <template #header>User Information</template>
-      <div style="padding: 1rem; color: var(--vp-c-text-2);">
-        <p>Name: Alice Johnson</p>
-        <p>Role: Administrator</p>
+    <PxAccordion v-slot="{ isOpen, toggle }">
+      <div class="px-accordion-panel">
+        <button type="button" class="px-accordion-header" @click="toggle('info')">
+          User Information
+        </button>
+        <div v-show="isOpen('info')" class="px-accordion-content-inner">
+          <p style="margin:0;">Name: Alice Johnson</p>
+          <p style="margin:0;">Role: Administrator</p>
+        </div>
       </div>
     </PxAccordion>
   </div>
@@ -56,10 +60,16 @@ Or with slot-based content:
   <template #code>
 
 ```vue
-<PxAccordion>
-  <template #header>User Information</template>
-  <p>Name: Alice Johnson</p>
-  <p>Role: Administrator</p>
+<PxAccordion v-slot="{ isOpen, toggle }">
+  <div class="px-accordion-panel">
+    <button type="button" class="px-accordion-header" @click="toggle('info')">
+      User Information
+    </button>
+    <div v-show="isOpen('info')" class="px-accordion-content-inner">
+      <p>Name: Alice Johnson</p>
+      <p>Role: Administrator</p>
+    </div>
+  </div>
 </PxAccordion>
 ```
 
@@ -69,14 +79,15 @@ Or with slot-based content:
 ## Props
 
 <PropsTable :rows="[
+  { name: 'items', type: 'AccordionItem[]', default: 'undefined', description: 'Renders panels programmatically (header/content pairs). Omit to use the default scoped slot instead.' },
   { name: 'multiple', type: 'boolean', default: 'false', description: 'When true, multiple panels can be open simultaneously.' },
-  { name: 'activeIndex', type: 'number | number[]', default: 'undefined', description: 'Index or array of indexes of initially expanded panels.' },
+  { name: 'value', type: 'string | string[]', default: 'undefined', description: 'Value (or array of values, if multiple) of initially expanded panel(s).' },
 ]" />
 
-## Emits
+## Slots
 
-<EmitsTable :rows="[
-  { name: 'update:activeIndex', payload: 'number | number[]', description: 'Emitted when the active panel changes.' },
-  { name: 'tab-open', payload: '{ index: number }', description: 'Emitted when a panel opens.' },
-  { name: 'tab-close', payload: '{ index: number }', description: 'Emitted when a panel closes.' },
+<SlotsTable :rows="[
+  { name: 'default', props: '{ isOpen, toggle }', description: 'Rendered instead of items — isOpen(value) checks a panel\'s state, toggle(value) opens/closes it.' },
 ]" />
+
+This component has no emits — it's fully uncontrolled; use the `value` prop only to set the initial state.

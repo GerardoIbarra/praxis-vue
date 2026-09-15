@@ -61,25 +61,22 @@ features:
 ## Quick Start
 
 ```bash
-npm install praxis-vue-ui primevue @primevue/core vee-validate pinia
+npm install praxis-vue-ui vee-validate pinia // [!=npm auto]
 ```
 
-### Vue 3 Setup
+::: tabs
+== Vue 3
 
 ```ts
 // main.ts
 import { createApp } from 'vue'
-import PrimeVue from 'primevue/config'
-import Aura from '@primeuix/themes/aura'
 import 'praxis-vue-ui/dist/praxis-vue.css' // Import styles
 import App from './App.vue'
 
-createApp(App)
-  .use(PrimeVue, { theme: { preset: Aura } })
-  .mount('#app')
+createApp(App).mount('#app')
 ```
 
-### Nuxt 3 Setup
+== Nuxt 3
 
 ```ts
 // nuxt.config.ts
@@ -92,3 +89,4 @@ export default defineNuxtConfig({
   },
 })
 ```
+:::

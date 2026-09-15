@@ -8,14 +8,13 @@ const content = ref('<p>Start typing here...</p>')
 
 # Px Editor
 
-The `PxEditor` is a rich-text editor based on Vue, using Tiptap/ProseMirror underneath. It offers a premium interface with support for multiple formats, keyboard shortcuts, and dark theme.
+The `PxEditor` is a rich-text editor based on Vue, using [Wordgard](https://www.npmjs.com/package/wordgard) underneath. It offers a premium interface with support for multiple formats, keyboard shortcuts, and dark theme.
 
 <ClientOnly>
   <ComponentDemo title="Rich-Text Editor Playground">
     <div style="width:100%;border-radius:8px;overflow:hidden;">
       <PxEditor v-model="content" />
     </div>
-
     <template #code>
 
 ```vue
@@ -33,8 +32,7 @@ const content = ref('<p>Start typing here...</p>')
   </div>
 </template>
 ```
-
-    </template>
+  </template>
   </ComponentDemo>
 </ClientOnly>
 

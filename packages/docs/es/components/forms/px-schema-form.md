@@ -126,4 +126,4 @@ interface FormSchemaField {
 ]" />
 
 > [!NOTE]
-> `PxSchemaForm` is the most complex component in the library. See the schema type definitions in `@/types/api/common` for the full `FormSchemaField` interface, and `PxFormRow` / `PxFormMultiSelectList` / `PxSelectListField` for the sub-field types used by the `row`, `multiselect_list`, and `select_list` field types.
+> `PxSchemaForm` is the most complex component in the library. See [`PxFormRow`](/es/components/forms/px-form-row), [`PxSchemaMultiSelect`](/es/components/forms/px-schema-multi-select), and [`PxGridSelect`](/es/components/forms/px-grid-select) for the sub-field types rendered by the `row`, `multiselect_list`, and `select_list` field types, respectively.

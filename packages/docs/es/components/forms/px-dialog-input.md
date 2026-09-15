@@ -1,67 +1,59 @@
 <script setup>
 import { ref } from 'vue'
 import PxDialogInput from '@praxis/px-src/components/forms/PxDialogInput.vue'
-import PxDialog from '@praxis/px-src/components/_primitives/PxDialog.vue'
 
-const value = ref('')
-const showModal = ref(false)
-
-const openModal = () => { showModal.value = true }
-const selectProvider = (name) => {
-  value.value = name
-  showModal.value = false
-}
+const showUpload = ref(false)
+const lastUpload = ref(null)
 </script>
 
 # PxDialogInput
 
-A text input with a built-in modal/dialog trigger button. Useful for opening a selection modal from within a form field, showing the selected value as read-only text.
+A file-upload dialog: drag-and-drop (or click-to-browse) a single file, preview it, and confirm. It's not a text input despite the name — it's a self-contained modal built on [`PxDialog`](/es/components/primitives/px-dialog).
+
+::: warning Manages its own visibility — no v-model
+The dialog opens as soon as it's mounted (its internal `visible` state starts `true`) and there's no prop to control it from outside. Conditionally render the component itself with `v-if`, and unmount it in response to the `close`/`upload-complete` events.
+:::
 
 ## Usage
 
 <ComponentDemo>
-  <div style="padding: 1rem 0; width: 100%; max-width: 300px;">
-    <PxDialogInput
-      :model-value="value"
-      label="Provider"
-      placeholder="Click to select a provider..."
-      @click="openModal"
-    />
+  <div style="padding: 1rem 0; display:flex; flex-direction:column; align-items:center; gap:0.75rem;">
+    <button class="blue-button" @click="showUpload = true">Upload a document</button>
+    <div v-if="lastUpload" style="font-size:0.85rem; color: var(--vp-c-text-2);">
+      Last upload: <strong>{{ lastUpload }}</strong>
+    </div>
+    <ClientOnly>
+      <PxDialogInput
+        v-if="showUpload"
+        @close="showUpload = false"
+        @upload-complete="(file) => { lastUpload = file.name; showUpload = false }"
+      />
+    </ClientOnly>
   </div>
-  
-  <ClientOnly>
-    <PxDialog v-model:visible="showModal" header="Select Provider">
-      <div style="display: flex; flex-direction: column; gap: 0.5rem; padding: 1rem 0;">
-        <button @click="selectProvider('Dr. Alice Johnson')" class="input-base" style="cursor:pointer; text-align:left;">Dr. Alice Johnson</button>
-        <button @click="selectProvider('Dr. Bob Smith')" class="input-base" style="cursor:pointer; text-align:left;">Dr. Bob Smith</button>
-      </div>
-    </PxDialog>
-  </ClientOnly>
 
   <template #code>
 
 ```vue
 <script setup>
 import { ref } from 'vue'
-import { PxDialogInput, PxDialog } from 'praxis-vue-ui'
+import { PxDialogInput } from 'praxis-vue-ui'
 
-const value = ref('')
-const showModal = ref(false)
+const showUpload = ref(false)
 
-const openModal = () => { showModal.value = true }
+const onUploadComplete = (file) => {
+  console.log('Uploaded:', file.name)
+  showUpload.value = false
+}
 </script>
 
 <template>
-  <PxDialogInput
-    :model-value="value"
-    label="Provider"
-    placeholder="Click to select a provider..."
-    @click="openModal"
-  />
+  <button @click="showUpload = true">Upload a document</button>
 
-  <PxDialog v-model:visible="showModal" header="Select Provider">
-    <!-- Modal content and selection logic -->
-  </PxDialog>
+  <PxDialogInput
+    v-if="showUpload"
+    @close="showUpload = false"
+    @upload-complete="onUploadComplete"
+  />
 </template>
 ```
 
@@ -71,15 +63,16 @@ const openModal = () => { showModal.value = true }
 ## Props
 
 <PropsTable :rows="[
-  { name: 'modelValue', type: 'string', default: '\'\'', description: 'Text value displayed in the read-only input.' },
-  { name: 'label', type: 'string', default: 'undefined', description: 'Label above the input.' },
-  { name: 'placeholder', type: 'string', default: '\'\'', description: 'Placeholder text when no value is selected.' },
-  { name: 'required', type: 'boolean', default: 'false', description: 'Shows required asterisk.' },
-  { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the trigger button.' },
+  { name: 'theme', type: '\'light\' | \'dark\' | \'default\'', default: '\'default\'', description: 'Intended to force a light-background dialog regardless of site theme. Currently a no-op — see note below.' },
 ]" />
+
+::: warning theme="light" currently has no effect
+The component applies a `light-theme-dialog` class and ships CSS scoped to `.light-theme-dialog.p-dialog`, but the underlying `PxDialog` renders a `.px-dialog` class, not `.p-dialog` — so that selector never matches anything in the current DOM. This looks like leftover styling from an earlier implementation. Worth flagging as a bug if you rely on it.
+:::
 
 ## Emits
 
 <EmitsTable :rows="[
-  { name: 'click', payload: 'void', description: 'Emitted when the modal trigger button is clicked.' },
+  { name: 'close', payload: '—', description: 'Emitted when the dialog is dismissed for any reason (Send, remove-and-close, or the dialog\'s own close button).' },
+  { name: 'upload-complete', payload: 'UploadDocumentFile', description: 'Emitted with the selected file object when the user clicks \'Send\'.' },
 ]" />

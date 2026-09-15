@@ -62,15 +62,18 @@ const position = ref('right')
   { name: 'visible', type: 'boolean', required: true, description: 'Controls drawer open/close state. Use with v-model:visible.' },
   { name: 'header', type: 'string', default: 'undefined', description: 'Drawer header title.' },
   { name: 'position', type: '\'left\' | \'right\' | \'top\' | \'bottom\'', default: '\'right\'', description: 'Which edge the drawer slides in from.' },
-  { name: 'size', type: 'string', default: '\'30rem\'', description: 'Width (for left/right) or height (for top/bottom) of the drawer.' },
-  { name: 'dismissable', type: 'boolean', default: 'true', description: 'Closes the drawer when clicking outside.' },
-  { name: 'modal', type: 'boolean', default: 'true', description: 'Shows an overlay backdrop.' },
+  { name: 'closable', type: 'boolean', default: 'true', description: 'Shows the × close button, and enables closing via the Escape key and clicking the backdrop.' },
+  { name: 'style', type: 'Record<string, string>', default: 'undefined', description: 'Inline styles for the drawer panel.' },
 ]" />
+
+::: tip No size prop
+The drawer's width (left/right positions) is a fixed 550px and its height (top/bottom) is capped at 80vh, both set in CSS — there's no prop to override this today. The backdrop is also always shown; there's no way to render the drawer without one.
+:::
 
 ## Emits
 
 <EmitsTable :rows="[
-  { name: 'update:visible', payload: 'boolean', description: 'Emitted when the drawer is closed.' },
+  { name: 'update:visible', payload: 'boolean', description: 'Emitted with false when the drawer should close.' },
 ]" />
 
 ## Slots
@@ -78,5 +81,4 @@ const position = ref('right')
 | Slot | Description |
 |------|-------------|
 | `default` | Drawer body content. |
-| `header` | Custom header rendering. |
-| `footer` | Footer area, typically action buttons. |
+| `header` | Custom header rendering (replaces the header prop text). |

@@ -7,7 +7,7 @@ description: A premium skeleton loader specifically designed for table layouts.
 
 A premium skeleton loader specifically designed for table layouts. It automatically generates pseudo-random line widths to simulate real text, avoiding the monotonous "blocky" look of standard skeletons.
 
-It's automatically used by `PxDataTable` and `PxStatusDataTable` when their `loading` prop is set to `true`, but you can use it manually inside any native HTML `<tbody>`.
+It's automatically used by `PxDataTable` when its `loading` prop is set to `true`, but you can use it manually inside any native HTML `<tbody>`.
 
 ## Basic Usage
 

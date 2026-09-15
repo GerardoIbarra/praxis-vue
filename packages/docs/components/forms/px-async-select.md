@@ -32,7 +32,7 @@ const loadMore = async () => {
 
 # PxAsyncSelect
 
-A `PxSelect` wrapper that triggers a load-more callback when the user scrolls to the bottom of the dropdown options. Designed for large datasets loaded from an API.
+A searchable select that emits a `scrolling` event when the user scrolls near the bottom of the dropdown, so you can load and append the next page yourself. It doesn't call any load-more function for you — `hasMore` and `loading` are display-only flags you control.
 
 ## Usage
 
@@ -42,9 +42,9 @@ A `PxSelect` wrapper that triggers a load-more callback when the user scrolls to
       v-model="selected"
       :options="options"
       :has-more="hasMore"
-      :loading-scroll="loading"
-      :load-more-scroll="loadMore"
+      :loading="loading"
       placeholder="Scroll down to load more..."
+      @scrolling="loadMore"
     />
     <div style="margin-top: 1rem; font-size: 0.85rem; color: var(--vp-c-text-2);">
       Selected: <strong>{{ selected ? selected.name : 'None' }}</strong>
@@ -63,7 +63,9 @@ const options = ref([/* initial page */])
 const hasMore = ref(true)
 const loading = ref(false)
 
+// Called on the 'scrolling' event — you decide when/how to fetch more
 const loadMore = async () => {
+  if (!hasMore.value || loading.value) return
   loading.value = true
   const newItems = await api.getNextPage()
   options.value.push(...newItems)
@@ -76,9 +78,9 @@ const loadMore = async () => {
     v-model="selected"
     :options="options"
     :has-more="hasMore"
-    :loading-scroll="loading"
-    :load-more-scroll="loadMore"
+    :loading="loading"
     placeholder="Search providers..."
+    @scrolling="loadMore"
   />
 </template>
 ```
@@ -89,20 +91,24 @@ const loadMore = async () => {
 ## Props
 
 <PropsTable :rows="[
-  { name: 'modelValue', type: 'unknown', default: 'null', description: 'Currently selected value. Use with v-model.' },
-  { name: 'options', type: 'unknown[]', required: true, description: 'Current page of loaded options.' },
-  { name: 'hasMore', type: 'boolean', default: 'false', description: 'Whether more items are available to load from the server.' },
-  { name: 'loadingScroll', type: 'boolean', default: 'false', description: 'Shows a spinner at the bottom of the dropdown while loading.' },
-  { name: 'loadMoreScroll', type: '() => Promise<void>', default: 'undefined', description: 'Async callback invoked when the user scrolls to the bottom of the dropdown.' },
+  { name: 'modelValue', type: 'string | number | object | null', default: 'null', description: 'Currently selected value. Use with v-model.' },
+  { name: 'options', type: 'unknown[]', default: '[]', description: 'Current page of loaded options.' },
+  { name: 'hasMore', type: 'boolean', default: 'false', description: 'Display-only flag — doesn\'t change behavior, use it to decide whether to fetch more on @scrolling.' },
+  { name: 'loading', type: 'boolean', default: 'false', description: 'Shows a loading state while true.' },
   { name: 'placeholder', type: 'string', default: '\'\'', description: 'Placeholder text.' },
-  { name: 'label', type: 'string', default: '\'name\'', description: 'Property name used as display label.' },
+  { name: 'label', type: 'string', default: '\'name\'', description: 'Property name read from each option for its display text.' },
   { name: 'reduce', type: '(option) => unknown', default: 'undefined', description: 'Value extractor function.' },
   { name: 'disabled', type: 'boolean', default: 'false', description: 'Disables the select.' },
-  { name: 'searchFunction', type: '(query: string) => void', default: 'undefined', description: 'Custom search handler (server-side search).' },
+  { name: 'multiple', type: 'boolean', default: 'false', description: 'Allows selecting more than one option.' },
+  { name: 'clearable', type: 'boolean', default: 'true', description: 'Shows a button to clear the current selection.' },
 ]" />
 
 ## Emits
 
 <EmitsTable :rows="[
   { name: 'update:modelValue', payload: 'unknown', description: 'Emitted on selection change.' },
+  { name: 'scrolling', payload: '—', description: 'Emitted (debounced) when the user scrolls near the bottom of the dropdown — this is your cue to load the next page.' },
+  { name: 'search', payload: 'string', description: 'Emitted with the current search query as the user types.' },
+  { name: 'open', payload: '—', description: 'Emitted when the dropdown opens.' },
+  { name: 'select', payload: 'unknown', description: 'Emitted with the selected item.' },
 ]" />

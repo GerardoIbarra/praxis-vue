@@ -2,8 +2,6 @@
 import PxToast from '@praxis/px-src/components/_primitives/PxToast.vue'
 import { usePxToast } from '@praxis/px-src/composables/usePxToast'
 
-// Mocking usePxToast since docs might not have PrimeVue app fully instantiated
-// But assuming it does, we can just use the real one.
 const triggerToast = (severity) => {
   const { showSuccess, showError, showInfo, showWarning } = usePxToast()
   if (severity === 'success') showSuccess('Action Completed', 'Your changes have been saved successfully.')
@@ -15,7 +13,7 @@ const triggerToast = (severity) => {
 
 # PxToast
 
-A global notification system for displaying success, error, warning, and info messages. Built on top of PrimeVue's Toast system and styled with Tailwind to seamlessly match your app's theme.
+A global notification system for displaying success, error, warning, and info messages. Self-contained (no external toast library) and styled with Tailwind to seamlessly match your app's theme.
 
 ## Basic Usage
 
@@ -67,7 +65,7 @@ The `usePxToast` composable provides a typed API to trigger messages anywhere in
 
 ```ts
 const { 
-  toast,        // The raw PrimeVue toast instance 
+  toasts,       // Ref<PxToastMessage[]> — the active messages, if you need to read/render them yourself
   showSuccess,  // showSuccess(summary: string, detail?: string, life?: number)
   showError,    // showError(summary: string, detail?: string, life?: number)
   showInfo,     // showInfo(summary: string, detail?: string, life?: number)

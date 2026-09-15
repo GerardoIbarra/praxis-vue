@@ -22,7 +22,7 @@
 </p>
 
 <p align="center">
-  A modern, enterprise-ready Vue 3 UI component suite built with <b>PrimeVue</b>, <b>Tailwind CSS</b>, and <b>TanStack Table</b>.
+  A modern, enterprise-ready Vue 3 UI component suite built with <b>Tailwind CSS</b> and <b>TanStack Table</b>.
   <br />
   Designed for data-intensive dashboards, mission-critical admin panels, and fluid design systems.
 </p>
@@ -52,16 +52,16 @@
 
 ```bash
 # npm
-npm install praxis-vue-ui primevue @primevue/core vee-validate pinia
+npm install praxis-vue-ui vee-validate
 
 # pnpm
-pnpm add praxis-vue-ui primevue @primevue/core vee-validate pinia
+pnpm add praxis-vue-ui vee-validate
 
 # yarn
-yarn add praxis-vue-ui primevue @primevue/core vee-validate pinia
+yarn add praxis-vue-ui vee-validate
 
 # bun
-bun add praxis-vue-ui primevue @primevue/core vee-validate pinia
+bun add praxis-vue-ui vee-validate
 ```
 
 ---
@@ -73,23 +73,10 @@ bun add praxis-vue-ui primevue @primevue/core vee-validate pinia
 ```ts
 // main.ts
 import { createApp } from 'vue'
-import PrimeVue from 'primevue/config'
-import Aura from '@primeuix/themes/aura'
 import 'praxis-vue-ui/dist/praxis-vue.css' // Component styles
 import App from './App.vue'
 
-const app = createApp(App)
-
-app.use(PrimeVue, {
-  theme: {
-    preset: Aura,
-    options: {
-      darkModeSelector: '.dark',
-    },
-  },
-})
-
-app.mount('#app')
+createApp(App).mount('#app')
 ```
 
 ### 2. Setup in Nuxt 3
@@ -194,8 +181,8 @@ Override core theme colors effortlessly:
 | Category | Highlights |
 |---|---|
 | **Forms** | `PxSchemaForm`, `PxFormWizard`, `PxAsyncSelect`, `PxVisualSelect`, `PxCategorizedSelect`, `PxGridSelect`, `PxDayPicker`, `PxTimePicker`, `PxPhoneInput`, `PxColorInput`, `PxDialogInput`, `PxFormRow` |
-| **Data Display** | `PxDataTable`, `PxTree`, `PxDocumentViewer`, `PxAvatar`, `PxInitialsAvatar`, `PxInfoField`, `PxBadgedValueGrid`, `PxLabeledValueSection`, `PxStatusDataTable` |
-| **Layout** | `PxHeader`, `PxCard`, `PxListLayout`, `PxColumnLayout`, `PxFilterBar`, `PxFormLayout` |
+| **Data Display** | `PxDataTable`, `PxTree`, `PxDocumentViewer`, `PxAvatar`, `PxInitialsAvatar`, `PxInfoField`, `PxEmptyState`, `PxTableSkeleton` |
+| **Layout** | `PxHeader`, `PxCard`, `PxListLayout`, `PxFilterBar`, `PxFormLayout` |
 | **Navigation** | `PxTabs`, `PxStepper`, `PxStepperHeader`, `PxDropdownMenu`, `PxNavList` |
 | **Overlays & Primitives** | `PxCommandPalette`, `PxDialog`, `PxDrawer`, `PxToast`, `PxAccordion`, `PxBadge`, `PxCheckbox`, `PxRadioButton`, `PxTimeline`, `PxLoader`, `PxThemeSwitch` |
 

@@ -71,17 +71,16 @@ const confirm = () => {
 <PropsTable :rows="[
   { name: 'visible', type: 'boolean', required: true, description: 'Controls dialog visibility. Use with v-model:visible.' },
   { name: 'header', type: 'string', default: 'undefined', description: 'Dialog title text. Also overridable via the header slot.' },
-  { name: 'modal', type: 'boolean', default: 'true', description: 'When true, shows an overlay backdrop.' },
-  { name: 'closable', type: 'boolean', default: 'true', description: 'Shows the × close button in the header.' },
-  { name: 'dismissableMask', type: 'boolean', default: 'false', description: 'Closes the dialog when clicking the overlay backdrop.' },
-  { name: 'style', type: 'string | object', default: 'undefined', description: 'Inline styles for the dialog container.' },
+  { name: 'modal', type: 'boolean', default: 'true', description: 'When true, shows an overlay backdrop and clicking it closes the dialog.' },
+  { name: 'closable', type: 'boolean', default: 'true', description: 'Shows the × close button in the header and enables closing with the Escape key.' },
+  { name: 'maxWidth', type: 'string', default: '\'560px\'', description: 'Max-width of the dialog box.' },
+  { name: 'style', type: 'Record<string, string>', default: 'undefined', description: 'Inline styles for the dialog container.' },
 ]" />
 
 ## Emits
 
 <EmitsTable :rows="[
-  { name: 'update:visible', payload: 'boolean', description: 'Emitted when the dialog is closed. Set visible to false.' },
-  { name: 'hide', payload: 'void', description: 'Emitted after the dialog finishes its close transition.' },
+  { name: 'update:visible', payload: 'boolean', description: 'Emitted with false when the dialog should close (backdrop click, Escape, or the × button).' },
 ]" />
 
 ## Slots

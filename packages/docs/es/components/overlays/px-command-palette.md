@@ -64,11 +64,9 @@ Click the button below or press <kbd class="px-kbd">Ctrl</kbd> + <kbd class="px-
         <kbd class="px-1.5 py-0.5 rounded border border-surface-200 dark:border-surface-700 bg-white dark:bg-surface-900">K</kbd>
       </div>
     </button>
-
     <div v-if="selectedAction" class="text-xs font-semibold text-p-primary bg-p-primary/10 px-3 py-1.5 rounded-lg">
       Última acción ejecutada: {{ selectedAction }}
     </div>
-
     <PxCommandPalette
       v-model="isOpen"
       :commands="commands"

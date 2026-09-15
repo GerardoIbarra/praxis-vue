@@ -38,13 +38,9 @@ export { default as PxEmptyState } from './components/data-display/PxEmptyState.
 export { default as PxInitialsAvatar } from './components/data-display/PxInitialsAvatar.vue'
 export { default as PxInfoField } from './components/data-display/PxInfoField.vue'
 export { default as PxDisplayOptions } from './components/data-display/PxDisplayOptions.vue'
-export { default as PxBadgedValueGrid } from './components/data-display/PxBadgedValueGrid.vue'
-export { default as PxLabeledValueSection } from './components/data-display/PxLabeledValueSection.vue'
-export { default as PxStatusDataTable } from './components/data-display/PxStatusDataTable.vue'
 export { default as PxTableSkeleton } from './components/data-display/PxTableSkeleton.vue'
 
 // --- Layout ---
-export { default as PxColumnLayout } from './components/layout/PxColumnLayout.vue'
 export { default as PxCard } from './components/layout/PxCard.vue'
 export { default as PxHeader } from './components/layout/PxHeader.vue'
 export { default as PxListLayout } from './components/layout/PxListLayout.vue'

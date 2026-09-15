@@ -4,6 +4,8 @@ All notable changes to `praxis-vue-ui` are documented here. Format follows [Keep
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-09-14
+
 ### Removed
 
 - **Dropped `pinia` as a peer dependency.** It was declared in `package.json` but never imported anywhere in `src/`. If your app installed `pinia` solely to satisfy this library's peer dependency, you can remove it — nothing in `praxis-vue-ui` requires it.
@@ -24,4 +26,5 @@ All notable changes to `praxis-vue-ui` are documented here. Format follows [Keep
 
 No changelog was kept prior to this file. See `git log` for history.
 
-[Unreleased]: https://github.com/GerardoIbarra/praxis-vue/compare/v0.1.5...HEAD
+[Unreleased]: https://github.com/GerardoIbarra/praxis-vue/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/GerardoIbarra/praxis-vue/compare/v0.1.5...v0.2.0
